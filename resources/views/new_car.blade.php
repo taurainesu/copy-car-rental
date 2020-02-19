@@ -1,9 +1,9 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 <div class="ui container">
 
-<form method="POST" action="{{route('new_car')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('new_car_post')}}" enctype="multipart/form-data">
 
 @csrf
 

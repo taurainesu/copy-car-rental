@@ -16,14 +16,20 @@ use Illuminate\Http\Request as RequestToo;
 
 Route::get('/', function () {
     return view('home');
-});
+})->middleware("auth");
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get("/car-info",function(){
-    return view("car_info");
-})->name('car_info');
+Route::get("/cars/search",'CarController@search')->name("search");
 
-Route::get("/cars/search",'HomeController@search')->name("search");
+Route::get("cars/new","CarController@index")->name("new_car");
+
+Route::get("cars/get","CarController@cars")->name("get_cars");
+
+Route::post("cars/new","CarController@store")->name("new_car_post");
+
+Route::get("cars/info/{id}","CarController@car")->name("get_car");
+
+

@@ -28,7 +28,7 @@
           background-color:white;
         }
   
-        body,h1,h2,h3,h4,button,.header,.description,b,.meta{
+        body,h1,h2,h3,h4,button,.header,.description,b,.meta,.navbar-brand{
           font-family: "Nunito",sans-serif !important;
         }
           p{
@@ -90,9 +90,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                            <a class="nav-link" href="{{route('car_info')}}">Car Info</a>
-                            </li>
+                        
                             <li class="nav-item">
                                 <a class="nav-link" href="#">My Reservations</a>
                             </li>
