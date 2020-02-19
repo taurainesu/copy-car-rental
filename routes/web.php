@@ -11,6 +11,9 @@
 |
 */
 
+use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request as RequestToo;
+
 Route::get('/', function () {
     return view('home');
 });
@@ -22,3 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get("/car-info",function(){
     return view("car_info");
 })->name('car_info');
+
+Route::get("/cars/search",'HomeController@search')->name("search");

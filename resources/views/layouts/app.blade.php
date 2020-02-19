@@ -125,4 +125,24 @@
         </main>
     </div>
 </body>
+<script>
+    $(document)
+      .ready(function() {
+        $('.ui.dropdown')
+          .dropdown({
+            on: 'click'
+          })
+        ;
+      })
+    ;
+    </script>
+  
+  
+    <script>
+    $(document).ready(function() {
+        $('.reservationbutton').click(function(){
+          $('#reservationmodal').modal('show');
+        });
+         });
+    </script>
 </html>

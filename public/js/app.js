@@ -1932,6 +1932,266 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Home.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      search: false,
+      location: "Harare",
+      carType: "SUV",
+      dropOffDate: "",
+      pickUpDate: ""
+    };
+  },
+  methods: {
+    searchCars: function searchCars() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/cars/search", {
+        params: {
+          location: this.location,
+          carType: this.carType,
+          pickUpDate: this.pickUpDate,
+          dropOffDate: this.dropOffDate
+        }
+      }).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {//this.getCars();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -37334,6 +37594,614 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "ui container" }, [
+    _c("div", { staticClass: "ui card row", staticStyle: { width: "40%" } }, [
+      _c("div", { staticClass: "content p-4" }, [
+        _c("h3", [_vm._v("Rent a Car")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui divider" }),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.location,
+                expression: "location"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.location = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", [_vm._v("Harare")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Buluwayo")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Gweru")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Mutare")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Kariba")])
+          ]
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.carType,
+                expression: "carType"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.carType = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", [_vm._v("SUV")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Sedan")]),
+            _vm._v(" "),
+            _c("option", [_vm._v("Truck")])
+          ]
+        ),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui two column centered grid" }, [
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "ui input fluid" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.pickUpDate,
+                    expression: "pickUpDate"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { placeholder: "Pick-up Date", type: "date" },
+                domProps: { value: _vm.pickUpDate },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.pickUpDate = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "ui input fluid" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dropOffDate,
+                    expression: "dropOffDate"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { placeholder: "Dropoff Date", type: "date" },
+                domProps: { value: _vm.dropOffDate },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.dropOffDate = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "ui divider" }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "ui primary button col-md-12",
+            staticStyle: { "background-color": "#ffb70a" },
+            on: {
+              click: function($event) {
+                return _vm.searchCars()
+              }
+            }
+          },
+          [_vm._v("Find Vehicles")]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    !_vm.search
+      ? _c("div", [
+          _c("h3", { staticStyle: { "margin-top": "40px" } }, [
+            _vm._v("Featured Vehicles")
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.search
+      ? _c("div", [
+          _c("h3", { staticStyle: { "margin-top": "40px" } }, [
+            _vm._v("Search Results Vehicles")
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui four cards" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "image" }, [
+          _c("img", { attrs: { src: "image.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "header" }, [_vm._v("Toyota Carina")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "meta" }, [
+            _c("a", { staticClass: "group" }, [_vm._v("2005")])
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Harare")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v("Very comfortable Vehicle")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui two column centered grid" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("h5", [_vm._v("$54 per day")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn yellow ui compact button reservationbutton"
+                },
+                [_vm._v("Reserve")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "extra center aligned" }, [
+          _c(
+            "div",
+            { staticClass: "ui star rating", attrs: { "data-rating": "4" } },
+            [
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" })
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "image" }, [
+          _c("img", { attrs: { src: "image.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "header" }, [_vm._v("Toyota Carina")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "meta" }, [
+            _c("a", { staticClass: "group" }, [_vm._v("2005")])
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Harare")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v("Very comfortable Vehicle")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui two column centered grid" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("h5", [_vm._v("$54 per day")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn yellow ui compact button reservationbutton"
+                },
+                [_vm._v("Reserve")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "extra center aligned" }, [
+          _c(
+            "div",
+            { staticClass: "ui star rating", attrs: { "data-rating": "4" } },
+            [
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" })
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "image" }, [
+          _c("img", { attrs: { src: "image.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "header" }, [_vm._v("Toyota Carina")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "meta" }, [
+            _c("a", { staticClass: "group" }, [_vm._v("2005")])
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Harare")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v("Very comfortable Vehicle")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui two column centered grid" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("h5", [_vm._v("$54 per day")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn yellow ui compact button reservationbutton"
+                },
+                [_vm._v("Reserve")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "extra center aligned" }, [
+          _c(
+            "div",
+            { staticClass: "ui star rating", attrs: { "data-rating": "4" } },
+            [
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" })
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "image" }, [
+          _c("img", { attrs: { src: "image.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "header" }, [_vm._v("Toyota Carina")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "meta" }, [
+            _c("a", { staticClass: "group" }, [_vm._v("2005")])
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Harare")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v("Very comfortable Vehicle")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui two column centered grid" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("h5", [_vm._v("$54 per day")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn yellow ui compact button reservationbutton"
+                },
+                [_vm._v("Reserve")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "extra center aligned" }, [
+          _c(
+            "div",
+            { staticClass: "ui star rating", attrs: { "data-rating": "4" } },
+            [
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" })
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui four cards" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "image" }, [
+          _c("img", { attrs: { src: "image.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "header" }, [_vm._v("Toyota Carina")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "meta" }, [
+            _c("a", { staticClass: "group" }, [_vm._v("2005")])
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Harare")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v("Very comfortable Vehicle")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui two column centered grid" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("h5", [_vm._v("$54 per day")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn yellow ui compact button reservationbutton"
+                },
+                [_vm._v("Reserve")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "extra center aligned" }, [
+          _c(
+            "div",
+            { staticClass: "ui star rating", attrs: { "data-rating": "4" } },
+            [
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" })
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "image" }, [
+          _c("img", { attrs: { src: "image.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "header" }, [_vm._v("Toyota Carina")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "meta" }, [
+            _c("a", { staticClass: "group" }, [_vm._v("2005")])
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Harare")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v("Very comfortable Vehicle")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui two column centered grid" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("h5", [_vm._v("$54 per day")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn yellow ui compact button reservationbutton"
+                },
+                [_vm._v("Reserve")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "extra center aligned" }, [
+          _c(
+            "div",
+            { staticClass: "ui star rating", attrs: { "data-rating": "4" } },
+            [
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" })
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "image" }, [
+          _c("img", { attrs: { src: "image.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "header" }, [_vm._v("Toyota Carina")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "meta" }, [
+            _c("a", { staticClass: "group" }, [_vm._v("2005")])
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Harare")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v("Very comfortable Vehicle")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui two column centered grid" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("h5", [_vm._v("$54 per day")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn yellow ui compact button reservationbutton"
+                },
+                [_vm._v("Reserve")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "extra center aligned" }, [
+          _c(
+            "div",
+            { staticClass: "ui star rating", attrs: { "data-rating": "4" } },
+            [
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" })
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "image" }, [
+          _c("img", { attrs: { src: "image.png" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "header" }, [_vm._v("Toyota Carina")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "meta" }, [
+            _c("a", { staticClass: "group" }, [_vm._v("2005")])
+          ]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Harare")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "description" }, [
+            _vm._v("Very comfortable Vehicle")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "ui two column centered grid" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("h5", [_vm._v("$54 per day")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn yellow ui compact button reservationbutton"
+                },
+                [_vm._v("Reserve")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "extra center aligned" }, [
+          _c(
+            "div",
+            { staticClass: "ui star rating", attrs: { "data-rating": "4" } },
+            [
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" }),
+              _c("i", { staticClass: "icon active" })
+            ]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -49517,6 +50385,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('home', __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49638,6 +50507,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Home.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/Home.vue ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=f2b6376c& */ "./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&");
+/* harmony import */ var _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&lang=js& */ "./resources/js/components/Home.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Home.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Home.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Home.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Home.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Home.vue?vue&type=template&id=f2b6376c& ***!
+  \*************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Home.vue?vue&type=template&id=f2b6376c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

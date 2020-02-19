@@ -14,18 +14,25 @@ class CreateVehiclesTable extends Migration
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->string("brand")->nullable();
-            $table->string("type")->nullable();
-            $table->string("model")->nullable();
-            $table->integer("milage")->nullable();
-            $table->string("plateNo")->nullable();
-            $table->string("fuelType")->nullable();
-            $table->string("seats")->nullable();
-            $table->string("engineCapacity")->nullable();
-            $table->decimal("dailyRate")->nullable();
-            $table->string("color")->nullable();
-            $table->string("location")->nullable();
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('brand');
+            $table->string('model');
+            $table->string('location');
+            $table->string('vehicle_registration');
+            $table->string('condition');
+            $table->text('description');
+            $table->dateTime('year');
+            $table->string('cordinates')->nullable();
+            $table->integer('milage');
+            $table->string('type');
+            $table->string('imageUrl')->nullable();
+            $table->string('fuel_type');
+            $table->decimal('engine_capacity');
+            $table->string('color');
+            $table->decimal('daily_rate');
+            $table->integer('seats');
+            $table->string('transmission');
+            $table->boolean('done')->nullable();
             $table->timestamps();
         });
     }
