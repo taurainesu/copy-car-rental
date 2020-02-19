@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'CarHire Web Portal') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,6 +18,47 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/semantic.min.css') }}">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/semantic.min.js') }}"></script>
+
+    <style>
+        body{
+          background-color:white;
+        }
+  
+        body,h1,h2,h3,h4,button,.header,.description,b,.meta,.navbar-brand{
+          font-family: "Nunito",sans-serif !important;
+        }
+          p{
+              font-size: 14px;
+          }
+  
+          .more{
+              margin: auto 0 !important;
+              font-size: 18px;
+          }
+  
+          .info{
+              margin-left: 30px !important;
+          }
+  
+          i.star{
+            color: #ffb70a !important;
+          }
+  
+          .big{
+            color:blue;
+          }
+  
+          .fas{
+            font-size: 1.4em !important;
+            margin: auto 0;
+          }
+          
+      </style>
+
 </head>
 <body>
     <div id="app">
@@ -49,6 +90,11 @@
                                 </li>
                             @endif
                         @else
+                        
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">My Reservations</a>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -77,4 +123,24 @@
         </main>
     </div>
 </body>
+<script>
+    $(document)
+      .ready(function() {
+        $('.ui.dropdown')
+          .dropdown({
+            on: 'click'
+          })
+        ;
+      })
+    ;
+    </script>
+  
+  
+    <script>
+    $(document).ready(function() {
+        $('.reservationbutton').click(function(){
+          $('#reservationmodal').modal('show');
+        });
+         });
+    </script>
 </html>
