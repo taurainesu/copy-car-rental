@@ -56,7 +56,7 @@
                     </div>
                   </div>
 
-                  <button class="ui button icon" style="width:100%;margin:0">Search<i class="search icon"></i></button>
+                  <button class="ui button icon" style="width:100%;margin:0">Search<i class="fa fa-search" style="margin-left:15px" ></i></button>
             </form>
         </div>
         <div class="column twelve wide"  style="padding-left:6%">
