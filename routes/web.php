@@ -14,9 +14,7 @@
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Http\Request as RequestToo;
 
-Route::get('/', function () {
-    return view('home');
-})->middleware("auth");
+Route::get('/', "HomeController@index")->name("home");
 
 Auth::routes();
 
@@ -31,5 +29,18 @@ Route::get("cars/get","CarController@cars")->name("get_cars");
 Route::post("cars/new","CarController@store")->name("new_car_post");
 
 Route::get("cars/info/{id}","CarController@car")->name("get_car");
+
+Route::post("reservations/new","ReservationController@save_data")->name("new_reservation");
+
+Route::get('reserve/{id}',"ModalController@pop_modal")->name("modal");
+
+Route::get("error",function(){
+    return view("error");
+})->name("get_error_page");
+
+Route::get("pay","PaymentsController@pay")->name("pay");
+
+Route::get("cars","HomeController@cars");
+
 
 

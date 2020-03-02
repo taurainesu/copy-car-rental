@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Car;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('index',[
+            'cars'=>Car::all(),
+            'search'=>Car::all(),
+        ]);
+
+        //return view("index");
     }
 
-    public function search(Request $request){
-        dd($request->all());
+    public function cars(){
+        return view("cars",[
+            'search'=>Car::all()
+        ]);
     }
+
 }
