@@ -13,10 +13,10 @@
                       </div>
                      
                       <div class="column" style="text-align:end;margin:0">
-                        <button class="ui primary button">
+                        <button class="ui orange inverted button">
                           Reserve Car
                         </button>
-                        <a href="#information"><button class="ui button secondary">
+                        <a href="#information"><button class="ui button inverted secondary">
                           More Info...
                         </button></a>
                       </div>
@@ -27,12 +27,12 @@
                 <div class="ui three column grid">
                   <div class="two wide column">
                     <div style="margin:50px 0">
-                      <p style="margin:0;padding:0;font-size:18px"><b> <i class="map marker alternate icon" style="margin-left:-5px"></i>Location</b></p>
+                      <p style="margin:0;padding:0;font-size:16px"><b> <i class="map marker alternate icon" style="margin-left:-5px"></i>Location</b></p>
                       <p style="margin:auto;padding:0">{{$car->location}}</p>
                     </div>
 
                     <div>
-                      <p style="margin:0;padding-top:10px;font-size:18px"><b><i class="money bill alternate icon" style="margin-right:10px"></i>Daily Rate</b></p>
+                      <p style="margin:0;padding-top:10px;font-size:16px"><b><i class="money bill alternate icon" style="margin-right:10px"></i>Daily Rate</b></p>
                       <p style="margin:0;padding:0">$ZWL{{$car->daily_rate}}</p>
                     </div>
                     
@@ -44,12 +44,12 @@
 
                   <div class=" two wide column" style="text-align:end;">
                     <div style="margin:50px 0">
-                      <p style="margin:0;padding:0;font-size:18px"><b><i class="car icon" style="margin-right:10px"></i>Fuel Type</b></p>
+                      <p style="margin:0;padding:0;font-size:16px"><b><i class="car icon" style="margin-right:10px"></i>Fuel Type</b></p>
                       <p style="margin:0;padding:0">{{$car->fuel_type}}</p>
                     </div>
 
                     <div>
-                      <p style="margin:0;padding-top:10px;font-size:18px"><b><i class="location arrow icon" style="margin-right:10px"></i>Milage</b></p>
+                      <p style="margin:0;padding-top:10px;font-size:16px"><b><i class="location arrow icon" style="margin-right:10px"></i>Milage</b></p>
                       <p style="margin:0;padding:0">{{$car->milage}} Km</p>
                     </div>
                   </div>

@@ -7,6 +7,7 @@
 	</title>
 <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
 <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
 	
 <style type="text/css">
@@ -21,8 +22,23 @@ body,a,h1,h2,h3,h4,.header,p,button,input,.search{
   margin:auto 0px !important; 
 }
 
-.input{
-  margin:0 0 20px 0;
+.input.selection{
+  margin:0 0 35px 0;
+  width: 100%;
+}
+
+.menu.transition{
+  width: 100% !important;
+}
+
+.button.search{
+  background: #fff;
+  border:1px solid rgba(34,36,38,.15);
+}
+
+.button.search:hover{
+  background: #fff;
+  border:1px solid #cccccc;
 }
 
 
