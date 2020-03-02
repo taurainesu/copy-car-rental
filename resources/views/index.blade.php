@@ -7,8 +7,10 @@
 			<div class="content">
 				<h3>Rent a Car</h3>
 				<div class="ui divider"></div>
-					<div class="ui floating dropdown button w-100 search" id="loc" style="width:100%">
-				<input class="search" autocomplete="off" tabindex="0" name="location"><span class="text">Where are you located ?</span>
+					<div class="ui floating dropdown labeled icon button w-100 search" id="loc" style="width:100%">
+				<input class="search" autocomplete="off" tabindex="0" name="location">
+				<span class="text">Where are you located ?</span>
+				<i class="map marker alternate icon"></i>
 						<div class="menu" tabindex="-1">
 					<div class="item" data-value="Harare">Harare</div>
 					<div class="item" data-value="Bulawayo">Bulawayo</div>
@@ -23,8 +25,10 @@
 				</br>
 				</br>
 	
-					<div class="ui floating search dropdown button w-100" style="width:100%" id="carType">
-					<input class="search" autocomplete="off" tabindex="0" name="carType"><span class="text">Vehicle Type</span>
+					<div class="ui floating search dropdown labeled icon button w-100" style="width:100%" id="carType">
+					<input class="search" autocomplete="off" tabindex="0" name="carType">
+					<span class="text">Vehicle Type</span>
+					<i class="car alternate icon"></i>
 						<div class="menu" tabindex="-1">
 							<div class="item" data-value="Hatchback">Hatchback</div>
 							<div class="item" data-value="SUV">SUV</div>
@@ -109,12 +113,12 @@
 				</div>
 				<div class="extra aligned ui two column grid">
 					<div class="column" style="padding:0;margin:0"> 
-						<a data-href="reserve/{{$car->id}}" class="ui compact testing">Reserve</a>
+						<a data-href="reserve/{{$car->id}}" class="yellow ui compact testing">Reserve</a>
 					</div>
 
 					<div class="column" style="text-align:end;padding:0;margin:0">
 
-						<a data-href="reserve/{{$car->id}}" class="ui compact testing">View</a>
+						<a data-href="reserve/{{$car->id}}" class="yellow ui compact testing">View</a>
 					</div>
 				</div>
 			</div>

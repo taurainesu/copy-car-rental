@@ -3,13 +3,13 @@
 
 <div class="ui container" style="padding:3% 0">
     <div class="ui row two column grid">
-        <div class="column three wide">
+        <div class="column three wide card">
             <h3>Filter Options</h3>
             <form>
-                <div class="ui input floating dropdown w-100 search">
-                   
-                    <input type="text" placeholder="Search...">
-                    <span class="text">Where are you located ?</span>
+                <div class="ui selection dropdown input">
+                    <input type="hidden" name="gender">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Where are you?</div>
                     <div class="menu" tabindex="-1">
                         <div class="item" data-value="Harare">Harare</div>
                         <div class="item" data-value="Bulawayo">Bulawayo</div>
@@ -17,21 +17,50 @@
                         <div class="item" data-value="Mutare">Mutare</div>
                         <div class="item">Gweru</div>
                     </div>
-                    <input/>
+                </div>
+                  
+                  <div class="ui selection dropdown input">
+                    <input type="hidden" name="gender">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Vehicle Type</div>
+                    <div class="menu" tabindex="-1">
+                        <div class="item" data-value="Harare">Trucks</div>
+                        <div class="item" data-value="Bulawayo">SUV</div>
+                        <div class="item" data-value="Masvingo">Sedan</div>
+                        <div class="item" data-value="Mutare">Kombi</div>
+                    </div>
                   </div>
-                  <div class="ui input">
-                    <input type="text" placeholder="Search...">
+
+                  <div class="ui selection dropdown input">
+                    <input type="hidden" name="gender">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Model/Brand</div>
+                    <div class="menu" tabindex="-1">
+                        <div class="item" data-value="Harare">Toyota</div>
+                        <div class="item" data-value="Bulawayo">Mercedes Benz</div>
+                        <div class="item" data-value="Masvingo">Audi</div>
+                        <div class="item" data-value="Mutare">Mazda</div>
+                        <div class="item">Hyundai</div>
+                    </div>
                   </div>
-                  <div class="ui input">
-                    <input type="text" placeholder="Search...">
+
+                  <div class="ui selection dropdown input">
+                    <input type="hidden" name="gender">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Vehicle Type</div>
+                    <div class="menu" tabindex="-1">
+                        <div class="item" data-value="Harare">Trucks</div>
+                        <div class="item" data-value="Bulawayo">SUV</div>
+                        <div class="item" data-value="Masvingo">Sedan</div>
+                        <div class="item" data-value="Mutare">Kombi</div>
+                    </div>
                   </div>
-                  <div class="ui input">
-                    <input type="text" placeholder="Search...">
-                  </div>
+
+                  <button class="ui button icon" style="width:100%;margin:0">Search<i class="search icon"></i></button>
             </form>
         </div>
-        <div class="column twelve wide"  style="padding-left:5%">
-            <h3>All</h3>
+        <div class="column twelve wide"  style="padding-left:6%">
+            <h3>Vehicle Inventory</h3>
             <div class="ui three cards">
                 @foreach ($search as $car)
                 <div class="card">
