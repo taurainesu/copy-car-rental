@@ -2031,6 +2031,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2042,7 +2084,15 @@ __webpack_require__.r(__webpack_exports__);
       pickUpDate: "",
       cars: "",
       searchedCars: "",
-      number: 0
+      number: 0,
+      car: "",
+      reservation: {
+        pick_up_date: null,
+        return_date: null,
+        payment_status: "Pending",
+        vehicle_id: null,
+        daily_rate: null
+      }
     };
   },
   methods: {
@@ -2064,7 +2114,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.number = _this.searchedCars.length;
         } else {
           _this.search = false;
-          alert("No vehicles matching those parameters was found. Please refine your search and try again.");
+          alert("No vehicles matching those parameters were found. Please refine your search and try again.");
         }
 
         console.log(response.data);
@@ -2084,6 +2134,23 @@ __webpack_require__.r(__webpack_exports__);
     },
     openInfo: function openInfo(id) {
       window.open("/cars/info/" + id, "_self");
+    },
+    showModal: function showModal(car) {
+      $('.modal').modal('show');
+      this.car = car;
+      this.reservation.vehicle_id = car.id;
+      this.reservation.daily_rate = car.daily_rate;
+    },
+    closeDialog: function closeDialog() {
+      $('.modal').modal('hide');
+    },
+    reserveCar: function reserveCar() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reservations/new", this.reservation).then(function (response) {
+        _this3.cars = response.data;
+        console.log(response.data);
+      });
     }
   },
   mounted: function mounted() {
@@ -37517,84 +37584,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "ui divider" }),
         _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.location,
-                expression: "location"
-              }
-            ],
-            staticClass: "form-control",
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.location = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
-          [
-            _c("option", [_vm._v("Harare")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("Bulawayo")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("Gweru")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("Mutare")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("Kariba")])
-          ]
-        ),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.carType,
-                expression: "carType"
-              }
-            ],
-            staticClass: "form-control",
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.carType = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
-          [
-            _c("option", [_vm._v("SUV")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("Sedan")]),
-            _vm._v(" "),
-            _c("option", [_vm._v("Truck")])
-          ]
-        ),
+        _vm._m(0),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
@@ -37679,58 +37669,60 @@ var render = function() {
             "div",
             { staticClass: "ui four cards" },
             _vm._l(_vm.cars, function(car) {
-              return _c(
-                "div",
-                {
-                  key: car.id,
-                  staticClass: "card",
-                  on: {
-                    click: function($event) {
-                      return _vm.openInfo(car.id)
-                    }
-                  }
-                },
-                [
-                  _c("div", { staticClass: "image" }, [
-                    _c("img", {
-                      staticStyle: { height: "150px" },
-                      attrs: { src: car.imageUrl }
-                    })
+              return _c("div", { key: car.id, staticClass: "card" }, [
+                _c("div", { staticClass: "image" }, [
+                  _c("img", {
+                    staticStyle: { height: "180px", padding: "20px" },
+                    attrs: { src: car.imageUrl }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "content" }, [
+                  _c("div", { staticClass: "header" }, [
+                    _vm._v(_vm._s(car.brand) + " " + _vm._s(car.model))
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "content" }, [
-                    _c("div", { staticClass: "header" }, [
-                      _vm._v(_vm._s(car.brand) + " " + _vm._s(car.model))
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "meta" }, [
-                      _c("a", { staticClass: "group" }, [
-                        _vm._v(_vm._s(car.year))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h5", { staticStyle: { margin: "10px 0px" } }, [
-                      _vm._v(_vm._s(car.location))
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "description" }, [
-                      _vm._v(_vm._s(car.description))
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "ui two column centered grid" }, [
-                      _c("div", { staticClass: "column" }, [
-                        _c("h5", [
-                          _vm._v("$ZWL" + _vm._s(car.daily_rate) + " per day")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm._m(0, true)
+                  _c("div", { staticClass: "meta" }, [
+                    _c("a", { staticClass: "group" }, [
+                      _vm._v(_vm._s(car.year))
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(1, true)
-                ]
-              )
+                  _c("h5", { staticStyle: { margin: "10px 0px" } }, [
+                    _vm._v(_vm._s(car.location))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "description" }, [
+                    _vm._v(_vm._s(car.description))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "ui two column centered grid" }, [
+                    _c("div", { staticClass: "column" }, [
+                      _c("h5", [
+                        _vm._v("$ZWL" + _vm._s(car.daily_rate) + " per day")
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn primary ui compact button reservationbutton",
+                          on: {
+                            click: function($event) {
+                              return _vm.showModal(car)
+                            }
+                          }
+                        },
+                        [_vm._v("Reserve")]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1, true)
+              ])
             }),
             0
           )
@@ -37801,7 +37793,184 @@ var render = function() {
             0
           )
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h3", [
+                  _vm._v(
+                    "Rent " +
+                      _vm._s(_vm.car.year) +
+                      " " +
+                      _vm._s(_vm.car.brand) +
+                      " " +
+                      _vm._s(_vm.car.model)
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "form",
+                  {
+                    attrs: {
+                      form: "",
+                      method: "POST",
+                      enctype: "multipart/form-data"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "ui two column centered grid" }, [
+                      _c("div", { staticClass: "column" }, [
+                        _c("div", { staticClass: "ui input fluid " }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.reservation.pick_up_date,
+                                expression: "reservation.pick_up_date"
+                              }
+                            ],
+                            attrs: {
+                              name: "pick_up_date",
+                              placeholder: "End Date",
+                              type: "date",
+                              required: ""
+                            },
+                            domProps: { value: _vm.reservation.pick_up_date },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.reservation,
+                                  "pick_up_date",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "column" }, [
+                        _c("div", { staticClass: "ui input fluid" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.reservation.return_date,
+                                expression: "reservation.return_date"
+                              }
+                            ],
+                            attrs: {
+                              name: "return_date",
+                              placeholder: "Start Date",
+                              type: "date",
+                              required: ""
+                            },
+                            domProps: { value: _vm.reservation.return_date },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.reservation,
+                                  "return_date",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "ui divider" }),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v("Additional Options")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "checkbox", name: "ui checkbox" }
+                    }),
+                    _c("label", [_vm._v("Insuarance")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "checkbox", name: "ui checkbox" }
+                    }),
+                    _c("label", [_vm._v("Delivery")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "ui divider" }),
+                    _vm._v(" "),
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "hidden",
+                        id: "custId",
+                        name: "car_id",
+                        value: ""
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "ui black deny button mr-3",
+                    on: {
+                      click: function($event) {
+                        return _vm.closeDialog()
+                      }
+                    }
+                  },
+                  [_vm._v("\n            Cancel\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "ui positive right button",
+                    on: {
+                      click: function($event) {
+                        return _vm.reserveCar()
+                      }
+                    }
+                  },
+                  [_vm._v("\n            Reserve\n          ")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -37809,13 +37978,51 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column" }, [
-      _c(
-        "button",
-        { staticClass: "btn primary ui compact button reservationbutton" },
-        [_vm._v("Reserve")]
-      )
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "ui floating dropdown button w-100 search",
+        staticStyle: { width: "100%" },
+        attrs: { id: "loc" }
+      },
+      [
+        _c("input", {
+          staticClass: "search",
+          attrs: { autocomplete: "off", tabindex: "0", name: "location" }
+        }),
+        _c("span", { staticClass: "text" }, [
+          _vm._v("Where are you located ?")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "menu", attrs: { tabindex: "-1" } }, [
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Harare" } },
+            [_vm._v("Harare")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Bulawayo" } },
+            [_vm._v("Bulawayo")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Masvingo" } },
+            [_vm._v("Masvingo")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Mutare" } },
+            [_vm._v("Mutare")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "item" }, [_vm._v("Gweru")])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -37842,6 +38049,25 @@ var staticRenderFns = [
       _c("button", { staticClass: "button primary ui col-md-12" }, [
         _vm._v("Reserve")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ui two column grid" }, [
+      _c("h4", { staticClass: "column", staticStyle: { margin: "auto 0" } }, [
+        _vm._v("Total")
+      ]),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          staticClass: "column",
+          staticStyle: { "text-align": "right", "font-size": "16px" }
+        },
+        [_vm._v("$500.00")]
+      )
     ])
   }
 ]
