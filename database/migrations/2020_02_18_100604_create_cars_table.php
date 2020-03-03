@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVehiclesTable extends Migration
+class CreateCarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreateVehiclesTable extends Migration
             $table->string('model');
             $table->string('location');
             $table->string('vehicle_registration');
-            $table->string('condition');
+            $table->string('physical_address');
             $table->text('description');
             $table->dateTime('year');
             $table->string('cordinates')->nullable();
@@ -44,6 +44,6 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicles');
+        Schema::dropIfExists('cars');
     }
 }
