@@ -38095,9 +38095,7 @@ var staticRenderFns = [
           attrs: { autocomplete: "off", tabindex: "0", name: "location" }
         }),
         _vm._v(" "),
-        _c("span", { staticClass: "text" }, [
-          _vm._v("Where are you located ?")
-        ]),
+        _c("span", { staticClass: "text" }, [_vm._v("Where are you located?")]),
         _vm._v(" "),
         _c("i", { staticClass: "map marker alternate icon" }),
         _vm._v(" "),

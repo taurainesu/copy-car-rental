@@ -9,7 +9,7 @@
               <div class="ui divider"></div>
                 <div class="ui floating dropdown labeled icon button w-100 search my-3" id="loc" style="width:100%">
                   <input class="search" autocomplete="off" tabindex="0" name="location">
-                  <span class="text">Where are you located ?</span>
+                  <span class="text">Where are you located?</span>
                   <i class="map marker alternate icon"></i>
                   <div class="menu" tabindex="-1">
                     <div class="item" data-value="Harare">Harare</div>

@@ -102,11 +102,14 @@
           </div>
       </div>
       {{-- footer --}}
-  </body>
+    </div>
 
+  </body>
+  
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/semantic.min.js') }}"></script>
+ 
   <script>
     $(document)
       .ready(function() {
