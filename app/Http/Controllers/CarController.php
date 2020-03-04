@@ -58,6 +58,8 @@ class CarController extends Controller
         $location = $params['location'];
         $type = $params['carType'];
 
+        $result = "";
+
         if($start != null && $end != null){
 
             if(!empty($location) && !empty($type)){
@@ -77,7 +79,7 @@ class CarController extends Controller
                 ->whereNull("reservations.return_date")
                 ->get();
 
-                return $reserved->toBase()->merge($notReserved->toBase());
+                $result = $reserved->toBase()->merge($notReserved->toBase());
             }
 
             else if(!empty('location')){
@@ -95,7 +97,7 @@ class CarController extends Controller
                 ->whereNull("reservations.return_date")
                 ->get();
 
-                return $reserved->toBase()->merge($notReserved->toBase());
+                $result = $reserved->toBase()->merge($notReserved->toBase());
             }
 
             else if(!empty($type)){
@@ -113,7 +115,7 @@ class CarController extends Controller
                 ->whereNull("reservations.return_date")
                 ->get();
 
-                return $reserved->toBase()->merge($notReserved->toBase());
+                $result = $reserved->toBase()->merge($notReserved->toBase());
             }
 
             else{
@@ -133,13 +135,13 @@ class CarController extends Controller
                 
                 echo("Hey");
 
-                return $reserved->toBase()->merge($notReserved->toBase());
+                $result = $reserved->toBase()->merge($notReserved->toBase());
             }
         }
 
         else{
             if(!empty($location) && !empty($type)){
-                return DB::table("cars")
+                $result = DB::table("cars")
                 ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->where("location",$location)
                 ->where("type",$type)
@@ -148,7 +150,7 @@ class CarController extends Controller
             }
 
             else if(!empty($location)){
-                return DB::table("cars")
+                $result = DB::table("cars")
                 ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->where("location",$location)
                 ->groupBy("cars.vehicle_registration")
@@ -156,12 +158,25 @@ class CarController extends Controller
             }
 
             else if(!empty($type)){
-                return DB::table("cars")
+                $result = DB::table("cars")
                 ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->where("type",$type)
                 ->groupBy("cars.vehicle_registration")
                 ->get();
             }
         }
+
+        if(!empty($result)){
+            return view("search",[
+                "results"=>$result
+            ]);
+        }
+
+        else{
+            return view("search",[
+                "results"=>Car::all()
+            ]);
+        }
+        
     }
 }
