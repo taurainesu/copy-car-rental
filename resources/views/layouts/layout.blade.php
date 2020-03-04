@@ -44,7 +44,7 @@
     <div id="app">
       {{--Navigation Bar--}}
       <header>
-          <div class="ui secondary menu inverted" style="background:#1b1c1d;padding:15px" >
+          <div class="ui secondary menu inverted" style="background:#1b1c1d;padding:20px" >
               <div class="ui container">
                   <a class="active item" href="/">Home</a>
                   <a class="item" href="/cars">Vehicles</a>

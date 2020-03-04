@@ -1,13 +1,13 @@
 <template>
 <div>
   <div>
-      <div style="background:url('/toyota.jpg') no-repeat;background-size:cover;padding:6% 0">
+      <div style="background:url('/toyota.jpg') no-repeat;background-size:cover;padding:5% 0">
         <div class="ui container">
-          <div class="ui card row" style="width:40%;padding:20px">
+          <div class="ui card row p-4" style="width:40%;">
             <div class="content">
-              <h3>Rent a Car</h3>
+              <h2>Rent a Car</h2>
               <div class="ui divider"></div>
-                <div class="ui floating dropdown labeled icon button w-100 search" id="loc" style="width:100%">
+                <div class="ui floating dropdown labeled icon button w-100 search my-3" id="loc" style="width:100%">
                   <input class="search" autocomplete="off" tabindex="0" name="location">
                   <span class="text">Where are you located ?</span>
                   <i class="map marker alternate icon"></i>
@@ -22,7 +22,7 @@
                 
                 <br><br>
 
-                <div class="ui floating search dropdown labeled icon button w-100" style="width:100%" id="carType">
+                <div class="ui floating search dropdown labeled icon button w-100 mb-3" style="width:100%" id="carType">
                   <input class="search" autocomplete="off" tabindex="0" name="carType">
                   <span class="text">Vehicle Type</span>
                   <i class="car alternate icon"></i>
@@ -35,7 +35,7 @@
 
                 <br><br>
 
-              <div class="ui two column centered grid">
+              <div class="ui two column centered grid mb-3">
                 <div class="column">
                   <div class="ui input fluid"> 
                     <input placeholder="Start Date" type="date" name="pickUpDate" id="pickUpDate">
@@ -51,16 +51,16 @@
 
               <div class="ui divider"></div>
 
-              <button class="orange ui compact button p-3" id="search" style="width:100%">Find Vehicles</button>
+              <button class="orange ui compact button p-3 mt-3" id="search" style="width:100%" @click="searchCars()">Find Vehicles</button>
 
             </div>
           </div>
         </div>
       </div>
 
-      <div class="ui">
+      <div class="ui" v-if="!search">
         <div class="column p-5">
-           <h1 class="text-center" style="text-decoration:underline">Featured Vehicles</h1>
+           <h1 class="text-center">Featured Vehicles</h1>
         </div>
         <div class="ui container pb-5">
           <div class="ui four special cards">
@@ -84,7 +84,7 @@
               <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
             </div>
               <div class="column" style="padding:0;margin:0"> 
-                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve</button>
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
               </div>
           </div>
 
@@ -108,7 +108,7 @@
               <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
             </div>
               <div class="column" style="padding:0;margin:0"> 
-                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve</button>
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
               </div>
           </div>
 
@@ -133,7 +133,7 @@
               <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
             </div>
               <div class="column" style="padding:0;margin:0"> 
-                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve</button>
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
               </div>
           </div>
 
@@ -157,7 +157,43 @@
               <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
             </div>
               <div class="column" style="padding:0;margin:0"> 
-                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve</button>
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
+              </div>
+          </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="ui" v-if="search">
+        <div class="column p-5">
+           <h1 class="text-center" style="text-decoration:underline">Search Results</h1>
+        </div>
+        <div class="ui container pb-5">
+          <div class="ui four special cards">
+
+          <div class="card" v-for="car in searchedCars" v-bind:key="car.id" style="border-radius:0">
+            <div class="blurring dimmer image">
+              <div class="ui dimmer">
+                <div class="content">
+                  <div class="center">
+                    <div class="ui inverted button">View More</div>
+                  </div>
+                </div>
+              </div>
+              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
+            </div>
+            <div class="content">
+              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
+              <div class="meta" style="padding-bottom:10px">
+              </div>
+              <p style="font-size:12px">Milage : {{car.milage}}km</p>
+              <p style="font-size:12px">Location : {{car.location}}</p>
+              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
+            </div>
+              <div class="column" style="padding:0;margin:0"> 
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
               </div>
           </div>
 
@@ -176,8 +212,8 @@
         data(){
             return{
                 search:false,
-                location:"Harare",
-                carType:"SUV",
+                location:"",
+                carType:"",
                 dropOffDate:"",
                 pickUpDate:"",
                 cars:"",
@@ -194,30 +230,36 @@
             }
         },
         methods:{ 
+            // searchCars(){
+            //     Axios.get("/cars/search",{
+            //     params: {
+            //         location:$("#loc").dropdown("get value"),
+            //         carType:$("#carType").dropdown("get value"),
+            //         pickUpDate:$("#pickUpDate").val(),
+            //         dropOffDate:$("#dropOffDate").val()
+            //     }
+            //     }).then(response=>{
+            //       this.searchedCars = response.data;
+
+            //       if(this.searchedCars.length > 0){
+            //         this.search = true;
+            //         this.number = this.searchedCars.length;
+            //       }
+
+            //       else{
+            //         this.search = false;
+            //         alert("No vehicles matching those parameters were found. Please refine your search and try again.")
+            //       }
+            //     console.log(response.data);
+            // }).catch(error=>{
+            //     console.log(error)
+            // })
+            // },
             searchCars(){
-                Axios.get("/cars/search",{
-                params: {
-                    location:this.location,
-                    carType:this.carType,
-                    pickUpDate:this.pickUpDate,
-                    dropOffDate:this.dropOffDate
-                }
-                }).then(response=>{
-                  this.searchedCars = response.data;
-
-                  if(this.searchedCars.length > 0){
-                    this.search = true;
-                    this.number = this.searchedCars.length;
-                  }
-
-                  else{
-                    this.search = false;
-                    alert("No vehicles matching those parameters were found. Please refine your search and try again.")
-                  }
-                console.log(response.data);
-            }).catch(error=>{
-                console.log(error)
-            })
+              window.document.location = "http://localhost:3000/cars/search?location="+$("#loc").dropdown("get value") +
+              "&carType="+$("#carType").dropdown("get value")+
+              "&pickUpDate="+$("#pickUpDate").val()+
+              "&dropOffDate="+$("#dropOffDate").val();
             },
             getCars(){
               Axios.get("/cars/get").then(response=>{
