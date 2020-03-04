@@ -63,7 +63,7 @@ body,a,h1,h2,h3,h4,.header,p,button,input,.search{
 			<div class="ui container">
 			<a class="active item" href="/">Home</a>
 				<a class="item" href="/cars">Vehicles</a>
-  				<a class="item" href="/vehicle/register" style="display:none">Register   Vehicle</a>
+  				<a class="item" href="cars/new/">Register   Vehicle</a>
   				<a class="item">My Reservations</a>
   				<div class="right menu">
     				<div class="item">

@@ -23,33 +23,7 @@ class ReservationController extends Controller
     public function save_data(Request $request)
     {   
 
-        function is_availabe($reservations,$start_date,$end_date) {
-            
-            global $available;
-            $available=true;
-            foreach($reservations as $res){
-                
-                $res_start=new Carbon($res->pick_update);
-                $res_end=new Carbon($res->return_date);
-                $start_test=$start_date->between($res_start, $res_end);
-                $end_test=$start_date->between($res_start, $res_end);
-
-                $available = ($start_test || $end_test) ? false : true;
-
-                
-
-                if (!$available) {
-                     break ;
-                                }
-
-                
-                }
-
-                return $available;
-
-
-
-                }
+        
         //
         $data = $request->all();
         $mydate= Carbon::now();
@@ -61,7 +35,7 @@ class ReservationController extends Controller
         
 
         
-        $test=is_availabe($reservations,$start_date,$end_date);
+        $test=$car->is_free($start_date,$end_date);
 
         if ($test){
             $data['payment_status']="Pending";
@@ -79,7 +53,7 @@ class ReservationController extends Controller
 
 
         else{
-            return redirect()->route('mk,m');
+             return"vehicle is reseved in this period please pick another";
 
         }
 
