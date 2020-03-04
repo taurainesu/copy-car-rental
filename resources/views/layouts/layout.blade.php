@@ -99,6 +99,7 @@
                     <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
                 </div>
               </div>
+
           </div>
       </div>
       {{-- footer --}}

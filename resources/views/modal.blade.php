@@ -1,6 +1,9 @@
 @extends('layouts.layout')
 @section('content')
 
+
+<link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -55,7 +58,7 @@
                   </div>
                 </div>
                 
-                <div class="column" style="margin:auto;text-align: center;pading-bottom:20px;display:none">
+                <div class="column" style="margin:auto;text-align: center; padding-bottom:20px;display:none">
                    
                 </div>
             </div>
@@ -176,7 +179,7 @@
     </div>
 </div>
 
-<div class="ui mini modal middle aligned " id="reservationmodald" style="display:none">
+<div class="ui tiny modal middle aligned " id="reservationmodal" style="display:none">
   <i class="close icon"></i>
           <div class="header">Rent a {{$car->brand}} {{$car->model}}</div>
           <div class="content">
@@ -184,10 +187,10 @@
           @csrf
           <div class="ui two column centered grid">
           <div class="column"><div class="ui input fluid ">
-          <input  name="pick_up_date" placeholder="End Date" type="date" required>
+          <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" onclick="datepickers()" required>
           </div></div>
           <div class="column"><div class="ui input fluid">
-          <input name="return_date"placeholder="Start Date" type="date" required>
+          <input id="date_picker2" name="return_date"placeholder="End Date"  autocomplete="off" required>
           </div> </div>
           </div>
 
@@ -197,14 +200,16 @@
           <input type="checkbox" name="ui checkbox" ><label>Delivery</label> 
 
           <div class="ui divider"></div>
-          <h5>Total     $5 </h5>
+          <div class="ui two column  grid">
+          <h5 id="attribute">Daily rate $    </h5> <strong id="total_price"> {{$car->daily_rate}}</strong>
+          </div>
 
-            <div class="ui divider"></div>
+</br>
 
             <input type="hidden" id="custId" name="car_id" value={{ $car->id }}>
           
 
-          <button type="submit" class="yellow ui compact button ">RESERVE</button>  
+          <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
 
           </form> 
               </div>
@@ -215,12 +220,63 @@
 
           
 @section('javascript')
+
+
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <script type="text/javascript">
     $(window).on('load',function(){
         $('#reservationmodal').modal('show');
     });
 </script>
+<script type="text/javascript">
+function datepickers() { 
 
+  
+
+
+    $("#date_picker1").datepicker({
+      minDate: '+0d',
+      changeMonth: true, 
+      changeYear: true,
+    }); 
+    $("#date_picker1").datepicker('show');
+
+
+
+
+$(function() { 
+
+    $("#date_picker2").datepicker({}); 
+
+}); 
+
+
+
+$('#date_picker1').change(function() { 
+
+    startDate = $(this).datepicker('getDate'); 
+
+    $("#date_picker2").datepicker("option", "minDate", startDate); 
+
+}) 
+
+
+
+$('#date_picker2').change(function() { 
+
+    endDate = $(this).datepicker('getDate'); 
+
+    $("#date_picker1").datepicker("option", "maxDate", endDate); 
+    var diffDays = endDate.getDate() - startDate.getDate(); 
+    var total=diffDays*{{$car->daily_rate}};
+    $("#attribute").text("Total $");
+    $("#total_price").text(total);
+
+}      ) 
+
+}  ;
+
+</script>
 
 @endsection
          

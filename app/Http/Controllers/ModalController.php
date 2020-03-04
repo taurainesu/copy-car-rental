@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ModalController extends Controller
 {
-    //
+    
     public function pop_modal(Request $request, $id)
     {  
 
