@@ -1,141 +1,219 @@
 <template>
-    <div class="ui container">
-      <div class="ui card row" style="width:40%">
-        <div class="content p-4">
-            <h3>Rent a Car</h3>
-            <div class="ui divider"></div>
-              <div class="ui floating dropdown button w-100 search" id="loc" style="width:100%">
-                <input class="search" autocomplete="off" tabindex="0" name="location"><span class="text">Where are you located ?</span>
-              <div class="menu" tabindex="-1">
-                <div class="item" data-value="Harare">Harare</div>
-                <div class="item" data-value="Bulawayo">Bulawayo</div>
-                <div class="item" data-value="Masvingo">Masvingo</div>
-                <div class="item" data-value="Mutare">Mutare</div>
-              <div class="item">Gweru</div>
+<div>
+  <div>
+      <div style="background:url('/toyota.jpg') no-repeat;background-size:cover;padding:5% 0">
+        <div class="ui container">
+          <div class="ui card row p-4" style="width:40%;">
+            <div class="content">
+              <h2>Rent a Car</h2>
+              <div class="ui divider"></div>
+                <div class="ui floating dropdown labeled icon button w-100 search my-3" id="loc" style="width:100%">
+                  <input class="search" autocomplete="off" tabindex="0" name="location">
+                  <span class="text">Where are you located ?</span>
+                  <i class="map marker alternate icon"></i>
+                  <div class="menu" tabindex="-1">
+                    <div class="item" data-value="Harare">Harare</div>
+                    <div class="item" data-value="Bulawayo">Bulawayo</div>
+                    <div class="item" data-value="Masvingo">Masvingo</div>
+                    <div class="item" data-value="Mutare">Mutare</div>
+                    <div class="item">Gweru</div>
+                  </div>
+                </div>
+                
+                <br><br>
+
+                <div class="ui floating search dropdown labeled icon button w-100 mb-3" style="width:100%" id="carType">
+                  <input class="search" autocomplete="off" tabindex="0" name="carType">
+                  <span class="text">Vehicle Type</span>
+                  <i class="car alternate icon"></i>
+                  <div class="menu" tabindex="-1">
+                    <div class="item" data-value="Hatchback">Hatchback</div>
+                    <div class="item" data-value="SUV">SUV</div>
+                    <div class="item" data-value="Sedan">Sedan</div>
+                  </div>
+                </div>
+
+                <br><br>
+
+              <div class="ui two column centered grid mb-3">
+                <div class="column">
+                  <div class="ui input fluid"> 
+                    <input placeholder="Start Date" type="date" name="pickUpDate" id="pickUpDate">
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="ui input fluid">
+                    <input placeholder="End Date" type="date" name="dropOffDate" id="dropOffDate">
+                  </div> 
+                </div>
               </div>
-    				</div>
-            <br/>
-      
-            <div class="ui two column centered grid">
-            <div class="column"><div class="ui input fluid">
-              <input placeholder="Pick-up Date" type="date" class="form-control" v-model="pickUpDate">
-                </div></div>
-              <div class="column"><div class="ui input fluid">
-              <input placeholder="Dropoff Date" class="form-control" type="date" v-model="dropOffDate">
-            </div> </div>
+
+              <div class="ui divider"></div>
+
+              <button class="orange ui compact button p-3 mt-3" id="search" style="width:100%" @click="searchCars()">Find Vehicles</button>
+
             </div>
-            <div class="ui divider"></div>
-              <button @click="searchCars()"  class="ui primary button col-md-12">Find Vehicles</button>
+          </div>
         </div>
       </div>
 
-      <div v-if="!search">
-          <h3 style="margin-top:40px">Featured Vehicles</h3>
-          <div class="ui four cards">
-            <div class="card" v-for="car in cars" v-bind:key="car.id">
-              <div class="image">
-                <img :src="car.imageUrl" style="height:180px;padding:20px">
-              </div>
-              <div class="content">
-                <div class="header">{{car.brand}} {{car.model}}</div>
-                <div class="meta">
-                  <a class="group">{{car.year}}</a>
+      <div class="ui" v-if="!search">
+        <div class="column p-5">
+           <h1 class="text-center">Featured Vehicles</h1>
+        </div>
+        <div class="ui container pb-5">
+          <div class="ui four special cards">
+            <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
+            <div class="blurring dimmer image">
+              <div class="ui dimmer">
+                <div class="content">
+                  <div class="center">
+                    <div class="ui inverted button">View More</div>
+                  </div>
                 </div>
-                <h5 style="margin:10px 0px">{{car.location}}</h5>
-                <p class="description">{{car.description}}</p>
-                <div class="ui two column centered grid">
-                  <div class="column"><h5>$ZWL{{car.daily_rate}} per day</h5></div>
-                  <div class="column"> <button class="btn primary ui compact button reservationbutton" @click="showModal(car)">Reserve</button></div>
-                </div>  
               </div>
-              <div class="extra center aligned">
-                <div data-rating="4" class="ui star rating"><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i><i class="icon active"></i></div>
-              </div>
+              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
             </div>
+            <div class="content">
+              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
+              <div class="meta" style="padding-bottom:10px">
+              </div>
+              <p style="font-size:12px">Milage : {{car.milage}}km</p>
+              <p style="font-size:12px">Location : {{car.location}}</p>
+              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
+            </div>
+              <div class="column" style="padding:0;margin:0"> 
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
+              </div>
           </div>
+
+          <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
+            <div class="blurring dimmer image">
+              <div class="ui dimmer">
+                <div class="content">
+                  <div class="center">
+                    <div class="ui inverted button">View More</div>
+                  </div>
+                </div>
+              </div>
+              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
+            </div>
+            <div class="content">
+              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
+              <div class="meta" style="padding-bottom:10px">
+              </div>
+              <p style="font-size:12px">Milage : {{car.milage}}km</p>
+              <p style="font-size:12px">Location : {{car.location}}</p>
+              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
+            </div>
+              <div class="column" style="padding:0;margin:0"> 
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
+              </div>
+          </div>
+
+
+          <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
+            <div class="blurring dimmer image">
+              <div class="ui dimmer">
+                <div class="content">
+                  <div class="center">
+                    <div class="ui inverted button">View More</div>
+                  </div>
+                </div>
+              </div>
+              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
+            </div>
+            <div class="content">
+              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
+              <div class="meta" style="padding-bottom:10px">
+              </div>
+              <p style="font-size:12px">Milage : {{car.milage}}km</p>
+              <p style="font-size:12px">Location : {{car.location}}</p>
+              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
+            </div>
+              <div class="column" style="padding:0;margin:0"> 
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
+              </div>
+          </div>
+
+          <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
+            <div class="blurring dimmer image">
+              <div class="ui dimmer">
+                <div class="content">
+                  <div class="center">
+                    <div class="ui inverted button">View More</div>
+                  </div>
+                </div>
+              </div>
+              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
+            </div>
+            <div class="content">
+              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
+              <div class="meta" style="padding-bottom:10px">
+              </div>
+              <p style="font-size:12px">Milage : {{car.milage}}km</p>
+              <p style="font-size:12px">Location : {{car.location}}</p>
+              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
+            </div>
+              <div class="column" style="padding:0;margin:0"> 
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
+              </div>
+          </div>
+
+
+          </div>
+        </div>
       </div>
 
-      <div v-if="search">
-          <h3 style="margin-top:40px">Search Results({{number}})</h3>
-          <div class="ui four cards">
-            <div class="card" v-for="car in searchedCars" v-bind:key="car.id" @click="openInfo(car.id)">
-              <div class="image">
-                <img :src="car.imageUrl" style="height:150px">
-              </div>
-              <div class="content">
-                <div class="header">{{car.brand}} {{car.model}}</div>
-                <div class="meta">
-                  <a class="group">{{car.year}}</a>
+      <div class="ui" v-if="search">
+        <div class="column p-5">
+           <h1 class="text-center" style="text-decoration:underline">Search Results</h1>
+        </div>
+        <div class="ui container pb-5">
+          <div class="ui four special cards">
+
+          <div class="card" v-for="car in searchedCars" v-bind:key="car.id" style="border-radius:0">
+            <div class="blurring dimmer image">
+              <div class="ui dimmer">
+                <div class="content">
+                  <div class="center">
+                    <div class="ui inverted button">View More</div>
+                  </div>
                 </div>
-                <h5 style="margin:10px 0px">{{car.location}}</h5>
-                <p class="description">{{car.description}}</p>
-                <div class="ui column centered grid">
-                  <div class="column"><h5>$ZWL{{car.daily_rate}} per day</h5></div>
-                </div>  
               </div>
-              <div class="extra center aligned">
-                <button class="button primary ui col-md-12">Reserve</button>
-              </div>
+              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
             </div>
+            <div class="content">
+              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
+              <div class="meta" style="padding-bottom:10px">
+              </div>
+              <p style="font-size:12px">Milage : {{car.milage}}km</p>
+              <p style="font-size:12px">Location : {{car.location}}</p>
+              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
+            </div>
+              <div class="column" style="padding:0;margin:0"> 
+                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
+              </div>
           </div>
-          
-      </div>
 
-      <!-- Modal -->
-      <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>Rent {{car.year}} {{car.brand}} {{car.model}}</h3>
-            </div>
 
-            <div class="modal-body">
-              <form form method="POST" enctype="multipart/form-data" >
-                <div class="ui two column centered grid">
-                <div class="column"><div class="ui input fluid ">
-                <input name="pick_up_date" placeholder="End Date" type="date" required v-model="reservation.pick_up_date">
-                </div></div>
-                <div class="column"><div class="ui input fluid">
-                <input name="return_date" placeholder="Start Date" type="date" required v-model="reservation.return_date">
-                </div> </div>
-                </div>
-                <div class="ui divider"></div>
-                <h5>Additional Options</h5>
-                <input type="checkbox" name="ui checkbox" ><label>Insuarance</label> 
-                <input type="checkbox" name="ui checkbox" ><label>Delivery</label> 
-
-                <div class="ui divider"></div>
-                <div class="ui two column grid">
-                  <h4 class="column" style="margin:auto 0">Total</h4>
-                  <p class="column" style="text-align:right;font-size:16px">$500.00</p>
-                </div>
-
-                <input type="hidden" id="custId" name="car_id" value="">
-              </form> 
-            </div>
-
-            <div class="modal-footer">
-              <div class="ui black deny button mr-3" @click="closeDialog()">
-                Cancel
-              </div>
-              <div class="ui positive right button" @click="reserveCar()">
-                Reserve
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
+</div>
 </template>
 
 <script>
+
     import Axios from 'axios';
     export default {
         data(){
             return{
                 search:false,
-                location:"Harare",
-                carType:"SUV",
+                location:"",
+                carType:"",
                 dropOffDate:"",
                 pickUpDate:"",
                 cars:"",
@@ -152,30 +230,36 @@
             }
         },
         methods:{ 
+            // searchCars(){
+            //     Axios.get("/cars/search",{
+            //     params: {
+            //         location:$("#loc").dropdown("get value"),
+            //         carType:$("#carType").dropdown("get value"),
+            //         pickUpDate:$("#pickUpDate").val(),
+            //         dropOffDate:$("#dropOffDate").val()
+            //     }
+            //     }).then(response=>{
+            //       this.searchedCars = response.data;
+
+            //       if(this.searchedCars.length > 0){
+            //         this.search = true;
+            //         this.number = this.searchedCars.length;
+            //       }
+
+            //       else{
+            //         this.search = false;
+            //         alert("No vehicles matching those parameters were found. Please refine your search and try again.")
+            //       }
+            //     console.log(response.data);
+            // }).catch(error=>{
+            //     console.log(error)
+            // })
+            // },
             searchCars(){
-                Axios.get("/cars/search",{
-                params: {
-                    location:this.location,
-                    carType:this.carType,
-                    pickUpDate:this.pickUpDate,
-                    dropOffDate:this.dropOffDate
-                }
-                }).then(response=>{
-                  this.searchedCars = response.data;
-
-                  if(this.searchedCars.length > 0){
-                    this.search = true;
-                    this.number = this.searchedCars.length;
-                  }
-
-                  else{
-                    this.search = false;
-                    alert("No vehicles matching those parameters were found. Please refine your search and try again.")
-                  }
-                console.log(response.data);
-            }).catch(error=>{
-                console.log(error)
-            })
+              window.document.location = "http://localhost:3000/cars/search?location="+$("#loc").dropdown("get value") +
+              "&carType="+$("#carType").dropdown("get value")+
+              "&pickUpDate="+$("#pickUpDate").val()+
+              "&dropOffDate="+$("#dropOffDate").val();
             },
             getCars(){
               Axios.get("/cars/get").then(response=>{
