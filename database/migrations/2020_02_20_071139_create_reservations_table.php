@@ -21,11 +21,11 @@ class CreateReservationsTable extends Migration
             $table->integer('user_id');
             $table->integer('car_id');
             $table->decimal('daily_rate');
-            $table->decimal('cost_per_day')->nullable();
-            $table->string('reservation_status')->default("Pending");
+            $table->decimal('total_cost')->nullable();
+            $table->string('reservation_status')->default("pending");
             $table->foreign('car_id')->references('id')->on('cars');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps();
+            $table->timestamps('date_added');
         });
     }
 

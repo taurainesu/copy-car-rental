@@ -41,9 +41,11 @@ class ReservationController extends Controller
             $data['payment_status']="Pending";
             $id = Auth::id();
             $data['user_id']=$id;
-            $data['daily_rate']=1;
-            $data['cost_per_day']=1;
-            $data['reservation_status']="pending";
+            $days=$start_date->floatDiffInDays($end_date);
+            $cost_per_day=$car->daily_rate*$days;
+            $total_cost=$days*$cost_per_day;
+            $data['total_cost']=$total_cost;
+            $data['daily_rate']=$car->daily_rate;
 
             Reservation::create($data);
             return redirect()->route('home');
@@ -58,5 +60,12 @@ class ReservationController extends Controller
         }
 
         
+    }
+
+
+    public function get_reservations(Request $request){
+
+
+
     }
 }

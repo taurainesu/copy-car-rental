@@ -258,7 +258,7 @@ $('#date_picker1').change(function() {
 
     $("#date_picker2").datepicker("option", "minDate", startDate); 
 
-}) 
+}) ;
 
 
 
@@ -272,9 +272,9 @@ $('#date_picker2').change(function() {
     $("#attribute").text("Total $");
     $("#total_price").text(total);
 
-}      ) 
+} ) 
 
-}  ;
+}  
 
 </script>
 
