@@ -7,7 +7,7 @@
             <div class="content">
               <h2>Rent a Car</h2>
               <div class="ui divider"></div>
-                <div class="ui floating dropdown labeled icon button w-100 search my-3" id="loc" style="width:100%">
+                <div class="ui floating dropdown labeled icon button w-100 search my-2" id="loc" style="width:100%">
                   <input class="search" autocomplete="off" tabindex="0" name="location">
                   <span class="text">Where are you located?</span>
                   <i class="map marker alternate icon"></i>
@@ -22,7 +22,7 @@
                 
                 <br><br>
 
-                <div class="ui floating search dropdown labeled icon button w-100 mb-3" style="width:100%" id="carType">
+                <div class="ui floating search dropdown labeled icon button w-100 mb-2" style="width:100%" id="carType">
                   <input class="search" autocomplete="off" tabindex="0" name="carType">
                   <span class="text">Vehicle Type</span>
                   <i class="car alternate icon"></i>
@@ -35,7 +35,7 @@
 
                 <br><br>
 
-              <div class="ui two column centered grid mb-3">
+              <div class="ui two column centered grid mb-2">
                 <div class="column">
                   <div class="ui input fluid"> 
                     <input placeholder="Start Date" type="date" name="pickUpDate" id="pickUpDate">
@@ -51,7 +51,7 @@
 
               <div class="ui divider"></div>
 
-              <button class="orange ui compact button p-3 mt-3" id="search" style="width:100%" @click="searchCars()">Find Vehicles</button>
+              <button class="orange ui compact button p-3 mt-2" id="search" style="width:100%" @click="searchCars()">Find Vehicles</button>
 
             </div>
           </div>
@@ -60,7 +60,7 @@
 
       <div class="ui" v-if="!search">
         <div class="column p-5">
-           <h1 class="text-center">Featured Vehicles</h1>
+           <h1 class="ui center aligned header">Featured Vehicles</h1>
         </div>
         <div class="ui container pb-5">
           <div class="ui four special cards">

@@ -37693,7 +37693,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "orange ui compact button p-3 mt-3",
+                      staticClass: "orange ui compact button p-3 mt-2",
                       staticStyle: { width: "100%" },
                       attrs: { id: "search" },
                       on: {
@@ -38085,7 +38085,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "ui floating dropdown labeled icon button w-100 search my-3",
+          "ui floating dropdown labeled icon button w-100 search my-2",
         staticStyle: { width: "100%" },
         attrs: { id: "loc" }
       },
@@ -38137,7 +38137,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "ui floating search dropdown labeled icon button w-100 mb-3",
+          "ui floating search dropdown labeled icon button w-100 mb-2",
         staticStyle: { width: "100%" },
         attrs: { id: "carType" }
       },
@@ -38173,7 +38173,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui two column centered grid mb-3" }, [
+    return _c("div", { staticClass: "ui two column centered grid mb-2" }, [
       _c("div", { staticClass: "column" }, [
         _c("div", { staticClass: "ui input fluid" }, [
           _c("input", {
@@ -38206,7 +38206,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column p-5" }, [
-      _c("h1", { staticClass: "text-center" }, [_vm._v("Featured Vehicles")])
+      _c("h1", { staticClass: "ui center aligned header" }, [
+        _vm._v("Featured Vehicles")
+      ])
     ])
   },
   function() {

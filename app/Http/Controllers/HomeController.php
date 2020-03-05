@@ -34,7 +34,7 @@ class HomeController extends Controller
 
     public function cars(){
         return view("cars",[
-            'search'=>Car::all()
+            'cars'=>Car::all()
         ]);
     }
 

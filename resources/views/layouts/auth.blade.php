@@ -26,7 +26,7 @@
           margin:auto 0px !important; 
         }
         
-        .input,.button{
+        .input{
           margin:0 0 35px 0;
           width: 100%;
         }
@@ -48,7 +48,11 @@
 
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+      <main class="column">
+        @yield("content")
+      </main>
+    </div>
 </body>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/semantic.min.js') }}"></script>

@@ -1,68 +1,41 @@
 @extends('layouts.layout')
 @section("content")
 
-<div class="ui container" style="padding:3% 0">
-    <div class="ui row two column grid">
-        <div class="column three wide card">
-            <h3>Filter Options</h3>
-            <form>
-                <div class="ui selection dropdown input">
-                    <input type="hidden" name="gender">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Where are you?</div>
-                    <div class="menu" tabindex="-1">
-                        <div class="item" data-value="Harare">Harare</div>
-                        <div class="item" data-value="Bulawayo">Bulawayo</div>
-                        <div class="item" data-value="Masvingo">Masvingo</div>
-                        <div class="item" data-value="Mutare">Mutare</div>
-                        <div class="item">Gweru</div>
+<div class="ui container mb-5">
+    <div class="ui column">
+        <div class="column twelve wide">
+            <div class="column my-4">
+                <h3 class="mb-4">Filter Options</h3>
+                <div class="column">
+                    <div class="ui input mr-2 labeled icon" style="width:14%">
+                        <i class="map marker alternate icon"></i>
+                        <input type="text" placeholder="Location">
+                    </div>
+                    <div class="ui input mr-2 labeled icon" style="width:14%">
+                        <i class="car icon"></i>
+                        <input type="text" placeholder="Model">
+                    </div>
+                    <div class="ui input mr-2 labeled icon" style="width:14%">
+                        <i class="object group icon"></i>
+                        <input type="text" placeholder="Brand">
+                    </div>
+                    <div class="ui input mr-2 labeled icon" style="width:21%">
+                        <i class="calendar alternate icon"></i>
+                        <input type="text" placeholder="Year of Manufacturing" maxlength="4" min="1800" max="2020">
+                    </div>
+                    <div class="ui input mr-5 labeled right" style="width:14%">
+                        <label for="min" class="ui label">$</label>
+                        <input type="text" placeholder="Min Price" name="min">
+                    </div>
+                    <div class="ui input mr-2 labeled right" style="width:14%">
+                        <label for="max" class="ui label">$</label>
+                        <input type="text" placeholder="Max Price" name="max">
                     </div>
                 </div>
-                  
-                  <div class="ui selection dropdown input">
-                    <input type="hidden" name="gender">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Vehicle Type</div>
-                    <div class="menu" tabindex="-1">
-                        <div class="item" data-value="Harare">Trucks</div>
-                        <div class="item" data-value="Bulawayo">SUV</div>
-                        <div class="item" data-value="Masvingo">Sedan</div>
-                        <div class="item" data-value="Mutare">Kombi</div>
-                    </div>
-                  </div>
-
-                  <div class="ui selection dropdown input">
-                    <input type="hidden" name="gender">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Model/Brand</div>
-                    <div class="menu" tabindex="-1">
-                        <div class="item" data-value="Harare">Toyota</div>
-                        <div class="item" data-value="Bulawayo">Mercedes Benz</div>
-                        <div class="item" data-value="Masvingo">Audi</div>
-                        <div class="item" data-value="Mutare">Mazda</div>
-                        <div class="item">Hyundai</div>
-                    </div>
-                  </div>
-
-                  <div class="ui selection dropdown input">
-                    <input type="hidden" name="gender">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Vehicle Type</div>
-                    <div class="menu" tabindex="-1">
-                        <div class="item" data-value="Harare">Trucks</div>
-                        <div class="item" data-value="Bulawayo">SUV</div>
-                        <div class="item" data-value="Masvingo">Sedan</div>
-                        <div class="item" data-value="Mutare">Kombi</div>
-                    </div>
-                  </div>
-
-                  <button class="ui button icon" style="width:100%;margin:0">Search<i class="fa fa-search" style="margin-left:15px" ></i></button>
-            </form>
-        </div>
-        <div class="column twelve wide"  style="padding-left:6%">
-            <h3>Vehicle Inventory</h3>
-            <div class="ui three cards">
-                @foreach ($search as $car)
+            </div>
+            <h2 class="my-5" style="text-align:center">Our Fleet</h2>
+            <div class="ui four cards">
+                @foreach ($cars as $car)
                 <div class="card">
                     <div class="image">
                         <img style="width:80%;height:100%;margin:auto;padding:20px" src="{{$car->imageUrl}}">
@@ -75,15 +48,8 @@
                         <p style="font-size:12px">Location : {{$car->location}}</p>
                         <p style="font-size:12px">Rental Rate : <strong>$ZWL{{$car->daily_rate}}/day</strong></p>
                     </div>
-                    <div class="extra aligned ui two column grid">
-                        <div class="column" style="padding:0;margin:0"> 
-                            <a data-href="reserve/{{$car->id}}" class="ui compact testing">Reserve</a>
-                        </div>
-
-                        <div class="column" style="text-align:end;padding:0;margin:0">
-
-                            <a data-href="reserve/{{$car->id}}" class="ui compact testing">View</a>
-                        </div>
+                    <div class="column" style="padding:0;margin:0"> 
+                        <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
                     </div>
                 </div>
             @endforeach
