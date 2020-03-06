@@ -3,7 +3,7 @@
 
   <head>
     <title>Car Rental</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">

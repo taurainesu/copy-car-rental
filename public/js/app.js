@@ -2116,6 +2116,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2136,7 +2137,8 @@ __webpack_require__.r(__webpack_exports__);
         payment_status: "Pending",
         vehicle_id: null,
         daily_rate: null
-      }
+      },
+      token: $('meta[name="csrf-token"]').attr('content')
     };
   },
   methods: {
@@ -37924,11 +37926,37 @@ var render = function() {
                 attrs: {
                   form: "",
                   method: "POST",
-                  action: "reserve",
+                  action: "/reservations/new",
                   enctype: "multipart/form-data"
                 }
               },
               [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.token,
+                      expression: "token"
+                    }
+                  ],
+                  attrs: {
+                    type: "text",
+                    hidden: "",
+                    id: "crsf_token",
+                    name: "_token"
+                  },
+                  domProps: { value: _vm.token },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.token = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
                 _c("div", { staticClass: "ui two column centered grid" }, [
                   _c("div", { staticClass: "column" }, [
                     _c("div", { staticClass: "ui input fluid " }, [

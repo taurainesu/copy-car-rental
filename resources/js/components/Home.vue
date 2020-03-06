@@ -135,7 +135,8 @@
         <i class="close icon"></i>
         <div class="header">Rent a {{car.brand}} {{car.model}}</div>
         <div class="content">
-          <form form method="POST" action="reserve" enctype="multipart/form-data" >
+          <form form method="POST" action="/reservations/new" enctype="multipart/form-data" >
+            <input type="text" hidden id="crsf_token" v-model="token" name="_token">
             <div class="ui two column centered grid">
               <div class="column">
                 <div class="ui input fluid ">
@@ -193,7 +194,8 @@
                   payment_status:"Pending",
                   vehicle_id:null,
                   daily_rate:null,
-                }
+                },
+                token:$('meta[name="csrf-token"]').attr('content'),
             }
         },
         methods:{ 

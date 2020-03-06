@@ -180,7 +180,8 @@
   <i class="close icon"></i>
   <div class="header">Rent a {{$car->brand}} {{$car->model}}</div>
   <div class="content">
-    <form form method="POST" action="reserve" enctype="multipart/form-data" >
+  <form form method="POST" action="{{route("new_reservation")}}" enctype="multipart/form-data" >
+      @csrf
       <div class="ui two column centered grid">
         <div class="column">
           <div class="ui input fluid ">

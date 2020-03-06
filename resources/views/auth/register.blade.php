@@ -95,6 +95,7 @@
 @section("javasript")
 <script>
   $(".button").click(function(){
+    
     $("#sex").val($("#sex_div").dropdown("get value"));
     $("#country").val($("#country_div").dropdown("get value"));
 
