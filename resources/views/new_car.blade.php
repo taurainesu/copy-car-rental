@@ -300,6 +300,36 @@
     <div class="ui divider"></div>
 
 
+    <label for="image" class="">{{ __('Car Image') }}</label>
+
+<input id="image" type="file" name="imageUrl1" required autocomplete="image" required>
+            
+<div class="ui divider"></div>
+
+
+<label for="image" class="">{{ __('Car Image') }}</label>
+
+<input id="image" type="file" name="imageUrl2" required autocomplete="image" required>
+            
+<div class="ui divider"></div>
+
+
+
+<label for="image" class="">{{ __('Car Image') }}</label>
+
+<input id="image" type="file" name="imageUrl3" required autocomplete="image" required>
+            
+<div class="ui divider"></div>
+
+
+
+<label for="image" class="">{{ __('Car Image') }}</label>
+
+<input id="image" type="file" name="imageUrl4" required autocomplete="image" required>
+            
+<div class="ui divider"></div>
+
+
   
 
   <button type="submit" class="yellow  ui compact button ">{{ __('Register') }}</button>

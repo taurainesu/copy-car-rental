@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Car;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -26,6 +27,43 @@ class CarController extends Controller
             unset($data['imageUrl']);
             $data['imageUrl'] ='/images/cars/'.$carImage;
         }
+
+        if($files = $request->file('imageUrl1')){
+            $destination = 'images/cars/';
+            $carImage = time().".".$files->getClientOriginalExtension();
+            $files->move($destination,$carImage);
+            unset($data['imageUrl1']);
+            $data['imageUrl1'] ='/images/cars/'.$carImage;
+        }
+
+        if($files = $request->file('imageUrl2')){
+            $destination = 'images/cars/';
+            $carImage = time().".".$files->getClientOriginalExtension();
+            $files->move($destination,$carImage);
+            unset($data['imageUrl2']);
+            $data['imageUrl2'] ='/images/cars/'.$carImage;
+        }
+
+
+        if($files = $request->file('imageUrl3')){
+            $destination = 'images/cars/';
+            $carImage = time().".".$files->getClientOriginalExtension();
+            $files->move($destination,$carImage);
+            unset($data['imageUrl3']);
+            $data['imageUrl3'] ='/images/cars/'.$carImage;
+        }
+
+
+        if($files = $request->file('imageUrl4')){
+            $destination = 'images/cars/';
+            $carImage = time().".".$files->getClientOriginalExtension();
+            $files->move($destination,$carImage);
+            unset($data['imageUrl4']);
+            $data['imageUrl4'] ='/images/cars/'.$carImage;
+        }
+
+
+        $data['user_id'] = Auth::id();
     
         Car::create($data);
         return redirect()->route('home');
