@@ -32,7 +32,15 @@ Route::get("cars/info/{id}","CarController@car")->name("get_car");
 
 Route::post("reservations/new","ReservationController@save_data")->name("new_reservation");
 
+Route::get("reservations","ReservationController@get_reservations")->name("view_reservations");
+
+
+
+Route::get("reservation/view/{id}","ReservationController@view_reservation")->name("view_reservation");
+
 Route::get('reserve/{id}',"ModalController@pop_modal")->name("modal");
+
+
 
 Route::get("error",function(){
     return view("error");

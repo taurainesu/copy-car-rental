@@ -25,7 +25,12 @@ class CreateCarsTable extends Migration
             $table->string('cordinates')->nullable();
             $table->integer('milage');
             $table->string('type');
+            $table->integer('user_id');
             $table->string('imageUrl')->nullable();
+            $table->string('imageUrl1')->nullable();
+            $table->string('imageUrl2')->nullable();
+            $table->string('imageUrl3')->nullable();
+            $table->string('imageUrl4')->nullable();
             $table->string('fuel_type');
             $table->decimal('engine_capacity');
             $table->string('color');
@@ -34,6 +39,7 @@ class CreateCarsTable extends Migration
             $table->string('transmission');
             $table->boolean('done')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
