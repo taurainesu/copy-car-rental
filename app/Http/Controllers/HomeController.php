@@ -27,6 +27,10 @@ class HomeController extends Controller
         return view('home',[
             'cars'=>Car::all(),
             'search'=>Car::all(),
+            'home'=>true,
+            'vehicles'=>false,
+            'register'=>false,
+            'my_reservation'=>false,
         ]);
 
         //return view("index");
@@ -34,7 +38,11 @@ class HomeController extends Controller
 
     public function cars(){
         return view("cars",[
-            'search'=>Car::all()
+            'search'=>Car::all(),
+            'home'=>false,
+            'vehicles'=>true,
+            'register'=>false,
+            'my_reservation'=>false,
         ]);
     }
 

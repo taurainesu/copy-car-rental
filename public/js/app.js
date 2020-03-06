@@ -2079,6 +2079,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2089,6 +2126,7 @@ __webpack_require__.r(__webpack_exports__);
       dropOffDate: "",
       pickUpDate: "",
       cars: "",
+      modal: false,
       searchedCars: "",
       number: 0,
       car: "",
@@ -2156,6 +2194,31 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reservations/new", this.reservation).then(function (response) {
         _this2.cars = response.data;
         console.log(response.data);
+      });
+    },
+    datepickers: function datepickers(car) {
+      var startDate;
+      var endDate;
+      $("#date_picker1").datepicker({
+        minDate: '+0d',
+        changeMonth: true,
+        changeYear: true
+      });
+      $("#date_picker1").datepicker('show');
+      $(function () {
+        $("#date_picker2").datepicker({});
+      });
+      $('#date_picker1').change(function () {
+        startDate = $(this).datepicker('getDate');
+        $("#date_picker2").datepicker("option", "minDate", startDate);
+      });
+      $('#date_picker2').change(function () {
+        endDate = $(this).datepicker('getDate');
+        $("#date_picker1").datepicker("option", "maxDate", endDate);
+        var diffDays = endDate.getDate() - startDate.getDate();
+        var total = diffDays * car.daily_rate;
+        $("#attribute").text("Total $");
+        $("#total_price").text(total);
       });
     }
   },
@@ -37644,15 +37707,12 @@ var render = function() {
       ),
       _vm._v(" "),
       !_vm.search
-        ? _c("div", { staticClass: "ui" }, [
+        ? _c("div", { staticClass: "ui container" }, [
             _vm._m(3),
             _vm._v(" "),
             _c(
               "div",
-              {
-                staticClass: "ui container",
-                staticStyle: { "padding-bottom": "40px" }
-              },
+              { staticClass: "ui", staticStyle: { "padding-bottom": "40px" } },
               [
                 _c(
                   "div",
@@ -37734,7 +37794,23 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _vm._m(4, true)
+                          _c(
+                            "button",
+                            {
+                              staticClass: "ui button orange",
+                              staticStyle: { width: "48%" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showModal(car)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\r\n                Reserve\r\n                "
+                              )
+                            ]
+                          )
                         ])
                       ]
                     )
@@ -37748,7 +37824,7 @@ var render = function() {
       _vm._v(" "),
       _vm.search
         ? _c("div", { staticClass: "ui" }, [
-            _vm._m(5),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "ui container pb-5" }, [
               _c(
@@ -37764,7 +37840,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "blurring dimmer image" }, [
-                        _vm._m(6, true),
+                        _vm._m(5, true),
                         _vm._v(" "),
                         _c("img", {
                           staticStyle: {
@@ -37816,7 +37892,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(7, true)
+                      _vm._m(6, true)
                     ]
                   )
                 }),
@@ -37824,7 +37900,105 @@ var render = function() {
               )
             ])
           ])
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "ui tiny modal middle aligned ",
+          attrs: { id: "reservationmodal" }
+        },
+        [
+          _c("i", { staticClass: "close icon" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "header" }, [
+            _vm._v(
+              "Rent a " + _vm._s(_vm.car.brand) + " " + _vm._s(_vm.car.model)
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "content" }, [
+            _c(
+              "form",
+              {
+                attrs: {
+                  form: "",
+                  method: "POST",
+                  action: "reserve",
+                  enctype: "multipart/form-data"
+                }
+              },
+              [
+                _c("div", { staticClass: "ui two column centered grid" }, [
+                  _c("div", { staticClass: "column" }, [
+                    _c("div", { staticClass: "ui input fluid " }, [
+                      _c("input", {
+                        attrs: {
+                          id: "date_picker1",
+                          autocomplete: "off",
+                          name: "pick_up_date",
+                          placeholder: "Start Date",
+                          type: "text",
+                          required: ""
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.datepickers(_vm.car)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(7)
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "ui divider" }),
+                _vm._v(" "),
+                _c("h5", [_vm._v("Additional Options")]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "checkbox", name: "ui checkbox" }
+                }),
+                _c("label", [_vm._v("Insuarance")]),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "checkbox", name: "ui checkbox" }
+                }),
+                _c("label", [_vm._v("Delivery")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "ui divider" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "ui two column grid" }, [
+                  _c("h5", { attrs: { id: "attribute" } }, [
+                    _vm._v("Daily rate $")
+                  ]),
+                  _vm._v(" "),
+                  _c("strong", { attrs: { id: "total_price" } }, [
+                    _vm._v(" " + _vm._s(_vm.car.daily_rate))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", id: "custId", name: "car_id" },
+                  domProps: { value: _vm.car.id }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "orange ui compact inverted button",
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v("RESERVE")]
+                )
+              ]
+            )
+          ])
+        ]
+      )
     ])
   ])
 }
@@ -37888,8 +38062,7 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass:
-          "ui floating search dropdown labeled icon button w-100 mb-3",
+        staticClass: "ui floating search dropdown labeled icon button",
         staticStyle: { width: "100%" },
         attrs: { id: "carType" }
       },
@@ -37958,26 +38131,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column" }, [
-      _c(
-        "h1",
-        {
-          staticClass: "ui centered aligned header",
-          staticStyle: { padding: "40px 0" }
-        },
-        [_vm._v("Featured Vehicles")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "" } }, [
-      _c(
-        "button",
-        { staticClass: "ui button orange", staticStyle: { width: "48%" } },
-        [_vm._v("\r\n                Reserve\r\n                ")]
-      )
+      _c("h1", { staticClass: "ui", staticStyle: { padding: "40px 0" } }, [
+        _vm._v("Featured Vehicles")
+      ])
     ])
   },
   function() {
@@ -38027,6 +38183,24 @@ var staticRenderFns = [
         )
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "ui input fluid" }, [
+        _c("input", {
+          attrs: {
+            id: "date_picker2",
+            name: "return_date",
+            placeholder: "End Date",
+            autocomplete: "off",
+            required: ""
+          }
+        })
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -50350,14 +50524,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************!*\
   !*** ./resources/js/components/Home.vue ***!
   \******************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=f2b6376c& */ "./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&");
 /* harmony import */ var _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&lang=js& */ "./resources/js/components/Home.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50387,7 +50562,7 @@ component.options.__file = "resources/js/components/Home.vue"
 /*!*******************************************************************!*\
   !*** ./resources/js/components/Home.vue?vue&type=script&lang=js& ***!
   \*******************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

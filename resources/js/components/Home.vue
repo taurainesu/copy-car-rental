@@ -22,7 +22,7 @@
                 
                 <br><br>
 
-                <div class="ui floating search dropdown labeled icon button w-100 mb-3" style="width:100%" id="carType">
+                <div class="ui floating search dropdown labeled icon button" style="width:100%" id="carType">
                   <input class="search" autocomplete="off" tabindex="0" name="carType">
                   <span class="text">Vehicle Type</span>
                   <i class="car alternate icon"></i>
@@ -58,11 +58,11 @@
         </div>
       </div>
 
-      <div class="ui" v-if="!search">
+      <div class="ui container" v-if="!search">
         <div class="column">
-           <h1 class="ui centered aligned header" style="padding:40px 0">Featured Vehicles</h1>
+           <h1 class="ui" style="padding:40px 0">Featured Vehicles</h1>
         </div>
-        <div class="ui container"  style="padding-bottom:40px">
+        <div class="ui"  style="padding-bottom:40px">
           <div class="ui four special cards">
             <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
             <div class="image">
@@ -82,11 +82,11 @@
                 View
                 </button>
               </a>
-              <a href="">
-                <button class="ui button orange" style="width:48%">
+              
+                <button class="ui button orange" style="width:48%" @click="showModal(car)">
                 Reserve
                 </button>
-              </a>
+              
               
             </div>
           </div>
@@ -130,6 +130,43 @@
           </div>
         </div>
       </div>
+
+      <div class="ui tiny modal middle aligned " id="reservationmodal">
+        <i class="close icon"></i>
+        <div class="header">Rent a {{car.brand}} {{car.model}}</div>
+        <div class="content">
+          <form form method="POST" action="reserve" enctype="multipart/form-data" >
+            <div class="ui two column centered grid">
+              <div class="column">
+                <div class="ui input fluid ">
+                  <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
+                </div>
+              </div>
+              <div class="column">
+                <div class="ui input fluid">
+                  <input id="date_picker2" name="return_date" placeholder="End Date"  autocomplete="off" required>
+                </div> 
+              </div>
+            </div>
+
+            <div class="ui divider"></div>
+
+            <h5>Additional Options</h5>
+            <input type="checkbox" name="ui checkbox" ><label>Insuarance</label> 
+            <input type="checkbox" name="ui checkbox" ><label>Delivery</label> 
+
+            <div class="ui divider"></div>
+            <div class="ui two column grid">
+              <h5 id="attribute">Daily rate $</h5> 
+              <strong id="total_price"> {{car.daily_rate}}</strong>
+            </div>
+            <br>
+            <input type="hidden" id="custId" name="car_id" v-bind:value="car.id">
+            <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
+          </form> 
+        </div>
+      </div>
+
     </div>
 </div>
 </template>
@@ -146,6 +183,7 @@
                 dropOffDate:"",
                 pickUpDate:"",
                 cars:"",
+                modal:false,
                 searchedCars:"",
                 number:0,
                 car:"",
@@ -210,10 +248,49 @@
             closeDialog(){
               $('.modal').modal('hide');
             },
+
             reserveCar(){
               Axios.post("/reservations/new",this.reservation).then(response=>{
                 this.cars = response.data;
                 console.log(response.data);});
+            },
+
+            datepickers(car){
+              var startDate;
+              var endDate;
+
+              $("#date_picker1").datepicker({
+                  minDate: '+0d',
+                  changeMonth: true, 
+                  changeYear: true,
+                });
+
+                $("#date_picker1").datepicker('show');
+
+                $(function() { 
+
+                    $("#date_picker2").datepicker({}); 
+
+                }); 
+
+                $('#date_picker1').change(function() { 
+
+                    startDate = $(this).datepicker('getDate'); 
+
+                    $("#date_picker2").datepicker("option", "minDate", startDate); 
+                }) 
+
+                $('#date_picker2').change(function() { 
+
+                    endDate = $(this).datepicker('getDate'); 
+
+                    $("#date_picker1").datepicker("option", "maxDate", endDate); 
+                    var diffDays = endDate.getDate() - startDate.getDate(); 
+                    var total=diffDays* car.daily_rate;
+                    $("#attribute").text("Total $");
+                    $("#total_price").text(total);
+
+                });
             }
         },
         mounted(){
@@ -221,3 +298,5 @@
         },
     }
 </script>
+
+

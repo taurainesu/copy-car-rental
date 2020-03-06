@@ -1,10 +1,9 @@
 @extends('layouts.layout')
 @section("content")
-
-<div class="ui container" style="padding:3% 0">
+<div class="ui container" style="padding:0 0 3% 0">
     <div class="ui column">
         <div class="column twelve wide">
-            <div class="column">
+            <div class="column" style="display:none">
                 <h3>Filter Options</h3>
                 <div class="column">
                     <div class="ui input labeled icon" style="width:25%">
@@ -26,7 +25,7 @@
                 </div>
             </div>
             @if(count($results) > 0)
-        <h2 style="text-align:center;padding:15px 0">Search Results ({{count($results)}})</h2>
+        <h1 style="padding:10px 0 15px 0">Search Results ({{count($results)}})</h1>
             <div class="ui four cards">
                 @foreach ($results as $car)
                 <div class="card">
@@ -42,7 +41,7 @@
                         <p style="font-size:12px">Rental Rate : <strong>$ZWL{{$car->daily_rate}}/day</strong></p>
                     </div>
                     <div class="extra content">
-                        @if($car->car_id != null)
+                        @if($car->car_id ?? false)
                         <a href="{{'/cars/info/'.$car->car_id}}">
                             <button class="ui button icon orange right floated" style="width:48%">
                             View
@@ -64,7 +63,10 @@
             @endforeach
             </div>
             @else
-            <h2>No vehicles found...Please try again</h2>
+            <div class="column" style="margin:auto;height:50vh;text-align:center;padding:15% 0">
+                <h2>No vehicles found...Please try again</h2>
+            </div>
+           
             @endif
         </div>
     </div>

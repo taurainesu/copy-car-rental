@@ -44,6 +44,13 @@
           background: #fff;
           border:1px solid #cccccc;
         }
+
+        .invalid-feedback{
+          color: red;
+          margin:0 0 10px 0 !important;
+          padding: 0;
+          font-size: 12px;
+        }
     </style>
 
 </head>

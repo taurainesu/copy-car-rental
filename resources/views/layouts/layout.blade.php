@@ -5,6 +5,7 @@
     <title>Car Rental</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
@@ -57,10 +58,10 @@
       <header>
           <div class="ui secondary menu inverted" style="background:#1b1c1d;padding:20px" >
               <div class="ui container">
-                  <a class="active item" href="/">Home</a>
-                  <a class="item" href="/cars">Vehicles</a>
-                  <a class="item" href="/vehicle/register" style="display:none">Register   Vehicle</a>
-                  <a class="item">My Reservations</a>
+                  <a class="item @if($home ?? false) active @endif" href="/">Home</a>
+                  <a class="item @if($vehicles ?? true) active @endif" href="/cars">Vehicles</a>
+                  <a class="item @if($register ?? false) active @endif" href="/vehicle/register" style="display:none">Register   Vehicle</a>
+                  <a class="item @if($my_reservation ?? false) active @endif">My Reservations</a>
                   <div class="right menu">
                       <div class="item">
                           <div class="ui icon input" style="display: none">
@@ -120,6 +121,7 @@
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/semantic.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
  
   <script>
     $(document)

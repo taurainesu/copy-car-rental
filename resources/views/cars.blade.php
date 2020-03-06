@@ -4,7 +4,7 @@
 <div class="ui container" style="padding:3% 0">
     <div class="ui row grid">
         <div class="column ">
-            <h2>Vehicle Inventory</h2>
+            <h1 style="padding-bottom:15px">Vehicle Inventory</h1>
             <div class="ui four cards">
                 @foreach ($search as $car)
                 <div class="card">

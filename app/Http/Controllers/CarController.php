@@ -47,6 +47,7 @@ class CarController extends Controller
     }
 
     public function search(Request $request){
+
         $params = $request->all();
 
         $reserved = null;
@@ -72,17 +73,14 @@ class CarController extends Controller
                 ->get();
 
                 $notReserved = DB::table("cars")
-                ->leftJoin("reservations","cars.id","reservations.car_id")
-                ->whereNull("reservations.pick_up_date")
                 ->where("location",$location)
                 ->where("type",$type)
-                ->whereNull("reservations.return_date")
                 ->get();
 
                 $result = $reserved->toBase()->merge($notReserved->toBase());
             }
 
-            else if(!empty('location')){
+            else if(!empty($location)){
                 $reserved = DB::table("cars")
                 ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->whereNotBetween("reservations.pick_up_date",[$start,$end])
@@ -91,13 +89,10 @@ class CarController extends Controller
                 ->get();
 
                 $notReserved = DB::table("cars")
-                ->leftJoin("reservations","cars.id","reservations.car_id")
-                ->whereNull("reservations.pick_up_date")
                 ->where("location",$location)
-                ->whereNull("reservations.return_date")
                 ->get();
 
-                $result = $reserved->toBase()->merge($notReserved->toBase());
+                $result = $notReserved->toBase()->merge($reserved->toBase());
             }
 
             else if(!empty($type)){
@@ -109,40 +104,31 @@ class CarController extends Controller
                 ->get();
 
                 $notReserved = DB::table("cars")
-                ->leftJoin("reservations","cars.id","reservations.car_id")
-                ->whereNull("reservations.pick_up_date")
                 ->where("type",$type)
-                ->whereNull("reservations.return_date")
                 ->get();
 
                 $result = $reserved->toBase()->merge($notReserved->toBase());
             }
 
             else{
-                dd($params);
-                
+
                 $reserved = DB::table("cars")
                 ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->whereNotBetween("reservations.pick_up_date",[$start,$end])
                 ->whereNotBetween("reservations.return_date",[$start,$end])
                 ->get();
     
-                $notReserved = DB::table("cars")
-                ->leftJoin("reservations","cars.id","reservations.car_id")
-                ->whereNull("reservations.pick_up_date")
-                ->whereNull("reservations.return_date")
-                ->get();
-                
-                echo("Hey");
+                $notReserved = DB::table("cars")->get();
+            
 
                 $result = $reserved->toBase()->merge($notReserved->toBase());
+
             }
         }
 
         else{
             if(!empty($location) && !empty($type)){
                 $result = DB::table("cars")
-                ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->where("location",$location)
                 ->where("type",$type)
                 ->groupBy("cars.vehicle_registration")
@@ -151,7 +137,6 @@ class CarController extends Controller
 
             else if(!empty($location)){
                 $result = DB::table("cars")
-                ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->where("location",$location)
                 ->groupBy("cars.vehicle_registration")
                 ->get();
@@ -159,7 +144,6 @@ class CarController extends Controller
 
             else if(!empty($type)){
                 $result = DB::table("cars")
-                ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->where("type",$type)
                 ->groupBy("cars.vehicle_registration")
                 ->get();
