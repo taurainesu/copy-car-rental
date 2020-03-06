@@ -2079,77 +2079,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -37662,17 +37591,20 @@ var render = function() {
           staticStyle: {
             background: "url('/toyota.jpg') no-repeat",
             "background-size": "cover",
-            padding: "5% 0"
+            padding: "6% 0"
           }
         },
         [
           _c("div", { staticClass: "ui container" }, [
             _c(
               "div",
-              { staticClass: "ui card row p-4", staticStyle: { width: "40%" } },
+              {
+                staticClass: "ui card row",
+                staticStyle: { width: "40%", padding: "20px" }
+              },
               [
                 _c("div", { staticClass: "content" }, [
-                  _c("h2", [_vm._v("Rent a Car")]),
+                  _c("h2", [_vm._v("Rent a Vehicle")]),
                   _vm._v(" "),
                   _c("div", { staticClass: "ui divider" }),
                   _vm._v(" "),
@@ -37693,8 +37625,8 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "orange ui compact button p-3 mt-3",
-                      staticStyle: { width: "100%" },
+                      staticClass: "orange ui compact button",
+                      staticStyle: { padding: "15px", width: "100%" },
                       attrs: { id: "search" },
                       on: {
                         click: function($event) {
@@ -37715,11 +37647,16 @@ var render = function() {
         ? _c("div", { staticClass: "ui" }, [
             _vm._m(3),
             _vm._v(" "),
-            _c("div", { staticClass: "ui container pb-5" }, [
-              _c(
-                "div",
-                { staticClass: "ui four special cards" },
-                [
+            _c(
+              "div",
+              {
+                staticClass: "ui container",
+                staticStyle: { "padding-bottom": "40px" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "ui four special cards" },
                   _vm._l(_vm.cars, function(car) {
                     return _c(
                       "div",
@@ -37729,9 +37666,7 @@ var render = function() {
                         staticStyle: { "border-radius": "0" }
                       },
                       [
-                        _c("div", { staticClass: "blurring dimmer image" }, [
-                          _vm._m(4, true),
-                          _vm._v(" "),
+                        _c("div", { staticClass: "image" }, [
                           _c("img", {
                             staticStyle: {
                               width: "80%",
@@ -37766,237 +37701,54 @@ var render = function() {
                             staticStyle: { "padding-bottom": "10px" }
                           }),
                           _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Milage : " + _vm._s(car.milage) + "km")
+                          _c("p", { staticStyle: { "font-size": "14px" } }, [
+                            _c("strong", [_vm._v("Milage")]),
+                            _vm._v(" : " + _vm._s(car.milage) + "km")
                           ]),
                           _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Location : " + _vm._s(car.location))
+                          _c("p", { staticStyle: { "font-size": "14px" } }, [
+                            _c("strong", [_vm._v("Location")]),
+                            _vm._v(" : " + _vm._s(car.location))
                           ]),
                           _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Rental Rate : "),
-                            _c("strong", [
-                              _vm._v("$ZWL" + _vm._s(car.daily_rate) + "/day")
-                            ])
+                          _c("p", { staticStyle: { "font-size": "14px" } }, [
+                            _c("strong", [_vm._v("Rental Rate")]),
+                            _vm._v(" : $ZWL" + _vm._s(car.daily_rate) + "/day")
                           ])
                         ]),
                         _vm._v(" "),
-                        _vm._m(5, true)
+                        _c("div", { staticClass: "extra content" }, [
+                          _c("a", { attrs: { href: "cars/info/" + car.id } }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "ui button icon orange right floated",
+                                staticStyle: { width: "48%" }
+                              },
+                              [
+                                _vm._v(
+                                  "\r\n                View\r\n                "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(4, true)
+                        ])
                       ]
                     )
                   }),
-                  _vm._v(" "),
-                  _vm._l(_vm.cars, function(car) {
-                    return _c(
-                      "div",
-                      {
-                        key: car.id,
-                        staticClass: "card",
-                        staticStyle: { "border-radius": "0" }
-                      },
-                      [
-                        _c("div", { staticClass: "blurring dimmer image" }, [
-                          _vm._m(6, true),
-                          _vm._v(" "),
-                          _c("img", {
-                            staticStyle: {
-                              width: "80%",
-                              height: "100%",
-                              margin: "auto",
-                              padding: "20px"
-                            },
-                            attrs: { src: car.imageUrl }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "content" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "header",
-                              staticStyle: { "font-size": "16px" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(car.year) +
-                                  " " +
-                                  _vm._s(car.brand) +
-                                  " " +
-                                  _vm._s(car.model)
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "meta",
-                            staticStyle: { "padding-bottom": "10px" }
-                          }),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Milage : " + _vm._s(car.milage) + "km")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Location : " + _vm._s(car.location))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Rental Rate : "),
-                            _c("strong", [
-                              _vm._v("$ZWL" + _vm._s(car.daily_rate) + "/day")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(7, true)
-                      ]
-                    )
-                  }),
-                  _vm._v(" "),
-                  _vm._l(_vm.cars, function(car) {
-                    return _c(
-                      "div",
-                      {
-                        key: car.id,
-                        staticClass: "card",
-                        staticStyle: { "border-radius": "0" }
-                      },
-                      [
-                        _c("div", { staticClass: "blurring dimmer image" }, [
-                          _vm._m(8, true),
-                          _vm._v(" "),
-                          _c("img", {
-                            staticStyle: {
-                              width: "80%",
-                              height: "100%",
-                              margin: "auto",
-                              padding: "20px"
-                            },
-                            attrs: { src: car.imageUrl }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "content" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "header",
-                              staticStyle: { "font-size": "16px" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(car.year) +
-                                  " " +
-                                  _vm._s(car.brand) +
-                                  " " +
-                                  _vm._s(car.model)
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "meta",
-                            staticStyle: { "padding-bottom": "10px" }
-                          }),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Milage : " + _vm._s(car.milage) + "km")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Location : " + _vm._s(car.location))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Rental Rate : "),
-                            _c("strong", [
-                              _vm._v("$ZWL" + _vm._s(car.daily_rate) + "/day")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(9, true)
-                      ]
-                    )
-                  }),
-                  _vm._v(" "),
-                  _vm._l(_vm.cars, function(car) {
-                    return _c(
-                      "div",
-                      {
-                        key: car.id,
-                        staticClass: "card",
-                        staticStyle: { "border-radius": "0" }
-                      },
-                      [
-                        _c("div", { staticClass: "blurring dimmer image" }, [
-                          _vm._m(10, true),
-                          _vm._v(" "),
-                          _c("img", {
-                            staticStyle: {
-                              width: "80%",
-                              height: "100%",
-                              margin: "auto",
-                              padding: "20px"
-                            },
-                            attrs: { src: car.imageUrl }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "content" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "header",
-                              staticStyle: { "font-size": "16px" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(car.year) +
-                                  " " +
-                                  _vm._s(car.brand) +
-                                  " " +
-                                  _vm._s(car.model)
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "meta",
-                            staticStyle: { "padding-bottom": "10px" }
-                          }),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Milage : " + _vm._s(car.milage) + "km")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Location : " + _vm._s(car.location))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "12px" } }, [
-                            _vm._v("Rental Rate : "),
-                            _c("strong", [
-                              _vm._v("$ZWL" + _vm._s(car.daily_rate) + "/day")
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(11, true)
-                      ]
-                    )
-                  })
-                ],
-                2
-              )
-            ])
+                  0
+                )
+              ]
+            )
           ])
         : _vm._e(),
       _vm._v(" "),
       _vm.search
         ? _c("div", { staticClass: "ui" }, [
-            _vm._m(12),
+            _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "ui container pb-5" }, [
               _c(
@@ -38012,7 +37764,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "blurring dimmer image" }, [
-                        _vm._m(13, true),
+                        _vm._m(6, true),
                         _vm._v(" "),
                         _c("img", {
                           staticStyle: {
@@ -38064,7 +37816,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(14, true)
+                      _vm._m(7, true)
                     ]
                   )
                 }),
@@ -38205,141 +37957,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column p-5" }, [
-      _c("h1", { staticClass: "text-center" }, [_vm._v("Featured Vehicles")])
+    return _c("div", { staticClass: "column" }, [
+      _c(
+        "h1",
+        {
+          staticClass: "ui centered aligned header",
+          staticStyle: { padding: "40px 0" }
+        },
+        [_vm._v("Featured Vehicles")]
+      )
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui dimmer" }, [
-      _c("div", { staticClass: "content" }, [
-        _c("div", { staticClass: "center" }, [
-          _c("div", { staticClass: "ui inverted button" }, [
-            _vm._v("View More")
-          ])
-        ])
-      ])
+    return _c("a", { attrs: { href: "" } }, [
+      _c(
+        "button",
+        { staticClass: "ui button orange", staticStyle: { width: "48%" } },
+        [_vm._v("\r\n                Reserve\r\n                ")]
+      )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "column", staticStyle: { padding: "0", margin: "0" } },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "orange ui button",
-            staticStyle: { width: "100%", "border-radius": "0px" }
-          },
-          [_vm._v("Reserve Now")]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui dimmer" }, [
-      _c("div", { staticClass: "content" }, [
-        _c("div", { staticClass: "center" }, [
-          _c("div", { staticClass: "ui inverted button" }, [
-            _vm._v("View More")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "column", staticStyle: { padding: "0", margin: "0" } },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "orange ui button",
-            staticStyle: { width: "100%", "border-radius": "0px" }
-          },
-          [_vm._v("Reserve Now")]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui dimmer" }, [
-      _c("div", { staticClass: "content" }, [
-        _c("div", { staticClass: "center" }, [
-          _c("div", { staticClass: "ui inverted button" }, [
-            _vm._v("View More")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "column", staticStyle: { padding: "0", margin: "0" } },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "orange ui button",
-            staticStyle: { width: "100%", "border-radius": "0px" }
-          },
-          [_vm._v("Reserve Now")]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui dimmer" }, [
-      _c("div", { staticClass: "content" }, [
-        _c("div", { staticClass: "center" }, [
-          _c("div", { staticClass: "ui inverted button" }, [
-            _vm._v("View More")
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "column", staticStyle: { padding: "0", margin: "0" } },
-      [
-        _c(
-          "button",
-          {
-            staticClass: "orange ui button",
-            staticStyle: { width: "100%", "border-radius": "0px" }
-          },
-          [_vm._v("Reserve Now")]
-        )
-      ]
-    )
   },
   function() {
     var _vm = this

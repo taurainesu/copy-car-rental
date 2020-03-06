@@ -1,11 +1,11 @@
 <template>
 <div>
   <div>
-      <div style="background:url('/toyota.jpg') no-repeat;background-size:cover;padding:5% 0">
+      <div style="background:url('/toyota.jpg') no-repeat;background-size:cover;padding:6% 0">
         <div class="ui container">
-          <div class="ui card row p-4" style="width:40%;">
+          <div class="ui card row" style="width:40%;padding:20px">
             <div class="content">
-              <h2>Rent a Car</h2>
+              <h2>Rent a Vehicle</h2>
               <div class="ui divider"></div>
                 <div class="ui floating dropdown labeled icon button w-100 search my-3" id="loc" style="width:100%">
                   <input class="search" autocomplete="off" tabindex="0" name="location">
@@ -51,7 +51,7 @@
 
               <div class="ui divider"></div>
 
-              <button class="orange ui compact button p-3 mt-3" id="search" style="width:100%" @click="searchCars()">Find Vehicles</button>
+              <button class="orange ui compact button" style="padding:15px;width:100%" id="search" @click="searchCars()">Find Vehicles</button>
 
             </div>
           </div>
@@ -59,108 +59,37 @@
       </div>
 
       <div class="ui" v-if="!search">
-        <div class="column p-5">
-           <h1 class="text-center">Featured Vehicles</h1>
+        <div class="column">
+           <h1 class="ui centered aligned header" style="padding:40px 0">Featured Vehicles</h1>
         </div>
-        <div class="ui container pb-5">
+        <div class="ui container"  style="padding-bottom:40px">
           <div class="ui four special cards">
             <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
-            <div class="blurring dimmer image">
-              <div class="ui dimmer">
-                <div class="content">
-                  <div class="center">
-                    <div class="ui inverted button">View More</div>
-                  </div>
-                </div>
-              </div>
+            <div class="image">
               <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
             </div>
             <div class="content">
               <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
               <div class="meta" style="padding-bottom:10px">
               </div>
-              <p style="font-size:12px">Milage : {{car.milage}}km</p>
-              <p style="font-size:12px">Location : {{car.location}}</p>
-              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
+              <p style="font-size:14px"><strong>Milage</strong> : {{car.milage}}km</p>
+              <p style="font-size:14px"><strong>Location</strong> : {{car.location}}</p>
+              <p style="font-size:14px"><strong>Rental Rate</strong> : $ZWL{{car.daily_rate}}/day</p>
             </div>
-              <div class="column" style="padding:0;margin:0"> 
-                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
-              </div>
+            <div class="extra content">
+              <a v-bind:href="'cars/info/'+car.id">
+                <button class="ui button icon orange right floated" style="width:48%">
+                View
+                </button>
+              </a>
+              <a href="">
+                <button class="ui button orange" style="width:48%">
+                Reserve
+                </button>
+              </a>
+              
+            </div>
           </div>
-
-          <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
-            <div class="blurring dimmer image">
-              <div class="ui dimmer">
-                <div class="content">
-                  <div class="center">
-                    <div class="ui inverted button">View More</div>
-                  </div>
-                </div>
-              </div>
-              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
-            </div>
-            <div class="content">
-              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
-              <div class="meta" style="padding-bottom:10px">
-              </div>
-              <p style="font-size:12px">Milage : {{car.milage}}km</p>
-              <p style="font-size:12px">Location : {{car.location}}</p>
-              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
-            </div>
-              <div class="column" style="padding:0;margin:0"> 
-                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
-              </div>
-          </div>
-
-
-          <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
-            <div class="blurring dimmer image">
-              <div class="ui dimmer">
-                <div class="content">
-                  <div class="center">
-                    <div class="ui inverted button">View More</div>
-                  </div>
-                </div>
-              </div>
-              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
-            </div>
-            <div class="content">
-              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
-              <div class="meta" style="padding-bottom:10px">
-              </div>
-              <p style="font-size:12px">Milage : {{car.milage}}km</p>
-              <p style="font-size:12px">Location : {{car.location}}</p>
-              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
-            </div>
-              <div class="column" style="padding:0;margin:0"> 
-                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
-              </div>
-          </div>
-
-          <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
-            <div class="blurring dimmer image">
-              <div class="ui dimmer">
-                <div class="content">
-                  <div class="center">
-                    <div class="ui inverted button">View More</div>
-                  </div>
-                </div>
-              </div>
-              <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
-            </div>
-            <div class="content">
-              <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
-              <div class="meta" style="padding-bottom:10px">
-              </div>
-              <p style="font-size:12px">Milage : {{car.milage}}km</p>
-              <p style="font-size:12px">Location : {{car.location}}</p>
-              <p style="font-size:12px">Rental Rate : <strong>$ZWL{{car.daily_rate}}/day</strong></p>
-            </div>
-              <div class="column" style="padding:0;margin:0"> 
-                <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
-              </div>
-          </div>
-
 
           </div>
         </div>

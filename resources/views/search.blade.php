@@ -1,39 +1,32 @@
 @extends('layouts.layout')
 @section("content")
 
-<div class="ui container mb-5">
+<div class="ui container" style="padding:3% 0">
     <div class="ui column">
         <div class="column twelve wide">
-            <div class="column my-4">
-                <h3 class="mb-4">Filter Options</h3>
+            <div class="column">
+                <h3>Filter Options</h3>
                 <div class="column">
-                    <div class="ui input mr-2 labeled icon" style="width:14%">
+                    <div class="ui input labeled icon" style="width:25%">
                         <i class="map marker alternate icon"></i>
                         <input type="text" placeholder="Location">
                     </div>
-                    <div class="ui input mr-2 labeled icon" style="width:14%">
+                    <div class="ui input labeled icon" style="width:25%">
                         <i class="car icon"></i>
                         <input type="text" placeholder="Model">
                     </div>
-                    <div class="ui input mr-2 labeled icon" style="width:14%">
+                    <div class="ui input labeled icon" style="width:25%">
                         <i class="object group icon"></i>
                         <input type="text" placeholder="Brand">
                     </div>
-                    <div class="ui input mr-2 labeled icon" style="width:21%">
+                    <div class="ui input mr-2 labeled icon" style="width:24%">
                         <i class="calendar alternate icon"></i>
                         <input type="text" placeholder="Year of Manufacturing" maxlength="4" min="1800" max="2020">
                     </div>
-                    <div class="ui input mr-5 labeled right" style="width:14%">
-                        <label for="min" class="ui label">$</label>
-                        <input type="text" placeholder="Min Price" name="min">
-                    </div>
-                    <div class="ui input mr-2 labeled right" style="width:14%">
-                        <label for="max" class="ui label">$</label>
-                        <input type="text" placeholder="Max Price" name="max">
-                    </div>
                 </div>
             </div>
-            <h2 class="my-5" style="text-align:center">Search Results</h2>
+            @if(count($results) > 0)
+        <h2 style="text-align:center;padding:15px 0">Search Results ({{count($results)}})</h2>
             <div class="ui four cards">
                 @foreach ($results as $car)
                 <div class="card">
@@ -48,14 +41,39 @@
                         <p style="font-size:12px">Location : {{$car->location}}</p>
                         <p style="font-size:12px">Rental Rate : <strong>$ZWL{{$car->daily_rate}}/day</strong></p>
                     </div>
-                    <div class="column" style="padding:0;margin:0"> 
-                        <button class="orange ui button" style="width:100%;border-radius:0px">Reserve Now</button>
-                    </div>
+                    <div class="extra content">
+                        @if($car->car_id != null)
+                        <a href="{{'/cars/info/'.$car->car_id}}">
+                            <button class="ui button icon orange right floated" style="width:48%">
+                            View
+                            </button>
+                        </a>
+                        @else
+                        <a href="{{'/cars/info/'.$car->id}}">
+                            <button class="ui button icon orange right floated" style="width:48%">
+                            View
+                            </button>
+                        </a>
+                        @endif
+                        <button class="ui button orange" style="width:48%">
+                          Reserve
+                        </button>
+
+                      </div>
                 </div>
             @endforeach
             </div>
+            @else
+            <h2>No vehicles found...Please try again</h2>
+            @endif
         </div>
     </div>
 </div>
 
+@endsection
+
+@section('javascript')
+    <script>
+        console.log(@json($results));
+    </script>
 @endsection

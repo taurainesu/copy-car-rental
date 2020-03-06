@@ -38,6 +38,16 @@
         background: #fff;
         border:1px solid #cccccc;
       }
+
+      #app{
+        display:flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      .site_content{
+        flex: 1;
+      }
     </style>
   </head>
 
@@ -68,12 +78,12 @@
       </header>
       {{--Navigation Bar--}}
 
-      <main>
+      <main class="site_content">
           @yield('content')
       </main>
 
       {{-- footer --}}
-      <div class="ui inverted vertical footer segment p-4">
+      <div class="ui inverted vertical footer segment">
           <div class="ui container">
               <div class="ui stackable inverted divided equal height stackable grid">
                 <div class="three wide column">

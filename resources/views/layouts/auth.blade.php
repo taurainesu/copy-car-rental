@@ -48,9 +48,24 @@
 
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <main>
+          @yield("content")
+        </main>
+    </div>
 </body>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/semantic.min.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
+<script>
+  $(document)
+      .ready(function() {
+        $('.ui.dropdown')
+          .dropdown({
+            on: 'click'
+          })
+        ;
+      })
+    ;
+</script>
 </html>
