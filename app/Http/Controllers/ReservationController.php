@@ -65,7 +65,18 @@ class ReservationController extends Controller
 
     public function get_reservations(Request $request){
 
+        $user_id = Auth::id();
+        $reservations=Reservation::where('user_id', $user_id)->get();
+        return view('reservations',["reservations" => $reservations]);
 
+    }
+
+
+    public function view_reservation(Request $request,$id){
+
+        
+        $reservation=Reservation::findOrFail($id);
+        return view('reservation',["reservation" => $reservation]);
 
     }
 }

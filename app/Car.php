@@ -16,6 +16,12 @@ class Car extends Model
     }
 
 
+    public function user()
+    {
+        return $this->belongsTo("App\User");
+    }
+
+
     public function is_free($start_date,$end_date){
         global $available;
         $available=true;

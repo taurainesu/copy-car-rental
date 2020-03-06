@@ -13,7 +13,7 @@ class Reservation extends Model
         return $this->belongsToMany("App\User");
     }
 
-    public function vehicle(){
-        return $this->belongsToMany("App\Car");
+    public function car(){
+        return $this->belongsTo("App\Car");
     }
 }
