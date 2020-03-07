@@ -29,8 +29,8 @@
             <div class="ui four cards">
                 @foreach ($results as $car)
                 <div class="card">
-                    <div class="image">
-                        <img style="width:80%;height:100%;margin:auto;padding:20px" src="{{$car->imageUrl}}">
+                    <div class="image" style="height:180px">
+                        <img style="width:100%;height:auto;padding:30px" src="{{$car->imageUrl}}">
                     </div>
                     <div class="content">
                         <div class="header" style="font-size:16px">{{$car->year}} {{$car->brand}} {{$car->model}}</div>

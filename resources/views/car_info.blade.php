@@ -62,16 +62,16 @@
           
           <div class="ui four column grid container" style="margin-bottom:40px;">
               <div class="column">
-                  <img class="ui large bordered image" src="https://i.i-sgcm.com/new_cars/cars/11579/11579_g31_b.jpg">
+                <img class="ui large bordered image" style="height:100%;width:100%" src="{{$car->imageUrl1}}">
               </div>
               <div class="column">
-                  <img class="ui large bordered image" src="https://i.i-sgcm.com/new_cars/cars/11579/11579_g39_b.jpg">
+                  <img class="ui large bordered image" style="height:100%;width:100%" src="{{$car->imageUrl2}}">
               </div>
               <div class="column">
-                  <img class="ui large bordered image" src="https://i.i-sgcm.com/new_cars/cars/11579/11579_g40_b.jpg">
+                  <img class="ui large bordered image" style="height:100%;width:100%" src="{{$car->imageUrl3}}">
               </div>
               <div class="column">
-                  <img class="ui large bordered image" src="https://i.i-sgcm.com/new_cars/cars/11579/11579_g37_b.jpg">
+                  <img class="ui large bordered image" style="height:100%;width:100%" src="{{$car->imageUrl4}}">
               </div>
           </div>
       

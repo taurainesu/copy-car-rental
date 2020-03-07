@@ -30,7 +30,7 @@ class CarController extends Controller
 
         if($files = $request->file('imageUrl1')){
             $destination = 'images/cars/';
-            $carImage = time().".".$files->getClientOriginalExtension();
+            $carImage = time()."1.".$files->getClientOriginalExtension();
             $files->move($destination,$carImage);
             unset($data['imageUrl1']);
             $data['imageUrl1'] ='/images/cars/'.$carImage;
@@ -38,7 +38,7 @@ class CarController extends Controller
 
         if($files = $request->file('imageUrl2')){
             $destination = 'images/cars/';
-            $carImage = time().".".$files->getClientOriginalExtension();
+            $carImage = time()."2.".$files->getClientOriginalExtension();
             $files->move($destination,$carImage);
             unset($data['imageUrl2']);
             $data['imageUrl2'] ='/images/cars/'.$carImage;
@@ -47,7 +47,7 @@ class CarController extends Controller
 
         if($files = $request->file('imageUrl3')){
             $destination = 'images/cars/';
-            $carImage = time().".".$files->getClientOriginalExtension();
+            $carImage = time()."3.".$files->getClientOriginalExtension();
             $files->move($destination,$carImage);
             unset($data['imageUrl3']);
             $data['imageUrl3'] ='/images/cars/'.$carImage;
@@ -56,7 +56,7 @@ class CarController extends Controller
 
         if($files = $request->file('imageUrl4')){
             $destination = 'images/cars/';
-            $carImage = time().".".$files->getClientOriginalExtension();
+            $carImage = time()."4.".$files->getClientOriginalExtension();
             $files->move($destination,$carImage);
             unset($data['imageUrl4']);
             $data['imageUrl4'] ='/images/cars/'.$carImage;
@@ -95,7 +95,7 @@ class CarController extends Controller
         $start = $params["pickUpDate"];
         $end = $params["dropOffDate"];
         $location = $params['location'];
-        $type = $params['carType'];
+        $type = strtolower($params['carType']);
 
         $result = "";
 
@@ -111,6 +111,8 @@ class CarController extends Controller
                 ->get();
 
                 $notReserved = DB::table("cars")
+                ->leftJoin("reservations","cars.id","reservations.car_id")
+                ->whereNull("reservations.pick_up_date")
                 ->where("location",$location)
                 ->where("type",$type)
                 ->get();
@@ -127,6 +129,8 @@ class CarController extends Controller
                 ->get();
 
                 $notReserved = DB::table("cars")
+                ->leftJoin("reservations","cars.id","reservations.car_id")
+                ->whereNull("reservations.pick_up_date")
                 ->where("location",$location)
                 ->get();
 
@@ -142,6 +146,8 @@ class CarController extends Controller
                 ->get();
 
                 $notReserved = DB::table("cars")
+                ->leftJoin("reservations","cars.id","reservations.car_id")
+                ->whereNull("reservations.pick_up_date")
                 ->where("type",$type)
                 ->get();
 
@@ -149,15 +155,16 @@ class CarController extends Controller
             }
 
             else{
-
                 $reserved = DB::table("cars")
                 ->leftJoin("reservations","cars.id","reservations.car_id")
                 ->whereNotBetween("reservations.pick_up_date",[$start,$end])
                 ->whereNotBetween("reservations.return_date",[$start,$end])
                 ->get();
     
-                $notReserved = DB::table("cars")->get();
-            
+                $notReserved = DB::table("cars")
+                ->leftJoin("reservations","cars.id","reservations.car_id")
+                ->whereNull("reservations.pick_up_date")
+                ->get();
 
                 $result = $reserved->toBase()->merge($notReserved->toBase());
 

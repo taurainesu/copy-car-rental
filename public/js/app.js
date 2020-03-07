@@ -2117,6 +2117,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2221,6 +2223,27 @@ __webpack_require__.r(__webpack_exports__);
         var total = diffDays * car.daily_rate;
         $("#attribute").text("Total $");
         $("#total_price").text(total);
+      });
+    },
+    searchDates: function searchDates() {
+      var startDate;
+      var endDate;
+      $("#pickUpDate").datepicker({
+        minDate: '+0d',
+        changeMonth: true,
+        changeYear: true
+      });
+      $("#pickUpDate").datepicker('show');
+      $(function () {
+        $("#dropOffDate").datepicker({});
+      });
+      $('#pickUpDate').change(function () {
+        startDate = $(this).datepicker('getDate');
+        $("#dropOffDate").datepicker("option", "minDate", startDate);
+      });
+      $('#dropOffDate').change(function () {
+        endDate = $(this).datepicker('getDate');
+        $("#pickUpDate").datepicker("option", "maxDate", endDate);
       });
     }
   },
@@ -37683,7 +37706,36 @@ var render = function() {
                   _c("br"),
                   _c("br"),
                   _vm._v(" "),
-                  _vm._m(2),
+                  _c(
+                    "div",
+                    { staticClass: "ui two column centered grid mb-3" },
+                    [
+                      _c("div", { staticClass: "column" }, [
+                        _c(
+                          "div",
+                          { staticClass: "ui input fluid icon right" },
+                          [
+                            _c("i", { staticClass: "icon calendar" }),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: {
+                                placeholder: "Start Date",
+                                name: "pickUpDate",
+                                id: "pickUpDate"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.searchDates()
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(2)
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "ui divider" }),
                   _vm._v(" "),
@@ -38038,8 +38090,7 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass:
-          "ui floating dropdown labeled icon button w-100 search my-3",
+        staticClass: "ui floating dropdown labeled icon button search",
         staticStyle: { width: "100%" },
         attrs: { id: "loc" }
       },
@@ -38126,31 +38177,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ui two column centered grid mb-3" }, [
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "ui input fluid" }, [
-          _c("input", {
-            attrs: {
-              placeholder: "Start Date",
-              type: "date",
-              name: "pickUpDate",
-              id: "pickUpDate"
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "ui input fluid" }, [
-          _c("input", {
-            attrs: {
-              placeholder: "End Date",
-              type: "date",
-              name: "dropOffDate",
-              id: "dropOffDate"
-            }
-          })
-        ])
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "ui input fluid icon right" }, [
+        _c("i", { staticClass: "icon calendar" }),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            placeholder: "End Date",
+            name: "dropOffDate",
+            id: "dropOffDate"
+          }
+        })
       ])
     ])
   },
@@ -50552,15 +50589,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************!*\
   !*** ./resources/js/components/Home.vue ***!
   \******************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=f2b6376c& */ "./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&");
 /* harmony import */ var _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&lang=js& */ "./resources/js/components/Home.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50590,7 +50626,7 @@ component.options.__file = "resources/js/components/Home.vue"
 /*!*******************************************************************!*\
   !*** ./resources/js/components/Home.vue?vue&type=script&lang=js& ***!
   \*******************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -61,7 +61,7 @@
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>
                   <a class="item @if($vehicles ?? true) active @endif" href="/cars">Vehicles</a>
                   <a class="item @if($register ?? false) active @endif" href="/vehicle/register" style="display:none">Register   Vehicle</a>
-                  <a class="item @if($my_reservation ?? false) active @endif">My Reservations</a>
+                  <a class="item @if($my_reservation ?? false) active @endif" href="/reservations">My Reservations</a>
                   <div class="right menu">
                       <div class="item">
                           <div class="ui icon input" style="display: none">

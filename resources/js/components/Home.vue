@@ -7,7 +7,7 @@
             <div class="content">
               <h2>Rent a Vehicle</h2>
               <div class="ui divider"></div>
-                <div class="ui floating dropdown labeled icon button w-100 search my-3" id="loc" style="width:100%">
+                <div class="ui floating dropdown labeled icon button search" id="loc" style="width:100%">
                   <input class="search" autocomplete="off" tabindex="0" name="location">
                   <span class="text">Where are you located?</span>
                   <i class="map marker alternate icon"></i>
@@ -37,14 +37,16 @@
 
               <div class="ui two column centered grid mb-3">
                 <div class="column">
-                  <div class="ui input fluid"> 
-                    <input placeholder="Start Date" type="date" name="pickUpDate" id="pickUpDate">
+                  <div class="ui input fluid icon right"> 
+                    <i class="icon calendar"></i>
+                    <input placeholder="Start Date" name="pickUpDate" id="pickUpDate" @click="searchDates()" >
                   </div>
                 </div>
 
                 <div class="column">
-                  <div class="ui input fluid">
-                    <input placeholder="End Date" type="date" name="dropOffDate" id="dropOffDate">
+                  <div class="ui input fluid icon right">
+                    <i class="icon calendar"></i>
+                    <input placeholder="End Date" name="dropOffDate" id="dropOffDate">
                   </div> 
                 </div>
               </div>
@@ -256,7 +258,6 @@
                 this.cars = response.data;
                 console.log(response.data);});
             },
-
             datepickers(car){
               var startDate;
               var endDate;
@@ -293,6 +294,40 @@
                     $("#total_price").text(total);
 
                 });
+            },
+
+            searchDates(){
+              var startDate;
+              var endDate;
+
+              $("#pickUpDate").datepicker({
+                minDate: '+0d',
+                changeMonth: true, 
+                changeYear: true,
+              })
+
+              $("#pickUpDate").datepicker('show');
+
+                $(function() { 
+
+                    $("#dropOffDate").datepicker({}); 
+
+                });
+
+                $('#pickUpDate').change(function() { 
+
+                    startDate = $(this).datepicker('getDate'); 
+
+                    $("#dropOffDate").datepicker("option", "minDate", startDate); 
+                }) 
+
+                $('#dropOffDate').change(function() { 
+
+                    endDate = $(this).datepicker('getDate'); 
+
+                    $("#pickUpDate").datepicker("option", "maxDate", endDate); 
+                });
+                
             }
         },
         mounted(){
