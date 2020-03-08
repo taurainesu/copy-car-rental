@@ -25,10 +25,10 @@
         <option value="update">Update</option>
     <option value="cancel">Cancel</option>
     
-   
+ <span>   <button type="submit" class="yellow ui compact button">Apply</button></span>
       </select>
 
-          <button type="submit" class="yellow ui compact button">Apply</button>
+          
 
 
 

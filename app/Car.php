@@ -54,5 +54,25 @@ class Car extends Model
             return $available;
 
 
-}
+            }
+
+
+        public function delete()
+        {
+            
+        }
+
+
+        
+
+
+        public function setStatusAttribute($value)
+        {
+            $this->attributes['status'] = strtolower($value);
+        }
+
+
+
+
+
 }

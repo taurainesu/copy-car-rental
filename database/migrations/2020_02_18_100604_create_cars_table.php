@@ -18,7 +18,7 @@ class CreateCarsTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('location');
-            $table->string('vehicle_registration');
+            $table->string('vehicle_registration')->unique();
             $table->string('physical_address');
             $table->text('description');
             $table->dateTime('year');
@@ -40,6 +40,14 @@ class CreateCarsTable extends Migration
             $table->boolean('done')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+             /**
+                 *show the status of the view.
+                 *pending (default state) 
+                 *show
+                 *hide
+             */
+            $table->string('status');
+            $table->softDeletes(0);
         });
     }
 
