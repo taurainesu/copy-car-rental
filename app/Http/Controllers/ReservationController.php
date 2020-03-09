@@ -48,13 +48,19 @@ class ReservationController extends Controller
             $total_cost=$days*$cost_per_day;
             $data['total_cost']=$total_cost;
             $data['daily_rate']=$car->daily_rate;
+             if(isset($data['reservation_id'])){
+                        $reservation_id=$data['reservation_id'];
+                        unset($data['reservation_id']);
+                    }
+
+            
 
             Reservation::create($data);
-        if(isset($data['reservation_id'])){
+        if(isset($reservation_id)){
 
 
             try{
-                DB::table('reservations')->where('id',20)->delete();
+                DB::table('reservations')->where('id',$reservation_id)->delete();
                 }catch(ModelNotFoundException $e){
 
                     return redirect()->route('home');
