@@ -50,16 +50,20 @@ class ReservationController extends Controller
             $data['daily_rate']=$car->daily_rate;
 
             Reservation::create($data);
-            if($data['reservation_id']){
+        if(isset($data['reservation_id'])){
 
 
-            }
             try{
                 DB::table('reservations')->where('id',20)->delete();
                 }catch(ModelNotFoundException $e){
 
                     return redirect()->route('home');
                 }
+        }
+
+
+            
+
 
             
         
