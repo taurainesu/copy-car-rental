@@ -7,6 +7,9 @@ use App\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Car;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -31,7 +34,6 @@ class ReservationController extends Controller
         $end_date=new Carbon($data['return_date']);
         $car_id=$data['car_id'];
         $car = Car::findOrFail($car_id);
-        $reservations=$car->reservations;
         
 
         
@@ -48,7 +50,21 @@ class ReservationController extends Controller
             $data['daily_rate']=$car->daily_rate;
 
             Reservation::create($data);
-            return redirect()->route('home');
+            if($data['reservation_id']){
+
+
+            }
+            try{
+                DB::table('reservations')->where('id',20)->delete();
+                }catch(ModelNotFoundException $e){
+
+                    return redirect()->route('home');
+                }
+
+            
+        
+
+           return redirect()->route('home');
 
 
         }
@@ -83,6 +99,17 @@ class ReservationController extends Controller
         
         $reservation=Reservation::findOrFail($id);
         return view('reservation',["reservation" => $reservation]);
+
+    }
+
+    public function update_reservation(Request $request,$id){
+
+        
+        $reservation=Reservation::findOrFail($id);
+        $reservation->setStatusAttribute('hanging');
+        $car=$reservation->car;
+        $reservation->save();
+        return view('modal',["reservation"=>$reservation,"car" => $car]);
 
     }
 }

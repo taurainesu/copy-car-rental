@@ -19,7 +19,8 @@ class CreateReservationsTable extends Migration
             $table->dateTime('return_date');
              /**
                  *show the status of the reservation.
-                 *pending (default state) 
+                 *pending (default state)
+                 *active 
                  *canceled_by_user
                  *canceled_by_owner
              */

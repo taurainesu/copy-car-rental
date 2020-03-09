@@ -46,8 +46,8 @@ class CreateCarsTable extends Migration
                  *show
                  *hide
              */
-            $table->string('status');
-            $table->softDeletes(0);
+            $table->string('status')->default("pending");;
+            $table->softDeletes('deleted_at');
         });
     }
 

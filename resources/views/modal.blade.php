@@ -207,8 +207,12 @@
 </br>
 
             <input type="hidden" id="custId" name="car_id" value={{ $car->id }}>
-          
 
+            @if ($reservation)
+            <input type="hidden" id="custId" name="reservation" value={{ $reservation->id }}>
+             @endif
+          
+            
           <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
 
           </form> 

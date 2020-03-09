@@ -32,6 +32,9 @@ Route::get("cars/info/{id}","CarController@car")->name("get_car");
 
 Route::post("reservations/new","ReservationController@save_data")->name("new_reservation");
 
+Route::get("reservation/update/{id}","ReservationController@update_reservation")->name("update_reservation");
+
+
 Route::get("reservations","ReservationController@get_reservations")->name("view_reservations");
 
 

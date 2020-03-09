@@ -28,7 +28,7 @@ class Car extends Model
         
         $start_date = new Carbon($start_date);
         $end_date = new Carbon($end_date);
-        $reservations=$this->reservations;
+        $reservations=$this->reservations->where('reservation_status','active');
         foreach($reservations as $res){
             
             $res_start=new Carbon($res->pick_update);
