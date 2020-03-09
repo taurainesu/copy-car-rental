@@ -22,7 +22,7 @@ class Reservation extends Model
 
     public function setStatusAttribute($value)
         {
-            $this->attributes['status'] = strtolower($value);
+            $this->attributes['reservation_status'] = strtolower($value);
         }
 
 

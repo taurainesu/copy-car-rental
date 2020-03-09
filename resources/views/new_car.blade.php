@@ -333,6 +333,8 @@
   
 
   <button type="submit" class="yellow  ui compact button ">{{ __('Register') }}</button>
+
+  <div class="ui divider"></div>
 </form>
                         
     </div>

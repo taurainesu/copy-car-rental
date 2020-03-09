@@ -195,9 +195,12 @@
           </div>
 
           <div class="ui divider"></div>
-          <h5>Additional Options</h5>
-          <input type="checkbox" name="ui checkbox" ><label>Insuarance</label> 
-          <input type="checkbox" name="ui checkbox" ><label>Delivery</label> 
+          <h5>Payment method</h5>
+          
+          <input type="radio" id="ecoradio" /><label>Ecocash</label>
+           <input type="radio" name="cars" id="oneradio" /><label>One Money</label>
+         <input type="radio" name="cars" id="otherradio" />  <label>Others</label> 
+          
 
           <div class="ui divider"></div>
           <div class="ui two column  grid">
@@ -207,8 +210,27 @@
 </br>
 
             <input type="hidden" id="custId" name="car_id" value={{ $car->id }}>
-          
 
+            @if ($reservation)
+            <input type="hidden" id="custId" name="reservation_id" value={{ $reservation->id }}>
+             @endif
+          
+      
+            
+    
+
+
+<div id="ecocash" class="ui input" style="display: none;">
+<label>Ecocash Number</label>
+        <input type="text" name=ecocash></input>
+    </div>
+    <div id="onemoney" class="ui input" style="display: none;">
+    <label>Netone Number</label>
+    <input type="text"  name="onemoney"></input>
+    </div>
+    <div class="ui divider"></div>
+
+    <input id= type="text"  name="other" style="display: none;"></input>
           <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
 
           </form> 
@@ -276,6 +298,45 @@ $('#date_picker2').change(function() {
 
 }  
 
+</script>
+
+
+<script>
+
+$(document).ready(function() {
+    $("#ecoradio").click(function() {
+       $("#onemoney").hide();
+       $("#oneradio").prop('checked', false);
+        $("#ecocash").show();
+        
+    });
+});
+</script>
+
+<script>
+
+$(document).ready(function() {
+    $("#oneradio").click(function() {
+        $("#ecocash").hide();
+        $("#ecoradio").prop('checked', false);
+        $("#onemoney").show();
+    });
+});
+</script>
+
+
+<script>
+
+$(document).ready(function() {
+    $("#otherradio").click(function() {
+        $("#ecocash").hide();
+        $("#onemoney").hide();
+        $("#ecoradio").prop('checked', false);
+        $("#onemoney").prop('checked', false);
+        $("#other").val("paynow");
+        
+    });
+});
 </script>
 
 @endsection

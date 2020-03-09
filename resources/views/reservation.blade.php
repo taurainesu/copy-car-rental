@@ -19,17 +19,21 @@
           </div>
 
           <div class="column">
-          <div class="ui two column  grid">
+          <div class="ui three column  grid">
 <div class="column">
-<select class="ui fluid dropdown" name="fuel_type" required>
-        <option value="update">Update</option>
-    <option value="cancel">Cancel</option>
-    
- <span>   <button type="submit" class="yellow ui compact button">Apply</button></span>
-      </select>
 
           
+      <a href="/reservation/update/{{$reservation->id}}"class="ui green button">Update</a>
+     
 
+
+</div>
+
+<div class="column">
+
+          
+      <button type="submit" class="ui red button">Cancel</button>
+     
 
 
 </div>
@@ -51,6 +55,7 @@
 
     
   </div>
+  </div>
   <div class="ui segments">
     <div class="ui segment">
       <h3>Pick up Details</h3>
@@ -71,6 +76,11 @@
 </div>
 
 </div>
+
+
+
+
+
 
 
 @endsection
