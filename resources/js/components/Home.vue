@@ -227,7 +227,7 @@
             // })
             // },
             searchCars(){
-              window.document.location = "http://localhost:3000/cars/search?location="+$("#loc").dropdown("get value") +
+              window.document.location = "/cars/search?location="+$("#loc").dropdown("get value") +
               "&carType="+$("#carType").dropdown("get value")+
               "&pickUpDate="+$("#pickUpDate").val()+
               "&dropOffDate="+$("#dropOffDate").val();

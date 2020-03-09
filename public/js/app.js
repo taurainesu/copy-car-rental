@@ -2168,7 +2168,7 @@ __webpack_require__.r(__webpack_exports__);
     // })
     // },
     searchCars: function searchCars() {
-      window.document.location = "http://localhost:3000/cars/search?location=" + $("#loc").dropdown("get value") + "&carType=" + $("#carType").dropdown("get value") + "&pickUpDate=" + $("#pickUpDate").val() + "&dropOffDate=" + $("#dropOffDate").val();
+      window.document.location = "/cars/search?location=" + $("#loc").dropdown("get value") + "&carType=" + $("#carType").dropdown("get value") + "&pickUpDate=" + $("#pickUpDate").val() + "&dropOffDate=" + $("#dropOffDate").val();
     },
     getCars: function getCars() {
       var _this = this;
