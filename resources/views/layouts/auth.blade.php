@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/semantic.min.css') }}">
 
     <style type="text/css">
-        body,a,h1,h2,h3,h4,.header,p,button,input,.search{
+        body,a,h1,h2,h3,h4,.header,p,button,input,.search,textarea{
           font-family: "Montserrat",sans-serif !important;
         }
         
@@ -50,6 +50,17 @@
           margin:0 0 10px 0 !important;
           padding: 0;
           font-size: 12px;
+        }
+
+        label.headers{
+          font-size:20px !important;
+          margin:20px 0 !important;
+        
+        }
+
+          label{
+          margin-bottom:20px;
+          text-align:left !important;
         }
     </style>
 

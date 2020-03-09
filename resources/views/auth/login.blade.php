@@ -13,9 +13,11 @@
                     </p>
                 @enderror
               <div class="field @error('email') error @enderror">
+                <label>Email Address</label>
                 <input type="email" name="email" placeholder="Email Address" >
               </div>
               <div class="field @error('password') error @enderror">
+                <label>Password</label>
                 <input type="password" name="password" placeholder="Password">
                 @error('password')
                     <span class="invalid-feedback">

@@ -49,6 +49,7 @@
       .site_content{
         flex: 1;
       }
+
     </style>
   </head>
 
@@ -96,13 +97,28 @@
                 
                     </div>
                 </div>
-                <div class="three wide column">
-                  <h4 class="ui inverted header">Contact Us</h4>
+                <div class="four wide column">
+                  <h4 class="ui inverted header">Social Media</h4>
                     <div class="ui inverted link list">
                     <a href="#" class="item">Whatsapp</a>
                     <a href="#" class="item">Facebook</a>
                     <a href="#" class="item">Twitter</a>
                     <a href="#" class="item">Instagram</a>
+                    </div>
+                </div>
+
+                <div class="four wide column">
+                  <h4 class="ui inverted header">Visit Us</h4>
+                    <div class="ui inverted link list">
+                    <a href="#" class="item">Address</a>
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                  <h4 class="ui inverted header">Contact Us</h4>
+                    <div class="ui inverted link list">
+                    <a href="#" class="item">Email Address</a>
+                    <a href="#" class="item">Phone Number(s)</a>
                     </div>
                 </div>
                 

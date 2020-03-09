@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="ui container">
+<div class="ui container" style="padding:30px 0">
 
 
   <table class="ui right aligned celled table">

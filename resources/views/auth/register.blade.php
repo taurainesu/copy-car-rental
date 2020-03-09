@@ -9,10 +9,11 @@
                     <h3 style="margin:20px auto">Registration</h3>
                     @csrf
                     <div class="field">
-                        <label style="margin:0 0 20px 0;text-align:left">Personal Details</label>
+                        <label class="headers">Personal Details</label>
+                        <div class="ui divider"></div>
                         <div class="field">
-                          
-                            <input type="text" name="name" placeholder="Name">
+                            <label>Full Name</label>
+                            <input type="text" name="name" placeholder="Name" required>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -25,28 +26,34 @@
                                 <input type="text" style="display:none" name="" placeholder="National ID Number">
                             </div>
                             <div class="field">
-                                <input type="text" name="licenseNo" placeholder="License ID Number">
+                              <label>License Number</label>
+                                <input type="text" name="licenseNo" placeholder="License ID Number" required>
                             </div>
                             </div>
                           <div class="two fields">
                             <div class="field">
-                                <select name="sex" class="ui selection dropdown">
+                              <label>Gender</label>
+                                <select name="sex" class="ui selection dropdown" required>
                                   <option>Female</option>
                                   <option>Male</option>
                                 </select>
                             </div>
                             <div class="field">
-                              <input type="number" name="age" placeholder="Age">
+                              <label>Age</label>
+                              <input type="number" name="age" placeholder="Age" required>
                             </div>
                           </div>
-                         
-                            <div class="field">
-                              <input type="text" name="address" placeholder="Residental Address" value="">
-                            </div>
+                        
+                          <div class="field">
+                            <label>Physical Address</label>
+                            <textarea rows="2" name="res_address"  placeholder="Residental Address" required></textarea>
+                          </div>
+                            
                   
-                          <div class="two fields">
+                          <div class="two fields" style="margin-bottom:40px !important">
                             <div class="field">
-                                <select class="ui selection dropdown" name="country">
+                              <label>Country of Residence</label>
+                                <select class="ui selection dropdown" name="country" required>
                                   <option>USA</option>
                                   <option>South Africa</option>
                                   <option>Zambia</option>
@@ -56,13 +63,16 @@
                                 </select>
                             </div>
                             <div class="field">
-                              <input type="text" name="nationality" placeholder="Nationality">
+                              <label>Nationality</label>
+                              <input type="text" name="nationality" placeholder="Nationality" required>
                             </div>
                           </div>
-                          <label style="margin:30px 0 20px 0;text-align:left">Account Information</label>
+                          <label class="headers">Account Information</label>
+                          <div class="ui divider"></div>
                           <div class="two fields">
                             <div class="field">
-                                <input type="email" name="email" placeholder="Email Address">
+                              <label>Email Address</label>
+                                <input type="email" name="email" placeholder="Email Address" required>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,12 +80,14 @@
                                 @enderror
                             </div>
                             <div class="field">
-                              <input type="number" name="phone" placeholder="Phone Number">
+                              <label>Phone Number</label>
+                              <input type="number" name="phone" placeholder="Phone Number" required>
                             </div>
                           </div>
                           <div class="two fields">
                             <div class="field">
-                                <input type="password" name="password" placeholder="Password">
+                              <label>Password</label>
+                                <input type="password" name="password" placeholder="Password" required>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -83,7 +95,8 @@
                                 @enderror
                             </div>
                             <div class="field">
-                              <input type="password" name="password_confirmation" placeholder="Confirm Password">
+                              <label>Confirm Password</label>
+                              <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
                             </div>
                           </div>
                     </div>
