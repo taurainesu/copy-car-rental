@@ -71,28 +71,22 @@ class ReservationController extends Controller
                         $onemoney=$data['onemoney'];
                         unset($data['onemoney']);
                     }
-                    
-                   if($data['ecocash'] != null){
-                        $number=$data['ecocash'];
-                        unset($data['ecocash']);
+
+                    else{
                         unset($data['onemoney']);
-                        unset($data['others']);
-                    }
-                    else if (($data['onemoney']) != null){
-                        $number=$data['onemoney'];
-                        unset($data['ecocash']);
-                        unset($data['onemoney']);
-                        unset($data['others']);
                     }
 
-                    else if (($data['others']) != null){
-                    
-                        unset($data['ecocash']);
-                        unset($data['onemoney']);
-                        unset($data['others']);
+
+                    if(isset($data['other'])){
+                        $other=$data['other'];
+                        unset($data['other']);
                     }
 
-                    dd($data);
+                    else{
+                        unset($data['other']);
+                    }
+                    
+                   
             
 
             Reservation::create($data);
