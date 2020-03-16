@@ -198,8 +198,8 @@
           <h5>Payment method</h5>
           
           <input type="radio" id="ecoradio" /><label>Ecocash</label>
-           <input type="radio" name="cars" id="oneradio" /><label>One Money</label>
-         <input type="radio" name="cars" id="otherradio" />  <label>Others</label> 
+           <input type="radio"  id="oneradio" /><label>One Money</label>
+         <input type="radio"  id="otherradio" />  <label>Others</label> 
           
 
           <div class="ui divider"></div>
@@ -222,7 +222,7 @@
 
 <div id="ecocash" class="ui input" style="display: none;">
 <label>Ecocash Number</label>
-        <input type="text" name=ecocash></input>
+        <input type="text" name=ecocash value=""></input>
     </div>
     <div id="onemoney" class="ui input" style="display: none;">
     <label>Netone Number</label>
@@ -230,7 +230,7 @@
     </div>
     <div class="ui divider"></div>
 
-    <input id= type="text"  name="other" style="display: none;"></input>
+    <input id="other" type="text"  name="other" style="display: none;"></input>
           <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
 
           </form> 
@@ -334,6 +334,7 @@ $(document).ready(function() {
         $("#ecoradio").prop('checked', false);
         $("#onemoney").prop('checked', false);
         $("#other").val("paynow");
+        alert($("#other").val())
         
     });
 });

@@ -46,7 +46,7 @@
                         
                           <div class="field">
                             <label>Physical Address</label>
-                            <textarea rows="2" name="res_address"  placeholder="Residental Address" required></textarea>
+                            <textarea rows="2" name="address"  placeholder="Residental Address" required></textarea>
                           </div>
                             
                   

@@ -63,6 +63,7 @@
                   <a class="item @if($vehicles ?? true) active @endif" href="/cars">Vehicles</a>
                   <a class="item @if($register ?? false) active @endif" href="/cars/new">Register   Vehicle</a>
                   <a class="item @if($my_reservation ?? false) active @endif" href="/reservations">My Reservations</a>
+                  <a class="item @if($admin ?? false) active @endif" href="/admin">Admin</a>
                   <div class="right menu">
                       <div class="item">
                           <div class="ui icon input" style="display: none">
@@ -137,11 +138,9 @@
   <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
  
   <script>
-    $(document)
-      .ready(function() {
+    $(document).ready(function() {
         $('.ui.dropdown')
-          .dropdown({
-            on: 'click'
+          .dropdown({on: 'click'
           })
         ;
       })

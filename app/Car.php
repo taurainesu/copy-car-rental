@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Car extends Model
 {
     //
     protected $guarded = [];
+    use SoftDeletes;
 
     public function reservations()
     {
@@ -57,9 +60,18 @@ class Car extends Model
             }
 
 
-        public function delete()
+        public function soft_delete()
         {
             
+
+
+                try{
+                    $this->destroy($this->id);
+                    }catch(ModelNotFoundException $e){
+    
+                        return redirect()->route('home');
+                    }
+        
         }
 
 
@@ -69,6 +81,31 @@ class Car extends Model
         public function setStatusAttribute($value)
         {
             $this->attributes['status'] = strtolower($value);
+        }
+
+        public function approve(){
+
+            $this->setStatusAttribute("approved");
+            $this->save();
+        }
+
+        public function restore_car(){
+            $this->restore();
+            $this->setStatusAttribute("pending");
+            $this->save();
+        }
+
+        public function reject(){
+
+            $this->setStatusAttribute("rejected");
+            $this->save();
+        }
+
+        public function remove(){
+            $this->setStatusAttribute("deleted");
+            $this->save();
+
+
         }
 
 

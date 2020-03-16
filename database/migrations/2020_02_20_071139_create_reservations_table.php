@@ -30,7 +30,7 @@ class CreateReservationsTable extends Migration
             $table->decimal('daily_rate');
             $table->decimal('total_cost')->nullable();
             $table->string('reservation_status')->default("pending");
-            $table->foreign('car_id')->references('id')->on('cars');
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps('date_added');
             $table->softDeletes('deleted_at');

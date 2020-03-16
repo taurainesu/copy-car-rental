@@ -5,7 +5,7 @@
 <div class="ui container" style="padding:30px 0">
 
 
-  <table class="ui right aligned celled table">
+  <table class="ui right aligned basic table">
       <thead>
 
         <tr><th class="left aligned">Car</th>
@@ -20,6 +20,7 @@
           <td class="left aligned">{{$reservation->car["brand"]}}  {{$reservation->car["model"]}}</td>
           <td >{{$reservation->pick_up_date}} </td>
           <td>{{$reservation->return_date}}</td>
+          
           <td class="positive">{{ $reservation->reservation_status}}</td>
           <td class="positive"><a href="reservation/view/{{$reservation->id}}" class="yellow ui compact button">VIEW</a></td>
           </tr>
