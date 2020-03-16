@@ -307,6 +307,7 @@ $(document).ready(function() {
     $("#ecoradio").click(function() {
        $("#onemoney").hide();
        $("#oneradio").prop('checked', false);
+       $("#other").prop('checked', false);
         $("#ecocash").show();
         
     });
@@ -319,6 +320,7 @@ $(document).ready(function() {
     $("#oneradio").click(function() {
         $("#ecocash").hide();
         $("#ecoradio").prop('checked', false);
+        $("#other").prop('checked', false);
         $("#onemoney").show();
     });
 });
@@ -333,8 +335,8 @@ $(document).ready(function() {
         $("#onemoney").hide();
         $("#ecoradio").prop('checked', false);
         $("#onemoney").prop('checked', false);
-        $("#others").val("paynow");
-        alert($("#others").val());
+        $("#other").val("paynow");
+        
     });
 });
 </script>
