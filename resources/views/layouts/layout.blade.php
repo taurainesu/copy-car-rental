@@ -65,6 +65,12 @@
         font-size: 16px;
       }
 
+      .orange.button{
+        background: #E6B015 !important;
+      }
+
+      
+
     </style>
   </head>
 
@@ -75,7 +81,7 @@
     <div id="app">
       {{--Navigation Bar--}}
       <header>
-          <div class="ui secondary menu inverted" style="background:#1b1c1d;padding:20px" >
+          <div class="ui secondary menu inverted" style="background:#3E4B96;padding:20px" >
               <div class="ui container">
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>
                   <a class="item @if($vehicles ?? true) active @endif" href="/cars">Vehicles</a>
@@ -101,7 +107,7 @@
 
       <main class="site_content">
           @yield('content')
-          <div class="ui tiny modal middle aligned " id="reservationmodal">
+          {{-- <div class="ui tiny modal middle aligned " id="reservationmodal">
             <i class="close icon"></i>
             <div class="header">Rent a  @{{car.brand}} @{{car.model}} </div>
             <div class="content">
@@ -136,11 +142,70 @@
                 <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
               </form> 
             </div>
-          </div>
+          </div> --}}
+
+          <div class="ui tiny modal middle aligned " id="reservationmodal" style="display:none">
+            <i class="close icon"></i>
+                    <div class="header">Rent a @{{car.brand}} @{{car.model}}</div>
+                    <div class="content">
+                    <form form method="POST" action="{{route('new_reservation')}}" enctype="multipart/form-data" >
+                    @csrf
+                    <div class="ui two column centered grid">
+                    <div class="column"><div class="ui input fluid ">
+                    <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
+                    </div></div>
+                    <div class="column"><div class="ui input fluid">
+                    <input id="date_picker2" name="return_date"placeholder="End Date"  autocomplete="off" required>
+                    </div> </div>
+                    </div>
+          
+                    <div class="ui divider"></div>
+                    <h5>Payment method</h5>
+                    
+                    <input type="radio" id="ecoradio" /><label>Ecocash</label>
+                     <input type="radio" id="oneradio" /><label>One Money</label>
+                   <input type="radio" id="otherradio" />  <label>Others</label> 
+                    
+          
+                    <div class="ui divider"></div>
+                    <div class="ui two column  grid">
+                    <h5 id="attribute">Daily rate $    </h5> <strong id="total_price"> @{{car.daily_rate}}</strong>
+                    </div>
+          
+          </br>
+          
+                      <input type="hidden" id="custId" name="car_id" :value='car.id'>
+          
+                      {{-- @if ($reservation)
+                      <input type="hidden" id="custId" name="reservation_id" value=@{{ $reservation->id }}>
+                       @endif --}}
+                    
+                
+                      
+              
+          
+          
+          <div id="ecocash" class="ui input" style="display: none;">
+          <label>Ecocash Number</label>
+                  <input type="text" name=ecocash value=""></input>
+              </div>
+              <div id="onemoney" class="ui input" style="display: none;">
+              <label>Netone Number</label>
+              <input type="text"  name="onemoney"></input>
+              </div>
+              <div class="ui divider"></div>
+          
+              <input id="other" type="text"  name="others" style="display: none;"></input>
+                    <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
+          
+                    </form> 
+                        </div>
+          
+                    </div>
       </main>
 
       {{-- footer --}}
-      <div class="ui inverted vertical footer segment" style="padding:50px 0">
+      <div class="ui inverted vertical footer segment" style="padding:50px 0;background:#3E4B96;">
           <div class="ui container">
               <div class="ui stackable inverted divided equal height stackable grid">
                 <div class="three wide column">
@@ -198,6 +263,30 @@
  
   <script>
     $(document).ready(function() {
+      $("#ecoradio").click(function() {
+       $("#onemoney").hide();
+       $("#oneradio").prop('checked', false);
+       $("#otherradio").prop('checked', false);
+        $("#ecocash").show();
+        
+    });
+
+      $("#otherradio").click(function() {
+        $("#ecocash").hide();
+        $("#onemoney").hide();
+        $("#ecoradio").prop('checked', false);
+        $("#onemoney").prop('checked', false);
+        $("#other").val("paynow");
+    });
+
+    $("#oneradio").click(function() {
+        $("#ecocash").hide();
+        $("#ecoradio").prop('checked', false);
+        $("#otherradio").prop('checked', false);
+        $("#onemoney").show();
+    });
+
+
         $('.ui.dropdown')
           .dropdown({on: 'click'
           })
