@@ -222,7 +222,7 @@
 
 <div id="ecocash" class="ui input" style="display: none;">
 <label>Ecocash Number</label>
-        <input type="text" name=ecocash></input>
+        <input type="text" name=ecocash value=""></input>
     </div>
     <div id="onemoney" class="ui input" style="display: none;">
     <label>Netone Number</label>

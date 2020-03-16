@@ -36,11 +36,7 @@ class ReservationController extends Controller
         $end_date=new Carbon($data['return_date']);
         $car_id=$data['car_id'];
         $car = Car::findOrFail($car_id);
-        
-
-        
         $test=$car->is_free($start_date,$end_date);
-
         if ($test){
             $number = "";
             $data['payment_status']="Pending";
@@ -51,9 +47,29 @@ class ReservationController extends Controller
             $total_cost=$days*$cost_per_day;
             $data['total_cost']=$total_cost;
             $data['daily_rate']=$car->daily_rate;
-             if(isset($data['reservation_id'])){
+            if(isset($data['reservation_id'])){
                         $reservation_id=$data['reservation_id'];
                         unset($data['reservation_id']);
+                                                }
+            else{
+                unset($data['reservation_id']);
+                }
+
+
+            if(isset($data['ecocash'])){
+                $ecocash=$data['ecocash'];
+                unset($data['ecocash']);
+                                        }
+
+            else{
+
+                unset($data['ecocash']); 
+            }
+
+
+            if(isset($data['onemoney'])){
+                        $onemoney=$data['onemoney'];
+                        unset($data['onemoney']);
                     }
                     
                    if($data['ecocash'] != null){

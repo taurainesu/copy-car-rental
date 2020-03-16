@@ -85,6 +85,7 @@ class CarController extends Controller
         );
     }
 
+
     public function search(Request $request){
 
         $params = $request->all();
@@ -210,4 +211,51 @@ class CarController extends Controller
         }
         
     }
+
+
+
+    public function delete($tab,$last,$id){
+
+       $car= Car::find($id);
+       $last_tab=$tab.'/'.$last;
+       $car->remove();
+       $car->soft_delete();
+       return redirect()->route('admin')->with('last_tab', $last_tab);
+
+    }
+
+
+    public function approve($tab,$last,$id){
+
+        $car= Car::find($id);
+        $last_tab=$tab.'/'.$last;
+
+        $car->approve();
+        return redirect()->route('admin')->with('last_tab', $last_tab);
+ 
+     }
+
+
+     public function reject($tab,$last,$id){
+
+        $car= Car::find($id);
+        $last_tab=$tab.'/'.$last;
+
+        $car->reject();
+        return redirect()->route('admin')->with('last_tab', $last_tab);
+ 
+     }
+
+
+     public function restore($tab,$last,$id){
+        $car = Car::withTrashed()
+                ->where('id' ,$id)
+                ->firstOrFail();
+
+        $last_tab=$tab.'/'.$last;
+
+        $car->restore_car();
+        return redirect()->route('admin')->with('last_tab', $last_tab);
+ 
+     }
 }
