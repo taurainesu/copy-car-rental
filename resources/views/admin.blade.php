@@ -346,7 +346,7 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
     <div class="ui bottom attached tab segment" data-tab="third/a"><table class="ui right aligned basic table">
       <thead>
 
-        <tr><th class="left aligned">Car</th>
+        <tr><th class="left aligned"></th>
         <th >Name</th>
         <th>Contact</th>
         <th>Role</th>

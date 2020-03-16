@@ -53,6 +53,9 @@
     </style>
   </head>
 
+
+  
+
   <body>
     <div id="app">
       {{--Navigation Bar--}}
@@ -150,6 +153,10 @@
       on: 'hover'
     });
     </script>
+
+
+
+
 
   @yield('javascript')
 
