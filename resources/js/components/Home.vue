@@ -85,11 +85,10 @@
                 </button>
               </a>
               
-                <button class="ui button orange" style="width:48%" @click="showModal(car)">
+                <button class="ui button orange" style="width:48%" @click="$root.showModal(car)">
                 Reserve
                 </button>
-              
-              
+            
             </div>
           </div>
 
@@ -133,42 +132,7 @@
         </div>
       </div>
 
-      <div class="ui tiny modal middle aligned " id="reservationmodal">
-        <i class="close icon"></i>
-        <div class="header">Rent a {{car.brand}} {{car.model}}</div>
-        <div class="content">
-          <form form method="POST" action="/reservations/new" enctype="multipart/form-data" >
-            <input type="text" hidden id="crsf_token" v-model="token" name="_token">
-            <div class="ui two column centered grid">
-              <div class="column">
-                <div class="ui input fluid ">
-                  <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
-                </div>
-              </div>
-              <div class="column">
-                <div class="ui input fluid">
-                  <input id="date_picker2" name="return_date" placeholder="End Date"  autocomplete="off" required>
-                </div> 
-              </div>
-            </div>
-
-            <div class="ui divider"></div>
-
-            <h5>Additional Options</h5>
-            <input type="checkbox" name="ui checkbox" ><label>Insuarance</label> 
-            <input type="checkbox" name="ui checkbox" ><label>Delivery</label> 
-
-            <div class="ui divider"></div>
-            <div class="ui two column grid">
-              <h5 id="attribute">Daily rate $</h5> 
-              <strong id="total_price"> {{car.daily_rate}}</strong>
-            </div>
-            <br>
-            <input type="hidden" id="custId" name="car_id" v-bind:value="car.id">
-            <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
-          </form> 
-        </div>
-      </div>
+      
 
     </div>
 </div>
@@ -183,6 +147,7 @@
                 search:false,
                 location:"",
                 carType:"",
+                showModalForm:true,
                 dropOffDate:"",
                 pickUpDate:"",
                 cars:"",
@@ -197,7 +162,6 @@
                   vehicle_id:null,
                   daily_rate:null,
                 },
-                token:$('meta[name="csrf-token"]').attr('content'),
             }
         },
         methods:{ 
@@ -243,57 +207,11 @@
             openInfo(id){
               window.open("/cars/info/"+id,"_self");
             },
-            showModal(car){
-              $('.modal').modal('show');
-              this.car = car;
-              this.reservation.vehicle_id = car.id;
-              this.reservation.daily_rate = car.daily_rate;
-            },
-            closeDialog(){
-              $('.modal').modal('hide');
-            },
 
             reserveCar(){
               Axios.post("/reservations/new",this.reservation).then(response=>{
                 this.cars = response.data;
                 console.log(response.data);});
-            },
-            datepickers(car){
-              var startDate;
-              var endDate;
-
-              $("#date_picker1").datepicker({
-                  minDate: '+0d',
-                  changeMonth: true, 
-                  changeYear: true,
-                });
-
-                $("#date_picker1").datepicker('show');
-
-                $(function() { 
-
-                    $("#date_picker2").datepicker({}); 
-
-                }); 
-
-                $('#date_picker1').change(function() { 
-
-                    startDate = $(this).datepicker('getDate'); 
-
-                    $("#date_picker2").datepicker("option", "minDate", startDate); 
-                }) 
-
-                $('#date_picker2').change(function() { 
-
-                    endDate = $(this).datepicker('getDate'); 
-
-                    $("#date_picker1").datepicker("option", "maxDate", endDate); 
-                    var diffDays = endDate.getDate() - startDate.getDate(); 
-                    var total=diffDays* car.daily_rate;
-                    $("#attribute").text("Total $");
-                    $("#total_price").text(total);
-
-                });
             },
 
             searchDates(){

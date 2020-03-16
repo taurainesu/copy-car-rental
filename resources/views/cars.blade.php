@@ -26,11 +26,10 @@
                             View
                             </button>
                           </a>
-                          <a href="">
-                            <button class="ui button orange" style="width:48%">
+                          
+                            <button class="ui button orange" style="width:48%" @click="showModal({{$car}})">
                             Reserve
                             </button>
-                          </a>
                     </div>
                 </div>
             @endforeach

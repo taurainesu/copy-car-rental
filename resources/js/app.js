@@ -31,4 +31,57 @@ Vue.component('search', require('./components/Search.vue').default);
 
 const app = new Vue({
     el: '#app',
+    data(){
+        return{
+            car:"",
+            token:$('meta[name="csrf-token"]').attr('content'),
+        }
+    },
+    methods:{
+        datepickers(car){
+            var startDate;
+            var endDate;
+
+            $("#date_picker1").datepicker({
+                minDate: '+0d',
+                changeMonth: true, 
+                changeYear: true,
+              });
+
+              $("#date_picker1").datepicker('show');
+
+              $(function() { 
+
+                  $("#date_picker2").datepicker({}); 
+
+              }); 
+
+              $('#date_picker1').change(function() { 
+
+                  startDate = $(this).datepicker('getDate'); 
+
+                  $("#date_picker2").datepicker("option", "minDate", startDate); 
+              }) 
+
+              $('#date_picker2').change(function() { 
+
+                  endDate = $(this).datepicker('getDate'); 
+
+                  $("#date_picker1").datepicker("option", "maxDate", endDate); 
+                  var diffDays = endDate.getDate() - startDate.getDate(); 
+                  var total=diffDays* car.daily_rate;
+                  $("#attribute").text("Total $");
+                  $("#total_price").text(total);
+
+              });
+          },
+
+          showModal(car){
+            $('.modal').modal('show');
+            this.car = car;
+          },
+          closeDialog(){
+            $('.modal').modal('hide');
+          },
+    },
 });
