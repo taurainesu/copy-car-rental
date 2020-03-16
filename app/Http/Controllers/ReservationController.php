@@ -7,6 +7,8 @@ use App\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Car;
+use App\Http\Controllers\PaymentsController;
+use Faker\Provider\ar_SA\Payment;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
@@ -36,6 +38,7 @@ class ReservationController extends Controller
         $car = Car::findOrFail($car_id);
         $test=$car->is_free($start_date,$end_date);
         if ($test){
+            $number = "";
             $data['payment_status']="Pending";
             $id = Auth::id();
             $data['user_id']=$id;
@@ -68,23 +71,36 @@ class ReservationController extends Controller
                         $onemoney=$data['onemoney'];
                         unset($data['onemoney']);
                     }
-            else{
-                unset($data['onemoney']);
-            }
+                    
+                   if($data['ecocash'] != null){
+                        $number=$data['ecocash'];
+                        unset($data['ecocash']);
+                        unset($data['onemoney']);
+                        unset($data['others']);
+                    }
+                    else if (($data['onemoney']) != null){
+                        $number=$data['onemoney'];
+                        unset($data['ecocash']);
+                        unset($data['onemoney']);
+                        unset($data['others']);
+                    }
 
+                    else if (($data['others']) != null){
+                    
+                        unset($data['ecocash']);
+                        unset($data['onemoney']);
+                        unset($data['others']);
+                    }
 
-            if(isset($data['other'])){
-                $other=$data['other'];
-                unset($data['other']);
-                                        }
-            else{
-                unset($data['other']);
-            }
-
-
+                    dd($data);
             
 
             Reservation::create($data);
+
+            $payments = new PaymentsController();
+            $payments->pay($data);
+
+
         if(isset($reservation_id)){
 
 

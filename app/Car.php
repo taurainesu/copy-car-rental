@@ -74,6 +74,43 @@ class Car extends Model
         
         }
 
+        public function resize($file,$w,$h,$crop=FALSE){
+            $path = storage_path();
+            $path = str_replace("/","\\",storage_path($file));
+            $path = str_replace("\\\\","\\",$path);
+            $path =str_replace("storage","public",$path);
+            
+
+            list($width, $height) = getimagesize($path);
+            $r = $width / $height;
+            if ($crop) {
+                if ($width > $height) {
+                    $width = ceil($width-($width*abs($r-$w/$h)));
+                } else {
+                    $height = ceil($height-($height*abs($r-$w/$h)));
+                }
+                $newwidth = $w;
+                $newheight = $h;
+            } else {
+                if ($w/$h > $r) {
+                    $newwidth = $h*$r;
+                    $newheight = $h;
+                } else {
+                    $newheight = $w/$r;
+                    $newwidth = $w;
+                }
+            }
+
+            $src = imagecreatefromwebp($path);
+            $dst = imagecreatetruecolor($newwidth, $newheight);
+            imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+            imagewebp($dst,$path,100);
+
+            return $file;
+        }
+
+
 
         
 

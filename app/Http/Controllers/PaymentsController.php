@@ -7,9 +7,8 @@ use Paynow\Payments\Paynow;
 
 class PaymentsController extends Controller
 {
-    public function pay(Request $request)
+    public function pay($data)
     {
-        $data = $request->all();
 
         $response = "";
 
@@ -38,6 +37,8 @@ class PaymentsController extends Controller
         else{
             $response = $paynow->send($payment);
         }
+
+        dd($response);
     
         if($response->success()) {
             // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit

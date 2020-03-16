@@ -2083,42 +2083,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2126,6 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
       search: false,
       location: "",
       carType: "",
+      showModalForm: true,
       dropOffDate: "",
       pickUpDate: "",
       cars: "",
@@ -2139,8 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
         payment_status: "Pending",
         vehicle_id: null,
         daily_rate: null
-      },
-      token: $('meta[name="csrf-token"]').attr('content')
+      }
     };
   },
   methods: {
@@ -2183,46 +2147,12 @@ __webpack_require__.r(__webpack_exports__);
     openInfo: function openInfo(id) {
       window.open("/cars/info/" + id, "_self");
     },
-    showModal: function showModal(car) {
-      $('.modal').modal('show');
-      this.car = car;
-      this.reservation.vehicle_id = car.id;
-      this.reservation.daily_rate = car.daily_rate;
-    },
-    closeDialog: function closeDialog() {
-      $('.modal').modal('hide');
-    },
     reserveCar: function reserveCar() {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reservations/new", this.reservation).then(function (response) {
         _this2.cars = response.data;
         console.log(response.data);
-      });
-    },
-    datepickers: function datepickers(car) {
-      var startDate;
-      var endDate;
-      $("#date_picker1").datepicker({
-        minDate: '+0d',
-        changeMonth: true,
-        changeYear: true
-      });
-      $("#date_picker1").datepicker('show');
-      $(function () {
-        $("#date_picker2").datepicker({});
-      });
-      $('#date_picker1').change(function () {
-        startDate = $(this).datepicker('getDate');
-        $("#date_picker2").datepicker("option", "minDate", startDate);
-      });
-      $('#date_picker2').change(function () {
-        endDate = $(this).datepicker('getDate');
-        $("#date_picker1").datepicker("option", "maxDate", endDate);
-        var diffDays = endDate.getDate() - startDate.getDate();
-        var total = diffDays * car.daily_rate;
-        $("#attribute").text("Total $");
-        $("#total_price").text(total);
       });
     },
     searchDates: function searchDates() {
@@ -37855,7 +37785,7 @@ var render = function() {
                               staticStyle: { width: "48%" },
                               on: {
                                 click: function($event) {
-                                  return _vm.showModal(car)
+                                  return _vm.$root.showModal(car)
                                 }
                               }
                             },
@@ -37954,131 +37884,7 @@ var render = function() {
               )
             ])
           ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "ui tiny modal middle aligned ",
-          attrs: { id: "reservationmodal" }
-        },
-        [
-          _c("i", { staticClass: "close icon" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "header" }, [
-            _vm._v(
-              "Rent a " + _vm._s(_vm.car.brand) + " " + _vm._s(_vm.car.model)
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "content" }, [
-            _c(
-              "form",
-              {
-                attrs: {
-                  form: "",
-                  method: "POST",
-                  action: "/reservations/new",
-                  enctype: "multipart/form-data"
-                }
-              },
-              [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.token,
-                      expression: "token"
-                    }
-                  ],
-                  attrs: {
-                    type: "text",
-                    hidden: "",
-                    id: "crsf_token",
-                    name: "_token"
-                  },
-                  domProps: { value: _vm.token },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.token = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "ui two column centered grid" }, [
-                  _c("div", { staticClass: "column" }, [
-                    _c("div", { staticClass: "ui input fluid " }, [
-                      _c("input", {
-                        attrs: {
-                          id: "date_picker1",
-                          autocomplete: "off",
-                          name: "pick_up_date",
-                          placeholder: "Start Date",
-                          type: "text",
-                          required: ""
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.datepickers(_vm.car)
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(7)
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "ui divider" }),
-                _vm._v(" "),
-                _c("h5", [_vm._v("Additional Options")]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "checkbox", name: "ui checkbox" }
-                }),
-                _c("label", [_vm._v("Insuarance")]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "checkbox", name: "ui checkbox" }
-                }),
-                _c("label", [_vm._v("Delivery")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "ui divider" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "ui two column grid" }, [
-                  _c("h5", { attrs: { id: "attribute" } }, [
-                    _vm._v("Daily rate $")
-                  ]),
-                  _vm._v(" "),
-                  _c("strong", { attrs: { id: "total_price" } }, [
-                    _vm._v(" " + _vm._s(_vm.car.daily_rate))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("br"),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", id: "custId", name: "car_id" },
-                  domProps: { value: _vm.car.id }
-                }),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "orange ui compact inverted button",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("RESERVE")]
-                )
-              ]
-            )
-          ])
-        ]
-      )
+        : _vm._e()
     ])
   ])
 }
@@ -38248,24 +38054,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column" }, [
-      _c("div", { staticClass: "ui input fluid" }, [
-        _c("input", {
-          attrs: {
-            id: "date_picker2",
-            name: "return_date",
-            placeholder: "End Date",
-            autocomplete: "off",
-            required: ""
-          }
-        })
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -50466,7 +50254,47 @@ Vue.component('search', __webpack_require__(/*! ./components/Search.vue */ "./re
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: function data() {
+    return {
+      car: "",
+      token: $('meta[name="csrf-token"]').attr('content')
+    };
+  },
+  methods: {
+    datepickers: function datepickers(car) {
+      var startDate;
+      var endDate;
+      $("#date_picker1").datepicker({
+        minDate: '+0d',
+        changeMonth: true,
+        changeYear: true
+      });
+      $("#date_picker1").datepicker('show');
+      $(function () {
+        $("#date_picker2").datepicker({});
+      });
+      $('#date_picker1').change(function () {
+        startDate = $(this).datepicker('getDate');
+        $("#date_picker2").datepicker("option", "minDate", startDate);
+      });
+      $('#date_picker2').change(function () {
+        endDate = $(this).datepicker('getDate');
+        $("#date_picker1").datepicker("option", "maxDate", endDate);
+        var diffDays = endDate.getDate() - startDate.getDate();
+        var total = diffDays * car.daily_rate;
+        $("#attribute").text("Total $");
+        $("#total_price").text(total);
+      });
+    },
+    showModal: function showModal(car) {
+      $('.modal').modal('show');
+      this.car = car;
+    },
+    closeDialog: function closeDialog() {
+      $('.modal').modal('hide');
+    }
+  }
 });
 
 /***/ }),

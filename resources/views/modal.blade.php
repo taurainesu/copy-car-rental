@@ -198,8 +198,8 @@
           <h5>Payment method</h5>
           
           <input type="radio" id="ecoradio" /><label>Ecocash</label>
-           <input type="radio"  id="oneradio" /><label>One Money</label>
-         <input type="radio"  id="otherradio" />  <label>Others</label> 
+           <input type="radio" id="oneradio" /><label>One Money</label>
+         <input type="radio" id="otherradio" />  <label>Others</label> 
           
 
           <div class="ui divider"></div>
@@ -230,7 +230,7 @@
     </div>
     <div class="ui divider"></div>
 
-    <input id="other" type="text"  name="other" style="display: none;"></input>
+    <input id= type="text"  name="others" style="display: none;"></input>
           <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
 
           </form> 

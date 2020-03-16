@@ -13,7 +13,7 @@
                     </div>
                    
                     <div class="column" style="text-align:end;margin:0">
-                      <button class="ui orange button" onclick="showModal()">
+                      <button class="ui orange button" @click="showModal({{$car}})">
                         Reserve Car
                       </button>
                       <a href="#information"><button class="ui button secondary">
@@ -176,42 +176,6 @@
   </div>
 </div>
 
-<div class="ui tiny modal middle aligned " id="reservationmodal">
-  <i class="close icon"></i>
-  <div class="header">Rent a {{$car->brand}} {{$car->model}}</div>
-  <div class="content">
-  <form form method="POST" action="{{route("new_reservation")}}" enctype="multipart/form-data" >
-      @csrf
-      <div class="ui two column centered grid">
-        <div class="column">
-          <div class="ui input fluid ">
-            <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" onclick="datepickers()" required>
-          </div>
-        </div>
-        <div class="column">
-          <div class="ui input fluid">
-            <input id="date_picker2" name="return_date" placeholder="End Date"  autocomplete="off" required>
-          </div> 
-        </div>
-      </div>
-
-      <div class="ui divider"></div>
-
-      <h5>Additional Options</h5>
-      <input type="checkbox" name="ui checkbox" ><label>Insuarance</label> 
-      <input type="checkbox" name="ui checkbox" ><label>Delivery</label> 
-
-      <div class="ui divider"></div>
-      <div class="ui two column grid">
-        <h5 id="attribute">Daily rate $</h5> 
-        <strong id="total_price"> {{$car->daily_rate}}</strong>
-      </div>
-      <br>
-      <input type="hidden" id="custId" name="car_id" value="{{$car->id}}">
-      <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
-    </form> 
-  </div>
-</div>
 @endsection
 
 @section("javascript")

@@ -64,7 +64,8 @@ class CarController extends Controller
 
 
         $data['user_id'] = Auth::id();
-    
+        $data['status'] = "Pending";
+        
         Car::create($data);
         return redirect()->route('home');
     }
@@ -88,7 +89,7 @@ class CarController extends Controller
     public function search(Request $request){
 
         $params = $request->all();
-
+        
         $reserved = null;
         $notReserved = null;
         $other = DB::table("Cars")->orWhere("type",$params['carType'])->orWhere("location",$params['location'])->get();
@@ -197,14 +198,15 @@ class CarController extends Controller
         }
 
         if(!empty($result)){
+            //dd(json_encode($result));
             return view("search",[
-                "results"=>$result
+                "result"=>$result
             ]);
         }
 
         else{
             return view("search",[
-                "results"=>Car::all()
+                "result"=>Car::all()
             ]);
         }
         

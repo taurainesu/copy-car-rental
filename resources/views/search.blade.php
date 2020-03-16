@@ -24,13 +24,13 @@
                     </div>
                 </div>
             </div>
-            @if(count($results) > 0)
-        <h1 style="padding:10px 0 15px 0">Search Results ({{count($results)}})</h1>
+            @if(count($result) > 0)
+        <h1 style="padding:10px 0 15px 0">Search Results ({{count($result)}})</h1>
             <div class="ui four cards">
-                @foreach ($results as $car)
+                @foreach ($result ?? '' as $car)
                 <div class="card">
-                    <div class="image" style="height:180px">
-                        <img style="width:100%;height:auto;padding:30px" src="{{$car->imageUrl}}">
+                    <div class="image">
+                        <img style="width:80%;height:100%;margin:auto;padding:20px" src="{{$car->imageUrl}}">
                     </div>
                     <div class="content">
                         <div class="header" style="font-size:16px">{{$car->year}} {{$car->brand}} {{$car->model}}</div>
@@ -41,32 +41,24 @@
                         <p style="font-size:12px">Rental Rate : <strong>$ZWL{{$car->daily_rate}}/day</strong></p>
                     </div>
                     <div class="extra content">
-                        @if($car->car_id ?? false)
-                        <a href="{{'/cars/info/'.$car->car_id}}">
-                            <button class="ui button icon orange right floated" style="width:48%">
-                            View
-                            </button>
-                        </a>
-                        @else
                         <a href="{{'/cars/info/'.$car->id}}">
-                            <button class="ui button icon orange right floated" style="width:48%">
-                            View
-                            </button>
-                        </a>
-                        @endif
-                        <button class="ui button orange" style="width:48%">
-                          Reserve
-                        </button>
-
-                      </div>
+                                <button class="ui button icon orange right floated" style="width:48%">
+                                View
+                                </button>
+                              </a>
+                              
+                                <button class="ui button orange" style="width:48%" @click="showModal({{json_encode($car)}})">
+                                Reserve
+                                </button>
+                        </div>
                 </div>
-            @endforeach
+                @endforeach
             </div>
             @else
             <div class="column" style="margin:auto;height:70vh;text-align:center;padding:10% 0">
                 <img src="https://img.icons8.com/cute-clipart/64/000000/nothing-found.png">
-                <h3>No vehicles found...Please try again</h3>
-                <button class="ui button orange" onclick=" parent.history.back()"><i class="ui icon arrow left"></i> Go Back</button>
+            <h3>No vehicles found...Please try again</h3>
+                <button class="ui button orange" onclick="parent.history.back()"><i class="ui icon arrow left"></i> Go Back</button>
             </div>
            
             @endif
@@ -77,7 +69,10 @@
 @endsection
 
 @section('javascript')
-    <script>
-        console.log(@json($results));
-    </script>
+<script>
+function showModal(){
+       alert(car);
+   }
+</script>
+   
 @endsection
