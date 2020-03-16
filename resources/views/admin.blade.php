@@ -284,7 +284,7 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
           <td>{{$reservation->return_date}}</td>
           <td class="positive">{{ $reservation->reservation_status}}</td>
           <td >
-                <a  href="reservation/view/1" class="ui icon button" data-tooltip="View Reservation" data-position="top left">
+                <a  href="reservation/view/{{$reservation->id}}" class="ui icon button" data-tooltip="View Reservation" data-position="top left">
                 <i class="eye icon"   ></i>
 </a>  
                 <div class=" teal ui icon button" data-tooltip="Delete reservation " data-position="top left">
