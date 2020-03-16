@@ -15,6 +15,10 @@ use App\Http\Resources\Reservations as ReservationsResource;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Http\Request as RequestToo;
 use App\Reservation;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+
 Route::get('/', "HomeController@index")->name("home");
 
 Auth::routes();
@@ -22,8 +26,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get("/admin",'AdminController@index')->name("admin");
-
-
 
 
 
@@ -74,6 +76,10 @@ Route::get("error",function(){
 Route::get("pay","PaymentsController@pay")->name("pay");
 
 Route::get("cars","HomeController@cars");
+
+Route::get("cars/search","CarController@search");
+
+
 
 
 
