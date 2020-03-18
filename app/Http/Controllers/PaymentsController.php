@@ -7,7 +7,7 @@ use Paynow\Payments\Paynow;
 
 class PaymentsController extends Controller
 {
-    public function pay($data)
+    public function pay($number,$option)
     {
 
         $response = "";
@@ -24,21 +24,17 @@ class PaymentsController extends Controller
 
         $payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
 
-        if(!empty($data["ecocash"])){
-            $response = $paynow->sendMobile($payment,$data['ecocash'],"ecocash");
-            dd($response);
+        if($option === "ecocash"){
+            $response = $paynow->sendMobile($payment,$number,"ecocash");
         }
 
-        else if(!empty($data["onemoney"])){
-            $response = $paynow->sendMobile($payment,$data['onemoney'],"onemoney");
-            dd($response);
+        else if($option === "onemoney"){
+            $response = $paynow->sendMobile($payment,$number,"onemoney");
         }
 
         else{
             $response = $paynow->send($payment);
         }
-
-        dd($response);
     
         if($response->success()) {
             // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit
@@ -53,7 +49,7 @@ class PaymentsController extends Controller
                 return redirect("/reservations");
             }
 
-            if(!empty($data['others'])){
+            if($option === "other"){
                 return redirect($link);
             }
            

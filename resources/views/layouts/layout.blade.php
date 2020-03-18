@@ -195,7 +195,7 @@
               </div>
               <div class="ui divider"></div>
           
-              <input id="other" type="text"  name="others" style="display: none;"></input>
+              <input id="other" type="text"  name="other" style="display: none;"></input>
                     <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
           
                     </form> 

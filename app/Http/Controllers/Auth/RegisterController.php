@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'phone'=>$data['phone'],
             'licenseNo'=>strtoupper($data['licenseNo']),
             'sex'=>$data['sex'],
-            'address'=>$this->formatText($data['res_address']),
+            'address'=>$this->formatText($data['address']),
             'age'=>$data['age'],
             'nationality'=>ucfirst($data['nationality']),
             'country'=>$data['country']

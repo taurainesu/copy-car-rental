@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentsController;
 use Faker\Provider\ar_SA\Payment;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
+use Paynow\Payments\Paynow;
 
 
 
@@ -25,6 +26,9 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    protected $paynow = "";
+
     public function save_data(Request $request)
     {   
 
@@ -41,6 +45,9 @@ class ReservationController extends Controller
             $number = "";
             $data['payment_status']="Pending";
             $id = Auth::id();
+            $paymentResponse = "";
+            $onemoney= "";
+            $ecocash="";
             $data['user_id']=$id;
             $days=$start_date->floatDiffInDays($end_date);
             $cost_per_day=$car->daily_rate*$days;
@@ -58,8 +65,9 @@ class ReservationController extends Controller
 
             if(isset($data['ecocash'])){
                 $ecocash=$data['ecocash'];
+                $paymentResponse = $this->pay($ecocash,"ecocash");
                 unset($data['ecocash']);
-                                        }
+            }
 
             else{
 
@@ -69,6 +77,7 @@ class ReservationController extends Controller
 
             if(isset($data['onemoney'])){
                         $onemoney=$data['onemoney'];
+                        $paymentResponse = $this->pay($onemoney,"onemoney");
                         unset($data['onemoney']);
                     }
 
@@ -79,6 +88,7 @@ class ReservationController extends Controller
 
                     if(isset($data['other'])){
                         $other=$data['other'];
+                        $paymentResponse = $this->pay("","other");
                         unset($data['other']);
                     }
 
@@ -88,32 +98,44 @@ class ReservationController extends Controller
                     
                    
             
-
-            Reservation::create($data);
-
-            $payments = new PaymentsController();
-            $payments->pay($data);
-
-
-        if(isset($reservation_id)){
-
-
-            try{
-                DB::table('reservations')->where('id',$reservation_id)->delete();
-                }catch(ModelNotFoundException $e){
-
-                    return redirect()->route('home');
-                }
-        }
-
-
+                    if($paymentResponse->success()) {
+                        // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit
+                        $link = $paymentResponse->redirectUrl();
             
+                        $pollUrl = $paymentResponse->pollUrl();
+
+                        Reservation::create($data);
+
+                        if($onemoney == "" && $ecocash == ""){
+                            return redirect($link);
+                        }
+
+                        else{
+                            $status = $this->paynow->pollTransaction($pollUrl);
+                            
+                            if($status->paid()){
+                                dd($status);
+                            }
+
+                            else{
+                                return redirect(route("view_reservations"));
+                            }
+                        }
+                        
+                        //dd($link);
+                    }
 
 
-            
-        
+        // if(isset($reservation_id)){
 
-           return redirect()->route('home');
+
+        //     try{
+        //         DB::table('reservations')->where('id',$reservation_id)->delete();
+        //         }catch(ModelNotFoundException $e){
+
+        //             return redirect()->route('home');
+        //         }
+        // }
 
 
         }
@@ -161,4 +183,57 @@ class ReservationController extends Controller
         return view('modal',["reservation"=>$reservation,"car" => $car]);
 
     }
+
+    protected function pay($number,$option)
+    {
+
+        $response = "";
+
+        $paynow = new Paynow('9071','58939c88-b602-4a04-b1d4-105402e603b9','http://localhost:3000/reservations',
+            // The return url can be set at later stages. You might want to do this if you want to pass data to the return url (like the reference of the transaction)
+            'http://example.com/return?gateway=paynow'
+        );
+
+        $paynow->setResultUrl('http://localhost:3000/reservations');
+        # $paynow->setReturnUrl('');
+
+        $payment = $paynow->createPayment('Invoice 35', 'mkunadavy@gmail.com');
+
+        $payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
+
+        if($option === "ecocash"){
+            $response = $paynow->sendMobile($payment,$number,"ecocash");
+        }
+
+        else if($option === "onemoney"){
+            $response = $paynow->sendMobile($payment,$number,"onemoney");
+        }
+
+        else{
+            $response = $paynow->send($payment);
+        }
+    
+        $this->paynow = $paynow;
+
+        return $response;
+    }
+
+    // public function checkPayment(){
+    //     // Check the status of the transaction
+    //     $status = $paynow->pollTransaction($pollUrl);
+            
+    //     //dd($status->paid());
+
+    //     if($status->paid()){
+    //         return redirect("/reservations");
+    //     }
+
+    //     else{
+    //         return redirect()->route("view_reservations");
+    //     }
+
+    //     if($option === "other"){
+    //         return redirect($link);
+    //     }
+    // }
 }
