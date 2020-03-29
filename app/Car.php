@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Car extends Model
 {
@@ -57,6 +58,34 @@ class Car extends Model
             return $available;
 
 
+            
+        
+        
+        
+            }
+
+
+
+
+
+
+
+            public function reserve($data,$start_date,$end_date){
+
+                $id = Auth::id();
+                $data['user_id']=$id;
+                $days=$start_date->floatDiffInDays($end_date);
+                $cost_per_day=$this->daily_rate*$days;
+                $total_cost=$days*$cost_per_day;
+                $data['total_cost']=$total_cost;
+                $data['daily_rate']=$this->daily_rate;
+
+                $reservation=Reservation::create($data);
+                return $reservation;
+        
+        
+        
+                
             }
 
 

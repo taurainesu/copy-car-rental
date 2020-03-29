@@ -106,6 +106,9 @@
       {{--Navigation Bar--}}
 
       <main class="site_content">
+
+
+      
           @yield('content')
           {{-- <div class="ui tiny modal middle aligned " id="reservationmodal">
             <i class="close icon"></i>
@@ -162,9 +165,34 @@
                     <div class="ui divider"></div>
                     <h5>Payment method</h5>
                     
-                    <input type="radio" id="ecoradio" /><label>Ecocash</label>
-                     <input type="radio" id="oneradio" /><label>One Money</label>
-                   <input type="radio" id="otherradio" />  <label>Others</label> 
+                    
+                   
+                   
+
+                   
+  <div class="inline fields">
+   
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input  id="ecoradio" type="radio" name="payment_method" value="ecocash">
+        <label>Ecocash</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input id="oneradio" type="radio" name="payment_method" value="onemoney">
+        <label>One Money</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input  id="otherradio" type="radio" name="payment_method" value="other">
+        <label>Other Methods</label>
+      </div>
+    </div>
+   
+  </div>
+
                     
           
                     <div class="ui divider"></div>
@@ -185,17 +213,12 @@
               
           
           
-          <div id="ecocash" class="ui input" style="display: none;">
-          <label>Ecocash Number</label>
-                  <input type="text" name=ecocash value=""></input>
-              </div>
-              <div id="onemoney" class="ui input" style="display: none;">
-              <label>Netone Number</label>
-              <input type="text"  name="onemoney"></input>
+          <div id="mobile_money" class="ui input" style="display: none;">
+          <label>Phone Number</label>
+                  <input type="text" name="phone_number" value=""></input>
               </div>
               <div class="ui divider"></div>
-          
-              <input id="other" type="text"  name="other" style="display: none;"></input>
+              
                     <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
           
                     </form> 
@@ -264,26 +287,20 @@
   <script>
     $(document).ready(function() {
       $("#ecoradio").click(function() {
-       $("#onemoney").hide();
-       $("#oneradio").prop('checked', false);
-       $("#otherradio").prop('checked', false);
-        $("#ecocash").show();
+       $("#mobile_money").hide();
+       
+        $("#mobile_money").show();
         
     });
 
       $("#otherradio").click(function() {
-        $("#ecocash").hide();
-        $("#onemoney").hide();
-        $("#ecoradio").prop('checked', false);
-        $("#onemoney").prop('checked', false);
-        $("#other").val("paynow");
+        $("#mobile_money").hide();
+      
     });
 
     $("#oneradio").click(function() {
-        $("#ecocash").hide();
-        $("#ecoradio").prop('checked', false);
-        $("#otherradio").prop('checked', false);
-        $("#onemoney").show();
+        $("#mobile_money").hide();
+        $("#mobile_money").show();
     });
 
 

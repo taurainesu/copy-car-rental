@@ -7,12 +7,20 @@ use App\Car;
 use App\User;
 use App\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
 {
     
     public function index(Request $request)
-    {  
+    { 
+        
+        
+        
+        
+       
+
+
 
         $reservations=Reservation::all();
         $cars = Car::withTrashed()
@@ -27,6 +35,9 @@ class AdminController extends Controller
                                 'register'=>false,
                                 'admin'=>true,
                                 'my_reservation'=>false,]);
+    
+
     }
 
+        
 }

@@ -25,7 +25,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get("/admin",'AdminController@index')->name("admin");
+Route::get("/admin",'AdminController@index')->name("admin")->middleware('admin');
+
+Route::get('ajax',function() {
+    return view('message');
+ });
+ 
+ 
+ 
+ Route::post("/poll","PaymentController@poll")->name('gets');
+ 
 
 
 

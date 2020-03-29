@@ -26,5 +26,14 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+
+        Gate::define('admin', function ($user) {
+            return $user->isAdmin;
+        });
+    
+        Gate::define('update_reservation', function ($user,$reservation, $post) {
+            return $user->id === $reservation->reservation_id;
+        });
+
     }
 }

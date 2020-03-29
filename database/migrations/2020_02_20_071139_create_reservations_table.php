@@ -17,18 +17,25 @@ class CreateReservationsTable extends Migration
             $table->bigIncrements('id');
             $table->dateTime('pick_up_date');
             $table->dateTime('return_date');
-             /**
+            /**
+                 *show the status of the reservation.
+                 *pending (paynow_object_created succesfully and waiting for pollin)
+                 *active (reservation has been paid for)
+                 *canceled_by_user
+                 *canceled_by_owner
+             */
+            $table->string('payment_status')->default("pending");
+            $table->integer('user_id');
+            $table->integer('car_id');
+            $table->decimal('daily_rate');
+            $table->decimal('total_cost')->nullable();
+            /**
                  *show the status of the reservation.
                  *pending (default state)
                  *active 
                  *canceled_by_user
                  *canceled_by_owner
              */
-            $table->string('payment_status')->default("Pending");
-            $table->integer('user_id');
-            $table->integer('car_id');
-            $table->decimal('daily_rate');
-            $table->decimal('total_cost')->nullable();
             $table->string('reservation_status')->default("pending");
             $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
