@@ -20,7 +20,7 @@ class PaymentsController extends Controller
         $paynow->setResultUrl('http://localhost:3000/reservations');
         # $paynow->setReturnUrl('');
 
-        $payment = $paynow->createPayment('Invoice 35', 'mkunadavy@gmail.com');
+        $payment = $paynow->createPayment('Invoice 35', 'batsirai.gurure@taurainesu.com');
 
         $payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
 
