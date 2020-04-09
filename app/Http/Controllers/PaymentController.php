@@ -29,28 +29,60 @@ class PaymentController extends Controller
             $data=$request->all();
             $id=$data['id'];
             $reservation=Reservation::findOrFail($id);
-            $poll_url=$reservation->payments->poll_url;
-            
+            $payment=$reservation->payment;
+            $poll_url=$reservation->payment->poll_url;
             $paynow = new Paynow('9071','58939c88-b602-4a04-b1d4-105402e603b9','google.com','google.com' );
-
             $status = $paynow->pollTransaction($poll_url);
-
-            if($status->paid()){
-
+            if($status->status()=="paid"){
+                  
+                  $payment=$payment->setStatusAttribute("paid");
                   return response()
                   ->json(['status'=> 'paid'])
                   ->withCallback($request->input('callback'));
                   
               }
 
-            else{
-
+            elseif($status->status()=="cancelled"){
+                  $payment=$payment->setStatusAttribute("paid");
                   return response()
-                  ->json(['status'=> 'failed'])
-                  ->withCallback($request->input('callback'));
+                  ->json(['status'=> 'cancelled'])
+                  ->withCallback($request->input('paid'));
                   
             }
 
+            elseif ($status->status()=="disputed") {
+                  $payment=$payment->setStatusAttribute("disputed");
+                  return response()
+                        ->json(['status'=> 'disputed'])
+                        ->withCallback($request->input('callback'));
+            }
+
+            elseif ($status->status()=="refunded") {
+                  $payment=$payment->setStatusAttribute("refunded");
+                  return response()
+                        ->json(['status'=> 'refunded'])
+                        ->withCallback($request->input('callback'));
+                  
+            }
+
+
+            elseif ($status->status()=="created") {
+                  $payment=$payment->setStatusAttribute("created");
+                  return response()
+            ->json(['status'=> 'created'])
+            ->withCallback($request->input('callback'));
+                  
+            }
+
+            else{
+
+                  return response()
+                  ->json(['status'=> 'error'])
+                  ->withCallback($request->input('callback'));
+
+
+            }
+             
             
               
               

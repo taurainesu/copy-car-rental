@@ -5,7 +5,7 @@
 
 
 
-<div class="ui mini modal middle aligned " id="reservationmodal">
+<div class="ui mini modal middle aligned " id="actionsmodal">
   
   <i class="close icon"></i>
   <div class="header modal_header">Delete Car</div>
@@ -62,29 +62,62 @@
           <td>
 
           @if($car->status=="pending")
-          <button class="ui icon button" data-tooltip="Approve" data-position="top left">
-              <i class="thumbs up icon"   ></i>
+          <button class=" green ui icon button" data-tooltip="Approve" data-position="top left"
+        onclick="showModal(&quot;cars/approve/first/b/{{$car->id}}&quot;,
+                         &quot;Approve Vehicle&quot;,
+                        &quot;Are you sure you want to Approve this Vehicle &quot;)"
+        >
+            <i class="thumbs up icon"   ></i>
 </button>
-          <button class="ui icon button" data-tooltip="Disapprove" data-position="top left">
-              <i class="thumbs down icon"   ></i>
-</button>   
+
+<button class="red ui icon button" data-tooltip="Reject" data-position="top left"
+onclick="showModal(&quot;cars/reject/first/b/{{$car->id}}&quot;,
+                 &quot;Reject Vehicle&quot;,
+                &quot;Are you sure you want to Reject this Vehicle &quot;)"
+>
+    <i class="thumbs down icon"   ></i>
+</button> 
+
+
+           
 @endif
+<a href="cars/info/{{$car->id}}"class="orange ui icon button" data-tooltip="View Vehicle" data-position="top left">
+  <i class="eye icon"   ></i>
+</a>  
+
+
 
 @if($car->status!="deleted")
-          <a href="cars/info/{{$car->id}}"class="ui icon button" data-tooltip="View Vehicle" data-position="top left">
-              <i class="eye icon"   ></i>
-</a>  
+
+
+<button href="cars/delete/{{$car->id}}" class="grey ui icon button" data-tooltip="Delete Vehicle" data-position="top left" 
+  onclick="showModal(&quot;cars/delete/first/b/{{$car->id}}&quot;,
+                     &quot;Delete Vehicle&quot;,
+                    &quot;Are you sure you want to Delete this Vehicle &quot;)">
+        <i class="trash icon"   ></i>
+</button>  
+         
 @endif
 
-<button href="cars/delete/{{$car->id}}" class="ui icon button" data-tooltip="Delete Vehicle" data-position="top left" 
-      onclick="showModal(&quot;cars/delete/first/b/{{$car->id}}&quot;,
-                         &quot;Delete Vehicle&quot;,
-                        &quot;Are you sure you want to Delete this Vehicle &quot;)">
-            <i class="trash icon"   ></i>
-</button>  
+@if($car->status=="deleted")
+
+<button class=" green ui icon button" data-tooltip="Restore" data-position="top left"
+onclick="showModal(&quot;cars/restore/first/a/{{$car->id}}&quot;,
+                         &quot;Restore Vehicle&quot;,
+                        &quot;Are you sure you want to Restore this Vehicle &quot;)"
+>
+            <i class="recycle icon"   ></i>
+</button>
+
+
+@endif
+
+
+
+
         
 
-          <a class="ui icon button" data-tooltip="View reservation history" data-position="top left">
+          <a class="teal ui icon button" data-tooltip="View reservation history" data-position="top left">
               <i class="calendar icon"   ></i>
           </a>
             </td>
@@ -126,25 +159,25 @@
         <td>{{$car->status}}</td>
         
         <td>
-        <button class="ui icon button" data-tooltip="Approve" data-position="top left"
+        <button class="green ui icon button" data-tooltip="Approve" data-position="top left"
         onclick="showModal(&quot;cars/approve/first/b/{{$car->id}}&quot;,
                          &quot;Approve Vehicle&quot;,
                         &quot;Are you sure you want to Approve this Vehicle &quot;)"
         >
             <i class="thumbs up icon"   ></i>
 </button>
-        <button class="ui icon button" data-tooltip="Reject" data-position="top left"
+        <button class="red ui icon button" data-tooltip="Reject" data-position="top left"
         onclick="showModal(&quot;cars/reject/first/b/{{$car->id}}&quot;,
                          &quot;Reject Vehicle&quot;,
                         &quot;Are you sure you want to Reject this Vehicle &quot;)"
         >
             <i class="thumbs down icon"   ></i>
 </button>   
-        <button class="ui icon button" data-tooltip="View Vehicle" data-position="top left">
+        <button class="orange ui icon button" data-tooltip="View Vehicle" data-position="top left">
             <i class="eye icon"   ></i>
 </button>  
 
-      <button href="cars/delete/{{$car->id}}" class="ui icon button" data-tooltip="Delete Vehicle" data-position="top left" 
+      <button href="cars/delete/{{$car->id}}" class="grey ui icon button" data-tooltip="Delete Vehicle" data-position="top left" 
       onclick="showModal(&quot;cars/delete/first/b/{{$car->id}}&quot;,
                          &quot;Delete Vehicle&quot;,
                         &quot;Are you sure you want to Deete this Vehicle &quot;)">
@@ -195,15 +228,15 @@
         
         <td>
          
-        <button class="ui icon button" data-tooltip="View Vehicle" data-position="top left">
+        <button class="orange ui icon button" data-tooltip="View Vehicle" data-position="top left">
             <i class="eye icon"   ></i>
 </button>  
 
-<button class="ui icon button" data-tooltip="View reservation history" data-position="top left">
+<button class="ui teal icon button" data-tooltip="View reservation history" data-position="top left">
             <i class="calendar icon"   ></i>
 </button>
 
-<button class="ui icon button" data-tooltip="Restore" data-position="top left"
+<button class=" green ui icon button" data-tooltip="Restore" data-position="top left"
 onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
                          &quot;Restore Vehicle&quot;,
                         &quot;Are you sure you want to Restore this Vehicle &quot;)"
@@ -252,12 +285,30 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
           <td>{{$reservation->return_date}}</td>
           <td class="positive">{{ $reservation->reservation_status}}</td>
           <td >
-                <div class="ui icon button" data-tooltip="View Profile" data-position="top left">
+                <a  href="/reservation/view/{{$reservation->id}}"class="orange ui icon button" data-tooltip="View Reservation" data-position="top left">
                 <i class="eye icon"   ></i>
-                </div>  
-                <div class=" teal ui icon button" data-tooltip="Delete reservation " data-position="top left">
-              <i class=" red x icon"   ></i>
+                </a>  
+                <div class=" red ui icon button" data-tooltip="Delete reservation " data-position="top left">
+              <i class=" x icon"   ></i>
                 </div>
+
+                <button class=" green ui icon button" data-tooltip="Approve Reservation" data-position="top left"
+                onclick="showModal(&quot;reservation/approve/first/b/{{$car->id}}&quot;,
+                                 &quot;Approve Reservation&quot;,
+                                &quot;Are you sure you want to Approve this Reservation &quot;)"
+                >
+                    <i class="thumbs up icon"   ></i>
+        </button>
+
+
+        <button class="red ui icon button" data-tooltip="Reject Reservation" data-position="top left"
+        onclick="showModal(&quot;cars/reject/first/b/{{$car->id}}&quot;,
+                         &quot;Reject Reservation&quot;,
+                        &quot;Are you sure you want to Reject this Reservation &quot;)"
+        >
+            <i class="thumbs down icon"   ></i>
+</button> 
+
                
             </td>
           </tr>
@@ -284,11 +335,11 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
           <td>{{$reservation->return_date}}</td>
           <td class="positive">{{ $reservation->reservation_status}}</td>
           <td >
-                <a  href="reservation/view/{{$reservation->id}}" class="ui icon button" data-tooltip="View Reservation" data-position="top left">
+                <a  href="reservation/view/{{$reservation->id}}" class="orange ui icon button" data-tooltip="View Reservation" data-position="top left">
                 <i class="eye icon"   ></i>
 </a>  
-                <div class=" teal ui icon button" data-tooltip="Delete reservation " data-position="top left">
-              <i class=" red x icon"   ></i>
+                <div class=" grey ui icon button" data-tooltip="Delete reservation " data-position="top left">
+              <i class=" x icon"   ></i>
                 </div>
                
             </td>
@@ -361,20 +412,36 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
           
           <td class="positive">Active</td>
           <td>
-          <div class="ui icon button" data-tooltip="Suspend Account" data-position="top left">
-              <i class="thumbs down icon"   ></i>
-          </div>   
+            <button class="green ui icon button" data-tooltip="Activate Account" data-position="top left"
+            onclick="showModal(&quot;account/activate/first/b/{{$car->id}}&quot;,
+                             &quot;Activate Account&quot;,
+                            &quot;Are you sure you want to Activate this Account &quot;)"
+            >
+                <i class="thumbs up icon"   ></i>
+            </button>    
 
-          <div class="ui icon button" data-tooltip="Activate Account" data-position="top left">
-              <i class="thumbs down icon"   ></i>
-          </div>   
-          <div class="ui icon button" data-tooltip="View Profile" data-position="top left">
-              <i class="eye icon"   ></i>
-          </div>  
+            <button class="red ui icon button" data-tooltip="Reject" data-position="top left"
+            onclick="showModal(&quot;account/activate/first/b/{{$car->id}}&quot;,
+                             &quot;Suspend Account&quot;,
+                            &quot;Are you sure you want to Suspend this Account &quot;)"
+            >
+                <i class="thumbs down icon"   ></i>
+            </button>  
 
-          <div class="ui icon button" data-tooltip="View reservation history" data-position="top left">
+
+
+            <a class="orange ui icon button" data-tooltip="View Profile" data-position="top left" >
+                <i class="eye icon"   ></i>
+          </a>  
+
+           
+
+
+
+
+          <a class="teal ui icon button" data-tooltip="View reservation history" data-position="top left">
               <i class="calendar icon"   ></i>
-          </div>
+          </a>
 
         </td>
           </tr>
@@ -406,14 +473,14 @@ $('#context1 .menu .item').tab({ context: $('#context1'),});
 $('#context2 .menu .item').tab({ context: 'parent', });
 
 function showModal(var1,var2){
-  $(".modal").modal({
+  $("#actionsmodal").modal({
 
   });
 
     $(".yes").attr("href",arguments[0]);
     $(".modal_text").text(arguments[2]);
     $(".modal_header").text(arguments[1]);
-    $(".modal").modal("show");
+    $("#actionsmodal").modal("show");
   }
   @if (session('last_tab') )
   $('#context1 .menu .item').tab('change tab','{{session('last_tab')}}');

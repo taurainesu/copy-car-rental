@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'CarHire Web Portal') }}</title>
+    <title>Auto Cruiz City</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">

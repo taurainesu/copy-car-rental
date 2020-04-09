@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <title>Car Rental</title>
+    <title>Cruiz Auto City</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
@@ -110,42 +110,7 @@
 
       
           @yield('content')
-          {{-- <div class="ui tiny modal middle aligned " id="reservationmodal">
-            <i class="close icon"></i>
-            <div class="header">Rent a  @{{car.brand}} @{{car.model}} </div>
-            <div class="content">
-              <form form method="POST" action="/reservations/new" enctype="multipart/form-data" >
-                <input type="text" hidden id="crsf_token" v-model="token" name="_token">
-                <div class="ui two column centered grid">
-                  <div class="column">
-                    <div class="ui input fluid ">
-                      <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
-                    </div>
-                  </div>
-                  <div class="column">
-                    <div class="ui input fluid">
-                      <input id="date_picker2" name="return_date" placeholder="End Date"  autocomplete="off" required>
-                    </div> 
-                  </div>
-                </div>
-    
-                <div class="ui divider"></div>
-    
-                <h5>Additional Options</h5>
-                <input type="checkbox" name="ui checkbox" ><label>Insuarance</label> 
-                <input type="checkbox" name="ui checkbox" ><label>Delivery</label> 
-    
-                <div class="ui divider"></div>
-                <div class="ui two column grid">
-                  <h5 id="attribute">Daily rate $</h5> 
-                  <strong id="total_price"> @{{car.daily_rate}}</strong>
-                </div>
-                <br>
-                <input type="hidden" id="custId" name="car_id" v-bind:value="car.id">
-                <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
-              </form> 
-            </div>
-          </div> --}}
+       
 
           <div class="ui tiny modal middle aligned " id="reservationmodal" style="display:none">
             <i class="close icon"></i>
@@ -165,16 +130,11 @@
                     <div class="ui divider"></div>
                     <h5>Payment method</h5>
                     
-                    
-                   
-                   
-
-                   
-  <div class="inline fields">
+                <div class="inline fields">
    
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input  id="ecoradio" type="radio" name="payment_method" value="ecocash">
+                  <div class="field">
+                  <div class="ui radio checkbox">
+                    <input  id="ecoradio" type="radio" name="payment_method" value="ecocash">
         <label>Ecocash</label>
       </div>
     </div>
@@ -207,6 +167,10 @@
                       {{-- @if ($reservation)
                       <input type="hidden" id="custId" name="reservation_id" value=@{{ $reservation->id }}>
                        @endif --}}
+
+
+
+                       
                     
                 
                       
@@ -225,6 +189,11 @@
                         </div>
           
                     </div>
+
+
+
+
+                    
       </main>
 
       {{-- footer --}}

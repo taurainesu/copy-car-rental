@@ -23,7 +23,7 @@ class Reservation extends Model
     }
 
 
-    public function payments()
+    public function payment()
     {
         return $this->hasOne("App\Payment");
     }
@@ -31,6 +31,16 @@ class Reservation extends Model
     public function setStatusAttribute($value)
         {
             $this->attributes['reservation_status'] = strtolower($value);
+        }
+
+
+        public function updateReservation($data)
+        {
+          $this->attributes['pick_up_date']=$data['pick_up_date'];
+          $this->attributes['return_date'] =$data['return_date'];
+          $this->attributes['total_cost']=$data['total_cost'];
+          $this->save();
+          return $this;
         }
 
 

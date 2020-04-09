@@ -52,9 +52,11 @@ class ReservationController extends Controller{
                 $car_id=$data['car_id'];
                 $car = Car::findOrFail($car_id);
                 $available=$car->is_free($start_date,$end_date);
+                $data['pick_up_date']=$start_date;
+                $data['return_date']=$end_date;
                 if ($available){
                         $reservation=$car->reserve($data,$start_date,$end_date);
-                        $payment=Payment::store($reservation);
+                        $payment=Payment::store($reservation,$payment_method);
                         $paynow=$payment->pay($phone_number,$payment_method);
                         
                         if(isset($reservation_id)){
@@ -92,15 +94,30 @@ class ReservationController extends Controller{
 
         public function view_reservation(Request $request,$id){
                 $reservation=Reservation::findOrFail($id);
-                return view('reservation',["reservation" => $reservation,"poll_url"=>"link"]);}
+                return view('reservation',["reservation" => $reservation]);}
 
         public function update_reservation(Request $request,$id){
 
                 $reservation=Reservation::findOrFail($id);
-                $reservation->setStatusAttribute('hanging');
-                $car=$reservation->car;
-                $reservation->save();
-                return view('modal',["reservation"=>$reservation,"car" => $car]);
+                $data=$request->all();
+                $data['pick_up_date']=new Carbon($data['pick_up_date']);
+                $data['return_date']=new Carbon($data['return_date']);
+
+                $days=$data['pick_up_date']->floatDiffInDays($data['return_date']);
+                $data['total_cost']=$days*$reservation->car->daily_rate;
+                if (isset($data['payment_method'])){
+                        $payment_method=$data['payment_method'];
+                        $phone_number=$data['phone_number'];
+                       // $payment=Payment::store($reservation,$payment_method);
+                     //   $paynow=$payment->pay($phone_number,$payment_method);
+
+
+                }
+
+                
+                $reservation=$reservation->updateReservation($data);
+
+                return view('reservation',["reservation"=>$reservation]);
 
                                                                  }
 

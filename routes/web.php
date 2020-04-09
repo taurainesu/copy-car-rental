@@ -61,7 +61,7 @@ Route::get("cars/delete/{tab}/{last}/{id}","CarController@delete")->name("delete
 
 Route::post("reservations/new","ReservationController@save_data")->name("new_reservation");
 
-Route::get("reservation/update/{id}","ReservationController@update_reservation")->name("update_reservation");
+Route::post("reservation/update/{id}","ReservationController@update_reservation")->name("update_reservation");
 
 Route::get("reservation/delete/{tab}/{last}/{id}","ReservationController@delete_reservation")->name("delete_reservation");
 

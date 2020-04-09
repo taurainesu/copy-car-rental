@@ -21,12 +21,14 @@ class Payment extends Model
         }
 
 
-        public static function store($reservation){
+        public static function store($reservation,$payment_method){
 
                 $payment = Payment::create(
                     [
                         'reservation_id' => $reservation->id,
                         'poll_url' => "",
+			'mode' => $payment_method,
+			'amount'=>$reservation->total_cost,
                                                                 ]);
 
 
@@ -39,6 +41,8 @@ class Payment extends Model
         public function setStatusAttribute($value)
                 {
                     $this->attributes['status'] = strtolower($value);
+                    $this->save();
+                    return $this;
                 }
 
 
@@ -48,10 +52,16 @@ class Payment extends Model
         public  function initialisePaynow(){
 
                 $paynow = new Paynow('9071','58939c88-b602-4a04-b1d4-105402e603b9','google.com','google.com' );
-                $payment = $paynow->createPayment('Invoice 35', 'mkunadavy@gmail.com');
-                $payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
-                return $payment;  
+                
+                
+                return $paynow;  
                         }
+	public function addPayment($paynow){
+		$payment = $paynow->createPayment('Invoice 35', 'mkunadavy@gmail.com');
+		$payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
+		return $payment;
+
+			}
 
 
 
@@ -83,33 +93,33 @@ class Payment extends Model
 
        
         
-                return $response;
+               			 return $response;
                                 }
 
 
 
 
                                                                      }
-
-
-
-    public function setPollUrlAtrribute($value){
-        $this->attributes['poll_url'] = $value;
-        $this->save();
+	public function setPollUrlAtrribute($value){
+        	$this->attributes['poll_url'] = $value;
+        	$this->save();
                         }
 
         public  function pay($number,$option)
-    {
+    		{
 
-       
-        $paynow=$this->initialisePaynow();
-        $response = "";
+       			
+
+
+        
 
         
        
-        try{
+        	try{
 
-
+			$paynow=$this->initialisePaynow();
+			$payment=$this->addPayment($paynow);
+			$response=$this->sendPaynow($paynow,$payment,$number,$option);
 
 
 
@@ -126,8 +136,8 @@ class Payment extends Model
 
             $pollUrl = $response->pollUrl();
 
-            // Check the status of the transaction
-            return $pollUrl;
+            //  set the poll url 
+             $this->setPollUrlAtrribute($pollUrl);
            }
         }
 
