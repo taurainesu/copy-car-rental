@@ -84,7 +84,7 @@
           <div class="ui secondary menu inverted" style="background:#3E4B96;padding:20px" >
               <div class="ui container">
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>
-                  <a class="item @if($vehicles ?? true) active @endif" href="/cars">Vehicles</a>
+                  <a class="item @if($vehicles ?? false) active @endif" href="/cars">Vehicles</a>
                   <a class="item @if($register ?? false) active @endif" href="/cars/new">Register   Vehicle</a>
                   <a class="item @if($my_reservation ?? false) active @endif" href="/reservations">My Reservations</a>
                   <a class="item @if($admin ?? false) active @endif" href="/admin">Admin</a>

@@ -71,7 +71,19 @@ class CarController extends Controller
     }
 
     public function index(){
-        return view("new_car");
+
+
+        return view("new_car", [
+            
+            'home'=>false,
+            'vehicles'=>false,
+            'register'=>false,
+            'my_reservation'=>false,
+            'register'=>true,
+        ] );
+        
+
+
     }
 
     public function cars(){
