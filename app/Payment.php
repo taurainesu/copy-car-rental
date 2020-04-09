@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Paynow\Http\ConnectionException;
 use Paynow\Payments\Paynow;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 class Payment extends Model
 {
@@ -57,7 +58,7 @@ class Payment extends Model
                 return $paynow;  
                         }
 	public function addPayment($paynow){
-		$payment = $paynow->createPayment('Invoice 35', 'batsirai.gurure@taurainesu.com');
+		$payment = $paynow->createPayment('Invoice 35', 'mkunadavy@gmail.com');
 		$payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
 		return $payment;
 
@@ -124,39 +125,31 @@ class Payment extends Model
 
 
             
+                if($response!="connection_error") {
+
+                    if ($response->success()){
+
+                        $link = $response->redirectUrl();
         
-
+                    $pollUrl = $response->pollUrl();
         
-
-       if($response="connection_error"){
-
-        return redirect()->route('home');
-
-       }
-
-       else {
-
-
-        if($response->success()) {
-            // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit
-            $link = $response->redirectUrl();
-
-            $pollUrl = $response->pollUrl();
-
-            //  set the poll url 
-             $this->setPollUrlAtrribute($pollUrl);
-           }
-        
+                    //  set the poll url 
+                     $this->setPollUrlAtrribute($pollUrl);
 
 
 
-       }
-    
-     
-        }
+                    }
+                    // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit
+                    
+                   }
+
+                // 
+            }   
+            
 
         catch(ConnectionException $e){
             return redirect()->route('home'); }
+
 
         
     }
