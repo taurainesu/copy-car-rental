@@ -51,12 +51,45 @@ class Reservation extends Model
         }
 
 
-        public function setreturnDateAttribute($value)
+        public function setReturnDateAttribute($value)
         {
             $this->attributes['return_date'] = strtolower($value);
         }
 
 
+        public function approveByAgent(){
+            $this->setStatusAttribute("approved_by_agent");
+            $this->save();
+                }
+
+
+        public function approveByOwner(){
+            $this->setStatusAttribute("approved_by_owner");
+            $this->save();
+                        }
+
+
+        public function canceledByAgent(){
+            $this->setStatusAttribute("cancelled_by_agent");
+            $this->save();
+                                }
+
+        public function cancelByUser(){
+                $this->setStatusAttribute("cancel_by_user");
+                $this->save();
+                                        }
+
+        public function rejectedByAgent(){
+            $this->setStatusAttribute("rejected_by_agent");
+            $this->save();
+                                                                }
+                                
+        public function rejectedByUser(){
+            $this->setStatusAttribute("rejected_by_user");
+            $this->save();
+                                                                        }
+
+        
 
         
 }

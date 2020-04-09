@@ -128,8 +128,15 @@ class Payment extends Model
 
         
 
-       
-    
+       if($response="connection_error"){
+
+        return redirect()->route('home');
+
+       }
+
+       else {
+
+
         if($response->success()) {
             // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit
             $link = $response->redirectUrl();
@@ -139,6 +146,13 @@ class Payment extends Model
             //  set the poll url 
              $this->setPollUrlAtrribute($pollUrl);
            }
+        
+
+
+
+       }
+    
+     
         }
 
         catch(ConnectionException $e){

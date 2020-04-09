@@ -65,6 +65,10 @@ Route::post("reservation/update/{id}","ReservationController@update_reservation"
 
 Route::get("reservation/delete/{tab}/{last}/{id}","ReservationController@delete_reservation")->name("delete_reservation");
 
+Route::get("reservation/approve/{tab}/{last}/{id}","ReservationController@approve_reservation")->name("approve_reservation");
+
+
+Route::get("reservation/reject/{tab}/{last}/{id}","ReservationController@RejectReservation")->name("reject_reservation");
 
 Route::get("reservations","ReservationController@get_reservations")->name("view_reservations");
 

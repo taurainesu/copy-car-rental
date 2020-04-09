@@ -25,6 +25,9 @@ class CreateReservationsTable extends Migration
                  *show the status of the reservation.
                  *pending (default state)
                  *active 
+                 *approved_by agent
+                 *reject_by_agent
+                 *reject_by_owner
                  *canceled_by_user
                  *canceled_by_owner
              */

@@ -288,12 +288,12 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
                 <a  href="/reservation/view/{{$reservation->id}}"class="orange ui icon button" data-tooltip="View Reservation" data-position="top left">
                 <i class="eye icon"   ></i>
                 </a>  
-                <div class=" red ui icon button" data-tooltip="Delete reservation " data-position="top left">
+                <div class=" red ui icon button" data-tooltip="Cancel reservation" data-position="top left">
               <i class=" x icon"   ></i>
                 </div>
 
                 <button class=" green ui icon button" data-tooltip="Approve Reservation" data-position="top left"
-                onclick="showModal(&quot;reservation/approve/first/b/{{$car->id}}&quot;,
+                onclick="showModal(&quot;reservation/approve/second/a/{{$reservation->id}}&quot;,
                                  &quot;Approve Reservation&quot;,
                                 &quot;Are you sure you want to Approve this Reservation &quot;)"
                 >
@@ -302,7 +302,7 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
 
 
         <button class="red ui icon button" data-tooltip="Reject Reservation" data-position="top left"
-        onclick="showModal(&quot;cars/reject/first/b/{{$car->id}}&quot;,
+        onclick="showModal(&quot;reservation/reject/second/a/{{$reservation->id}}&quot;,
                          &quot;Reject Reservation&quot;,
                         &quot;Are you sure you want to Reject this Reservation &quot;)"
         >
