@@ -57,7 +57,7 @@ class Payment extends Model
                 return $paynow;  
                         }
 	public function addPayment($paynow){
-		$payment = $paynow->createPayment('Invoice 35', 'mkunadavy@gmail.com');
+		$payment = $paynow->createPayment('Invoice 35', 'batsirai.gurure@taurainesu.com');
 		$payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
 		return $payment;
 
