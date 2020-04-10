@@ -60,11 +60,12 @@
         </div>
       </div>
 
-      <div class="ui container" v-if="!search">
+      <div class="ui container" v-if="!search" style="margin:2% 0">
         <div class="column">
-           <h1 class="ui" style="padding:40px 0">Featured Vehicles</h1>
+           <h2 class="ui">Featured Vehicles</h2>
+           <hr style="margin-bottom:15px"/>
         </div>
-        <div class="ui"  style="padding-bottom:40px">
+        <div class="ui">
           <div class="ui four special cards">
             <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
             <div class="image">

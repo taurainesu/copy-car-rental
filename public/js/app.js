@@ -2083,6 +2083,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -37691,13 +37692,13 @@ var render = function() {
       ),
       _vm._v(" "),
       !_vm.search
-        ? _c("div", { staticClass: "ui container" }, [
-            _vm._m(3),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "ui", staticStyle: { "padding-bottom": "40px" } },
-              [
+        ? _c(
+            "div",
+            { staticClass: "ui container", staticStyle: { margin: "2% 0" } },
+            [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "ui" }, [
                 _c(
                   "div",
                   { staticClass: "ui four special cards" },
@@ -37801,9 +37802,9 @@ var render = function() {
                   }),
                   0
                 )
-              ]
-            )
-          ])
+              ])
+            ]
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.search
@@ -38002,9 +38003,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column" }, [
-      _c("h1", { staticClass: "ui", staticStyle: { padding: "40px 0" } }, [
-        _vm._v("Featured Vehicles")
-      ])
+      _c("h2", { staticClass: "ui" }, [_vm._v("Featured Vehicles")]),
+      _vm._v(" "),
+      _c("hr", { staticStyle: { "margin-bottom": "15px" } })
     ])
   },
   function() {

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section("content")
-<div class="ui container" style="padding:0 0 3% 0">
+<div class="ui container" style="padding:0 0 4% 0">
     <div class="ui column">
         <div class="column twelve wide">
             <div class="column" style="display:none">
@@ -25,7 +25,8 @@
                 </div>
             </div>
             @if(count($result) > 0)
-        <h1 style="padding:10px 0 15px 0">Search Results ({{count($result)}})</h1>
+            <h2>Search Results ({{count($result)}})</h2>
+            <hr style="margin-bottom:15px"/>
             <div class="ui four cards">
                 @foreach ($result ?? '' as $car)
                 <div class="card">

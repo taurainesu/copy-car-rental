@@ -1,11 +1,12 @@
 @extends('layouts.layout')
 @section("content")
 
-<div class="ui container" style="padding:3% 0">
+<div class="ui container" style="padding:2% 0 4% 0">
     @if(count($search) > 0)
     <div class="ui row grid">
         <div class="column ">
-            <h1 style="padding-bottom:15px">Vehicle Inventory</h1>
+            <h2>Vehicle Inventory</h2>
+            <hr style="margin-bottom:15px"/>
             <div class="ui four cards">
                 @foreach ($search as $car)
                 <div class="card">
