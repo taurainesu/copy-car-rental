@@ -84,6 +84,7 @@
       <header>
           <div class="ui secondary menu inverted" style="background:#3E4B96;padding:20px" >
               <div class="ui container">
+                  <div style="margin-right:20px"><img src="/logo.png" alt="Logo" height="50px" width="100px"></div>
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>
                   <a class="item @if($vehicles ?? false) active @endif" href="/cars">Vehicles</a>
                   <a class="item @if($register ?? false) active @endif" href="/cars/new">Register   Vehicle</a>
