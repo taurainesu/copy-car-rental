@@ -42,7 +42,7 @@ class ReservationController extends Controller{
                                                 }
 
                 else{
-
+                        $phone_number=07711111111;
                         unset($data['phone_number']); 
                              }
 
@@ -57,7 +57,7 @@ class ReservationController extends Controller{
                 if ($available){
                         $reservation=$car->reserve($data,$start_date,$end_date);
                         $payment=Payment::store($reservation,$payment_method);
-                        $paynow=$payment->pay($phone_number,$payment_method);
+                        $link=$payment->pay($phone_number,$payment_method);
                         
                         if(isset($reservation_id)){
                                 try{
@@ -67,7 +67,28 @@ class ReservationController extends Controller{
                                     return redirect()->route('home'); }
                                                      }
 
-                return redirect()->route('view_reservation',['id' => $reservation->id]);
+                if($link!="connection_error"){
+                        if ($payment_method=="other"){
+
+                                return redirect($link);
+                        }
+        
+                        else{
+                                return redirect()->route('view_reservation',['id' => $reservation->id]);
+        
+                        } 
+
+
+                }
+
+                else{
+
+                        return "connection to paynow not available";
+                }
+
+               
+
+                
                                     }
 
 

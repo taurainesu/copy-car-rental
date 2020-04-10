@@ -11,27 +11,19 @@ use Symfony\Component\Debug\Exception\FatalThrowableError;
 class Payment extends Model
 {
     //
-
-
         protected $guarded = [];
 
         public function reservation (){
-
-
             return $this->belongsTo("App\Reservation");
         }
 
-
         public static function store($reservation,$payment_method){
-
                 $payment = Payment::create(
-                    [
-                        'reservation_id' => $reservation->id,
+                    ['reservation_id' => $reservation->id,
                         'poll_url' => "",
-			'mode' => $payment_method,
-			'amount'=>$reservation->total_cost,
+			            'mode' => $payment_method,
+			            'amount'=>$reservation->total_cost,
                                                                 ]);
-
 
                 return $payment;
                                  }
@@ -40,7 +32,7 @@ class Payment extends Model
     
 
         public function setStatusAttribute($value)
-                {
+                    {
                     $this->attributes['status'] = strtolower($value);
                     $this->save();
                     return $this;
@@ -58,44 +50,38 @@ class Payment extends Model
                 return $paynow;  
                         }
 	public function addPayment($paynow){
-		$payment = $paynow->createPayment('Invoice 35', 'mkunadavy@gmail.com');
-		$payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
-		return $payment;
+	        $payment = $paynow->createPayment('Invoice 35', 'mkunadavy@gmail.com');
+		    $payment->add('Car Rental from 02/04/2020 to 03/04/2020', 1.25);
+		    return $payment;
 
 			}
 
 
 
+    public static function sendPaynow($paynow,$payment,$mobile_number,$option){
 
-        public static function sendPaynow($paynow,$payment,$mobile_number,$option){
 
-
-                if($option=="other"){
-
-                        try{
-                                $response = $paynow->send($payment);
+            if($option=="other"){
+                    try{
+                            $response = $paynow->send($payment);
                             }
                 
-                        catch(ConnectionException $e){
-                                return redirect()->route('home'); }
+                    catch(ConnectionException $e){
+                            $response="connection_error"; }
                                                      } 
-                else{
-
-                        try{
-
-                                $response = $paynow->sendMobile($payment,$mobile_number,$option);
+            else{
+                    try{
+                            $response = $paynow->sendMobile($payment,$mobile_number,$option);
                             }
 
-                        catch(ConnectionException $e){
+                    catch(ConnectionException $e){
                             
                                 $response="connection_error";
+                                
 
-                                                    }
+                                                    }}
 
-       
-        
-               			 return $response;
-                                }
+            return $response;
 
 
 
@@ -109,46 +95,44 @@ class Payment extends Model
         public  function pay($number,$option)
     		{
 
-       			
+       			try{
+                        $paynow=$this->initialisePaynow();
+                        $payment=$this->addPayment($paynow);
+                        $response=$this->sendPaynow($paynow,$payment,$number,$option);
+                                if($response!="connection_error"){
 
+                                        if ($response->success()){
 
-        
+                                            $link = $response->redirectUrl();
+                                            $pollUrl = $response->pollUrl();
+                                            //  set the poll url 
+                                            $this->setPollUrlAtrribute($pollUrl);
+                                            return $link;
 
-        
-       
-        	try{
+                                                 }
 
-			$paynow=$this->initialisePaynow();
-			$payment=$this->addPayment($paynow);
-			$response=$this->sendPaynow($paynow,$payment,$number,$option);
+                                                 else {
+                                                     return "connection_error";
+                                                 }
+                                                            }
 
-
-
-            
-                if($response!="connection_error") {
-
-                    if ($response->success()){
-
-                        $link = $response->redirectUrl();
-        
-                    $pollUrl = $response->pollUrl();
-        
-                    //  set the poll url 
-                     $this->setPollUrlAtrribute($pollUrl);
-
-
-
-                    }
-                    // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit
-                    
-                   }
+                                                else {
+                                                    return "connection_error";
+                                                }
 
                 // 
             }   
             
 
         catch(ConnectionException $e){
-            return redirect()->route('home'); }
+            return "connection_error"; }
+
+
+        
+
+
+
+        
 
 
         
