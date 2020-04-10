@@ -7,6 +7,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Semantic-UI-Alert.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <style type="text/css">
@@ -107,7 +108,7 @@
 
       <main class="site_content">
 
-
+       
       
           @yield('content')
        
@@ -252,6 +253,7 @@
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/semantic.min.js') }}"></script>
   <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+  <script src="{{ asset('js/Semantic-UI-Alert.js') }}"></script>
  
   <script>
     $(document).ready(function() {
@@ -283,6 +285,32 @@
     $('.special.cards .image').dimmer({
       on: 'hover'
     });
+
+
+
+    @if (session('status'))
+
+
+
+    $(document).ready(function() {
+$.uiAlert({
+textHead: 'cannot connect to paynow server', // header
+text: 'please check yor internet connection', // Text
+bgcolor: '#F2711C', // background-color
+textcolor: '#fff', // color
+position: 'top-right',// position . top And bottom ||  left / center / right
+icon: 'warning sign', // icon in semantic-UI
+time: 3, // time
+  })
+});
+       
+    @endif
+
+
+
+   
+
+
     </script>
 
 

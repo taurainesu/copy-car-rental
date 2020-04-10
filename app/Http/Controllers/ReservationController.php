@@ -80,10 +80,10 @@ class ReservationController extends Controller{
 
 
                 }
-
+        
                 else{
 
-                        return "connection to paynow not available";
+                        return redirect()->back()->with('status', 'cant redirect to paynow check your internet connection');
                 }
 
                
