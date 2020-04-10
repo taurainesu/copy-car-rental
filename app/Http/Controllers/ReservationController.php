@@ -143,12 +143,19 @@ class ReservationController extends Controller{
                                                                  }
 
 
-                public function approveReservation($tab,$last,$id){
+                public function approve_reservation($tab,$last,$id){
 
                         $reservation= Reservation::find($id);
                         $last_tab=$tab.'/'.$last;
-                
-                        $reservation->approve();
+                        
+                        if(Auth::user()->is_admin){
+                                $reservation->approveByAgent();
+                        }
+
+                        else{
+                                $reservation->approveByOwner();  
+                        }
+                        
 
                         return redirect()->route('admin')->with('last_tab', $last_tab);  
 
