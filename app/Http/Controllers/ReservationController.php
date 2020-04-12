@@ -94,7 +94,7 @@ class ReservationController extends Controller{
 
                 else{
 
-                        return redirect()->back()->with('status', 'vehicle is reseved in this period please pick another');
+                        return redirect()->back()->with('reservation_status', 'vehicle is reseved in this period please pick another');
                      
                         }
 
