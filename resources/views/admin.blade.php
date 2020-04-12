@@ -20,6 +20,32 @@
 
 </div>
 
+
+
+<div class="ui mini modal middle aligned " id="emailmodal">
+  
+  <i class="close icon"></i>
+  <div class="header modal_header">Add as Administrator</div>
+  <div class="content">
+    <form  method="POST" action="{{route('make_admin')}}" enctype="multipart/form-data" >
+    <p class="modal_text">enter  the email address </p>
+
+      <div class="ui input fluid ">
+      <input  autocomplete="on" name="email" placeholder="user@cruizautocity.com" type="email" required>
+      </div>
+      <div class="ui divider"></div>
+    
+      {{ csrf_field() }}
+    <button href-="" class="ui green button yes" type="submit">ADD</button>
+
+    </form>
+    
+  </div>
+
+
+
+</div>
+
 <div class="ui container" style="margin-top: 10px">
 
 <div id="context1">
@@ -44,10 +70,10 @@
       <thead>
 
         <tr><th class="left aligned">Car Name</th>
-        <th>Type</th>
-        <th>Owner</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th class="left aligned" >Type</th>
+        <th  class="left aligned">Owner</th>
+        <th class="left aligned">Status</th>
+        <th class="left aligned" >Actions</th>
       </tr></thead>
       <tbody>
 
@@ -55,11 +81,11 @@
  
         <tr>
           <td class="left aligned">{{$car->brand}}  {{$car->model}}</td>
-          <td >{{$car->type}} </td>
-          <td >{{ $car->user["name"]}}</td>
-          <td>{{$car->status}}</td>
+          <td class="left aligned">{{$car->type}} </td>
+          <td class="left aligned">{{ $car->user["name"]}}</td>
+          <td class="left aligned">{{$car->status}}</td>
           
-          <td>
+          <td class="left aligned">
 
           @if($car->status=="pending")
           <button class=" green ui icon button" data-tooltip="Approve" data-position="top left"
@@ -142,10 +168,10 @@ onclick="showModal(&quot;cars/restore/first/a/{{$car->id}}&quot;,
     <thead>
 
       <tr><th class="left aligned">Car Name</th>
-      <th>Type</th>
-      <th>Owner</th>
-      <th>Status</th>
-      <th>Actions</th>
+      <th class="left aligned" >Type</th>
+      <th class="left aligned">Owner</th>
+      <th class="left aligned">Status</th>
+      <th class="left aligned">Actions</th>
     </tr></thead>
     <tbody>
 
@@ -154,11 +180,11 @@ onclick="showModal(&quot;cars/restore/first/a/{{$car->id}}&quot;,
 @if($car->status=="pending")
       <tr>
         <td class="left aligned">{{$car->brand}}  {{$car->model}}</td>
-        <td >{{$car->type}} </td>
-        <td >{{ $car->user["name"]}}</td>
-        <td>{{$car->status}}</td>
+        <td  class="left aligned">{{$car->type}} </td>
+        <td class="left aligned" >{{ $car->user["name"]}}</td>
+        <td  class="left aligned" >{{$car->status}}</td>
         
-        <td>
+        <td class="left aligned">
         <button class="green ui icon button" data-tooltip="Approve" data-position="top left"
         onclick="showModal(&quot;cars/approve/first/b/{{$car->id}}&quot;,
                          &quot;Approve Vehicle&quot;,
@@ -211,10 +237,10 @@ onclick="showModal(&quot;cars/restore/first/a/{{$car->id}}&quot;,
     <thead>
 
       <tr><th class="left aligned">Car Name</th>
-      <th>Type</th>
-      <th>Owner</th>
-      <th>Status</th>
-      <th>Actions</th>
+      <th class="left aligned" >Type</th>
+      <th class="left aligned" >Owner</th>
+      <th class="left aligned"  >Status</th>
+      <th class="left aligned">Actions</th>
     </tr></thead>
     <tbody>
 
@@ -222,9 +248,9 @@ onclick="showModal(&quot;cars/restore/first/a/{{$car->id}}&quot;,
  @if($car->status=="deleted")
       <tr>
         <td class="left aligned">{{$car->brand}}  {{$car->model}}</td>
-        <td >{{$car->type}} </td>
-        <td >{{ $car->user["name"]}}</td>
-        <td>{{$car->status}}</td>
+        <td class="left aligned">{{$car->type}} </td>
+        <td class="left aligned">{{ $car->user["name"]}}</td>
+        <td class="left aligned" >{{$car->status}}</td>
         
         <td>
          
@@ -272,25 +298,38 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
       <thead>
 
         <tr><th class="left aligned">Car</th>
-        <th>Pick Up Date</th>
-        <th>Return Date</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th class="left aligned" >Pick Up Date</th>
+        <th class="left aligned" >Return Date</th>
+        <th class="left aligned">Status</th>
+        <th class="left aligned" >Actions</th>
       </tr></thead>
       <tbody>
  @foreach ($reservations as $reservation) 
         <tr>
           <td class="left aligned">{{$reservation->car["brand"]}}  {{$reservation->car["model"]}}</td>
-          <td >{{$reservation->pick_up_date}} </td>
-          <td>{{$reservation->return_date}}</td>
-          <td class="positive">{{ $reservation->reservation_status}}</td>
-          <td >
+          <td class="left aligned">{{$reservation->pick_up_date}} </td>
+          <td class="left aligned"> {{$reservation->return_date}}</td>
+          <td class="positive left aligned">{{ $reservation->reservation_status}}</td>
+          <td class="left aligned">
                 <a  href="/reservation/view/{{$reservation->id}}"class="orange ui icon button" data-tooltip="View Reservation" data-position="top left">
                 <i class="eye icon"   ></i>
                 </a>  
-                <div class=" red ui icon button" data-tooltip="Cancel reservation" data-position="top left">
-              <i class=" x icon"   ></i>
-                </div>
+  
+@if($reservation->reservation_status=="approved_by_agent"||$reservation->reservation_status=="approved_by_owner")
+                    
+                <button class=" red ui icon button" data-tooltip="Cancel Reservation" data-position="top left"
+                onclick="showModal(&quot;reservation/cancel/second/a/{{$reservation->id}}&quot;,
+                                 &quot;Cancel Reservation&quot;,
+                                &quot;Are you sure you want to Cancel this Reservation &quot;)"
+                >
+                    <i class="x up icon"   ></i>
+        </button> 
+
+
+@endif
+
+
+@if($reservation->reservation_status=="pending")
 
                 <button class=" green ui icon button" data-tooltip="Approve Reservation" data-position="top left"
                 onclick="showModal(&quot;reservation/approve/second/a/{{$reservation->id}}&quot;,
@@ -301,6 +340,10 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
         </button>
 
 
+@endif
+
+@if($reservation->reservation_status=="pending")
+
         <button class="red ui icon button" data-tooltip="Reject Reservation" data-position="top left"
         onclick="showModal(&quot;reservation/reject/second/a/{{$reservation->id}}&quot;,
                          &quot;Reject Reservation&quot;,
@@ -308,7 +351,9 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
         >
             <i class="thumbs down icon"   ></i>
 </button> 
+ 
 
+@endif
                
             </td>
           </tr>
@@ -320,10 +365,10 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
       <thead>
 
         <tr><th class="left aligned">Car</th>
-        <th>Pick Up Date</th>
-        <th>Return Date</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th class="left aligned">Pick Up Date</th>
+        <th class="left aligned" >Return Date</th>
+        <th class="left aligned">Status</th>
+        <th class="left aligned">Actions</th>
       </tr></thead>
       <tbody>
  @foreach ($reservations as $reservation) 
@@ -331,16 +376,39 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
 
         <tr>
           <td class="left aligned">{{$reservation->car["brand"]}}  {{$reservation->car["model"]}}</td>
-          <td >{{$reservation->pick_up_date}} </td>
-          <td>{{$reservation->return_date}}</td>
-          <td class="positive">{{ $reservation->reservation_status}}</td>
-          <td >
+          <td  class="left aligned">{{$reservation->pick_up_date}} </td>
+          <td  class="left aligned">{{$reservation->return_date}}</td>
+          <td class="positive left aligned">{{ $reservation->reservation_status}}</td>
+          <td class="left aligned" >
                 <a  href="reservation/view/{{$reservation->id}}" class="orange ui icon button" data-tooltip="View Reservation" data-position="top left">
                 <i class="eye icon"   ></i>
-</a>  
-                <div class=" grey ui icon button" data-tooltip="Delete reservation " data-position="top left">
-              <i class=" x icon"   ></i>
-                </div>
+                </a>  
+
+
+                <button class=" green ui icon button" data-tooltip="Approve Reservation" data-position="top left"
+                onclick="showModal(&quot;reservation/approve/second/b/{{$reservation->id}}&quot;,
+                                 &quot;Approve Reservation&quot;,
+                                &quot;Are you sure you want to Approve this Reservation &quot;)"
+                >
+                    <i class="thumbs up icon"   ></i>
+        </button>
+
+
+
+
+
+
+        <button class="red ui icon button" data-tooltip="Reject Reservation" data-position="top left"
+        onclick="showModal(&quot;reservation/reject/second/b/{{$reservation->id}}&quot;,
+                         &quot;Reject Reservation&quot;,
+                        &quot;Are you sure you want to Reject this Reservation &quot;)"
+        >
+            <i class="thumbs down icon"   ></i>
+</button> 
+ 
+
+
+               
                
             </td>
           </tr>
@@ -357,26 +425,33 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
       <thead>
 
         <tr><th class="left aligned">Car</th>
-        <th>Pick Up Date</th>
-        <th>Return Date</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th class="left aligned">Pick Up Date</th>
+        <th class="left aligned" >Return Date</th>
+        <th class="left aligned" >Status</th>
+        <th class="left aligned" >Actions</th>
       </tr></thead>
       <tbody>
  @foreach ($reservations as $reservation) 
- @if ($reservation->reservation_status == "confirmed" )
+ @if ($reservation->reservation_status == "approved_by_agent"|| $reservation->reservation_status == "approved_by_owner" )
         <tr>
           <td class="left aligned">{{$reservation->car["brand"]}}  {{$reservation->car["model"]}}</td>
-          <td >{{$reservation->pick_up_date}} </td>
-          <td>{{$reservation->return_date}}</td>
-          <td class="positive">{{ $reservation->reservation_status}}</td>
-          <td >
-                <div class="ui icon button" data-tooltip="View Profile" data-position="top left">
+          <td class="left aligned">{{$reservation->pick_up_date}} </td>
+          <td class="left aligned">{{$reservation->return_date}}</td>
+          <td class="positive left aligned">{{ $reservation->reservation_status}}</td>
+          <td class="left aligned" >
+                <a href="/reservation/view/{{$reservation->id}}" class="orange ui icon button" data-tooltip="View Reservation" data-position="top left">
                 <i class="eye icon"   ></i>
-                </div>  
-                <div class=" teal ui icon button" data-tooltip="Delete reservation " data-position="top left">
-              <i class=" red x icon"   ></i>
-                </div>
+                </a>  
+              
+
+
+                <button class=" red ui icon button" data-tooltip="Cancel Reservation" data-position="top left"
+                onclick="showModal(&quot;reservation/cancel/second/c/{{$reservation->id}}&quot;,
+                                 &quot;Cancel Reservation&quot;,
+                                &quot;Are you sure you want to Cancel this Reservation &quot;)"
+                >
+                    <i class="x up icon"   ></i>
+        </button>
                
             </td>
           </tr>
@@ -397,21 +472,29 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
     <div class="ui bottom attached tab segment" data-tab="third/a"><table class="ui right aligned basic table">
       <thead>
 
-        <tr><th class="left aligned"></th>
-        <th >Name</th>
-        <th>Contact</th>
-        <th>Role</th>
-        <th>Actions</th>
+        <tr><th class="left aligned">Name</th>
+        <th class="left aligned" >Contact Details</th>
+        <th class="left aligned" >Role</th>
+        <th class="left aligned">Status</th>
+        <th class="left aligned">Actions</th>
       </tr></thead>
       <tbody>
  @foreach ($users as $user) 
         <tr>
           <td class="left aligned">{{$user->name}}  </td>
-          <td >{{$user->phone}}  {{$user->email}} </td>
-    <td>Administrator </td>
+          <td class="left aligned" >{{$user->phone}}  {{$user->email}} </td>
+
+
+          @if($user->isadmin=1)
+          <td class="left aligned">Administrator </td>
+    @endif
+    
+    @if($user->isadmin=0)
+          <td class="left aligned"> User </td>
+    @endif
           
-          <td class="positive">Active</td>
-          <td>
+          <td class="positive left aligned">Active</td>
+          <td class="left aligned">
             <button class="green ui icon button" data-tooltip="Activate Account" data-position="top left"
             onclick="showModal(&quot;account/activate/first/b/{{$car->id}}&quot;,
                              &quot;Activate Account&quot;,
@@ -451,8 +534,156 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
           @endforeach
       </tbody>
     </table></div>
-    <div class="ui bottom attached tab segment" data-tab="third/b">People Who own Cars</div>
-    <div class="ui bottom attached tab segment" data-tab="third/c">User Admin</div>
+    <div class="ui bottom attached tab segment" data-tab="third/b">
+    
+      <table class="ui right aligned basic table">
+        <thead>
+  
+          <tr><th class="left aligned">Name</th>
+          <th class="left aligned" >Contact Details</th>
+          <th class="left aligned">Role</th>
+          <th class="left aligned">Status</th>
+          <th class="left aligned">Actions</th>
+        </tr></thead>
+        <tbody>
+   @foreach ($users as $user) 
+          <tr>
+            <td class="left aligned">{{$user->name}}  </td>
+            <td class="left aligned">{{$user->phone}}  {{$user->email}} </td>
+
+@if($user->isadmin=1)
+      <td class="left aligned" >Administrator </td>
+@endif
+
+@if($user->isadmin=0)
+      <td class="left aligned">User </td>
+@endif
+
+            <td class="positive left aligned">Active</td>
+            <td class="left aligned" >
+              <button class="green ui icon button" data-tooltip="Activate Account" data-position="top left"
+              onclick="showModal(&quot;account/activate/first/b/{{$car->id}}&quot;,
+                               &quot;Activate Account&quot;,
+                              &quot;Are you sure you want to Activate this Account &quot;)"
+              >
+                  <i class="thumbs up icon"   ></i>
+              </button>    
+  
+              <button class="red ui icon button" data-tooltip="Reject" data-position="top left"
+              onclick="showModal(&quot;account/activate/first/b/{{$car->id}}&quot;,
+                               &quot;Suspend Account&quot;,
+                              &quot;Are you sure you want to Suspend this Account &quot;)"
+              >
+                  <i class="thumbs down icon"   ></i>
+              </button>  
+  
+  
+  
+              <a class="orange ui icon button" data-tooltip="View Profile" data-position="top left" >
+                  <i class="eye icon"   ></i>
+            </a>  
+  
+             
+  
+  
+  
+  
+            <a class="teal ui icon button" data-tooltip="View reservation history" data-position="top left">
+                <i class="calendar icon"   ></i>
+            </a>
+  
+          </td>
+            </tr>
+  
+  
+  
+            @endforeach
+        </tbody>
+      </table>
+    
+    
+    
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="third/c">
+      <button class="green ui icon button" data-tooltip="Add Administrator" data-position="top left"
+      onclick="emailInputModal(&quot;account/activate/first/b/{{$car->id}}&quot;,
+                       &quot;Add Administrator &quot;,
+                      &quot;enter email address &quot;)"
+      >
+          <i class="plus icon"   ></i>
+      </button>  
+      <table class="ui right aligned basic table">
+        <thead>
+  
+          <tr><th class="left aligned">Name</th>
+          <th class="left aligned" >Contact Details</th>
+          <th class="left aligned" >Role</th>
+          <th class="left aligned" >Status</th>
+          <th class="left aligned" >Actions</th>
+        </tr></thead>
+        <tbody>
+   @foreach ($users as $user) 
+          <tr>
+            <td class="left aligned">{{$user->name}}  </td>
+            <td class="left aligned">{{$user->phone}}  {{$user->email}} </td>
+     @if($user->isadmin=1)
+      <td  class="left aligned">Administrator </td>
+@endif
+
+@if($user->isadmin=0)
+      <td  class="left aligned">User </td>
+@endif
+            
+            <td class="positive left aligned">Active</td>
+            <td class="left aligned" >
+              <button class="green ui icon button" data-tooltip="Activate Account" data-position="top left"
+              onclick="showModal(&quot;account/activate/first/b/{{$car->id}}&quot;,
+                               &quot;Activate Account&quot;,
+                              &quot;Are you sure you want to Activate this Account &quot;)"
+              >
+                  <i class="thumbs up icon"   ></i>
+              </button>    
+  
+              <button class="red ui icon button" data-tooltip="Reject" data-position="top left"
+              onclick="showModal(&quot;account/activate/first/b/{{$car->id}}&quot;,
+                               &quot;Suspend Account&quot;,
+                              &quot;Are you sure you want to Suspend this Account &quot;)"
+              >
+                  <i class="thumbs down icon"   ></i>
+              </button>  
+  
+  
+  
+              <a class="orange ui icon button" data-tooltip="View Profile" data-position="top left" >
+                  <i class="eye icon"   ></i>
+            </a>  
+  
+             
+  
+  
+  
+  
+            <a class="teal ui icon button" data-tooltip="View reservation history" data-position="top left">
+                <i class="calendar icon"   ></i>
+            </a>
+  
+          </td>
+            </tr>
+  
+  
+  
+            @endforeach
+        </tbody>
+      </table>
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
   </div>
 </div>
 <div class="ui divider"></div>
@@ -482,6 +713,20 @@ function showModal(var1,var2){
     $(".modal_header").text(arguments[1]);
     $("#actionsmodal").modal("show");
   }
+
+  function emailInputModal(var1,var2){
+  $("#emailmodal").modal({
+
+  });
+
+    $(".yes").attr("href",arguments[0]);
+    $(".modal_text").text(arguments[2]);
+    $(".modal_header").text(arguments[1]);
+    $("#emailmodal").modal("show");
+  }
+
+
+
   @if (session('last_tab') )
   $('#context1 .menu .item').tab('change tab','{{session('last_tab')}}');
 @endif

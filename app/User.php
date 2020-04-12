@@ -43,4 +43,11 @@ class User extends Authenticatable
     {
         return $this->hasMany("App\Reservation");
     }
+
+
+
+    public function makeAdministrator(){
+        $this->is_admin=1;
+        $this->save();
+                    }
 }

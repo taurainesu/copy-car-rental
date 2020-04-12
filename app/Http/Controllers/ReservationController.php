@@ -93,7 +93,9 @@ class ReservationController extends Controller{
 
 
                 else{
-                     return"vehicle is reseved in this period please pick another";
+
+                        return redirect()->back()->with('status', 'vehicle is reseved in this period please pick another');
+                     
                         }
 
         
@@ -182,6 +184,30 @@ class ReservationController extends Controller{
 
 
                 }
+
+
+
+                public function cancelReservation($tab,$last,$id ){
+
+
+                        $reservation= Reservation::find($id);
+                        $last_tab=$tab.'/'.$last;
+                        $user = Auth::user();
+                        if($user->is_admin){
+                                $reservation->cancelledByAgent();      
+                        }
+
+                        else {
+                            $reservation->cancelledByUser();    
+                        }
+                
+                        
+
+                        return redirect()->route('admin')->with('last_tab', $last_tab);  
+
+
+                }
+
 
 
 }
