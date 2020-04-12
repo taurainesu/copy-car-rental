@@ -326,6 +326,25 @@ time: 3, // time
 @endif
 
 
+@if (session('vehicle_status'))
+
+
+
+$(document).ready(function() {
+$.uiAlert({
+textHead: 'Vehicle is already in sysytem', // header
+text: 'If you didnt register your Vehicle please get in touch with us ', // Text
+bgcolor: '#F2711C', // background-color
+textcolor: '#fff', // color
+position: 'top-right',// position . top And bottom ||  left / center / right
+icon: 'warning sign', // icon in semantic-UI
+time: 3, // time
+})
+});
+   
+@endif
+
+
 
    
 
