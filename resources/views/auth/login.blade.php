@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @section("content")
 <div class="container">
-  <div class="ui card p-5" style="width:30%;margin:auto;top:8rem;padding:40px">
+  <div class="ui card p-5" style="width:30%;margin:auto;top:6rem;padding:40px">
       <div class="content">
           <form style="text-align:center" method="POST" action="{{ route('login') }}" class="ui form">
               @csrf
