@@ -46,6 +46,8 @@ Route::get("cars/get","CarController@cars")->name("get_cars");
 
 Route::post("cars/new","CarController@store")->name("new_car_post");
 
+Route::post("user/admin","AdminController@makeAdmin")->name("make_admin");
+
 Route::get("cars/info/{id}","CarController@car")->name("get_car");
 
 Route::get("cars/approve/{tab}/{last}/{id}","CarController@approve")->name("approve_car");
@@ -68,7 +70,8 @@ Route::get("reservation/delete/{tab}/{last}/{id}","ReservationController@delete_
 Route::get("reservation/approve/{tab}/{last}/{id}","ReservationController@approve_reservation")->name("approve_reservation");
 
 
-Route::get("reservation/reject/{tab}/{last}/{id}","ReservationController@RejectReservation")->name("reject_reservation");
+Route::get("reservation/cancel/{tab}/{last}/{id}","ReservationController@cancelReservation")->name("cancel_reservation");
+Route::get("reservation/reject/{tab}/{last}/{id}","ReservationController@rejectReservation")->name("reject_reservation");
 
 Route::get("reservations","ReservationController@get_reservations")->name("view_reservations");
 

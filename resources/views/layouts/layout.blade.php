@@ -295,7 +295,7 @@
 
     $(document).ready(function() {
 $.uiAlert({
-textHead: 'cannot connect to paynow server', // header
+textHead: 'cant connect to paynow server', // header
 text: 'please check yor internet connection', // Text
 bgcolor: '#F2711C', // background-color
 textcolor: '#fff', // color
@@ -306,6 +306,43 @@ time: 3, // time
 });
        
     @endif
+
+@if (session('reservation_status'))
+
+
+
+$(document).ready(function() {
+$.uiAlert({
+textHead: 'Vehicle is reserved in this period', // header
+text: 'please choose another vehicle or period', // Text
+bgcolor: '#F2711C', // background-color
+textcolor: '#fff', // color
+position: 'top-right',// position . top And bottom ||  left / center / right
+icon: 'warning sign', // icon in semantic-UI
+time: 3, // time
+})
+});
+   
+@endif
+
+
+@if (session('vehicle_status'))
+
+
+
+$(document).ready(function() {
+$.uiAlert({
+textHead: 'Vehicle is already in sysytem', // header
+text: 'If you didnt register your Vehicle please get in touch with us ', // Text
+bgcolor: '#F2711C', // background-color
+textcolor: '#fff', // color
+position: 'top-right',// position . top And bottom ||  left / center / right
+icon: 'warning sign', // icon in semantic-UI
+time: 3, // time
+})
+});
+   
+@endif
 
 
 

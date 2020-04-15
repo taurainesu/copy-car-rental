@@ -10,7 +10,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class AdminController extends Controller
-{
+{   
+
+
+    public function makeAdmin(Request $request){
+        $data=$request->all();
+        $email=$data['email'];
+        $last_tab='3/c';
+
+        $user= User::where('email',$email )->first();
+        $user->makeAdministrator();
+
+        return redirect()->route('admin')->with('last_tab', $last_tab); 
+
+    }
     
     public function index(Request $request)
     { 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Car;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+
 
 class CarController extends Controller
 {
@@ -64,9 +66,13 @@ class CarController extends Controller
 
 
         $data['user_id'] = Auth::id();
-        $data['status'] = "Pending";
-        
-        Car::create($data);
+        $data['status'] = "pending";
+        try{
+            Car::create($data);}
+            
+        catch(QueryException $e){
+            return redirect()->route('home')->with('vehicle_status', 'vehicle already registered'); }
+       
         return redirect()->route('home');
     }
 

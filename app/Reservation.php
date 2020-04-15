@@ -69,15 +69,20 @@ class Reservation extends Model
                         }
 
 
-        public function canceledByAgent(){
+        public function cancelledByAgent(){
             $this->setStatusAttribute("cancelled_by_agent");
             $this->save();
                                 }
 
-        public function cancelByUser(){
-                $this->setStatusAttribute("cancel_by_user");
+        public function cancelledByUser(){
+                $this->setStatusAttribute("cancelled_by_user");
                 $this->save();
                                         }
+
+        public function cancelledByOwner(){
+                    $this->setStatusAttribute("cancelled_by_owner");
+                     $this->save();
+                                                                    }
 
         public function rejectedByAgent(){
             $this->setStatusAttribute("rejected_by_agent");
