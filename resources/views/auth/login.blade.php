@@ -25,11 +25,15 @@
                     </span>
                 @enderror
               </div>
-              <button class="ui button orange" style="margin:10px 0 20px 0">Sign In</button>
-              <p>Not already a member?<a href="{{route('register')}}"> Create Account</a></p>
+              <button class="ui button orange" style="margin:10px 0 20px 0">Sign In with Cruiz Acount</button>
           </form>
-          <a href="{{ url('/login/facebook') }}" class="btn btn-primary"><button class="ui button blue"><i class="fa fa-facebook"></i> Facebook</button></a>
-      </div>
+          <a href="{{ url('/login/facebook') }}">
+            <button class="ui button blue" style="margin:0px 0 20px 0">
+              <i class="fa fa-facebook"></i> Sign in using Facebook
+            </button>
+          </a>
+          <p>Not already a member?<a href="{{route('register')}}"> Create Account</a></p>
+        </div>
   </div>
 </div>
 @endsection
