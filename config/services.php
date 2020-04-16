@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_ACCESS_KEY_ID'),
+        'client_secret' => env('FACEBOOK_SECRET_KEY_ID'),
+        'redirect' => env('FACEBOOK_REDIRECT'),
+      ],
+
 ];

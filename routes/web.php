@@ -95,6 +95,10 @@ Route::get("cars","HomeController@cars");
 
 Route::get("cars/search","CarController@search");
 
+//facebook
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+
 
 
 

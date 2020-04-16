@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @section("content")
 <div class="container">
-  <div class="ui card p-5" style="width:30%;margin:auto;top:6rem;padding:40px">
+  <div class="ui card p-5" style="width:30%;margin:auto;top:2rem;padding:40px">
       <div class="content">
           <form style="text-align:center" method="POST" action="{{ route('login') }}" class="ui form">
               @csrf
@@ -28,6 +28,7 @@
               <button class="ui button orange" style="margin:10px 0 20px 0">Sign In</button>
               <p>Not already a member?<a href="{{route('register')}}"> Create Account</a></p>
           </form>
+          <a href="{{ url('/login/facebook') }}" class="btn btn-primary"><button class="ui button blue"><i class="fa fa-facebook"></i> Facebook</button></a>
       </div>
   </div>
 </div>
