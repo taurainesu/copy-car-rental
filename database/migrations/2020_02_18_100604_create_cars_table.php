@@ -17,6 +17,13 @@ class CreateCarsTable extends Migration
             $table->increments('id');
             $table->string('brand');
             $table->string('model');
+            $table->string('engine_number');
+            $table->string('chasis_number');
+            $table->string('account_number');
+            $table->string('account_type');
+            $table->string('bank');
+            $table->string('branch');
+            $table->string('account_name');
             $table->string('location');
             $table->string('vehicle_registration')->unique();
             $table->string('physical_address');
@@ -31,10 +38,15 @@ class CreateCarsTable extends Migration
             $table->string('imageUrl2')->nullable();
             $table->string('imageUrl3')->nullable();
             $table->string('imageUrl4')->nullable();
+            $table->string('imageUrl5')->nullable();
+            $table->string('imageUrl6')->nullable();
+            $table->string('imageUrl7')->nullable();
+         
+
             $table->string('fuel_type');
             $table->decimal('engine_capacity');
             $table->string('color');
-            $table->decimal('daily_rate');
+            $table->decimal('daily_rate')->default(5);
             $table->integer('seats');
             $table->string('transmission');
             $table->boolean('done')->nullable();
