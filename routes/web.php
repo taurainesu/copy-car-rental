@@ -15,6 +15,7 @@ use App\Http\Resources\Reservations as ReservationsResource;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Http\Request as RequestToo;
 use App\Reservation;
+use Paynow\Payments\Paynow;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -98,6 +99,32 @@ Route::get("cars/search","CarController@search");
 //facebook
 Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get("/payment",function(){
+    $paynow = new Paynow("6668", "b0b170e0-c950-4800-b56c-9ce4e4e02e14",'https://www.google.com','google.com' );
+    $payment = $paynow->createPayment('Invoice 35', 'melmups@outlook.com');
+
+    $payment->add('Sadza and Beans', 1.25);
+
+    $response = $paynow->sendMobile($payment,'0773330550','Ecocash');
+
+    dd($response);
+
+    if($response->success()) {
+        // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit
+        $link = $response->redirectUrl();
+
+        $pollUrl = $response->pollUrl();
+
+        // Check the status of the transaction
+        $status = $paynow->pollTransaction($pollUrl);
+
+        dd($status);
+
+        return redirect($pollUrl);
+
+    }
+});
 
 
 

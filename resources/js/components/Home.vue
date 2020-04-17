@@ -60,10 +60,10 @@
         </div>
       </div>
 
-      <div class="ui container" v-if="!search" style="margin:2% 0">
+      <div class="ui container" v-if="!search" style="margin:2% 0 5% 0;">
         <div class="column">
            <h2 class="ui">Featured Vehicles</h2>
-           <hr style="margin-bottom:15px"/>
+           <div class="ui divider"></div>
         </div>
         <div class="ui">
           <div class="ui four special cards">

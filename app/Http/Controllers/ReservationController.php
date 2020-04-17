@@ -8,6 +8,7 @@ use App\Payment;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Car;
+use Paynow\Payments\Paynow;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
@@ -21,11 +22,43 @@ class ReservationController extends Controller{
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+        
+        public function paymentsTest(Request $request){
+                $data = $request->all();
+
+                $car = Car::find($data['car_id']);
+
+                $paynow = new Paynow('9071','58939c88-b602-4a04-b1d4-105402e603b9','/','/' );
+                
+                $payment = $paynow->createPayment('Invoice '.rand(1,99),"mkunadavy@gmail.com");
+               
+                $payment->add('Renting a '.$car->manufacturer." ".$car->model, $data['amount']);
+
+                $response = $paynow->send($payment);
+
+                if($response->success()) {
+                // Or if you prefer more control, get the link to redirect the user to, then use it as you see fit
+                        $link = $response->redirectUrl();
+
+                        $pollUrl = $response->pollUrl();
+
+
+                // Check the status of the transaction
+                        $status = $paynow->pollTransaction($pollUrl);
+
+                        return redirect($link);
+
+                }
+        }
+
 
         public function save_data(Request $request){   
-
                 $data = $request->all();
+               
                 $payment_method=$data['payment_method'];
+                $amount = $data['amount'];
+                $currency = $data['currency'];
+
                 unset($data['payment_method']);
                 if(isset($data['reservation_id'])){
                         $reservation_id=$data['reservation_id'];
@@ -45,30 +78,49 @@ class ReservationController extends Controller{
                         $phone_number=07711111111;
                         unset($data['phone_number']); 
                              }
+                
+                unset($data['amount']);
+                
+                $currency = $data['currency'];
 
+                unset($data['currency']);
 
-                $start_date=new Carbon($data['pick_up_date']);
-                $end_date=new Carbon($data['return_date']);
                 $car_id=$data['car_id'];
                 $car = Car::findOrFail($car_id);
+                $start_date=new Carbon($data['pick_up_date']);
+                $end_date=new Carbon($data['return_date']);
                 $available=$car->is_free($start_date,$end_date);
+                
+                $carModify = $car;
+
+                $carModify->startDate =  $data['pick_up_date'];
+                $carModify->endDate = $data['return_date'];
+                
+
                 $data['pick_up_date']=$start_date;
                 $data['return_date']=$end_date;
+
+                
                 if ($available){
                         $reservation=$car->reserve($data,$start_date,$end_date);
                         $payment=Payment::store($reservation,$payment_method);
-                        $link=$payment->pay($phone_number,$payment_method);
+                        $link = "connection_error";
+
+                        if($currency == "ZWL Bond"){
+                                $link=$payment->pay($phone_number,$payment_method,$amount,$carModify,$reservation->id);
+                        }
                         
                         if(isset($reservation_id)){
                                 try{
-                                    DB::table('reservations')->where('id',$reservation_id)->delete();}
-                                    
+                                        DB::table('reservations')->where('id',$reservation_id)->delete();
+                                }
+        
                                 catch(ModelNotFoundException $e){
-                                    return redirect()->route('home'); }
-                                                     }
+                                        return redirect()->route('home'); }
+                                }
 
-                if($link!="connection_error"){
-                        if ($payment_method=="other"){
+                if($link != "connection_error"){
+                        if ($payment_method=="Other"){
 
                                 return redirect($link);
                         }
@@ -77,12 +129,10 @@ class ReservationController extends Controller{
                                 return redirect()->route('view_reservation',['id' => $reservation->id]);
         
                         } 
-
-
                 }
         
                 else{
-
+                        $reservation->delete();
                         return redirect()->back()->with('status', 'cant redirect to paynow check your internet connection');
                 }
 
@@ -99,7 +149,7 @@ class ReservationController extends Controller{
                         }
 
         
-                                }
+        }
 
 
         public function get_reservations(Request $request){

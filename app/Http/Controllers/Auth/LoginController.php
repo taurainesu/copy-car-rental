@@ -57,5 +57,6 @@ class LoginController extends Controller
         $user->name;
 
         //create account here
+        //show a semi form - confirm passwords
     }
 }

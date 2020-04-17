@@ -6,7 +6,7 @@
     <div class="ui row grid">
         <div class="column ">
             <h2>Vehicle Inventory</h2>
-            <hr style="margin-bottom:15px"/>
+            <div class="ui divider"></div>
             <div class="ui four cards">
                 @foreach ($search as $car)
                 <div class="card">
@@ -45,5 +45,9 @@
     </div>
     @endif
 </div>
+
+@endsection
+
+@section('javascript')
 
 @endsection

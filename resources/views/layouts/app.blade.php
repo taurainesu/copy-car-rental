@@ -328,3 +328,193 @@
     </div>
 </div>
 
+
+
+<div class="ui tiny modal middle aligned " id="reservationmodal" style="display:none">
+    <i class="close icon"></i>
+            <div class="header">Rent a @{{car.brand}} @{{car.model}}</div>
+            <div class="content">
+            <form form method="POST" action="{{route('new_reservation')}}" enctype="multipart/form-data" >
+            @csrf
+            <div class="ui two column centered grid">
+            <div class="column">
+              <div class="ui input fluid ">
+              <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
+            </div></div>
+            <div class="column"><div class="ui input fluid">
+            <input id="date_picker2" name="return_date"placeholder="End Date"  autocomplete="off" required>
+            </div> </div>
+            </div>
+  
+            <div class="ui divider"></div>
+            <h5>Payment method</h5>
+            
+        <div class="inline fields">
+
+          <div class="field">
+          <div class="ui radio checkbox">
+            <input  id="ecoradio" type="radio" name="payment_method" value="ecocash">
+<label>Ecocash</label>
+</div>
+</div>
+<div class="field">
+<div class="ui radio checkbox">
+<input id="oneradio" type="radio" name="payment_method" value="onemoney">
+<label>One Money</label>
+</div>
+</div>
+<div class="field">
+<div class="ui radio checkbox">
+<input  id="otherradio" type="radio" name="payment_method" value="other">
+<label>Other Methods</label>
+</div>
+</div>
+
+<div class="field">
+<div class="ui checkbox">
+<input  type="checkbox" name="payment_method" value="other">
+<label>I agree that the information provided on my profile is true and i adhere to the terms and conditions</label>
+</div>
+</div>
+
+</div>
+
+            
+  
+            <div class="ui divider"></div>
+            <div class="ui two column  grid">
+            <h5 id="attribute">Daily rate $    </h5> <strong id="total_price"> @{{car.daily_rate}}</strong>
+            </div>
+  
+  </br>
+  
+              <input type="hidden" id="custId" name="car_id" :value='car.id'>
+              <div id="mobile_money" class="ui input" style="display: none;">
+                <label>Phone Number</label>
+                        <input type="text" name="phone_number" value=""></input>
+                    </div>
+                    <div class="ui divider"></div>
+                    
+                          <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
+                
+                          </form> 
+                              </div>
+                
+                          </div>
+
+                          <div class="ui tiny modal middle aligned " id="reservationmodal" style="display:none">
+                            <i class="close icon"></i>
+                              <div class="header">Rent a @{{car.brand}} @{{car.model}}</div>
+                              <div class="content">
+                                <form class="ui form">
+                                  <div class="field">
+                                    <label>Reservations Dates</label>
+                                    <div class="ui two column centered grid">
+                                      <div class="column">
+                                        <div class="ui input fluid ">
+                                        <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
+                                      </div></div>
+                                      <div class="column"><div class="ui input fluid">
+                                      <input id="date_picker2" name="return_date"placeholder="End Date"  autocomplete="off" required>
+                                      </div> </div>
+                                      </div>
+                                  </div>
+                                  <div class="field">
+                                    <label>Reservation Daily Rates</label>
+                                    <div class="inline fields">
+                                      <div class="field">
+                                        <div class="ui radio checkbox">
+                                          <input type="radio" name="example2" checked="checked">
+                                          <label>USD$230</label>
+                                        </div>
+                                      </div>
+                                      <div class="field">
+                                        <div class="ui radio checkbox">
+                                          <input type="radio" name="example2" checked="checked">
+                                          <label>ZWL$2040</label>
+                                        </div>
+                                      </div>
+                                      <div class="field">
+                                        <div class="ui radio checkbox">
+                                          <input type="radio" name="example2" checked="checked">
+                                          <label>R2500</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                </form>
+                                
+                              </div>
+                          </div>
+
+
+
+
+
+<div class="ui tiny modal middle aligned " id="reservationmodal" style="display:none">
+    <i class="close icon"></i>
+    <div class="header">Rent a @{{car.brand}} @{{car.model}}</div>
+    <div class="content">
+        <form form method="POST" action="{{route('new_reservation')}}" enctype="multipart/form-data" >
+        @csrf
+            <div class="ui two column centered grid">
+                <div class="column">
+                    <div class="ui input fluid ">
+                        <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui input fluid">
+                        <input id="date_picker2" name="return_date"placeholder="End Date"  autocomplete="off" required>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="ui divider"></div>
+            
+            <h5>Payment method</h5>
+
+            <div class="inline fields">
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input  id="ecoradio" type="radio" name="payment_method" value="ecocash">
+                        <label>Ecocash</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input id="oneradio" type="radio" name="payment_method" value="onemoney">
+                        <label>One Money</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input  id="otherradio" type="radio" name="payment_method" value="other">
+                        <label>Other Methods</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui divider"></div>
+
+            <div class="ui two column  grid">
+                <h5 id="attribute">Daily rate $</h5> 
+                <strong id="total_price"> @{{car.daily_rate}}</strong>
+            </div>
+
+            </br>
+
+            <input type="hidden" id="custId" name="car_id" :value='car.id'>
+
+            <div id="mobile_money" class="ui input" style="display: none;">
+                <label>Phone Number</label>
+                <input type="text" name="phone_number" value=""></input>
+            </div>
+            <div class="ui divider"></div>
+
+            <button type="submit" class="ui compact inverted button">RESERVE</button>  
+
+        </form> 
+    </div>
+</div>

@@ -21,9 +21,9 @@
  @foreach ($reservations as $reservation) 
         <tr>
           <td class="left aligned">{{$reservation->car["brand"]}}  {{$reservation->car["model"]}}</td>
-          <td >{{$reservation->pick_up_date}} </td>
-          <td>{{$reservation->return_date}}</td>
-          <td class="positive">{{ $reservation->reservation_status}}</td>
+          <td >{{date("D d M Y",strtotime($reservation->pick_up_date))}} </td>
+          <td>{{date("D d M Y",strtotime($reservation->return_date))}}</td>
+          <td class="positive">{{ ucfirst($reservation->reservation_status)}}</td>
           <td class="positive"><a href="reservation/view/{{$reservation->id}}" class="yellow ui compact button">VIEW</a></td>
           </tr>
 

@@ -40,38 +40,34 @@
         background: #fff;
         border:1px solid #cccccc;
       }
-
       #app{
         display:flex;
         min-height: 100vh;
         flex-direction: column;
       }
-
       .site_content{
         flex: 1;
       }
-
       .ui.secondary.inverted.menu .active.item{
         background: none;
         font-weight: bold;
       }
-
       .ui.secondary.inverted.menu .item:hover{
         background: none !important;
         font-weight: bold !important;
         color: #cccccc;
       }
-
       .ui.secondary.inverted.menu .item{
-        font-size: 16px;
+        font-size: 14px;
       }
-
       .orange.button{
         background: #E6B015 !important;
       }
 
+      #reservation_form p,#reservation_form h4{
+          font-size: 13px !important;
+      }
       
-
     </style>
   </head>
 
@@ -82,7 +78,7 @@
     <div id="app">
       {{--Navigation Bar--}}
       <header>
-          <div class="ui secondary menu inverted" style="background:#3E4B96;padding:20px" >
+          <div class="ui secondary menu inverted" style="background:#3E4B96;padding:15px" >
               <div class="ui container">
                   <div style="margin-right:20px"><img src="/logo.png" alt="Logo" height="50px" width="100px"></div>
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>
@@ -109,97 +105,118 @@
 
       <main class="site_content">
 
-       
+            @yield('content')
       
-          @yield('content')
-       
 
           <div class="ui tiny modal middle aligned " id="reservationmodal" style="display:none">
             <i class="close icon"></i>
-                    <div class="header">Rent a @{{car.brand}} @{{car.model}}</div>
-                    <div class="content">
-                    <form form method="POST" action="{{route('new_reservation')}}" enctype="multipart/form-data" >
-                    @csrf
-                    <div class="ui two column centered grid">
-                    <div class="column"><div class="ui input fluid ">
-                    <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
-                    </div></div>
-                    <div class="column"><div class="ui input fluid">
-                    <input id="date_picker2" name="return_date"placeholder="End Date"  autocomplete="off" required>
-                    </div> </div>
+            <div class="header">Rent a @{{car.brand}} @{{car.model}}</div>
+            <div class="content">
+                <form form class="ui form" id="reservation_form" method="POST" action="{{route('new_reservation')}}" enctype="multipart/form-data" >
+                @csrf
+                    <div class="field">
+                      <label style="margin-bottom:10px !important">Reservation Dates</label>
+                      <div class="ui two column centered grid">
+                          <div class="column">
+                              <div class="ui input fluid ">
+                                  <input id="date_picker1" autocomplete="off" name="pick_up_date" placeholder="Start Date" type="text" @click="datepickers(car)" required>
+                              </div>
+                          </div>
+                          <div class="column">
+                              <div class="ui input fluid">
+                                  <input id="date_picker2" name="return_date"placeholder="End Date"  autocomplete="off" required>
+                              </div> 
+                          </div>
+                      </div>
                     </div>
-          
-                    <div class="ui divider"></div>
-                    <h5>Payment method</h5>
-                    
-                <div class="inline fields">
-   
-                  <div class="field">
-                  <div class="ui radio checkbox">
-                    <input  id="ecoradio" type="radio" name="payment_method" value="ecocash">
-        <label>Ecocash</label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input id="oneradio" type="radio" name="payment_method" value="onemoney">
-        <label>One Money</label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui radio checkbox">
-        <input  id="otherradio" type="radio" name="payment_method" value="other">
-        <label>Other Methods</label>
-      </div>
-    </div>
-   
-  </div>
 
-                    
-          
-                    <div class="ui divider"></div>
-                    <div class="ui two column  grid">
-                    <h5 id="attribute">Daily rate $    </h5> <strong id="total_price"> @{{car.daily_rate}}</strong>
+                    <div class="field">
+                      <label style="margin-bottom:10px !important">Choose currency</label>
+                      <select class="ui fluid dropdown currency" id="currency" name="currency" required>
+                        <option value="USD">USD</option>
+                        <option value="Rand" disabled>Rand</option>
+                        <option value="ZWL Bond">ZWL Bond</option>
+                      </select>
                     </div>
-          
-          </br>
-          
-                      <input type="hidden" id="custId" name="car_id" :value='car.id'>
-          
-                      {{-- @if ($reservation)
-                      <input type="hidden" id="custId" name="reservation_id" value=@{{ $reservation->id }}>
-                       @endif --}}
-
-
-
-                       
+      
                     
-                
-                      
-              
-          
-          
-          <div id="mobile_money" class="ui input" style="display: none;">
-          <label>Phone Number</label>
-                  <input type="text" name="phone_number" value=""></input>
-              </div>
-              <div class="ui divider"></div>
-              
-                    <button type="submit" class="orange ui compact inverted button">RESERVE</button>  
-          
-                    </form> 
+                    <div class="field">
+                      <label style="margin-bottom:10px !important">Payment Method</label>
+                      <select class="ui fluid dropdown payment_method" name="payment_method" required>
+                        <option value="Ecocash">Ecocash</option>
+                        <option value="OneMoney">OneMoney</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    <div class="field" id="mobile_money">
+                      <label style="margin-bottom:10px !important">Phone Number</label>
+                      <div class="ui input">
+                        <input type="text" name="phone_number" placeholder="eg 0771234567" value=""></input>
+                    </div>
+                    </div>
+
+                    <div class="field">
+                      <label style="margin-top:10px !important">Summary</label>
+                      <div class="ui divider"></div>
+                      <div class="ui two column grid" style="margin-bottom:-2rem">
+                        <div class="column ten wide">
+                          <p>Daily Rate</p>
                         </div>
-          
+                        <div class="column six wide" style="text-align:end">
+                        <p id="rate">@{{this.$root.current_currency + this.$root.co_daily_rate}}</p>
+                        </div>
+                      </div>
+                      <div class="ui two column grid">
+                        <div class="column ten wide">
+                          <p>Number of Days</p>
+                        </div>
+                        <div class="column six wide" style="text-align:end">
+                          <p id="no_of_days">x  @{{this.$root.num_days}} days</p>
+                        </div>
+                      </div>
+                      <div class="ui divider"></div>
+                      <div class="ui two column grid">
+                          <div class="column ten wide">
+                            <h4>Total Amount</h4>
+                          </div>
+                          <div class="column six wide" style="text-align:end">
+                            <h4 id="total_price">@{{this.$root.totalAmount}}</h4>
+                          </div>
+                      </div>
                     </div>
+        
+                    <input type="hidden" id="custId" name="car_id" :value='car.id'>
 
+                    <input type="hidden" name="amount" :value='this.$root.total'>
 
+                    <div class="ui divider"></div>
 
+                    <div class="inline field">
+                      <div class="ui checkbox">
+                        <input type="checkbox" id="terms" required>
+                        <label>I agree to the terms and conditions</label>
+                      </div>
+                    </div>
+        
+                    <div class="ui divider"></div>
+        
+                    <button type="submit" @click="submitTheForm()" class="ui compact button orange large" id="submit_reservation" style="width:100%">Reserve</button>  
+        
+                </form> 
+            </div>
+        </div>
 
+        <div class="ui  mini modal" id="loading_payment" style="height:200px" hidden>
+          <div class="ui active dimmer">
+            <div class="ui indeterminate text loader">Processing your reservation and payment...Please Wait</div>
+          </div>
+        </div>
                     
       </main>
 
       {{-- footer --}}
-      <div class="ui inverted vertical footer segment" style="padding:50px 0;background:#3E4B96;">
+      <div class="ui inverted vertical footer segment" style="padding:25px 0;background:#3E4B96;">
           <div class="ui container">
               <div class="ui stackable inverted divided equal height stackable grid">
                 <div class="three wide column">
@@ -258,41 +275,16 @@
  
   <script>
     $(document).ready(function() {
-      $("#ecoradio").click(function() {
-       $("#mobile_money").hide();
-       
-        $("#mobile_money").show();
-        
-    });
-
-      $("#otherradio").click(function() {
-        $("#mobile_money").hide();
-      
-    });
-
-    $("#oneradio").click(function() {
-        $("#mobile_money").hide();
-        $("#mobile_money").show();
-    });
-
-
         $('.ui.dropdown')
           .dropdown({on: 'click'
           })
         ;
       })
     ;
-
     $('.special.cards .image').dimmer({
       on: 'hover'
     });
-
-
-
     @if (session('status'))
-
-
-
     $(document).ready(function() {
 $.uiAlert({
 textHead: 'cant connect to paynow server', // header
@@ -306,11 +298,7 @@ time: 3, // time
 });
        
     @endif
-
 @if (session('reservation_status'))
-
-
-
 $(document).ready(function() {
 $.uiAlert({
 textHead: 'Vehicle is reserved in this period', // header
@@ -324,12 +312,7 @@ time: 3, // time
 });
    
 @endif
-
-
 @if (session('vehicle_status'))
-
-
-
 $(document).ready(function() {
 $.uiAlert({
 textHead: 'Vehicle is already in sysytem', // header
@@ -343,42 +326,10 @@ time: 3, // time
 });
    
 @endif
-
-
-
    
-
-
     </script>
-
-
-
-
 
   @yield('javascript')
   
-
-  
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '{your-app-id}',
-      cookie     : true,
-      xfbml      : true,
-      version    : '{api-version}'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
 
 </html>

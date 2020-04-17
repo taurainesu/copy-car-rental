@@ -37694,7 +37694,10 @@ var render = function() {
       !_vm.search
         ? _c(
             "div",
-            { staticClass: "ui container", staticStyle: { margin: "2% 0" } },
+            {
+              staticClass: "ui container",
+              staticStyle: { margin: "2% 0 5% 0" }
+            },
             [
               _vm._m(3),
               _vm._v(" "),
@@ -38005,7 +38008,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "column" }, [
       _c("h2", { staticClass: "ui" }, [_vm._v("Featured Vehicles")]),
       _vm._v(" "),
-      _c("hr", { staticStyle: { "margin-bottom": "15px" } })
+      _c("div", { staticClass: "ui divider" })
     ])
   },
   function() {
@@ -50224,9 +50227,13 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -50254,18 +50261,30 @@ Vue.component('search', __webpack_require__(/*! ./components/Search.vue */ "./re
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 var app = new Vue({
   el: '#app',
   data: function data() {
     return {
       car: "",
-      token: $('meta[name="csrf-token"]').attr('content')
+      token: $('meta[name="csrf-token"]').attr('content'),
+      current_currency: "USD",
+      total: 0.00,
+      payment_method: "Ecocash",
+      daily_rate: 0.00,
+      co_daily_rate: 0.00,
+      num_days: 0,
+      rate_bond: 25,
+      rate_rand: 15,
+      bond: 0.00,
+      rand: 0.00
     };
   },
   methods: {
     datepickers: function datepickers(car) {
       var startDate;
       var endDate;
+      var root = this.$root;
       $("#date_picker1").datepicker({
         minDate: '+0d',
         changeMonth: true,
@@ -50282,19 +50301,72 @@ var app = new Vue({
       $('#date_picker2').change(function () {
         endDate = $(this).datepicker('getDate');
         $("#date_picker1").datepicker("option", "maxDate", endDate);
-        var diffDays = endDate.getDate() - startDate.getDate();
-        var total = diffDays * car.daily_rate;
-        $("#attribute").text("Total $");
-        $("#total_price").text(total);
+        root.num_days = endDate.getDate() - startDate.getDate();
+        root.total = root.num_days * root.co_daily_rate;
+        root.totalAmount = root.current_currency + root.total;
       });
     },
     showModal: function showModal(car) {
-      $('.modal').modal('show');
+      $('form').form('reset');
+      $('#reservationmodal').modal('show');
       this.car = car;
+      this.daily_rate = car.daily_rate;
+      this.co_daily_rate = this.daily_rate;
+      this.bond = this.daily_rate * this.rate_bond;
+      this.rand = this.daily_rate * this.rate_rand;
+      this.totalAmount = this.current_currency + this.total;
     },
     closeDialog: function closeDialog() {
       $('.modal').modal('hide');
+    },
+    change: function change() {
+      var root = this.$root;
+      $("#currency").change(function () {
+        var currency = $(this).val();
+
+        if (currency === "USD") {
+          root.current_currency = currency;
+          root.co_daily_rate = root.daily_rate;
+          root.total = root.num_days * root.daily_rate;
+        } else if (currency === "Rand") {
+          root.current_currency = "R";
+          root.co_daily_rate = root.rand;
+          root.total = root.num_days * (root.daily_rate * root.rate_rand);
+        } else if (currency === "ZWL Bond") {
+          root.current_currency = "ZWL$";
+          root.co_daily_rate = root.bond;
+          root.total = root.num_days * (root.daily_rate * root.rate_bond);
+        }
+
+        root.totalAmount = root.current_currency + root.total;
+      });
+      $(".payment_method").change(function () {
+        var payment_method = $(this).val();
+        var mobile = $("#mobile_money");
+
+        if (payment_method === "Ecocash" || payment_method === "OneMoney") {
+          //show mobile number input
+          mobile.show();
+        } else if (payment_method === "Other") {
+          mobile.hide();
+        }
+      });
+    },
+    submitTheForm: function submitTheForm() {
+      //if terms are checked and dates filled then submit
+      //dates are required 
+      var formElement = document.querySelector("#reservation_form");
+      var formData = new FormData(formElement);
+      var dates = formData.get('pick_up_date') != null && formData.get('return_date') != null;
+
+      if ($("#terms").is(":checked") && dates) {
+        $("#loading_payment").modal('show');
+      } //else alert errros
+
     }
+  },
+  mounted: function mounted() {
+    this.change();
   }
 });
 

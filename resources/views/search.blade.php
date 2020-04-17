@@ -26,7 +26,7 @@
             </div>
             @if(count($result) > 0)
             <h2>Search Results ({{count($result)}})</h2>
-            <hr style="margin-bottom:15px"/>
+            <div class="ui divider"></div>
             <div class="ui four cards">
                 @foreach ($result ?? '' as $car)
                 <div class="card">
@@ -58,7 +58,7 @@
             @else
             <div class="column" style="margin:auto;height:70vh;text-align:center;padding:10% 0">
                 <img src="https://img.icons8.com/cute-clipart/64/000000/nothing-found.png">
-            <h3>No vehicles found...Please try again</h3>
+            <h3 style="margin-bottom:30px">No vehicles found...Please try again</h3>
                 <button class="ui button orange" onclick="parent.history.back()"><i class="ui icon arrow left"></i> Go Back</button>
             </div>
            
@@ -70,10 +70,4 @@
 @endsection
 
 @section('javascript')
-<script>
-function showModal(){
-       alert(car);
-   }
-</script>
-   
 @endsection
