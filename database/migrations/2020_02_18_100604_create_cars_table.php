@@ -41,8 +41,12 @@ class CreateCarsTable extends Migration
             $table->string('imageUrl5')->nullable();
             $table->string('imageUrl6')->nullable();
             $table->string('imageUrl7')->nullable();
-         
-
+            $table->string('imageUrl8')->nullable();
+            $table->string('insuarance_company');
+            $table->string('policy_number');
+            $table->string('cover_type');
+            $table->string('package_name');
+            $table->dateTime('insuarance_expiry');
             $table->string('fuel_type');
             $table->decimal('engine_capacity');
             $table->string('color');

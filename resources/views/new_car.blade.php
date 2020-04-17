@@ -231,7 +231,7 @@
   <div class="ui divider"></div>
 
  
-  <div class="field">
+  <div class="fields">
     <label>Banking Details</label>
     <div class="fields">
       <div class="three wide field">
@@ -249,13 +249,15 @@
     </div>
 
 
+
+
   <div class="three wide field">
         <label>Account Number</label>
         <input type="text" name="account_number" maxlength="16" placeholder="Account Number" required>
       </div>
     <div class="three wide field">
       <label>Account Type</label>
-      <input type="text" name="account_type" maxlength="16" placeholder="Account type" required>
+      <input type="text" name="account type" maxlength="16" placeholder="Account type" required>
     </div>
 
 
@@ -265,6 +267,64 @@
 
 
 <div class="ui divider"></div>
+
+
+
+
+ 
+<div class="fields">
+  <label>Insuarance Details</label>
+  <div class="fields">
+    <div class="three wide field">
+      <label>Insuarance Company</label>
+      <input type="text" name="insuarance_company" maxlength="16" placeholder="Insuarance Company" required>
+    </div>
+  <div class="three wide field">
+    <label>Type of Cover</label>
+    <input type="text" name="cover_type" maxlength="16" placeholder="Type" required>
+  </div>
+
+  <div class="three wide field">
+    <label>Package  Name</label>
+    <input type="text" name="package_name" maxlength="16" placeholder="Package Name" required>
+  </div>
+
+
+  
+
+  
+
+
+<div class="three wide field">
+      <label>Expiry Date</label>
+      <input type="date" name="insuarance_expiry"  required>
+    </div>
+  <div class="three wide field">
+    <label>Policy  Number</label>
+    <input type="text" name="policy_number" maxlength="16" placeholder="Policy Number" required>
+  </div>
+
+
+
+  </div>
+</div>
+
+
+<div class="ui divider"></div>
+
+
+<label for="image" class="">{{ __('Insuarance Details') }}</label>
+
+<input type="file"  name="imageUrl8" id="uploadFile8" style="display: none;"  required/>
+<div class="yellow  ui compact button" id="uploadTrigger8">select file </div>
+
+
+       
+
+
+
+<div class="ui divider"></div>
+
 
   <div class="field">
     <label>Specifications</label>
@@ -511,6 +571,10 @@ $("#uploadTrigger6").click(function(){
 
 $("#uploadTrigger7").click(function(){
   $("#uploadFile7").click();
+});
+
+$("#uploadTrigger8").click(function(){
+  $("#uploadFile8").click();
 });
 
 
