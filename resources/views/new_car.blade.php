@@ -29,6 +29,8 @@
     <option value="fork_lift">ForkLift</option>
     <option value="bus">Bus</option>
     <option value="commuter_ominibus">Commuter Ominibus</option>
+    <option value="tow_truck">Tow Truck</option>
+
       </select>
     </div>
     <div class="three wide field">
@@ -194,7 +196,136 @@
     </div>
     </div>
   </div>
+
+  <div class="ui divider"></div>
+
  
+  <div class="field">
+    <label>Registration Details</label>
+    <div class="fields">
+
+
+      <div class="three wide field">
+        <label>Number Plate</label>
+        <input type="text" name="vehicle_registration" maxlength="16" placeholder="Number plate" required>
+      </div>
+  
+  
+
+      <div class="three wide field">
+        <label>Engine Number</label>
+        <input type="text" name="engine_number" maxlength="16" placeholder="Plates" required>
+      </div>
+    <div class="three wide field">
+      <label>Chasis Number</label>
+      <input type="text" name="chasis_number" maxlength="16" placeholder="Chasis" required>
+    </div>
+
+
+
+
+    </div>
+  </div>
+
+
+  <div class="ui divider"></div>
+
+ 
+  <div class="fields">
+    <label>Banking Details</label>
+    <div class="fields">
+      <div class="three wide field">
+        <label>Bank</label>
+        <input type="text" name="bank" maxlength="16" placeholder="Bank" required>
+      </div>
+    <div class="three wide field">
+      <label>Branch</label>
+      <input type="text" name="branch" maxlength="16" placeholder="Branch" required>
+    </div>
+
+    <div class="three wide field">
+      <label>Account Name</label>
+      <input type="text" name="account_name" maxlength="16" placeholder="Account Name" required>
+    </div>
+
+
+
+
+  <div class="three wide field">
+        <label>Account Number</label>
+        <input type="text" name="account_number" maxlength="16" placeholder="Account Number" required>
+      </div>
+    <div class="three wide field">
+      <label>Account Type</label>
+      <input type="text" name="account type" maxlength="16" placeholder="Account type" required>
+    </div>
+
+
+
+    </div>
+  </div>
+
+
+<div class="ui divider"></div>
+
+
+
+
+ 
+<div class="fields">
+  <label>Insuarance Details</label>
+  <div class="fields">
+    <div class="three wide field">
+      <label>Insuarance Company</label>
+      <input type="text" name="insuarance_company" maxlength="16" placeholder="Insuarance Company" required>
+    </div>
+  <div class="three wide field">
+    <label>Type of Cover</label>
+    <input type="text" name="cover_type" maxlength="16" placeholder="Type" required>
+  </div>
+
+  <div class="three wide field">
+    <label>Package  Name</label>
+    <input type="text" name="package_name" maxlength="16" placeholder="Package Name" required>
+  </div>
+
+
+  
+
+  
+
+
+<div class="three wide field">
+      <label>Expiry Date</label>
+      <input type="date" name="insuarance_expiry"  required>
+    </div>
+  <div class="three wide field">
+    <label>Policy  Number</label>
+    <input type="text" name="policy_number" maxlength="16" placeholder="Policy Number" required>
+  </div>
+
+
+
+  </div>
+</div>
+
+
+<div class="ui divider"></div>
+
+
+<label for="image" class="">{{ __('Insuarance Details') }}</label>
+
+<input type="file"  name="imageUrl8" id="uploadFile8" style="display: none;"  required/>
+<div class="yellow  ui compact button" id="uploadTrigger8">select file </div>
+
+
+       
+
+
+
+<div class="ui divider"></div>
+
+
   <div class="field">
     <label>Specifications</label>
     <div class="fields">
@@ -238,6 +369,13 @@
     </div>
     </div>
   </div>
+
+
+  <div class="ui divider"></div>
+
+  <h4 class="ui  header">Rental Information</h4>
+
+
   <div class="two fields">
     <div class="field">
       <label>City</label>
@@ -266,19 +404,6 @@
       </select>
     </div>
   </div>
-  <h4 class="ui dividing header">Rental Information</h4>
-
-  <div class="fields">
-    <div class="seven wide field">
-      <label>Vehicle Registration Number</label>
-      <input type="text" name="vehicle_registration" maxlength="16" placeholder="Number plate" required>
-    </div>
-    <div class="four wide field">
-      <label>Daily Rate</label>
-      <input type="number" name="daily_rate" placeholder=" $ price per day" step="0.01" required>
-    </div>
-    
-  </div>
 
 
   <div class="field">
@@ -293,41 +418,89 @@
 
 
   <div class="ui divider"></div>
-    <label for="image" class="">{{ __('Car Image') }}</label>
+    <label for="image" class="">{{ __('Front View') }}</label>
 
-    <input id="image" type="file" name="imageUrl" required autocomplete="image" required>
-                
-    <div class="ui divider"></div>
+    <input type="file"  name="imageUrl" id="uploadFile" style="display: none;"  required/>
+    <div class="yellow  ui compact button" id="uploadTrigger">select image</div>
+
+    <label for="image" class="">{{ __('Dashboard') }}</label>
+   
+      
+      
+
+      <input type="file"  name="imageUrl1" id="uploadFile1" style="display: none;"  required/>
+      <div class="yellow  ui compact button" id="uploadTrigger1">select image</div>
+
+    
+            
 
 
-    <label for="image" class="">{{ __('Car Image') }}</label>
 
-<input id="image" type="file" name="imageUrl1" required autocomplete="image" required>
+
+
+
+<label for="image" class="">{{ __('Back View') }}</label>
+
+
+
+
+
+<input type="file"  name="imageUrl2" id="uploadFile2" style="display: none;"  required />
+<div class="yellow  ui compact button" id="uploadTrigger2">select image</div>
+            
+
+
+
+
+<label for="image" class="">{{ __('Seats') }}</label>
+
+<input type="file"  name="imageUrl3" id="uploadFile3" style="display: none;" required />
+<div class="yellow  ui compact button" id="uploadTrigger3">select image</div>
+
+
+
+<label for="image" class="">{{ __('Your best shot') }}</label>
+
+<input type="file"  name="imageUrl4" id="uploadFile4" style="display: none;" requiered />
+<div class="yellow  ui compact button" id="uploadTrigger4">select image</div>
             
 <div class="ui divider"></div>
 
 
-<label for="image" class="">{{ __('Car Image') }}</label>
 
-<input id="image" type="file" name="imageUrl2" required autocomplete="image" required>
+<label for="image" class="">{{ __('Registration Book') }}</label>
+
+<input type="file"  name="imageUrl5" id="uploadFile5" style="display: none;" required />
+<div class="yellow  ui compact button" id="uploadTrigger5">select file </div>
+            
+<div class="ui divider"></div>
+
+<label for="image" class="">{{ __('Agreement of Sale') }}</label>
+
+<input type="file"  name="imageUrl6" id="uploadFile6" style="display: none;" required />
+<div class="yellow  ui compact button" id="uploadTrigger6">select file </div>
             
 <div class="ui divider"></div>
 
 
 
-<label for="image" class="">{{ __('Car Image') }}</label>
+<label for="image" class="">{{ __('Fitness Certificate') }}</label>
 
-<input id="image" type="file" name="imageUrl3" required autocomplete="image" required>
-            
+<input type="file"  name="imageUrl7" id="uploadFile7" style="display: none;"  required/>
+<div class="yellow  ui compact button" id="uploadTrigger7">select file </div>
+
+
+
 <div class="ui divider"></div>
 
-
-
-<label for="image" class="">{{ __('Car Image') }}</label>
-
-<input id="image" type="file" name="imageUrl4" required autocomplete="image" required>
-            
+<div class="field">
+  <div class="ui radio checkbox">
+    <input  id="confrim radio" type="radio"  value="other">
+    <label>I confirm that the information  provided  on this page is true and i will abide by the Criuz Auto city terms and conditions</label>
+  </div>
+</div>
 <div class="ui divider"></div>
+
 
 
   
@@ -336,9 +509,89 @@
 
   <div class="ui divider"></div>
 </form>
+
+
+
+
+<strong class="ui teal"></strong>
+
+<a class="ui orange basic label">All payments will be made within 5 working  days</a>
+
+
+<div class="ui divider"></div>
+
                         
     </div>
 @endsection
+
+
+@section('javascript')
+<script>
+
+
+$("#uploadTrigger").click(function(){
+  $("#uploadFile").click();
+});
+
+
+$("#uploadTrigger1").click(function(){
+  $("#uploadFile1").click();
+});
+
+
+$("#uploadTrigger2").click(function(){
+  $("#uploadFile2").click();
+});
+
+
+$("#uploadTrigger3").click(function(){
+  $("#uploadFile3").click();
+});
+
+
+
+$("#uploadTrigger4").click(function(){
+  $("#uploadFile4").click();
+});
+
+
+
+
+$("#uploadTrigger5").click(function(){
+  $("#uploadFile5").click();
+});
+
+
+
+
+$("#uploadTrigger6").click(function(){
+  $("#uploadFile6").click();
+});
+
+
+$("#uploadTrigger7").click(function(){
+  $("#uploadFile7").click();
+});
+
+$("#uploadTrigger8").click(function(){
+  $("#uploadFile8").click();
+});
+
+
+
+
+
+
+
+</script>
+
+
+
+
+@endsection
+
+
+
 
 
 

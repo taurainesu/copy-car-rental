@@ -22,59 +22,30 @@ class CarController extends Controller
     {  
         $data=$request->all();
 
-        if($files = $request->file('imageUrl')){
-            $destination = 'images/cars/';
-            $carImage = time().".".$files->getClientOriginalExtension();
-            $files->move($destination,$carImage);
-            unset($data['imageUrl']);
-            $data['imageUrl'] ='/images/cars/'.$carImage;
+        $file_array=array('imageUrl','imageUrl1','imageUrl2','imageUrl3','imageUrl4','imageUrl5','imageUrl6','imageUrl7','imageUrl8');
+        $car_photo='images/cars/';
+        $car_file='/documents/cars/';
+        foreach($file_array as $fileindex){
+            $file=$request->file($fileindex);
+            $newName = time().$fileindex.".".$file->getClientOriginalExtension();
+            $file->move($car_photo,$newName);
+            unset($data[$fileindex]);
+            $data[$fileindex] ='/images/cars/'.$newName;
+
         }
-
-        if($files = $request->file('imageUrl1')){
-            $destination = 'images/cars/';
-            $carImage = time()."1.".$files->getClientOriginalExtension();
-            $files->move($destination,$carImage);
-            unset($data['imageUrl1']);
-            $data['imageUrl1'] ='/images/cars/'.$carImage;
-        }
-
-        if($files = $request->file('imageUrl2')){
-            $destination = 'images/cars/';
-            $carImage = time()."2.".$files->getClientOriginalExtension();
-            $files->move($destination,$carImage);
-            unset($data['imageUrl2']);
-            $data['imageUrl2'] ='/images/cars/'.$carImage;
-        }
-
-
-        if($files = $request->file('imageUrl3')){
-            $destination = 'images/cars/';
-            $carImage = time()."3.".$files->getClientOriginalExtension();
-            $files->move($destination,$carImage);
-            unset($data['imageUrl3']);
-            $data['imageUrl3'] ='/images/cars/'.$carImage;
-        }
-
-
-        if($files = $request->file('imageUrl4')){
-            $destination = 'images/cars/';
-            $carImage = time()."4.".$files->getClientOriginalExtension();
-            $files->move($destination,$carImage);
-            unset($data['imageUrl4']);
-            $data['imageUrl4'] ='/images/cars/'.$carImage;
-        }
-
 
         $data['user_id'] = Auth::id();
         $data['status'] = "pending";
         try{
-            Car::create($data);}
+            Car::create($data);
+        
+          }
             
         catch(QueryException $e){
-            return redirect()->route('home')->with('vehicle_status', 'vehicle already registered'); }
+        return redirect()->route('home')->with('vehicle_status', 'vehicle already registered'); }
        
         return redirect()->route('home');
-    }
+    }            
 
     public function index(){
 
