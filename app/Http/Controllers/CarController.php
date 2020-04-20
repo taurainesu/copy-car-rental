@@ -37,14 +37,17 @@ class CarController extends Controller
         $data['user_id'] = Auth::id();
         $data['status'] = "pending";
         try{
-            Car::create($data);
+           $car= Car::create($data);
         
           }
             
         catch(QueryException $e){
-        return redirect()->route('home')->with('vehicle_status', 'vehicle already registered'); }
+     return redirect()->route('home')->with('vehicle_status', 'vehicle already registered');
+      
+    
+    }
        
-        return redirect()->route('home');
+        return redirect()->route('get_car',['id' => $car->id])->with('modal','modal');
     }            
 
     public function index(){

@@ -2,6 +2,26 @@
 
 @section('content')
 <div class="container">
+
+
+  <div class="ui mini modal middle aligned " id="addmodal">
+  
+    <i class="close icon"></i>
+    <div class="header modal_header">Vehicle Added Succesfully</div>
+    <div class="content">
+      <p class="modal_text">Do you want to add another vehicle</p>
+      <a href={{ route('home') }} class="ui red button">No</a>
+      <a href={{ route('new_car_post') }} class="ui green button yes">Yes</a>
+      
+    </div>
+    
+    
+    
+    </div>
+  
+
+
+
   <div class="row justify-content-center">
       <div class="col-md-12">
           <div class="ui container" style="margin-bottom:20px;padding:20px 0">
@@ -180,6 +200,21 @@
 
 @section("javascript")
 <script type="text/javascript">
+
+
+
+
+@if (session('modal'))
+$(document).ready(function() {
+  $("#addmodal").modal("show");
+});
+   
+@endif
+
+
+
+
+
   function showModal(){
     $(".modal").modal("show");
   }

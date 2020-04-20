@@ -1,6 +1,9 @@
 @extends('layouts.layout')
 @section('content')
 
+
+
+
 <div style="background:url('/toyota.jpg') no-repeat;background-size:cover;padding:6% 0">
 	<div class="ui container">
 		<div class="ui card row" style="width:40%;padding:20px">

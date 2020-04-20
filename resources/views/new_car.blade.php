@@ -1,19 +1,33 @@
 @extends('layouts.layout')
 
+
+<style>
+
+
+  
+
+
+
+
+  
+</style>
+
+
+
 @section('content')
 <div class="ui container">
 
 
 
 
-
     <form class="ui form"    method="POST" action="{{route('new_car_post')}}" enctype="multipart/form-data">
 
-
+<div class="ui divider"></div>
     
 @csrf
-  <h4 class="ui dividing header">Vehicle Information</h4>
-  <div class="field">
+<div  style="display: none;" id="firstpart" >
+  <h4 class="ui header">Vehicle Information</h4>
+
     <label>Make and Model</label>
     <div class="fields">
     <div class="three wide field">
@@ -43,7 +57,6 @@
       <label>Model</label>
       <input type="text" name="model" placeholder="Model eg Carina" required>
     </div>
-
 
 
     <div class="three wide field">
@@ -170,6 +183,7 @@
 
 
 
+
     <div class="three wide field">
       <label>Seats</label>
       <select name="seats" required>
@@ -194,45 +208,331 @@
     
 </select>
     </div>
+
+
+
+
+   
+
+
+
+   
     </div>
-  </div>
 
-  <div class="ui divider"></div>
 
- 
-  <div class="field">
-    <label>Registration Details</label>
+
+
+    <div class="field">
+      <h4>Specifications</h4>
+      <div class="fields">
+      <div class="three wide field">
+        <label>Transmission</label>
+        <select name="transmission" class="ui fluid dropdown" required>
+          <option value="manual">Manual</option>
+      <option value="automatic">Automatic</option>
+     
+        </select>
+      </div>
+      <div class="three wide field">
+        <label>Fuel</label>
+        <select class="ui fluid dropdown" name="fuel_type" required>
+          <option value="disiel">Diesel</option>
+      <option value="petrol">Petrol</option>
+      <option value="electric">Electric</option>
+      <option value="hybrid">Hybrid</option>
+     
+        </select>
+      </div>
+  
+  
+      <div class="three wide field">
+        <label>Milage</label>
+        <input type="number" name="milage" required>
+      </div>
+  
+  
+  
+      <div class="three wide field">
+        <label>Engine Capicity</label>
+        <input type="number" name="engine_capacity" placeholder="in litres" step="0.01" required>
+      </div>
+  
+  
+  
+      <div class="three wide field">
+        <label>Color</label>
+        <input type="text" name="color" required>
+      </div>
+      </div>
+    </div>
+  
+
+
     <div class="fields">
 
 
-      <div class="three wide field">
-        <label>Number Plate</label>
-        <input type="text" name="vehicle_registration" maxlength="16" placeholder="Number plate" required>
+
+
+
+
+      <div class="four wide field">
+
+    <label for="image" class="">{{ __('Front photo') }}</label>
+
+    <input type="file"  name="imageUrl" id="uploadFile"   required/>
+
       </div>
-  
-  
-
-      <div class="three wide field">
-        <label>Engine Number</label>
-        <input type="text" name="engine_number" maxlength="16" placeholder="Plates" required>
-      </div>
-    <div class="three wide field">
-      <label>Chasis Number</label>
-      <input type="text" name="chasis_number" maxlength="16" placeholder="Chasis" required>
-    </div>
 
 
 
 
-    </div>
+
+      <div class="four wide field">
+
+        <label for="image" class="">{{ __('Dashboard photo') }}</label>
+    
+        <input type="file"  name="imageUrl1" id="uploadFile1"   required/>
+    
+          </div>
+
+          <div class="four wide field">
+
+            <label for="image" class="">{{ __('Back Photo') }}</label>
+        
+            <input type="file"  name="imageUrl2" id="uploadFile2"   required/>
+        
+              </div>
+
+
+
+
   </div>
 
 
-  <div class="ui divider"></div>
+
+
+  <div class="fields">
+
+
+
+  
+
+
+    <div class="four wide field">
+
+  <label for="image" class="">{{ __('Interior photo showing seats') }}</label>
+
+  <input type="file"  name="imageUrl3" id="uploadFile3"   required/>
+
+    </div>
+
+
+
+
+
+    <div class="four wide field">
+
+      <label for="image" class="">{{ __('Your favourite Photo') }}</label>
+  
+      <input type="file"  name="imageUrl4" id="uploadFile4"   required/>
+  
+        </div>
+
+
+  </div>
+
+  <br><br>
+
+  <a  id="nextclick1"  class="yellow  ui compact button ">{{ __('Next') }}</a>
+
+  <br><br>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+  <div  style="display: none;"  id="secondpart">
+
+    <h4 class="ui header">Vehicle Registration</h4>  
 
  
+    <div class="field">
+     
+  
+      <div class="ui checkbox">
+        <input type="checkbox"  id="not_in_my_name">
+        <label>Vehicle is in not in my name</label>
+      </div>
+  
+      <br><br>
+  
+      <div class="fields">
+  
+  
+        <div class="three wide field">
+          <label>Number Plate</label>
+          <input type="text" name="vehicle_registration" maxlength="16" placeholder="Number plate" required>
+        </div>
+    
+    
+  
+        <div class="three wide field">
+          <label>Engine Number</label>
+          <input type="text" name="engine_number" maxlength="16" placeholder="Plates" required>
+        </div>
+      <div class="three wide field">
+        <label>Chasis Number</label>
+        <input type="text" name="chasis_number" maxlength="16" placeholder="Chasis" required>
+      </div>
+
+
+
+      <div class="four wide field">
+
+        <label for="image" class="">{{ __('Registration Book') }}</label>
+    
+        <input type="file"  name="imageUrl5" id="uploadFile5"   required/>
+    
+          </div>
+  
+  
+  
+      
+  
+  
+  
+      </div>
+  
+  
+      
+  
+      <div class=" ui fields">
+  
+  
+  
+        <div id="agreement" class="ui input" style="display: none;">
+          <div  class="field">
+  
+            <label for="image" class="">{{ __('Upload Agreement of Sale/Affidavit') }}</label>
+        
+            <input type="file"  name="imageUrl6" id="uploadFile6" />
+    
+            
+          </div>
+              </div>
+  
+       
+  
+       
+      
+                  
+      
+     
+  
+  
+      </div>
+
+      
+      
+      
+      <label for="image" class="">{{ __(' Upload  Fitness Certificate from  VID  or AA') }}</label>
+      
+      <input type="file"  name="imageUrl7" id="uploadFile7" required/>
+
+
+      <h4 class="ui header">Insurance Information</h4>
+      <div class="fields">
+    
+
+        <div class="fields">
+          <div class="three wide field">
+            <label>Insurance Company</label>
+            <input type="text" name="insuarance_company" maxlength="16" placeholder="Insurance Company" required>
+          </div>
+        <div class="three wide field">
+          <label>Type of Cover</label>
+          <input type="text" name="cover_type" maxlength="16" placeholder="Type" required>
+        </div>
+      
+        <div class="three wide field">
+          <label>Package  Name</label>
+          <input type="text" name="package_name" maxlength="16" placeholder="Package Name" required>
+        </div>
+      
+      
+        
+      
+        
+      
+      
+      <div class="three wide field">
+            <label>Expiry Date</label>
+            <input type="date" name="insuarance_expiry"  required>
+          </div>
+        <div class="three wide field">
+          <label>Policy  Number</label>
+          <input type="text" name="policy_number" maxlength="16" placeholder="Policy Number" required>
+        </div>
+      
+      
+      
+        </div>
+      </div>
+      
+      
+      <div class="ui divider"></div>
+      
+      
+      <label for="image" class="">{{ __('Policy Document') }}</label>
+      
+      <input type="file"  name="imageUrl8" id="uploadFile8"  required/>
+    
+
+
+
+  
+      <br><br>
+  
+  
+  
+      <a  id="nextclick2"  class="yellow  ui compact button ">{{ __('Next') }}</a>
+     
+    
+    </div>
+ 
+
+
+
+
+
+
+<div class="ui divider"></div>
+
+
+
+
+ 
+
+
+
+       
+
+</div>
+
+<div  style="display: none;" id="thirdpart" >
+
+<h4 class="ui  header">Rental Information</h4>
+<h5>Banking Details</h5>
   <div class="fields">
-    <label>Banking Details</label>
+    
     <div class="fields">
       <div class="three wide field">
         <label>Bank</label>
@@ -266,114 +566,6 @@
   </div>
 
 
-<div class="ui divider"></div>
-
-
-
-
- 
-<div class="fields">
-  <label>Insuarance Details</label>
-  <div class="fields">
-    <div class="three wide field">
-      <label>Insuarance Company</label>
-      <input type="text" name="insuarance_company" maxlength="16" placeholder="Insuarance Company" required>
-    </div>
-  <div class="three wide field">
-    <label>Type of Cover</label>
-    <input type="text" name="cover_type" maxlength="16" placeholder="Type" required>
-  </div>
-
-  <div class="three wide field">
-    <label>Package  Name</label>
-    <input type="text" name="package_name" maxlength="16" placeholder="Package Name" required>
-  </div>
-
-
-  
-
-  
-
-
-<div class="three wide field">
-      <label>Expiry Date</label>
-      <input type="date" name="insuarance_expiry"  required>
-    </div>
-  <div class="three wide field">
-    <label>Policy  Number</label>
-    <input type="text" name="policy_number" maxlength="16" placeholder="Policy Number" required>
-  </div>
-
-
-
-  </div>
-</div>
-
-
-<div class="ui divider"></div>
-
-
-<label for="image" class="">{{ __('Insuarance Details') }}</label>
-
-<input type="file"  name="imageUrl8" id="uploadFile8" style="display: none;"  required/>
-<div class="yellow  ui compact button" id="uploadTrigger8">select file </div>
-
-
-       
-
-
-
-<div class="ui divider"></div>
-
-
-  <div class="field">
-    <label>Specifications</label>
-    <div class="fields">
-    <div class="three wide field">
-      <label>Transmission</label>
-      <select name="transmission" class="ui fluid dropdown" required>
-        <option value="manual">Manual</option>
-    <option value="automatic">Automatic</option>
-   
-      </select>
-    </div>
-    <div class="three wide field">
-      <label>Fuel</label>
-      <select class="ui fluid dropdown" name="fuel_type" required>
-        <option value="disiel">Diesiel</option>
-    <option value="petrol">Petrol</option>
-    <option value="electric">Electric</option>
-    <option value="hybrid">Hybrid</option>
-   
-      </select>
-    </div>
-
-
-    <div class="three wide field">
-      <label>Milage</label>
-      <input type="number" name="milage" required>
-    </div>
-
-
-
-    <div class="three wide field">
-      <label>Engine Capicity</label>
-      <input type="number" name="engine_capacity" placeholder="in litres" step="0.01" required>
-    </div>
-
-
-
-    <div class="three wide field">
-      <label>Color</label>
-      <input type="text" name="color" required>
-    </div>
-    </div>
-  </div>
-
-
-  <div class="ui divider"></div>
-
-  <h4 class="ui  header">Rental Information</h4>
 
 
   <div class="two fields">
@@ -414,101 +606,60 @@
     <label>Description</label>
     <textarea rows="2"  name="description" required></textarea>
   </div>   
-
-
-
-  <div class="ui divider"></div>
-    <label for="image" class="">{{ __('Front View') }}</label>
-
-    <input type="file"  name="imageUrl" id="uploadFile" style="display: none;"  required/>
-    <div class="yellow  ui compact button" id="uploadTrigger">select image</div>
-
-    <label for="image" class="">{{ __('Dashboard') }}</label>
+  <div class="field">
    
-      
-      
-
-      <input type="file"  name="imageUrl1" id="uploadFile1" style="display: none;"  required/>
-      <div class="yellow  ui compact button" id="uploadTrigger1">select image</div>
-
-    
-            
 
 
 
+    <div class="ui checkbox">
+      <input type="checkbox" id="confirm">
+      <label>I confirm that the information  provided  on this page is true and i will abide by the Criuz Auto city terms and conditions</label>
+    </div>
 
-
-
-<label for="image" class="">{{ __('Back View') }}</label>
-
-
-
-
-
-<input type="file"  name="imageUrl2" id="uploadFile2" style="display: none;"  required />
-<div class="yellow  ui compact button" id="uploadTrigger2">select image</div>
-            
-
-
-
-
-<label for="image" class="">{{ __('Seats') }}</label>
-
-<input type="file"  name="imageUrl3" id="uploadFile3" style="display: none;" required />
-<div class="yellow  ui compact button" id="uploadTrigger3">select image</div>
-
-
-
-<label for="image" class="">{{ __('Your best shot') }}</label>
-
-<input type="file"  name="imageUrl4" id="uploadFile4" style="display: none;" requiered />
-<div class="yellow  ui compact button" id="uploadTrigger4">select image</div>
-            
-<div class="ui divider"></div>
-
-
-
-<label for="image" class="">{{ __('Registration Book') }}</label>
-
-<input type="file"  name="imageUrl5" id="uploadFile5" style="display: none;" required />
-<div class="yellow  ui compact button" id="uploadTrigger5">select file </div>
-            
-<div class="ui divider"></div>
-
-<label for="image" class="">{{ __('Agreement of Sale') }}</label>
-
-<input type="file"  name="imageUrl6" id="uploadFile6" style="display: none;" required />
-<div class="yellow  ui compact button" id="uploadTrigger6">select file </div>
-            
-<div class="ui divider"></div>
-
-
-
-<label for="image" class="">{{ __('Fitness Certificate') }}</label>
-
-<input type="file"  name="imageUrl7" id="uploadFile7" style="display: none;"  required/>
-<div class="yellow  ui compact button" id="uploadTrigger7">select file </div>
-
-
-
-<div class="ui divider"></div>
-
-<div class="field">
-  <div class="ui radio checkbox">
-    <input  id="confrim radio" type="radio"  value="other">
-    <label>I confirm that the information  provided  on this page is true and i will abide by the Criuz Auto city terms and conditions</label>
   </div>
+
+
+  <button   style="display:none"  id="submit_button" type="submit" class="yellow  ui compact button ">{{ __('Register') }}</button>
+
+
+<button    id="placeholder_submit_button" type="submit" class="yellow  ui compact button disabled">{{ __('Register') }}</button>
+
+
 </div>
+
+
+
+  <div  style="display: none;"   id="fourthpart">
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
 <div class="ui divider"></div>
 
 
 
   
 
-  <button type="submit" class="yellow  ui compact button ">{{ __('Register') }}</button>
+  
 
   <div class="ui divider"></div>
 </form>
+
+
 
 
 
@@ -520,70 +671,90 @@
 
 <div class="ui divider"></div>
 
-                        
-    </div>
+</div>
+
 @endsection
 
 
 @section('javascript')
+
 <script>
+ 
+$("#not_in_my_name").change(function() {
 
+      if ($('#agreement').is(":visible"))
+        {
+            $("#agreement").hide(); 
+        }
+      
+      else
+          {
+              $("#agreement").show(); 
+            }
 
-$("#uploadTrigger").click(function(){
-  $("#uploadFile").click();
-});
-
-
-$("#uploadTrigger1").click(function(){
-  $("#uploadFile1").click();
-});
-
-
-$("#uploadTrigger2").click(function(){
-  $("#uploadFile2").click();
-});
-
-
-$("#uploadTrigger3").click(function(){
-  $("#uploadFile3").click();
 });
 
 
 
-$("#uploadTrigger4").click(function(){
-  $("#uploadFile4").click();
+$("#confirm").change(function() {
+
+if ($('#subimit_button').is(":visible"))
+  {
+      $("#submit_button").hide(); 
+      $("#placeholder_submit_button").show(); 
+  }
+
+else
+    {
+
+      $("#placeholder_submit_button").hide()
+
+      $('#firstpart').show();
+
+      $('#secondpart').show();
+      
+        $("#submit_button").show(); 
+      }
+
 });
-
-
-
-
-$("#uploadTrigger5").click(function(){
-  $("#uploadFile5").click();
-});
-
-
-
-
-$("#uploadTrigger6").click(function(){
-  $("#uploadFile6").click();
-});
-
-
-$("#uploadTrigger7").click(function(){
-  $("#uploadFile7").click();
-});
-
-$("#uploadTrigger8").click(function(){
-  $("#uploadFile8").click();
-});
-
-
-
-
-
-
-
 </script>
+
+
+<script>
+ $(document).ready(function() {
+  $('#firstpart').show();
+
+
+
+  
+});
+
+
+
+$('#nextclick1').click(
+
+  function(){
+
+    $('#firstpart').hide();
+    $('#secondpart').show();
+
+  }
+);
+
+
+$('#nextclick2').click(
+
+  function(){
+
+    $('#secondpart').hide();
+    $('#thirdpart').show();
+
+  }
+);
+
+
+  </script>
+
 
 
 
