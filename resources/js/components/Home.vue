@@ -27,9 +27,11 @@
                   <span class="text">Vehicle Type</span>
                   <i class="car alternate icon"></i>
                   <div class="menu" tabindex="-1">
-                    <div class="item" data-value="Hatchback">Hatchback</div>
-                    <div class="item" data-value="SUV">SUV</div>
-                    <div class="item" data-value="Sedan">Sedan</div>
+                    <div class="item" data-value="Fuel savers">Fuel savers</div>
+                    <div class="item" data-value="Luxury">Luxury</div>
+                    <div class="item" data-value="SUVs">SUVs</div>
+                    <div class="item" data-value="Medium Sized">Medium Sized</div>
+                    <div class="item" data-value="Tow Truck">Tow Truck</div>
                   </div>
                 </div>
 

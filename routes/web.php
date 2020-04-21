@@ -12,6 +12,7 @@
 */
 
 use App\Http\Resources\Reservations as ReservationsResource;
+use App\Rates;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Http\Request as RequestToo;
 use App\Reservation;
@@ -124,6 +125,11 @@ Route::get("/payment",function(){
         return redirect($pollUrl);
 
     }
+});
+
+
+Route::post("/get/rates",function(){
+    return Rates::all();
 });
 
 

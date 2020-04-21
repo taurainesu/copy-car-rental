@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Rates;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,6 +31,10 @@ class DatabaseSeeder extends Seeder
             'is_admin'=> 1,
         ]);
 
+        Rates::create(['currency'=>'bond','rate'=>45]);
+
+        Rates::create(['currency'=>'rand','rate'=>17]);
+
         DB::table('cars')->insert([
         "id"=> "1",
          "brand"=> "Toyota",
@@ -41,7 +46,7 @@ class DatabaseSeeder extends Seeder
          "year"=> "2011",
          "cordinates"=> null,
          "milage"=> "10000",
-         "type"=> "sedan",
+         "type"=> "SUVs",
          "daily_rate"=>300.00,
          "user_id"=> "1",
          "imageUrl"=> "/images/cars/1584347030.png",

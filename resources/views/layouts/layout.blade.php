@@ -83,7 +83,7 @@
                   <div style="margin-right:20px"><img src="/logo.png" alt="Logo" height="50px" width="100px"></div>
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>
                   <a class="item @if($vehicles ?? false) active @endif" href="/cars">Vehicles</a>
-                  <a class="item @if($register ?? false) active @endif" href="/cars/new">Register   Vehicle</a>
+                  <a class="item @if($register ?? false) active @endif" href="/cars/new" style="display:none">Register   Vehicle</a>
                   <a class="item @if($my_reservation ?? false) active @endif" href="/reservations">My Reservations</a>
                   <a class="item @if($admin ?? false) active @endif" href="/admin">Admin</a>
                   <div class="right menu">
@@ -93,9 +93,12 @@
                           <i class="search link icon"></i>
                           </div>
                       </div>
-                      <form action="{{route("logout")}}" method="POST">
+                      <div class="item">
+                        <a href="/cars/new" class="ui button inverted" style="margin-left:10px">Become A Supplier</a>
+                      </div>
+                      <form class="ui item" action="{{route("logout")}}" method="POST">
                           @csrf
-                          <button type="submit" class="ui button inverted">Logout</button>
+                          <button type="submit" class="ui button inverted" style="width:150px">Logout</button>
                       </form>
                   </div>
               </div>
@@ -130,12 +133,19 @@
                       </div>
                     </div>
 
+                    <div class="field" id="extra_kms" v-if="car.type == 'Tow Truck'">
+                      <label style="margin-bottom:10px !important">Tow Truck Extra kms i.e above 30km</label>
+                      <div class="ui input">
+                        <input type="text" placeholder="Tow Truck extra kms" value=""></input>
+                    </div>
+                    </div>
+
                     <div class="field">
                       <label style="margin-bottom:10px !important">Choose currency</label>
                       <select class="ui fluid dropdown currency" id="currency" name="currency" required>
                         <option value="USD">USD</option>
-                        <option value="Rand" disabled>Rand</option>
-                        <option value="ZWL Bond">ZWL Bond</option>
+                        <option value="Rand">Rand</option>
+                        <option value="ZWL">ZWL</option>
                       </select>
                     </div>
       
