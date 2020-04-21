@@ -33,17 +33,12 @@
     <div class="three wide field">
       <label>Type</label>
       <select class="ui fluid dropdown" name="type" required>
-        <option value="sedan">Sedan</option>
-    <option value="suv">SUV</option>
-    <option value="hatchback">Hatchback</option>
-    <option value="pick_up">Pick Up</option>
-    <option value="sports_car">Sports Car</option>
-    <option value="tractor">Tractor</option>
-    <option value="haulage_truck">Haulage Truck</option>
-    <option value="fork_lift">ForkLift</option>
-    <option value="bus">Bus</option>
-    <option value="commuter_ominibus">Commuter Ominibus</option>
-    <option value="tow_truck">Tow Truck</option>
+        <option value="Fuel Saver">Fuel Saver</option>
+    <option value="Luxury Vehicle">Luxury Vehicle</option>
+    <option value="SUV">SUV</option>
+    <option value="Medium Sized Cars">Medium Sized Car</option>
+    <option value="Tow Truck">Tow Truck</option>
+   
 
       </select>
     </div>
@@ -386,11 +381,11 @@
   
         <div class="three wide field">
           <label>Engine Number</label>
-          <input type="text" name="engine_number" maxlength="16" placeholder="Plates" required>
+          <input type="text" name="engine_number" placeholder="egine_number" required>
         </div>
       <div class="three wide field">
         <label>Chasis Number</label>
-        <input type="text" name="chasis_number" maxlength="16" placeholder="Chasis" required>
+        <input type="text" name="chasis_number"  placeholder="Chasis" required>
       </div>
 
 
@@ -455,16 +450,16 @@
         <div class="fields">
           <div class="three wide field">
             <label>Insurance Company</label>
-            <input type="text" name="insuarance_company" maxlength="16" placeholder="Insurance Company" required>
+            <input type="text" name="insuarance_company" placeholder="Insurance Company" required>
           </div>
         <div class="three wide field">
           <label>Type of Cover</label>
-          <input type="text" name="cover_type" maxlength="16" placeholder="Type" required>
+          <input type="text" name="cover_type"  placeholder="Type" required>
         </div>
       
         <div class="three wide field">
           <label>Package  Name</label>
-          <input type="text" name="package_name" maxlength="16" placeholder="Package Name" required>
+          <input type="text" name="package_name" placeholder="Package Name" required>
         </div>
       
       

@@ -27,10 +27,11 @@ class CarController extends Controller
         $car_file='/documents/cars/';
         foreach($file_array as $fileindex){
             $file=$request->file($fileindex);
-            $newName = time().$fileindex.".".$file->getClientOriginalExtension();
-            $file->move($car_photo,$newName);
-            unset($data[$fileindex]);
-            $data[$fileindex] ='/images/cars/'.$newName;
+            if(isset($file)) {
+                $newName = time().$fileindex.".".$file->getClientOriginalExtension();
+                $file->move($car_photo,$newName);
+                unset($data[$fileindex]);
+                $data[$fileindex] ='/images/cars/'.$newName;}
 
         }
 
