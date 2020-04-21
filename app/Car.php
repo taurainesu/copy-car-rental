@@ -78,6 +78,8 @@ class Car extends Model
                 $cost_per_day=$this->daily_rate*$days;
                 $total_cost=$days*$cost_per_day;
                 $data['total_cost']=$total_cost;
+                $data['split_20'] = 0.2*$total_cost;
+                $data['split_80'] = 0.8*$total_cost;
                 $data['daily_rate']=$this->daily_rate;
 
                 $reservation=Reservation::create($data);

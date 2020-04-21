@@ -106,7 +106,7 @@ class ReservationController extends Controller{
                         $payment=Payment::store($reservation,$payment_method);
                         $link = "connection_error";
 
-                        if($currency == "ZWL Bond"){
+                        if($currency == "ZWL"){
                                 $link=$payment->pay($phone_number,$payment_method,$amount,$carModify,$reservation->id);
                         }
                         

@@ -125,7 +125,7 @@ const app = new Vue({
                 root.total = root.num_days*(root.daily_rate*root.rate_rand);
               }
         
-              else if(currency === ("ZWL Bond")){
+              else if(currency === ("ZWL")){
                 root.current_currency = "ZWL$";
                 root.co_daily_rate = root.bond;
                 root.total = root.num_days*(root.daily_rate*root.rate_bond);
@@ -166,5 +166,13 @@ const app = new Vue({
     },
     mounted(){
         this.change();
+
+        Axios.post('/get/rates').then(response=>{
+          alert(response.data);
+          if(response.data != null){
+            this.rate_rand = response.data.rand;
+            this.rate_bond = response.data.bond;
+          }
+        })
     }
 });

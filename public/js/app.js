@@ -2084,6 +2084,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -37968,17 +37970,31 @@ var staticRenderFns = [
         _c("div", { staticClass: "menu", attrs: { tabindex: "-1" } }, [
           _c(
             "div",
-            { staticClass: "item", attrs: { "data-value": "Hatchback" } },
-            [_vm._v("Hatchback")]
+            { staticClass: "item", attrs: { "data-value": "Fuel savers" } },
+            [_vm._v("Fuel savers")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "item", attrs: { "data-value": "SUV" } }, [
-            _vm._v("SUV")
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Luxury" } },
+            [_vm._v("Luxury")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "item", attrs: { "data-value": "SUVs" } }, [
+            _vm._v("SUVs")
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "item", attrs: { "data-value": "Sedan" } }, [
-            _vm._v("Sedan")
-          ])
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Medium Sized" } },
+            [_vm._v("Medium Sized")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Tow Truck" } },
+            [_vm._v("Tow Truck")]
+          )
         ])
       ]
     )
@@ -50332,7 +50348,7 @@ var app = new Vue({
           root.current_currency = "R";
           root.co_daily_rate = root.rand;
           root.total = root.num_days * (root.daily_rate * root.rate_rand);
-        } else if (currency === "ZWL Bond") {
+        } else if (currency === "ZWL") {
           root.current_currency = "ZWL$";
           root.co_daily_rate = root.bond;
           root.total = root.num_days * (root.daily_rate * root.rate_bond);
@@ -50366,7 +50382,17 @@ var app = new Vue({
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.change();
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/get/rates').then(function (response) {
+      alert(response.data);
+
+      if (response.data != null) {
+        _this.rate_rand = response.data.rand;
+        _this.rate_bond = response.data.bond;
+      }
+    });
   }
 });
 
