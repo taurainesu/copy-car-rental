@@ -37625,7 +37625,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "content" }, [
-                  _c("h2", [_vm._v("Rent a Vehicle")]),
+                  _c("h3", [_vm._v("Rent a Vehicle")]),
                   _vm._v(" "),
                   _c("div", { staticClass: "ui divider" }),
                   _vm._v(" "),
@@ -37751,19 +37751,19 @@ var render = function() {
                             staticStyle: { "padding-bottom": "10px" }
                           }),
                           _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "14px" } }, [
+                          _c("p", [
                             _c("strong", [_vm._v("Milage")]),
                             _vm._v(" : " + _vm._s(car.milage) + "km")
                           ]),
                           _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "14px" } }, [
+                          _c("p", [
                             _c("strong", [_vm._v("Location")]),
                             _vm._v(" : " + _vm._s(car.location))
                           ]),
                           _vm._v(" "),
-                          _c("p", { staticStyle: { "font-size": "14px" } }, [
+                          _c("p", [
                             _c("strong", [_vm._v("Rental Rate")]),
-                            _vm._v(" : $ZWL" + _vm._s(car.daily_rate) + "/day")
+                            _vm._v(" : USD" + _vm._s(car.daily_rate) + "/day")
                           ])
                         ]),
                         _vm._v(" "),
@@ -37970,24 +37970,27 @@ var staticRenderFns = [
         _c("div", { staticClass: "menu", attrs: { tabindex: "-1" } }, [
           _c(
             "div",
-            { staticClass: "item", attrs: { "data-value": "Fuel savers" } },
-            [_vm._v("Fuel savers")]
+            { staticClass: "item", attrs: { "data-value": "Fuel Saver" } },
+            [_vm._v("Fuel Saver")]
           ),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "item", attrs: { "data-value": "Luxury" } },
-            [_vm._v("Luxury")]
+            { staticClass: "item", attrs: { "data-value": "Luxury Vehicle" } },
+            [_vm._v("Luxury Vehicle")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "item", attrs: { "data-value": "SUVs" } }, [
-            _vm._v("SUVs")
+          _c("div", { staticClass: "item", attrs: { "data-value": "SUV" } }, [
+            _vm._v("SUV")
           ]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "item", attrs: { "data-value": "Medium Sized" } },
-            [_vm._v("Medium Sized")]
+            {
+              staticClass: "item",
+              attrs: { "data-value": "Medium Sized Cars" }
+            },
+            [_vm._v("Medium Sized Cars")]
           ),
           _vm._v(" "),
           _c(
@@ -38022,7 +38025,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column" }, [
-      _c("h2", { staticClass: "ui" }, [_vm._v("Featured Vehicles")]),
+      _c("h3", { staticClass: "ui" }, [_vm._v("Featured Vehicles")]),
       _vm._v(" "),
       _c("div", { staticClass: "ui divider" })
     ])
@@ -50290,6 +50293,7 @@ var app = new Vue({
       daily_rate: 0.00,
       co_daily_rate: 0.00,
       num_days: 0,
+      exchange_rates: "",
       rate_bond: 25,
       rate_rand: 15,
       bond: 0.00,
@@ -50385,12 +50389,10 @@ var app = new Vue({
     var _this = this;
 
     this.change();
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/get/rates').then(function (response) {
-      alert(response.data);
-
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/rates/get').then(function (response) {
       if (response.data != null) {
-        _this.rate_rand = response.data.rand;
-        _this.rate_bond = response.data.bond;
+        _this.rate_rand = response.data[1].rate;
+        _this.rate_bond = response.data[0].rate;
       }
     });
   }

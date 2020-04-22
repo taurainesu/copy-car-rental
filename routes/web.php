@@ -127,9 +127,46 @@ Route::get("/payment",function(){
     }
 });
 
-
-Route::post("/get/rates",function(){
+Route::post("/rates/get",function(){
     return Rates::all();
+});
+
+Route::post("/rates/update",function(){
+
+    $bond = request()->bond;
+    $rand = request()->rand;
+
+    $rates = Rates::all();
+
+    if(count($rates) == 0){
+        $insertA = Rates::create(['currency'=>'ZWL','rate'=>$bond]);
+        $insertB = Rates::create(['currency'=>'Rand','rate'=>$rand]);
+
+        if($insertA && $insertB){
+            return ['message'=>true];
+        }
+    }
+
+    else{
+        $findBond = Rates::where('currency','ZWL')->get()->first();
+        $findRand = Rates::where('currency','Rand')->get()->first();
+
+        if(!empty($rand)){
+            $insertA = $findRand->update(['rate'=>$rand]);
+        }
+
+        if(!empty($bond)){
+            $insertB = $findBond->update(['rate'=>$bond]);
+        }
+
+        if($insertA && $insertB){
+            return ['message'=>true];
+        }
+
+    }
+
+    return ['message'=>false];
+
 });
 
 

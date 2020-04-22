@@ -25,7 +25,7 @@
                 </div>
             </div>
             @if(count($result) > 0)
-            <h2>Search Results ({{count($result)}})</h2>
+            <h3>Search Results ({{count($result)}})</h3>
             <div class="ui divider"></div>
             <div class="ui four cards">
                 @foreach ($result ?? '' as $car)
@@ -37,9 +37,9 @@
                         <div class="header" style="font-size:16px">{{$car->year}} {{$car->brand}} {{$car->model}}</div>
                         <div class="meta" style="padding-bottom:10px">
                         </div>
-                        <p style="font-size:12px">Milage : {{$car->milage}}km</p>
-                        <p style="font-size:12px">Location : {{$car->location}}</p>
-                        <p style="font-size:12px">Rental Rate : <strong>$ZWL{{$car->daily_rate}}/day</strong></p>
+                        <p><strong>Milage</strong> : {{$car->milage}}km</p>
+                        <p><strong>Location</strong> : {{$car->location}}</p>
+                        <p><strong>Rental Rate</strong> : USD{{$car->daily_rate}}/day</p>
                     </div>
                     <div class="extra content">
                         <a href="{{'/cars/info/'.$car->id}}">

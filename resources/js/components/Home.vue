@@ -5,7 +5,7 @@
         <div class="ui container">
           <div class="ui card row" style="width:40%;padding:20px">
             <div class="content">
-              <h2>Rent a Vehicle</h2>
+              <h3>Rent a Vehicle</h3>
               <div class="ui divider"></div>
                 <div class="ui floating dropdown labeled icon button search" id="loc" style="width:100%">
                   <input class="search" autocomplete="off" tabindex="0" name="location">
@@ -27,10 +27,10 @@
                   <span class="text">Vehicle Type</span>
                   <i class="car alternate icon"></i>
                   <div class="menu" tabindex="-1">
-                    <div class="item" data-value="Fuel savers">Fuel savers</div>
-                    <div class="item" data-value="Luxury">Luxury</div>
-                    <div class="item" data-value="SUVs">SUVs</div>
-                    <div class="item" data-value="Medium Sized">Medium Sized</div>
+                    <div class="item" data-value="Fuel Saver">Fuel Saver</div>
+                    <div class="item" data-value="Luxury Vehicle">Luxury Vehicle</div>
+                    <div class="item" data-value="SUV">SUV</div>
+                    <div class="item" data-value="Medium Sized Cars">Medium Sized Cars</div>
                     <div class="item" data-value="Tow Truck">Tow Truck</div>
                   </div>
                 </div>
@@ -64,7 +64,7 @@
 
       <div class="ui container" v-if="!search" style="margin:2% 0 5% 0;">
         <div class="column">
-           <h2 class="ui">Featured Vehicles</h2>
+           <h3 class="ui">Featured Vehicles</h3>
            <div class="ui divider"></div>
         </div>
         <div class="ui">
@@ -77,9 +77,9 @@
               <div class="header" style="font-size:16px">{{car.year}} {{car.brand}} {{car.model}}</div>
               <div class="meta" style="padding-bottom:10px">
               </div>
-              <p style="font-size:14px"><strong>Milage</strong> : {{car.milage}}km</p>
-              <p style="font-size:14px"><strong>Location</strong> : {{car.location}}</p>
-              <p style="font-size:14px"><strong>Rental Rate</strong> : $ZWL{{car.daily_rate}}/day</p>
+              <p><strong>Milage</strong> : {{car.milage}}km</p>
+              <p><strong>Location</strong> : {{car.location}}</p>
+              <p><strong>Rental Rate</strong> : USD{{car.daily_rate}}/day</p>
             </div>
             <div class="extra content">
               <a v-bind:href="'cars/info/'+car.id">

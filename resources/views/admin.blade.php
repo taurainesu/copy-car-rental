@@ -62,8 +62,10 @@
       <a class="active item" data-tab="first/a">All Vehicles</a>
       <a class=" item" data-tab="first/b"> Awaiting Approval</a>
       <a class="item" data-tab="first/c">Deleted</a>
+      <a class="item" data-tab="first/d">Rates</a>
     </div>
-    <div class="ui bottom attached active tab segment" data-tab="first/a"><div class="ui container" style="padding:30px 0">
+    <div class="ui bottom attached active tab segment" data-tab="first/a">
+      <div class="ui container" style="padding:30px 0">
 
 
   <table class="ui center aligned basic table">
@@ -286,6 +288,25 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
 </div>
   
   </div>
+
+  <div class="ui bottom attached tab segment" data-tab="first/d">
+  
+    <div class="ui container" style="padding:30px 0">
+      <div class="ui form">
+        <div class="field">
+          <label>Rand against USD</label>
+          <input type="number" id="rand"/>
+        </div>
+        <div class="field">
+          <label>Bond against USD</label>
+          <input type="number" id="bond"/>
+        </div>
+        <button onclick="updateRates()" class="ui button primary">Update Rates</button>
+      </div>
+    </div>
+  
+  </div>
+
   </div>
   <div class="ui tab segment " data-tab="second">
     <div class="ui top attached tabular menu">
@@ -700,6 +721,59 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
 @section('javascript')
 
 <script>
+
+function updateRates(){
+  var rand = $("#rand").val();
+  var bond = $("#bond").val();
+
+  if(rand != null && bond != null){
+    $.ajax({
+        url: '/rates/update',
+        type: 'post',
+        data: {
+          'rand':rand,
+          'bond':bond,
+        },
+        headers: {
+          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content') //for object property name, use quoted notation shown in second
+        },
+        dataType: 'json',
+        success: function (data) {
+          //JSON.stringify(data);
+            if(data.message){
+              alert("Rates updated successfully");
+            }
+
+            else{
+              alert("Error updating rates");
+            }
+        }
+    });
+  }
+}
+
+function getUpdates(){
+  $.ajax({
+        url: '/rates/get',
+        type: 'post',
+        headers: {
+          'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content') //for object property name, use quoted notation shown in second
+        },
+        dataType: 'json',
+        success: function (data) {
+          //JSON.stringify(data);
+          $("#rand").val(data[1].rate.replace('.0',''));
+          $("#bond").val(data[0].rate.replace('.0',''));
+        }
+    });
+}
+
+getUpdates();
+
+
+
+
+
 $('#context1 .menu .item').tab({ context: $('#context1'),});
 $('#context2 .menu .item').tab({ context: 'parent', });
 

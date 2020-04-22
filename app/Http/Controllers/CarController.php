@@ -90,7 +90,7 @@ class CarController extends Controller
         $start = $params["pickUpDate"];
         $end = $params["dropOffDate"];
         $location = $params['location'];
-        $type = strtolower($params['carType']);
+        $type = $params['carType'];
 
         $result = "";
 

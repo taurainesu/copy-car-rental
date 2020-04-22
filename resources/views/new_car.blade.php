@@ -223,18 +223,18 @@
       <div class="three wide field">
         <label>Transmission</label>
         <select name="transmission" class="ui fluid dropdown" required>
-          <option value="manual">Manual</option>
-      <option value="automatic">Automatic</option>
+          <option value="Manual">Manual</option>
+      <option value="Automatic">Automatic</option>
      
         </select>
       </div>
       <div class="three wide field">
         <label>Fuel</label>
         <select class="ui fluid dropdown" name="fuel_type" required>
-          <option value="disiel">Diesel</option>
-      <option value="petrol">Petrol</option>
-      <option value="electric">Electric</option>
-      <option value="hybrid">Hybrid</option>
+          <option value="Diesel">Diesel</option>
+      <option value="Petrol">Petrol</option>
+      <option value="Electric">Electric</option>
+      <option value="Hybrid">Hybrid</option>
      
         </select>
       </div>

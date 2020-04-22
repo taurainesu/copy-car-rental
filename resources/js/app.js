@@ -43,6 +43,7 @@ const app = new Vue({
             daily_rate:0.00,
             co_daily_rate:0.00,
             num_days:0,
+            exchange_rates:"",
             rate_bond:25,
             rate_rand:15,
             bond:0.00,
@@ -167,11 +168,11 @@ const app = new Vue({
     mounted(){
         this.change();
 
-        Axios.post('/get/rates').then(response=>{
-          alert(response.data);
+        Axios.post('/rates/get').then(response=>{
+         
           if(response.data != null){
-            this.rate_rand = response.data.rand;
-            this.rate_bond = response.data.bond;
+            this.rate_rand = response.data[1].rate;
+            this.rate_bond = response.data[0].rate;
           }
         })
     }

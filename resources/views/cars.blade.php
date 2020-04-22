@@ -5,7 +5,7 @@
     @if(count($search) > 0)
     <div class="ui row grid">
         <div class="column ">
-            <h2>Vehicle Inventory</h2>
+            <h3>Vehicle Inventory</h3>
             <div class="ui divider"></div>
             <div class="ui four cards">
                 @foreach ($search as $car)
@@ -17,9 +17,9 @@
                         <div class="header" style="font-size:16px">{{$car->year}} {{$car->brand}} {{$car->model}}</div>
                         <div class="meta" style="padding-bottom:10px">
                         </div>
-                        <p style="font-size:12px">Milage : {{$car->milage}}km</p>
-                        <p style="font-size:12px">Location : {{$car->location}}</p>
-                        <p style="font-size:12px">Rental Rate : <strong>$ZWL{{$car->daily_rate}}/day</strong></p>
+                        <p><strong>Milage</strong> : {{$car->milage}}km</p>
+                        <p><strong>Location</strong> : {{$car->location}}</p>
+                        <p><strong>Rental Rate</strong> : USD{{$car->daily_rate}}/day</p>
                     </div>
                     <div class="extra content">
                     <a href="{{'cars/info/'.$car->id}}">

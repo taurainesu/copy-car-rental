@@ -53,7 +53,7 @@
 
                   <div>
                     <p style="margin:0;padding-top:10px;font-size:16px"><b><i class="money bill alternate icon" style="margin-right:10px"></i>Daily Rate</b></p>
-                    <p style="margin:0;padding:0">$ZWL{{$car->daily_rate}}</p>
+                    <p style="margin:0;padding:0">USD{{$car->daily_rate}}</p>
                   </div>
                   
                 </div>
@@ -65,7 +65,7 @@
                 <div class=" two wide column" style="text-align:end;">
                   <div style="margin:50px 0">
                     <p style="margin:0;padding:0;font-size:16px"><b><i class="car icon" style="margin-right:10px"></i>Fuel Type</b></p>
-                    <p style="margin:0;padding:0">{{$car->fuel_type}}</p>
+                    <p style="margin:0;padding:0">{{ucfirst($car->fuel_type)}}</p>
                   </div>
 
                   <div>
@@ -96,7 +96,7 @@
           </div>
       
           <div id="information" class="anchor ui grid container">
-              <h2>Vehicle Info</h2>
+              <h3 style="margin:0">Vehicle Info</h3>
               <div class="row">
                   <div class="ui column divider"></div>
                 </div>
@@ -119,7 +119,7 @@
                           </div>
                           <div class="column info">
                               <p style="margin:0;font-size: 14px;">Transmission</p>
-                          <p class="big"><b>{{$car->transmission}}</b></p>
+                          <p class="big"><b>{{ucfirst($car->transmission)}}</b></p>
                           </div>
                       </div>
                   </div>
@@ -138,12 +138,12 @@
           </div>
       
           <div class="ui grid container" style="margin-bottom:40px;margin-top:0px">
-              <h2>Reviews (5)</h2>
-              <div class="row" style="margin-bottom: 20px;">
+              <h3 style="margin:0">Reviews (0)</h3>
+              <div class="row" style="margin-bottom:10px;">
                 <div class="ui column divider"></div>
               </div>
               <div class="">
-                  <div class="ui cards four">
+                  <div class="ui cards four" style="display:none">
                       <div class="card">
                         <div class="content">
                           <p class="right floated" style="margin-left: 5px;"><b>4.7</b></p>
