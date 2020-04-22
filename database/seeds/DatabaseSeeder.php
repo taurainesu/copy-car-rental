@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
             'is_admin'=> 1,
         ]);
 
-        Rates::create(['currency'=>'bond','rate'=>45]);
+        Rates::create(['currency'=>'ZW','rate'=>45]);
 
-        Rates::create(['currency'=>'rand','rate'=>17]);
+        Rates::create(['currency'=>'Rand','rate'=>17]);
 
         DB::table('cars')->insert([
         "id"=> "1",
