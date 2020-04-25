@@ -1,0 +1,6 @@
+1. Create bootable disc or USB
+2. On product screen select, I do not have key.
+3. OS choice: Select Windows 10 Pro
+4. After Installation, activate windows by changing the product key.
+5. NB : please ensure you have Internet access and your time and date is correct (timezone)
+6. Enter provided key to activate Windows 10 Pro 
