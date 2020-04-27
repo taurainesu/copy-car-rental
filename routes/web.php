@@ -206,7 +206,8 @@ Route::get("/send/mail",function(){
 });
 
 Route::get("/reset/password",function(){
-    return view("auth.passwords.reset");
+
+    return view("auth.passwords.reset",['token'=>request()->token]);
 });
 
 Route::get("/reset/link",function(){
@@ -215,12 +216,20 @@ Route::get("/reset/link",function(){
 
 Route::post("/send/link",function(){
     $data = request()->email;
-    $user = User::where("email",$data)->get()->first();
+    $user = User::where("email",$data)->select('email','passwordToken')->get()->first();
+
+    $str = base64_encode(bin2hex(openssl_random_pseudo_bytes(50)));
+    $str = str_replace("+","",$str);
+    $str = str_replace("&","",$str);
+    $str = str_replace("=","",$str);
     
     if($user !== null){
         //create reset token
+        $user->passwordToken = $str;
         //send mail
+        $message = "Password reset link is <a href='http://localhost:8000/reset/password?token=".$str."'>http://localhost:8000/reset/password?token=".$str."</a>";
         //notify
+        $user->save();
     }
 });
 

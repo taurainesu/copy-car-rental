@@ -3,7 +3,7 @@
 <div class="container">
   <div class="ui card p-5" style="width:30%;margin:auto;top:2rem;padding:40px">
       <div class="content">
-          <form style="text-align:center" method="POST" action="{{ route('login') }}" class="ui form">
+          <form method="POST" action="{{ route('login') }}" class="ui form">
               @csrf
               <img src="/logo.png" style="width:100px;height:50px"/>
               <h3 style="margin:20px 0">Sign In</h3>

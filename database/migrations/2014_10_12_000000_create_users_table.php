@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->text('accessToken')->nullable();
             $table->text('facebookToken')->nullable();
             $table->string('licenseNo')->unique();
+            $table->text("passwordToken")->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
