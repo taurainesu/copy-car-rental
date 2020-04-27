@@ -29,14 +29,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get("/admin",'AdminController@index')->name("admin")->middleware('admin');
 
+
+Route::get("/admin/vehicle/report/{type}",'AdminController@vehicle_report')->name("vehicle_report")->middleware('admin');
+
+Route::get("/admin/reservation/report/{type}",'AdminController@reservation_report')->name("reservation_report")->middleware('admin');
+
 Route::get('ajax',function() {
     return view('message');
  });
- 
- 
- 
+
+
+
  Route::post("/poll","PaymentController@poll")->name('gets');
- 
+
 
 
 
@@ -45,6 +50,8 @@ Route::get("cars/new","CarController@index")->name("new_car");
 
 
 Route::get("cars/get","CarController@cars")->name("get_cars");
+
+
 
 Route::post("cars/new","CarController@store")->name("new_car_post");
 
