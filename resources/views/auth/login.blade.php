@@ -25,11 +25,16 @@
                     </span>
                 @enderror
               </div>
-              <button class="ui button orange login" style="margin:10px 0 20px 0" onclick="showLoading()">Sign In with Cruiz Acount</button>
+              <button class="ui button orange login" style="margin:10px 0 10px 0" onclick="showLoading()">Sign in with Cruiz Account</button>
           </form>
           <a href="{{ url('/login/facebook') }}">
-            <button class="ui button blue" style="margin:0px 0 20px 0">
-              <i class="fa fa-facebook"></i> Sign in using Facebook
+            <button class="ui button blue" style="margin:0px 0 10px 0">
+              <i class="fa fa-facebook" style="margin-right:10px"></i> Sign in with Facebook
+            </button>
+          </a>
+          <a href="{{ url('/reset/link') }}">
+            <button class="ui button green" style="margin:0px 0 20px 0">
+               Forgot Password
             </button>
           </a>
           <p>Not already a member?<a href="{{route('register')}}"> Create Account</a></p>

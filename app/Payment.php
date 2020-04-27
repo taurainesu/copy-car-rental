@@ -49,7 +49,7 @@ class Payment extends Model
         }
 
 	    public function addPayment($paynow,$amount,$car){
-	        $payment = $paynow->createPayment('Invoice '.rand(000000,999999), Auth::user()->email);
+	        $payment = $paynow->createPayment('Invoice '.rand(000000,999999),'mkunadavy@gmail.com');
 		    $payment->add($car->brand." ".$car->model.' Rental from '.$car->startDate.' to '.$car->endDate,$amount);
 		    return $payment;
 		}

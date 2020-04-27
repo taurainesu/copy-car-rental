@@ -16,8 +16,10 @@ use App\Rates;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Http\Request as RequestToo;
 use App\Reservation;
+use App\User;
 use Paynow\Payments\Paynow;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -181,6 +183,38 @@ Route::post("/user/id",function(){
     return [
         "id"=>Auth::id()
     ];
+});
+
+
+Route::get("/send/mail",function(){
+    $data = array('name'=>"Daveson Mukuna");
+
+      Mail::send(['text'=>'mail'], $data, function($message) {
+         $message->to('mkunadavy@outlook.com', 'Davyson Mukuna')
+         ->subject
+            ('Paynow Mail');
+      });
+
+      echo "Basic Email Sent. Check your inbox.";
+});
+
+Route::get("/reset/password",function(){
+    return view("auth.passwords.reset");
+});
+
+Route::get("/reset/link",function(){
+    return view("auth.passwords.sendlink");
+})->name("sendlink");
+
+Route::post("/send/link",function(){
+    $data = request()->email;
+    $user = User::where("email",$data)->get()->first();
+    
+    if($user !== null){
+        //create reset token
+        //send mail
+        //notify
+    }
 });
 
 
