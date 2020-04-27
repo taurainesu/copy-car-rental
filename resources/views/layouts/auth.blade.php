@@ -117,4 +117,13 @@ function checkLoginState() {
 }
 </script>
 
+<script>
+  function showLoading(){
+    $(".login").attr("class","ui button orange login loading");
+    $(".register").attr("class","ui button orange register loading");
+  }
+
+  
+</script>
+
 </html>

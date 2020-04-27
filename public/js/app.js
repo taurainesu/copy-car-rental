@@ -2086,6 +2086,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2097,6 +2101,7 @@ __webpack_require__.r(__webpack_exports__);
       dropOffDate: "",
       pickUpDate: "",
       cars: "",
+      user: "",
       modal: false,
       searchedCars: "",
       number: 0,
@@ -2181,7 +2186,276 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    var _this3 = this;
+
     this.getCars();
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/user/id").then(function (response) {
+      _this3.user = response.data;
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportsReservations.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReportsReservations.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      report_type: "Daily",
+      report: {
+        reservations: 0,
+        harare: 0,
+        bulawayo: 0,
+        others: 0
+      }
+    };
+  },
+  methods: {
+    getDaily: function getDaily() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reports/get/daily/reservations").then(function (response) {
+        _this.report = response.data;
+      })["catch"](function (error) {
+        alert("Cannot fetch daily report");
+      });
+    },
+    getWeekly: function getWeekly() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reports/get/weekly/reservations").then(function (response) {
+        _this2.report = response.data;
+      })["catch"](function (error) {
+        alert("Cannot fetch weekly report");
+      });
+    },
+    getMonthly: function getMonthly() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reports/get/monthly/reservations").then(function (response) {
+        _this3.report = response.data;
+      })["catch"](function (error) {
+        alert("Cannot fetch monthly report");
+      });
+    },
+    fetchThis: function fetchThis() {
+      var type = this.report_type;
+
+      if (type == "Daily") {
+        this.getDaily();
+      } else if (type == "Weekly") {
+        this.getWeekly();
+      } else if (type == "Monthly") {
+        this.getMonthly();
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.getDaily();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportsVehicles.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReportsVehicles.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      report_type: "Daily",
+      report: {
+        harare: 0,
+        vehicles: 0,
+        bulawayo: 0,
+        others: 0,
+        all: 0
+      }
+    };
+  },
+  methods: {
+    getDaily: function getDaily() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reports/get/daily/vehicles").then(function (response) {
+        _this.report = response.data;
+      })["catch"](function (error) {
+        alert("Cannot fetch daily report");
+      });
+    },
+    getWeekly: function getWeekly() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reports/get/weekly/vehicles").then(function (response) {
+        _this2.report = response.data;
+      })["catch"](function (error) {
+        alert("Cannot fetch weekly report");
+      });
+    },
+    getMonthly: function getMonthly() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/reports/get/monthly/vehicles").then(function (response) {
+        _this3.report = response.data;
+      })["catch"](function (error) {
+        alert("Cannot fetch monthly report");
+      });
+    },
+    fetchThis: function fetchThis() {
+      var type = this.report_type;
+
+      if (type == "Daily") {
+        this.getDaily();
+      } else if (type == "Weekly") {
+        this.getWeekly();
+      } else if (type == "Monthly") {
+        this.getMonthly();
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.getDaily();
   }
 });
 
@@ -37704,109 +37978,137 @@ var render = function() {
               _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "ui" }, [
-                _c(
-                  "div",
-                  { staticClass: "ui four special cards" },
-                  _vm._l(_vm.cars, function(car) {
-                    return _c(
+                _vm.cars.length > 0
+                  ? _c(
                       "div",
+                      { staticClass: "ui four special cards" },
+                      _vm._l(_vm.cars, function(car) {
+                        return _c(
+                          "div",
+                          {
+                            key: car.id,
+                            staticClass: "card",
+                            staticStyle: { "border-radius": "0" }
+                          },
+                          [
+                            _c("div", { staticClass: "image" }, [
+                              _c("img", {
+                                staticStyle: {
+                                  width: "80%",
+                                  height: "100%",
+                                  margin: "auto",
+                                  padding: "20px"
+                                },
+                                attrs: { src: car.imageUrl }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "content" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "header",
+                                  staticStyle: { "font-size": "16px" }
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(car.year) +
+                                      " " +
+                                      _vm._s(car.brand) +
+                                      " " +
+                                      _vm._s(car.model)
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", {
+                                staticClass: "meta",
+                                staticStyle: { "padding-bottom": "10px" }
+                              }),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Milage")]),
+                                _vm._v(" : " + _vm._s(car.milage) + "km")
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Location")]),
+                                _vm._v(" : " + _vm._s(car.location))
+                              ]),
+                              _vm._v(" "),
+                              _c("p", [
+                                _c("strong", [_vm._v("Rental Rate")]),
+                                _vm._v(
+                                  " : USD" + _vm._s(car.daily_rate) + "/day"
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "extra content" }, [
+                              _c(
+                                "a",
+                                { attrs: { href: "cars/info/" + car.id } },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "ui button icon orange right floated",
+                                      staticStyle: { width: "48%" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\r\n                View\r\n                "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  class: {
+                                    "ui button orange":
+                                      car.supplier_id != _vm.user.id,
+                                    "ui button orange disabled":
+                                      car.supplier_id == _vm.user.id
+                                  },
+                                  staticStyle: { width: "48%" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.$root.showModal(car)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                Reserve\r\n                "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.cars.length <= 0
+                  ? _c(
+                      "p",
                       {
-                        key: car.id,
-                        staticClass: "card",
-                        staticStyle: { "border-radius": "0" }
+                        staticStyle: { padding: "20px 0 0 0" },
+                        attrs: { align: "center" }
                       },
                       [
-                        _c("div", { staticClass: "image" }, [
-                          _c("img", {
-                            staticStyle: {
-                              width: "80%",
-                              height: "100%",
-                              margin: "auto",
-                              padding: "20px"
-                            },
-                            attrs: { src: car.imageUrl }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "content" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "header",
-                              staticStyle: { "font-size": "16px" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(car.year) +
-                                  " " +
-                                  _vm._s(car.brand) +
-                                  " " +
-                                  _vm._s(car.model)
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "meta",
-                            staticStyle: { "padding-bottom": "10px" }
-                          }),
-                          _vm._v(" "),
-                          _c("p", [
-                            _c("strong", [_vm._v("Milage")]),
-                            _vm._v(" : " + _vm._s(car.milage) + "km")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _c("strong", [_vm._v("Location")]),
-                            _vm._v(" : " + _vm._s(car.location))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _c("strong", [_vm._v("Rental Rate")]),
-                            _vm._v(" : USD" + _vm._s(car.daily_rate) + "/day")
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "extra content" }, [
-                          _c("a", { attrs: { href: "cars/info/" + car.id } }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "ui button icon orange right floated",
-                                staticStyle: { width: "48%" }
-                              },
-                              [
-                                _vm._v(
-                                  "\r\n                View\r\n                "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "ui button orange",
-                              staticStyle: { width: "48%" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.$root.showModal(car)
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\r\n                Reserve\r\n                "
-                              )
-                            ]
-                          )
-                        ])
+                        _vm._v(
+                          "\r\n              No vehicles found...Please reload page\r\n          "
+                        )
                       ]
                     )
-                  }),
-                  0
-                )
+                  : _vm._e()
               ])
             ]
           )
@@ -38077,6 +38379,336 @@ var staticRenderFns = [
         )
       ]
     )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportsReservations.vue?vue&type=template&id=ae093f2a&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReportsReservations.vue?vue&type=template&id=ae093f2a& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticStyle: { display: "none" } }, [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.report_type,
+              expression: "report_type"
+            }
+          ],
+          staticClass: "ui dropdown",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.report_type = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.fetchThis
+            ]
+          }
+        },
+        [
+          _c("option", [_vm._v("Daily")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Weekly")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Monthly")])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", { attrs: { align: "right" } }, [
+      _c(
+        "button",
+        {
+          class: {
+            "ui button primary small": _vm.report.reservations > 0,
+            "ui button primary small disabled": _vm.report.reservations <= 0
+          }
+        },
+        [_vm._m(0)]
+      )
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "ui celled striped  fixed single line table" }, [
+      _c("tbody", [
+        _c("tr", [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v(
+              "\n          " + _vm._s(_vm.report.reservations) + "\n        "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n          " + _vm._s(_vm.report.harare) + "\n        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _vm._m(3),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n          " + _vm._s(_vm.report.bulawayo) + "\n        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n          " + _vm._s(_vm.report.others) + "\n        ")
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticStyle: { color: "#fff !important" },
+        attrs: { href: "/reports/daily/reservations/download" }
+      },
+      [_c("i", { staticClass: "file pdf icon" }), _vm._v(" Generate Pdf")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("Total new reservations")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("strong", [_vm._v("Total new reservations from Harare")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("strong", [_vm._v("Total new reservations from Bulawayo")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("strong", [_vm._v("Total new reservations from Other")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportsVehicles.vue?vue&type=template&id=0344b1ea&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReportsVehicles.vue?vue&type=template&id=0344b1ea& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticStyle: { display: "none" } }, [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.report_type,
+              expression: "report_type"
+            }
+          ],
+          staticClass: "ui dropdown",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.report_type = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.fetchThis
+            ]
+          }
+        },
+        [
+          _c("option", [_vm._v("Daily")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Weekly")]),
+          _vm._v(" "),
+          _c("option", [_vm._v("Monthly")])
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("p", { attrs: { align: "right" } }, [
+      _c(
+        "button",
+        {
+          class: {
+            "ui button primary small": _vm.report.vehicles > 0,
+            "ui button primary small disabled": _vm.report.vehicles <= 0
+          }
+        },
+        [_vm._m(0)]
+      )
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "ui celled striped  fixed single line table" }, [
+      _c("tbody", [
+        _c("tr", [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n          " + _vm._s(_vm.report.vehicles) + "\n        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _vm._m(2),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n          " + _vm._s(_vm.report.harare) + "\n        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _vm._m(3),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n          " + _vm._s(_vm.report.bulawayo) + "\n        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n          " + _vm._s(_vm.report.others) + "\n        ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("tr", [
+          _vm._m(5),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n          " + _vm._s(_vm.report.all) + "\n        ")
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticStyle: { color: "#fff !important" },
+        attrs: { href: "/reports/daily/vehicles/download" }
+      },
+      [_c("i", { staticClass: "file pdf icon" }), _vm._v(" Generate Pdf")]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("Total new vehicles registered")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("Total new vehicles from Harare")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("strong", [_vm._v("Total new vehicles from Bulawayo")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("Total new vehicles from Other")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("Total vehicles in the system")])])
   }
 ]
 render._withStripped = true
@@ -50273,6 +50905,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('home', __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue")["default"]);
+Vue.component('reports-vehicle', __webpack_require__(/*! ./components/ReportsVehicles.vue */ "./resources/js/components/ReportsVehicles.vue")["default"]);
+Vue.component('reports-reservation', __webpack_require__(/*! ./components/ReportsReservations.vue */ "./resources/js/components/ReportsReservations.vue")["default"]);
 Vue.component('search', __webpack_require__(/*! ./components/Search.vue */ "./resources/js/components/Search.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50297,7 +50931,8 @@ var app = new Vue({
       rate_bond: 25,
       rate_rand: 15,
       bond: 0.00,
-      rand: 0.00
+      rand: 0.00,
+      tow_kms: 0
     };
   },
   methods: {
@@ -50578,6 +51213,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportsReservations.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/ReportsReservations.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ReportsReservations_vue_vue_type_template_id_ae093f2a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportsReservations.vue?vue&type=template&id=ae093f2a& */ "./resources/js/components/ReportsReservations.vue?vue&type=template&id=ae093f2a&");
+/* harmony import */ var _ReportsReservations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportsReservations.vue?vue&type=script&lang=js& */ "./resources/js/components/ReportsReservations.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ReportsReservations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ReportsReservations_vue_vue_type_template_id_ae093f2a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ReportsReservations_vue_vue_type_template_id_ae093f2a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ReportsReservations.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportsReservations.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/ReportsReservations.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsReservations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ReportsReservations.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportsReservations.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsReservations_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportsReservations.vue?vue&type=template&id=ae093f2a&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/ReportsReservations.vue?vue&type=template&id=ae093f2a& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsReservations_vue_vue_type_template_id_ae093f2a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ReportsReservations.vue?vue&type=template&id=ae093f2a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportsReservations.vue?vue&type=template&id=ae093f2a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsReservations_vue_vue_type_template_id_ae093f2a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsReservations_vue_vue_type_template_id_ae093f2a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportsVehicles.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/ReportsVehicles.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ReportsVehicles_vue_vue_type_template_id_0344b1ea___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReportsVehicles.vue?vue&type=template&id=0344b1ea& */ "./resources/js/components/ReportsVehicles.vue?vue&type=template&id=0344b1ea&");
+/* harmony import */ var _ReportsVehicles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReportsVehicles.vue?vue&type=script&lang=js& */ "./resources/js/components/ReportsVehicles.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ReportsVehicles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ReportsVehicles_vue_vue_type_template_id_0344b1ea___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ReportsVehicles_vue_vue_type_template_id_0344b1ea___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ReportsVehicles.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportsVehicles.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/ReportsVehicles.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsVehicles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ReportsVehicles.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportsVehicles.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsVehicles_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ReportsVehicles.vue?vue&type=template&id=0344b1ea&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/ReportsVehicles.vue?vue&type=template&id=0344b1ea& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsVehicles_vue_vue_type_template_id_0344b1ea___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ReportsVehicles.vue?vue&type=template&id=0344b1ea& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReportsVehicles.vue?vue&type=template&id=0344b1ea&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsVehicles_vue_vue_type_template_id_0344b1ea___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReportsVehicles_vue_vue_type_template_id_0344b1ea___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

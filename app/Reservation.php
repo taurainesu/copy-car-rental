@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Reservation extends Model
 {
@@ -20,6 +21,15 @@ class Reservation extends Model
 
     public function car(){
         return $this->belongsTo("App\Car");
+    }
+
+    public function cars(){
+        return $this->hasMany("App\Car");
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany("App\Reviews");
     }
 
 
@@ -93,6 +103,22 @@ class Reservation extends Model
             $this->setStatusAttribute("rejected_by_user");
             $this->save();
                                                                         }
+
+        public function review($reservation_id,$text,$rating){
+            $reviewed = $this->reviews()->create([
+                'user_id'=> Auth::user()->id,
+                'reservation_id'=>$reservation_id,
+                'review'=>$text,
+                'reviewer'=> Auth::user()->name,
+                'rating'=>$rating,
+            ]);
+
+            if($reviewed){
+                return true;
+            }
+
+            return false;
+        }
 
         
 

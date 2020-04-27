@@ -103,7 +103,7 @@ class ReservationController extends Controller{
                 
                 if ($available){
                         $reservation=$car->reserve($data,$start_date,$end_date);
-                        $payment=Payment::store($reservation,$payment_method);
+                        $payment=Payment::store($reservation,$payment_method,$amount,$currency);
                         $link = "connection_error";
 
                         if($currency == "ZWL"){

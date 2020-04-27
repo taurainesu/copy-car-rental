@@ -19,6 +19,9 @@ class CreatePaymentsTable extends Migration
             $table->string('reservation_id');
             $table->foreign('reservation_id')->references('id')->on('reservations');
             $table->string('mode');
+            $table->string('currency');
+            $table->double("split_supplier");
+            $table->double("split_admin");
             $table->double('amount');
             $table->string('poll_url');
             $table->string('status')->default('pending');

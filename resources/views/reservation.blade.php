@@ -124,28 +124,27 @@
 
 
 
-<div class="four column centered row">
+<div class="column centered row">
     <div class="column">
-
-    <div class="ui unstackable  centered steps">
+    <div class="ui unstackable centered steps">
   <div class="step">
     <i class="car icon"></i>
     <div class="content">
-      <div class="title">Reservation</div>
-      <div class="description">You have made a reservation from {{$reservation->pick_up_date}} to {{$reservation->return_date}}</div>
+      <div class="title"><h3>Reservation</h3></div>
+      <div class="description">You have made a reservation from <strong>{{date("D d M Y",strtotime($reservation->pick_up_date))}}</strong> to <strong>{{date("D d M Y",strtotime($reservation->return_date))}}</strong></div>
     </div>
   </div>
   <div class="active step">
     <i class="dollar icon"></i>
     <div class="content">
-      <div class="title">Payment Status</div>
-      <div class="description">{{$reservation->payment->status}}</div>
+      <div class="title"><h3>Payment Status</h3></div>
+      <div class="description">{{ucwords($reservation->payment->status)}}</div>
     </div>
   </div>
   <div class="disabled step">
     <i class="info circle icon"></i>
     <div class="content">
-      <div class="title">Confirmation status</div>
+      <div class="title"><h3>Confirmation status</h3></div>
       <div class="description">Awaiting confirmation from owner</div>
     </div>
   </div>

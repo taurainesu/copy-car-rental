@@ -66,7 +66,8 @@
       <a class="active item" data-tab="first/a">All Vehicles</a>
       <a class=" item" data-tab="first/b"> Awaiting Approval</a>
       <a class="item" data-tab="first/c">Deleted</a>
-      <a class="item" data-tab="first/d">Rates</a>
+      <a class="item" data-tab="first/d">USD Rates</a>
+      <a class="item" data-tab="first/e">Daily Report</a>
     </div>
     <div class="ui bottom attached active tab segment" data-tab="first/a">
       <div class="ui container" style="padding:30px 0">
@@ -311,12 +312,17 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
 
   </div>
 
+  <div class="ui bottom attached tab segment" data-tab="first/e"> 
+      <reports-vehicle></reports-vehicle>
+  </div>
+
   </div>
   <div class="ui tab segment " data-tab="second">
     <div class="ui top attached tabular menu">
       <a class="item" data-tab="second/a">All Reservations</a>
       <a class="item" data-tab="second/b">Pending Reservations</a>
       <a class="item" data-tab="second/c">Confirmed Reservations</a>
+      <a class="item" data-tab="second/d">Daily Report</a>
     </div>
     <div class="ui bottom attached tab segment active" data-tab="second/a">
      <table class="ui right aligned basic table">
@@ -485,6 +491,11 @@ onclick="showModal(&quot;cars/restore/first/c/{{$car->id}}&quot;,
  @endforeach
         </tbody>
             </table></div>
+
+
+            <div class="ui bottom attached tab segment" data-tab="second/d"> 
+              <reports-reservation></reports-reservation>
+          </div>
 
 
   </div>

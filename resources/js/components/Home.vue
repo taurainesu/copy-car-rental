@@ -68,7 +68,7 @@
            <div class="ui divider"></div>
         </div>
         <div class="ui">
-          <div class="ui four special cards">
+          <div class="ui four special cards" v-if="cars.length > 0">
             <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
             <div class="image">
               <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">
@@ -88,7 +88,7 @@
                 </button>
               </a>
               
-                <button class="ui button orange" style="width:48%" @click="$root.showModal(car)">
+                <button :class="{'ui button orange' : car.supplier_id != user.id,'ui button orange disabled' : car.supplier_id == user.id}"  style="width:48%" @click="$root.showModal(car)">
                 Reserve
                 </button>
             
@@ -96,6 +96,10 @@
           </div>
 
           </div>
+
+          <p align="center"  v-if="cars.length <= 0" style="padding:20px 0 0 0">
+              No vehicles found...Please reload page
+          </p>
         </div>
       </div>
 
@@ -154,6 +158,7 @@
                 dropOffDate:"",
                 pickUpDate:"",
                 cars:"",
+                user:"",
                 modal:false,
                 searchedCars:"",
                 number:0,
@@ -253,6 +258,10 @@
         },
         mounted(){
             this.getCars();
+
+            Axios.post("/user/id").then(response=>{
+              this.user = response.data;
+            })
         },
     }
 </script>

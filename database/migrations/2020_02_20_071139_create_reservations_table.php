@@ -21,8 +21,6 @@ class CreateReservationsTable extends Migration
             $table->integer('car_id');
             $table->decimal('daily_rate');
             $table->decimal('total_cost')->nullable();
-            $table->double('split_20');
-            $table->double('split_80');
             /**
                  *show the status of the reservation.
                  *pending (default state)

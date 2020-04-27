@@ -176,6 +176,20 @@ Route::post("/rates/update",function(){
 
 });
 
+Route::post("/reports/get/daily/vehicles",'ReportsController@dailyVehicles');
+
+Route::post("/reports/get/daily/reservations",'ReportsController@dailyReservations');
+
+Route::get("/reports/daily/reservations/download","ReportsController@ddr");
+
+Route::get("/reports/daily/vehicles/download","ReportsController@ddv");
+
+Route::post("/user/id",function(){
+    return [
+        "id"=>Auth::id()
+    ];
+});
+
 
 
 

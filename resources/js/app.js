@@ -21,6 +21,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('home', require('./components/Home.vue').default);
+Vue.component('reports-vehicle', require('./components/ReportsVehicles.vue').default);
+Vue.component('reports-reservation', require('./components/ReportsReservations.vue').default);
 Vue.component('search', require('./components/Search.vue').default);
 
 /**
@@ -48,6 +50,7 @@ const app = new Vue({
             rate_rand:15,
             bond:0.00,
             rand:0.00,
+            tow_kms:0,
         }
     },
     methods:{

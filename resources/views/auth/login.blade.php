@@ -25,7 +25,7 @@
                     </span>
                 @enderror
               </div>
-              <button class="ui button orange" style="margin:10px 0 20px 0">Sign In with Cruiz Acount</button>
+              <button class="ui button orange login" style="margin:10px 0 20px 0" onclick="showLoading()">Sign In with Cruiz Acount</button>
           </form>
           <a href="{{ url('/login/facebook') }}">
             <button class="ui button blue" style="margin:0px 0 20px 0">
@@ -35,6 +35,8 @@
           <p>Not already a member?<a href="{{route('register')}}"> Create Account</a></p>
         </div>
   </div>
+
 </div>
 @endsection
+
 
