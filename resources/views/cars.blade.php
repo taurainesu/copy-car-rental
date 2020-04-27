@@ -28,7 +28,7 @@
                             </button>
                           </a>
                           
-                            <button class="ui button orange" style="width:48%" @click="showModal({{$car}})">
+                            <button @if($car->supplier_id != Auth::id()) class="ui button orange" @else class="ui button orange disabled" @endif style="width:48%" @click="showModal({{$car}})">
                             Reserve
                             </button>
                     </div>
@@ -38,7 +38,7 @@
         </div>
     </div>
     @else
-    <div class="column" style="margin:auto;height:70vh;text-align:center;padding:10% 0">
+    <div class="column" style="margin:auto;height:60vh;text-align:center;padding:10% 0">
         <img src="https://img.icons8.com/cute-clipart/64/000000/nothing-found.png">
         <h3>No vehicles found...Please try again</h3>
         <button class="ui button orange" onclick=" parent.history.back();"><i class="ui icon arrow left"></i> Go Back</button>

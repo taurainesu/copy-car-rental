@@ -18,12 +18,15 @@ class Payment extends Model
             return $this->belongsTo("App\Reservation");
         }
 
-        public static function store($reservation,$payment_method){
+        public static function store($reservation,$payment_method,$amount,$currency){
             $payment = Payment::create([
                 'reservation_id' => $reservation->id,
                 'poll_url' => "",
+                'currency'=>$currency,
                 'mode' => $payment_method,
-                'amount'=>$reservation->total_cost,
+                'split_supplier'=>0.8*$amount,
+                'split_admin'=>0.2*$amount,
+                'amount'=>$amount,
             ]);
 
             return $payment;

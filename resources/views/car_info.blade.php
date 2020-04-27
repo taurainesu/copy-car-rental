@@ -33,7 +33,7 @@
                     </div>
                    
                     <div class="column" style="text-align:end;margin:0">
-                      <button class="ui orange button" @click="showModal({{$car}})">
+                      <button @if($car->supplier_id != Auth::id()) class="ui button orange" @else class="ui button orange disabled" @endif  @click="showModal({{$car}})">
                         Reserve Car
                       </button>
                       <a href="#information"><button class="ui button secondary">

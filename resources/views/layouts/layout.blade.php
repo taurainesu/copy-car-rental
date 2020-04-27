@@ -80,7 +80,11 @@
       <header>
           <div class="ui secondary menu inverted" style="background:#3E4B96;padding:15px" >
               <div class="ui container">
-                  <div style="margin-right:20px"><img src="/logo.png" alt="Logo" height="50px" width="100px"></div>
+                  <div style="margin-right:20px">
+                    <a href="/">
+                      <img src="/logo.png" alt="Logo" height="50px" width="100px">
+                    </a>
+                  </div>
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>
                   <a class="item @if($vehicles ?? false) active @endif" href="/cars">Vehicles</a>
                   <a class="item @if($register ?? false) active @endif" href="/cars/new" style="display:none">Register   Vehicle</a>
@@ -134,9 +138,9 @@
                     </div>
 
                     <div class="field" id="extra_kms" v-if="car.type == 'Tow Truck'">
-                      <label style="margin-bottom:10px !important">Tow Truck Extra kms i.e above 30km</label>
+                      <label style="margin-bottom:10px !important">Tow Truck kms i.e if distance above 30km</label>
                       <div class="ui input">
-                        <input type="text" placeholder="Tow Truck extra kms" value=""></input>
+                        <input type="number" placeholder="Kilometres" v-model="tow_kms"></input>
                     </div>
                     </div>
 
