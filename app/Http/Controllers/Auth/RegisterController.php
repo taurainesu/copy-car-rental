@@ -74,7 +74,8 @@ class RegisterController extends Controller
             'address'=>$this->formatText($data['address']),
             'age'=>$data['age'],
             'nationality'=>ucfirst($data['nationality']),
-            'country'=>$data['country']
+            'country'=>$data['country'],
+            'facebookID'=>$data['facebookID'],
         ]);
     }
 

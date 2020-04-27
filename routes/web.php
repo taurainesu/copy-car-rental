@@ -107,8 +107,8 @@ Route::get("cars","HomeController@cars");
 Route::get("cars/search","CarController@search");
 
 //facebook
-Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
-Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/facebook', 'FacebookController@redirectToProvider');
+Route::get('login/facebook/callback', 'FacebookController@handleProviderCallback');
 
 Route::get("/payment",function(){
     $paynow = new Paynow("6668", "b0b170e0-c950-4800-b56c-9ce4e4e02e14",'https://www.google.com','google.com' );

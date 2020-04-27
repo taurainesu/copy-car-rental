@@ -4,16 +4,17 @@
     <div class="column">
         <div class="ui card" style="padding:40px;width:45%;margin:3rem auto">
             <div class="content">
-                <form method="POST" action="{{ route('register') }}" class="ui form" style="text-align:center">
+                <form method="POST" action="{{ route('register') }}" class="ui form">
                     <img src="/logo.png" style="width:100px;height:50px;"/>
-                    <h3 style="margin:20px auto">Registration</h3>
+                <h3 style="margin:20px auto">{{$message ?? 'Registration'}}</h3>
                     @csrf
+                    <input hidden name="facebookID" value="{{$facebookID ?? ''}}"/>
                     <div class="field">
                         <label class="headers">Personal Details</label>
                         <div class="ui divider"></div>
                         <div class="field">
                             <label>Full Name</label>
-                            <input type="text" name="name" placeholder="Name" required>
+                            <input type="text" name="name" placeholder="Name" required value="{{$name ?? ''}}">
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -314,7 +315,7 @@
                           <div class="two fields">
                             <div class="field">
                               <label>Email Address</label>
-                                <input type="email" name="email" placeholder="Email Address" required>
+                            <input type="email" name="email" value="{{$email ?? ''}}" placeholder="Email Address" required>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -323,7 +324,7 @@
                             </div>
                             <div class="field">
                               <label>Phone Number</label>
-                              <input type="number" name="phone" placeholder="Phone Number" required>
+                              <input type="number" name="phone" placeholder="Phone Number " required>
                             </div>
                           </div>
                           <div class="two fields">
