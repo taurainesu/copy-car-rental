@@ -40,6 +40,10 @@ class CarController extends Controller
         $data['status'] = "pending";
         try{
            $car= Car::create($data);
+           if(!auth()->isSupplier){
+               auth()->isSupplier = true;
+               auth()->save();
+           }
             if(Supplier::find(Auth::id()) == null){
                 Supplier::create([
                     'supplier_name'=>Auth::user()->name,

@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +19,8 @@ use App\Reservation;
 use App\User;
 use Paynow\Payments\Paynow;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -107,8 +109,8 @@ Route::get("cars","HomeController@cars");
 Route::get("cars/search","CarController@search");
 
 //facebook
-Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
-Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/facebook', 'FacebookController@redirectToProvider');
+Route::get('login/facebook/callback', 'FacebookController@handleProviderCallback');
 
 Route::get("/payment",function(){
     $paynow = new Paynow("6668", "b0b170e0-c950-4800-b56c-9ce4e4e02e14",'https://www.google.com','google.com' );
@@ -216,22 +218,56 @@ Route::get("/reset/link",function(){
 
 Route::post("/send/link",function(){
     $data = request()->email;
-    $user = User::where("email",$data)->select('email','passwordToken')->get()->first();
+    $user = User::where("email",$data)->select('email','name')->get()->first();
+    $str = Str::random(90);
 
-    $str = base64_encode(bin2hex(openssl_random_pseudo_bytes(50)));
-    $str = str_replace("+","",$str);
-    $str = str_replace("&","",$str);
-    $str = str_replace("=","",$str);
-    
     if($user !== null){
-        //create reset token
-        $user->passwordToken = $str;
-        //send mail
-        $message = "Password reset link is <a href='http://localhost:8000/reset/password?token=".$str."'>http://localhost:8000/reset/password?token=".$str."</a>";
+       
+        $message = "You have requested a password reset link and click here to reset :- http://localhost:8000/reset/password?token=".$str;
         //notify
+
+        DB::table('password_resets')->insert(
+            ['email' => $data, 'token' => $str,"created_at"=>time()]
+        );
+        
+        Mail::send(['text'=>'mail'], ['name'=>$message], function($message) use ($user) {
+            $message->to($user->email,$user->name)
+            ->subject('Reset password');
+         });
+
         $user->save();
     }
+
+    return ['message'=>true];
 });
+
+Route::post("/reset/password",function(){
+    //get user
+    $data = request()->all();
+
+    //validation
+
+    $token = DB::table("password_resets")
+    ->where("token",$data['token'])
+    ->where("email",$data['email'])
+    ->get()->first();
+
+    if($token != null){
+
+        $user = User::where("email",$data['email'])->get()->first();
+
+        $user->password = Hash::make($data['password']);
+
+        $user->save();
+
+        DB::table("password_resets")
+        ->where("email",$data['email'])
+        ->delete();
+
+        return redirect("/login");
+    }
+
+})->name("resetPassword");
 
 
 
