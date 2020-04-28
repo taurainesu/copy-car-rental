@@ -28,7 +28,7 @@
                         <div class="header">
                           Notification
                         </div>
-                        <p id="message">If email is found a reset link will be sent to <b>mkunadavy@gmail.com</b>. Check your mailbox.</p>
+                        <p id="message"></p>
                       </div>
                   </div>
                 </div>
@@ -54,9 +54,9 @@
                 },
                 dataType: 'json',
                 success: function (data) {
-                //show notification
-                $("#form").hide();
-                $("#notification").show();
+                    $("#form").hide();
+                    $("#message").html('If email is found a reset link will be sent to <b>'+$("#email").val()+'</b>. Check your mailbox.')
+                    $("#notification").show();
                 }
             });
         }

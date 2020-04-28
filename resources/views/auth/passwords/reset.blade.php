@@ -4,7 +4,7 @@
 <div class="container">
     <div class="ui card p-5" style="width:30%;margin:auto;top:2rem;padding:40px">
         <div class="content">
-            <form style="text-align:center" method="POST" action="{{ route('password.update') }}" class="ui form">
+            <form style="text-align:center" method="POST" action="{{ route('resetPassword') }}" class="ui form">
                 @csrf
                 <input type="hidden" name="token" value="{{ $token ?? '' }}">
 
@@ -39,7 +39,8 @@
                   </div>
                 <button class="ui button orange login" style="margin:10px 0 20px 0" onclick="showLoading()">Change Password</button>
             </form>
-            <p align="center"><a href="/login">Login</a></p>
+            <a href="/login">
+              <button class="ui button blue" style="margin:0px">Go to Login</button></a>
           </div>
     </div>
   

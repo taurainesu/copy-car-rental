@@ -33,7 +33,7 @@ class FacebookController extends Controller
     
         else{
             //create new user
-            return view('auth.register',)->with(['email'=>$user->getEmail(),'name'=>$user->getName(),'facebookID'=>$user->getID(),'message'=>'Complete registration']);
+            return view('auth.register',)->with(['email'=>$user->getEmail(),'name'=>$user->getName(),'facebookID'=>$user->getID(),'message'=>'User confirmed please complete registration']);
         }
     }
 }

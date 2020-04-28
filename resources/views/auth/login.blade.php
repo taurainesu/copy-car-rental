@@ -1,12 +1,13 @@
 @extends('layouts.auth')
 @section("content")
 <div class="container">
-  <div class="ui card p-5" style="width:35%;margin:auto;top:3rem;padding:40px">
+  <div class="ui card p-5" style="width:35%;margin:auto;top:3rem;padding:30px">
       <div class="content">
           <form method="POST" action="{{ route('login') }}" class="ui form">
               @csrf
+              <p align="right" style="margin:0;padding:0"><a href="">Are you a supplier?</a></p>
               <img src="/logo.png" style="width:100px;height:50px"/>
-              <h3 style="margin:20px 0">Sign In</h3>
+              <h3 style="margin:20px 0">User Sign In</h3>
               @error('email')
                     <p class="invalid-feedback">
                         <strong>{{ $message }}</strong>
@@ -37,7 +38,7 @@
                Forgot Password
             </button>
           </a>
-          <p>Not already a member?<a href="{{route('register')}}"> Create Account</a></p>
+          <p align="center">Not already a member?<a href="{{route('register')}}"> Create Account</a></p>
         </div>
   </div>
 

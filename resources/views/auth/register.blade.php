@@ -2,11 +2,11 @@
 @section('content')
 <div class="container">
     <div class="column">
-        <div class="ui card" style="padding:40px;width:45%;margin:3rem auto">
+        <div class="ui card" style="padding:30px;width:45%;margin:3rem auto">
             <div class="content">
                 <form method="POST" action="{{ route('register') }}" class="ui form">
                     <img src="/logo.png" style="width:100px;height:50px;"/>
-                <h3 style="margin:20px auto">{{$message ?? 'Registration'}}</h3>
+                <h3 style="margin:20px auto">{{$message ?? 'User Registration'}}</h3>
                     @csrf
                     <input hidden name="facebookID" value="{{$facebookID ?? ''}}"/>
                     <div class="field">
