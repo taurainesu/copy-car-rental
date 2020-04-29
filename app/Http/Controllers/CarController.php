@@ -20,7 +20,7 @@ class CarController extends Controller
     }
 
     public function store(Request $request)
-    {  
+    {
         $data=$request->all();
 
         $file_array=array('imageUrl','imageUrl1','imageUrl2','imageUrl3','imageUrl4','imageUrl5','imageUrl6','imageUrl7','imageUrl8');
@@ -40,10 +40,7 @@ class CarController extends Controller
         $data['status'] = "pending";
         try{
            $car= Car::create($data);
-           if(!auth()->isSupplier){
-               auth()->isSupplier = true;
-               auth()->save();
-           }
+
             if(Supplier::find(Auth::id()) == null){
                 Supplier::create([
                     'supplier_name'=>Auth::user()->name,
@@ -51,34 +48,34 @@ class CarController extends Controller
                 ]);
             }
           }
-            
+
         catch(QueryException $e){
      return redirect()->route('home')->with('vehicle_status', 'vehicle already registered');
-      
-    
+
+
     }
-       
+
         return redirect()->route('get_car',['id' => $car->id])->with('modal','modal');
-    }            
+    }
 
     public function index(){
 
 
         return view("new_car", [
-            
+
             'home'=>false,
             'vehicles'=>false,
             'register'=>false,
             'my_reservation'=>false,
             'register'=>true,
         ] );
-        
+
 
 
     }
 
     public function cars(){
-        return 
+        return
         Car::join("suppliers","suppliers.id","cars.user_id")
         ->select("cars.*","suppliers.id as supplier_id")
         ->where('cars.status','approved')->get();
@@ -88,8 +85,7 @@ class CarController extends Controller
         return view("car_info",[
             "car" => Car::join("suppliers","suppliers.id","cars.user_id")
             ->select("cars.*","suppliers.id as supplier_id")
-            ->where('cars.id',$id)
-            ->where('cars.status','approved')->get()->first(),
+            ->where('cars.id',$id)->get()->first(),
             "vehicles"=>true//->with('reviews')->get()
             ]
         );
@@ -99,7 +95,7 @@ class CarController extends Controller
     public function search(Request $request){
 
         $params = $request->all();
-        
+
         $reserved = null;
         $notReserved = null;
         $other = DB::table("Cars")->orWhere("type",$params['carType'])->orWhere("location",$params['location'])->get();
@@ -193,7 +189,7 @@ class CarController extends Controller
                 ->where('cars.status','approved')
                 ->select("cars.*","suppliers.id as supplier_id",'reservations.*')
                 ->get();
-    
+
                 $notReserved = DB::table("cars")
                 ->join("reservations","cars.id","reservations.car_id")
                 ->join("suppliers","suppliers.id","cars.user_id")
@@ -239,7 +235,7 @@ class CarController extends Controller
             }
         }
 
-        
+
         if(!empty($result)){
             return view("search",[
                 "result"=>$result,
@@ -257,7 +253,7 @@ class CarController extends Controller
                 "vehicles"=>true
             ]);
         }
-        
+
     }
 
 
@@ -280,7 +276,7 @@ class CarController extends Controller
 
         $car->approve();
         return redirect()->route('admin')->with('last_tab', $last_tab);
- 
+
      }
 
 
@@ -291,7 +287,7 @@ class CarController extends Controller
 
         $car->reject();
         return redirect()->route('admin')->with('last_tab', $last_tab);
- 
+
      }
 
 
@@ -304,6 +300,6 @@ class CarController extends Controller
 
         $car->restore_car();
         return redirect()->route('admin')->with('last_tab', $last_tab);
- 
+
      }
 }
