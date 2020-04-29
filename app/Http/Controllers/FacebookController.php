@@ -41,6 +41,7 @@ class FacebookController extends Controller
                 //create new user
                 return view('auth.register')->with(['email'=>$user->getEmail(),'name'=>$user->getName(),'facebookID'=>$user->getID(),'message'=>'User confirmed please complete registration','facebook'=>true]);
             }
+            
         }catch(Exception $e){
             return redirect("/login")->withErrors(["email"=>"Failed to authenticate using Facebook. Please try again"])->with(["facebook"=>true]);
         }

@@ -9,9 +9,9 @@
                     @if($facebook ?? false)
                     <div class="ui positive message">
                       <div class="header">
-                        Facebook authentication successful.
+                        Facebook authentication was successful.
                       </div>
-                      <p>Now provide the info below to finish setting up your account.</p>
+                      <p>Now provide the following info below to finish setting up your account.</p>
                     </div>
                     @else
                     <h3 style="margin:20px auto">User Registration</h3>

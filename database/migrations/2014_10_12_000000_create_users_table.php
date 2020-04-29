@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('nationality');
             $table->string('country');
             $table->text('accessToken')->nullable();
-            $table->text('facebookID')->nullable();
+            $table->text('facebookID')->nullable()->unique();
             $table->boolean("isSupplier")->default(false);
             $table->string('licenseNo')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
