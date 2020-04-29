@@ -5,7 +5,7 @@
       <div class="content">
           <form method="POST" action="{{ route('login') }}" class="ui form">
               @csrf
-              <p align="right" style="margin:0;padding:0"><a href="{{route('supplier-login')}}">Are you a supplier?</a></p>
+              <p align="right" style="margin:0;padding:0"><a href="{{route('supplier-login')}}">Want to become a supplier?</a></p>
               <img src="/logo.png" style="width:100px;height:50px"/>
               <h3 style="margin:20px 0">User Sign In</h3>
               @error('email')

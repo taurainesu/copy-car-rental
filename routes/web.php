@@ -274,12 +274,45 @@ Route::get("/supplier/login",function(){
     return view("auth.supplierlogin");
 })->name("supplier-login");
 
+Route::get("/supplier/register",function(){
+    return view("auth.supplierregister");
+})->name("supplier-register");
+
+Route::post("/supplier/register",function(){
+    $data = request()->all();
+    //add user
+
+    $user = User::create([
+        'name' => ucwords($data['name']),
+        'email' => strtolower($data['email']),
+        'password' => Hash::make($data['password']),
+        'phone'=>$data['phone'],
+        'licenseNo'=>strtoupper($data['licenseNo']),
+        'sex'=>$data['sex'],
+        'address'=>ucwords($data['address']),
+        'age'=>$data['age'],
+        'isSupplier'=>true,
+        'nationality'=>ucfirst($data['nationality']),
+        'country'=>$data['country'],
+        'facebookID'=>$data['facebookID'],
+    ]);
+
+    if($user){
+        auth()->login($user);
+        return redirect('/supplier/add/car');
+    }
+
+    return redirect("/supplier/register")->withErrors(['main'=>'Error creating account']);
+    //redirect yo new car
+
+})->name("supplier-register");
+
 Route::post("/supplier/login",function(){
     $data = request();
     $all = $data->all();
     $user = User::where('email',$all['email'])->get()->first();
 
-    if($user->isSupplier){
+    if($user != null && $user->isSupplier){
         if(Auth::attempt($data->only('email','password'))){
             auth()->login($user);
             return redirect("/supplier/home");
@@ -291,17 +324,70 @@ Route::post("/supplier/login",function(){
 })->name("supplier-login");
 
 Route::get("/supplier/home",function(){
+    $cars = Car::where("user_id",Auth::user()->id)->get();
+    
+    if(count($cars) <= 0){
+        return redirect("/supplier/add/car")->with(['no_cars'=>true]);
+    }
+
     return view("suppliers.home",[
         'cars'=>Car::where("user_id",Auth::user()->id)->get(),
         'reservations'=>Car::where("user_id",Auth::user()->id)->with('reservations')->get(),
         'users'=>User::all(),
         'car'=>""
     ]);
+
 })->middleware("supplier");
 
 
+
+Route::get("/supplier/cars",function(){
+    $cars = Car::where("user_id",Auth::user()->id)->get();
+    
+    if(count($cars) <= 0){
+        return redirect("/supplier/add/car")->with(['no_cars'=>true]);
+    }
+
+    return view("admin",[
+        'cars'=>Car::where("user_id",Auth::user()->id)->get(),
+        'reservations'=>Car::where("user_id",Auth::user()->id)->with('reservations')->get(),
+        'users'=>User::all(),
+        'car'=>""
+    ]);
+
+})->middleware("supplier");
+
+Route::get("/supplier/reservations",function(){
+    $cars = Car::where("user_id",Auth::user()->id)->get();
+    
+    if(count($cars) <= 0){
+        return redirect("/supplier/add/car")->with(['no_cars'=>true]);
+    }
+
+    return view("suppliers.home",[
+        'cars'=>Car::where("user_id",Auth::user()->id)->get(),
+        'reservations'=>Car::where("user_id",Auth::user()->id)->with('reservations')->get(),
+        'users'=>User::all(),
+        'car'=>""
+    ]);
+
+})->middleware("supplier");
+
+
+Route::get("/supplier/add/car",function(){
+    $cars = Car::where("user_id",Auth::user()->id)->get();
+    
+    if(count($cars) <= 0){
+        return view("suppliers.new_car")->with(['no_cars'=>true]);
+    }
+
+    return view("suppliers.new_car");
+
+})->name("add_car");
+
+
 //admin routes
-Route::get("/admin",'AdminController@index')->name("admin")->middleware('admin');
+Route::get("/admin",'AdminController@index')->name("admin")->middleware(['admin','supplier']);
 
 
 

@@ -38,7 +38,7 @@
                Forgot Password
             </button>
           </a>
-          <p align="center">Not already a member?<a href="{{route('register')}}"> Create Account</a></p>
+          <p align="center">Not already a supplier?<a href="{{route('supplier-register')}}"> Create Supplier account</a></p>
         </div>
   </div>
 
