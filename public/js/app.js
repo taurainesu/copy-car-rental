@@ -2090,6 +2090,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -37949,7 +37953,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "orange ui compact button",
+                      staticClass: "orange ui compact button large",
                       staticStyle: { padding: "15px", width: "100%" },
                       attrs: { id: "search" },
                       on: {
@@ -38243,7 +38247,33 @@ var staticRenderFns = [
             [_vm._v("Mutare")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "item" }, [_vm._v("Gweru")])
+          _c("div", { staticClass: "item", attrs: { "data-value": "Gweru" } }, [
+            _vm._v("Gweru")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Beitbridge" } },
+            [_vm._v("Beitbridge")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Victoria Falls" } },
+            [_vm._v("Victoria Falls")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Hwange" } },
+            [_vm._v("Hwange")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "item", attrs: { "data-value": "Kariba" } },
+            [_vm._v("Kariba")]
+          )
         ])
       ]
     )

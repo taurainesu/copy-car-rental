@@ -97,9 +97,15 @@
                           <i class="search link icon"></i>
                           </div>
                       </div>
+                      @if(Auth::user()->isSupplier)
+                      <div class="item">
+                        <a href="/supplier/home" class="ui button inverted" style="margin-left:10px">Go to Supplier Page</a>
+                      </div>
+                      @else
                       <div class="item">
                         <a href="/cars/new" class="ui button inverted" style="margin-left:10px">Become A Supplier</a>
                       </div>
+                      @endif
                       <form class="ui item" action="{{route("logout")}}" method="POST">
                           @csrf
                           <button type="submit" class="ui button inverted" style="width:150px">Logout</button>

@@ -568,24 +568,24 @@
       <label>City</label>
       <select  name="location" class="ui fluid dropdown" required>
         <option value="Harare">Harare</option>
-    <option value="bulawayo">Bulawayo</option>
-    <option value="harare">Mutare</option>
-    <option value="masvingo">Masvingo</option>
-    <option value="beitbridge">Beitbridge</option>
-    <option value="victoria">Victoria Falls</option>
-    <option value="hwange">Hwange</option>
-    <option value="kariba">Kariba</option>
+    <option value="Bulawayo">Bulawayo</option>
+    <option value="Mutare">Mutare</option>
+    <option value="Masvingo">Masvingo</option>
+    <option value="Beitbridge">Beitbridge</option>
+    <option value="Victoria">Victoria Falls</option>
+    <option value="Hwange">Hwange</option>
+    <option value="Kariba">Kariba</option>
 
       </select>
     </div>
     <div class="field">
       <label>Country</label>
       <select class="ui fluid dropdown" required>
-        <option value="zimbabwe">Zimbabwe</option>
-    <option value="botswana">Botswana</option>
-    <option value="southafrica">South Africa</option>
-    <option value="zambia">Zambia</option>
-    <option value="mozampique">Mozambique</option>
+        <option value="Zimbabwe">Zimbabwe</option>
+    <option value="Botswana">Botswana</option>
+    <option value="South Africa">South Africa</option>
+    <option value="Zambia">Zambia</option>
+    <option value="Mozambique">Mozambique</option>
 
 
       </select>

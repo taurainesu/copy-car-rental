@@ -40,9 +40,10 @@ class CarController extends Controller
         $data['status'] = "pending";
         try{
            $car= Car::create($data);
-           if(!auth()->isSupplier){
-               auth()->isSupplier = true;
-               auth()->save();
+
+           if(!auth()->user()->isSupplier){
+               auth()->user()->isSupplier = true;
+               auth()->user()->save();
            }
             if(Supplier::find(Auth::id()) == null){
                 Supplier::create([
@@ -245,8 +246,6 @@ class CarController extends Controller
                 "result"=>$result,
                 "vehicles"=>true
             ]);
-
-
         }
 
         else{

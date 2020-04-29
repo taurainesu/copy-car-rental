@@ -16,7 +16,11 @@
                     <div class="item" data-value="Bulawayo">Bulawayo</div>
                     <div class="item" data-value="Masvingo">Masvingo</div>
                     <div class="item" data-value="Mutare">Mutare</div>
-                    <div class="item">Gweru</div>
+                    <div class="item" data-value="Gweru">Gweru</div>
+                    <div class="item" data-value="Beitbridge">Beitbridge</div>
+                    <div class="item" data-value="Victoria Falls">Victoria Falls</div>
+                    <div class="item" data-value="Hwange">Hwange</div>
+                    <div class="item" data-value="Kariba">Kariba</div>
                   </div>
                 </div>
                 
@@ -55,7 +59,7 @@
 
               <div class="ui divider"></div>
 
-              <button class="orange ui compact button" style="padding:15px;width:100%" id="search" @click="searchCars()">Find Vehicles</button>
+              <button class="orange ui compact button large" style="padding:15px;width:100%" id="search" @click="searchCars()">Find Vehicles</button>
 
             </div>
           </div>
