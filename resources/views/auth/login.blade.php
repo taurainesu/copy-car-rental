@@ -9,10 +9,24 @@
               <img src="/logo.png" style="width:100px;height:50px"/>
               <h3 style="margin:20px 0">User Sign In</h3>
               @error('email')
-                    <p class="invalid-feedback">
-                        <strong>{{ $message }}</strong>
-                    </p>
-                @enderror
+              @if($facebook ?? false)
+              <div class="ui negative message">
+                <i class="close icon"></i>
+                <div class="header">
+                  Facebook authentication failed.
+                </div>
+                <p>Please try again.</p>
+              </div>
+              @else
+              <div class="ui negative message">
+                <i class="close icon"></i>
+                <div class="header">
+                  Authentication failed.
+                </div>
+              <p>{{$message}}</p>
+              </div>
+              @endif
+              @enderror
               <div class="field @error('email') error @enderror">
                 <label>Email Address</label>
                 <input type="email" name="email" placeholder="Email Address" >

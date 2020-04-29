@@ -129,6 +129,15 @@ function checkLoginState() {
   function showLoadingRegister(){
     $(".register").attr("class","ui button orange register loading");
   }
+
+  $('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
 </script>
 
 @yield('js')

@@ -81,7 +81,7 @@
           <div class="ui secondary menu inverted" style="background:#3E4B96;padding:15px" >
               <div class="ui container">
                   <div style="margin-right:20px">
-                    <a href="/">
+                    <a href="/supplier/home">
                       <img src="/logo.png" alt="Logo" height="50px" width="100px">
                     </a>
                   </div>

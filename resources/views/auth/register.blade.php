@@ -6,7 +6,16 @@
             <div class="content">
                 <form method="POST" action="{{ route('register') }}" class="ui form">
                     <img src="/logo.png" style="width:100px;height:50px;"/>
-                <h3 style="margin:20px auto">{{$message ?? 'User Registration'}}</h3>
+                    @if($facebook)
+                    <div class="ui positive message">
+                      <div class="header">
+                        Facebook authentication successful.
+                      </div>
+                      <p>Now provide the info below to finish setting up your account.</p>
+                    </div>
+                    @else
+                    <h3 style="margin:20px auto">User Registration</h3>
+                    @endif
                     @csrf
                     <input hidden name="facebookID" value="{{$facebookID ?? ''}}"/>
                     <div class="field">
