@@ -19,7 +19,7 @@
                         <input id="email" type="email" name="email" placeholder="Email Address" required>
                       </div>
                       <p>NB. Use the email address you registered with.</p>
-                      <button class="ui button orange login" style="margin:10px 0 20px 0" onclick="sendLink()">Send Link</button>
+                      <button class="ui button orange send" style="margin:10px 0 20px 0" onclick="sendLink()">Send Link</button>
                   </div>
 
                   <div id="notification" style="margin-bottom:20px;display:none">
@@ -42,6 +42,7 @@
 @section("js")
 <script>
     function sendLink(){
+        $(".send").attr("class","ui button orange send loading");
         if($("#email").val() != null){
             $.ajax({
                 url: '/send/link',

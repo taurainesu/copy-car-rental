@@ -343,7 +343,7 @@
                             </div>
                           </div>
                     </div>
-                    <button class="ui button orange register" style="margin:20px 0">
+                    <button class="ui button orange register" onclick="showLoadingRegister()" style="margin:20px 0">
                         Register
                     </button>
                     <p style="margin:auto;text-align:center">Already a member?<a href="/login">Login</a></p>

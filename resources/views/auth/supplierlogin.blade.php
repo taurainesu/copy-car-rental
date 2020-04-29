@@ -3,11 +3,11 @@
 <div class="container">
   <div class="ui card p-5" style="width:35%;margin:auto;top:3rem;padding:30px">
       <div class="content">
-          <form method="POST" action="{{ route('login') }}" class="ui form">
+          <form method="POST" action="{{ route('supplier-login') }}" class="ui form">
               @csrf
-              <p align="right" style="margin:0;padding:0"><a href="{{route('supplier-login')}}">Are you a supplier?</a></p>
+              <p align="right" style="margin:0;padding:0"><a href="/login">Go back to user sign in</a></p>
               <img src="/logo.png" style="width:100px;height:50px"/>
-              <h3 style="margin:20px 0">User Sign In</h3>
+              <h3 style="margin:20px 0">Supplier Sign In</h3>
               @error('email')
                     <p class="invalid-feedback">
                         <strong>{{ $message }}</strong>

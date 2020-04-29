@@ -1,4 +1,6 @@
 <?php
+
+use App\Car;
 use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
@@ -268,6 +270,39 @@ Route::post("/reset/password",function(){
     }
 
 })->name("resetPassword");
+
+
+//supplier routes
+Route::get("/supplier/login",function(){
+    return view("auth.supplierlogin");
+})->name("supplier-login");
+
+Route::post("/supplier/login",function(){
+    $data = request();
+    $all = $data->all();
+    $user = User::where('email',$all['email'])->get()->first();
+    
+    if($user->isSupplier){
+        if(Auth::attempt($data->only('email','password'))){
+            auth()->login($user);
+            return redirect("/supplier/home");
+        }
+    };
+
+    //error notification here
+    return redirect("/supplier/login")->withErrors(['email'=>"These credentials are incorrect."]);
+
+})->name("supplier-login");
+
+Route::get("/supplier/home",function(){
+    return view("suppliers.home",[
+        'cars'=>Car::where("user_id",Auth::user()->id)->get(),
+        'reservations'=>Car::where("user_id",Auth::user()->id)->with('reservations')->get(),
+        'users'=>User::all(),
+        'car'=>""
+    ]);
+})->middleware("supplier");
+
 
 
 
