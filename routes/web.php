@@ -33,9 +33,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get("/admin",'AdminController@index')->name("admin")->middleware('admin');
-
-
 Route::get("/admin/vehicle/report/{type}",'AdminController@vehicle_report')->name("vehicle_report")->middleware('admin');
 
 Route::get("/admin/reservation/report/{type}",'AdminController@reservation_report')->name("reservation_report")->middleware('admin');
@@ -272,7 +269,7 @@ Route::post("/reset/password",function(){
 })->name("resetPassword");
 
 
-//supplier routes
+//Supplier routes
 Route::get("/supplier/login",function(){
     return view("auth.supplierlogin");
 })->name("supplier-login");
@@ -281,7 +278,7 @@ Route::post("/supplier/login",function(){
     $data = request();
     $all = $data->all();
     $user = User::where('email',$all['email'])->get()->first();
-    
+
     if($user->isSupplier){
         if(Auth::attempt($data->only('email','password'))){
             auth()->login($user);
@@ -289,7 +286,6 @@ Route::post("/supplier/login",function(){
         }
     };
 
-    //error notification here
     return redirect("/supplier/login")->withErrors(['email'=>"These credentials are incorrect."]);
 
 })->name("supplier-login");
@@ -302,6 +298,10 @@ Route::get("/supplier/home",function(){
         'car'=>""
     ]);
 })->middleware("supplier");
+
+
+//admin routes
+Route::get("/admin",'AdminController@index')->name("admin")->middleware('admin');
 
 
 

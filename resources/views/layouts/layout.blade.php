@@ -86,8 +86,8 @@
                     </a>
                   </div>
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>
-                  <a class="item @if($vehicles ?? false) active @endif" href="/cars">Vehicles</a>
-                  <a class="item @if($register ?? false) active @endif" href="/cars/new" style="display:none">Register   Vehicle</a>
+                  <a class="item @if($vehicles ?? false) active @endif" href="/cars">Our Vehicles</a>
+                  <a class="item @if($register ?? false) active @endif" href="/cars/new" style="display:none">Register Vehicle</a>
                   <a class="item @if($my_reservation ?? false) active @endif" href="/reservations">My Reservations</a>
                   <a class="item @if($admin ?? false) active @endif" href="/admin">Admin</a>
                   <div class="right menu">

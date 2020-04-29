@@ -5,7 +5,7 @@
     @if(count($search) > 0)
     <div class="ui row grid">
         <div class="column ">
-            <h3>Vehicle Inventory</h3>
+            <h3>Our Vehicle Fleet</h3>
             <div class="ui divider"></div>
             <div class="ui four cards">
                 @foreach ($search as $car)

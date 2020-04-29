@@ -85,9 +85,9 @@
                       <img src="/logo.png" alt="Logo" height="50px" width="100px">
                     </a>
                   </div>
-                  <a class="item @if($home ?? false) active @endif" href="/">Home</a>
-                  <a class="item @if($vehicles ?? false) active @endif" href="/cars">Vehicles</a>
-                  <a class="item @if($my_reservation ?? false) active @endif" href="/reservations">Reservations</a>
+                  <a class="item @if($home ?? false) active @endif" href="/supplier/home">Home</a>
+                  <a class="item @if($vehicles ?? false) active @endif" href="/supplier/cars">Your Vehicles</a>
+                  <a class="item @if($my_reservation ?? false) active @endif" href="/supplier/reservations">Your Reservations</a>
                   <div class="right menu">
                       <div class="item">
                           <div class="ui icon input" style="display: none">

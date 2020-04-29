@@ -86,9 +86,20 @@ class CarController extends Controller
     }
 
     public function car($id){
+        if(Auth::user()->is_admin || Auth::user()->isSupplier){
+            return view("car_info",[
+                "car" => Car::join("suppliers","suppliers.id","cars.user_id")
+                ->select("cars.*","suppliers.id as supplier_id")
+                ->where('cars.id',$id)->get()->first(),
+                "vehicles"=>true//->with('reviews')->get()
+                ]
+            );
+        }
+
         return view("car_info",[
             "car" => Car::join("suppliers","suppliers.id","cars.user_id")
             ->select("cars.*","suppliers.id as supplier_id")
+            ->where("cars.status","approved")
             ->where('cars.id',$id)->get()->first(),
             "vehicles"=>true//->with('reviews')->get()
             ]
@@ -103,7 +114,6 @@ class CarController extends Controller
         $reserved = null;
         $notReserved = null;
         $other = DB::table("Cars")->orWhere("type",$params['carType'])->orWhere("location",$params['location'])->get();
-
         $start = date("Y-m-d H:i:s",strtotime($params["pickUpDate"]));
         $end = date("Y-m-d H:i:s",strtotime($params["dropOffDate"]));
         $location = $params['location'];
@@ -111,8 +121,7 @@ class CarController extends Controller
 
         $result = "";
 
-        if($start != null && $end != null){
-
+        if($params['pickUpDate'] != null && $params['dropOffDate'] != null){
             if(!empty($location) && !empty($type)){
                 $reserved = DB::table("cars")
                 ->leftJoin("reservations","cars.id","reservations.car_id")
@@ -198,9 +207,16 @@ class CarController extends Controller
                 ->join("reservations","cars.id","reservations.car_id")
                 ->join("suppliers","suppliers.id","cars.user_id")
                 ->where('cars.status','approved')
-                ->whereNull("reservations.pick_up_date")
-                ->select("cars.*","suppliers.id as supplier_id",'reservations.*')
+                ->select("cars.*","suppliers.id as supplier_id")
                 ->get();
+
+                if(count($notReserved) <= 0){
+                    $notReserved = DB::table("cars")
+                    ->join("suppliers","suppliers.id","cars.user_id")
+                    ->where('cars.status','approved')
+                    ->select("cars.*","suppliers.id as supplier_id")
+                    ->get();
+                };
 
                 $result = $reserved->toBase()->merge($notReserved->toBase());
 
@@ -238,7 +254,6 @@ class CarController extends Controller
                 ->get();
             }
         }
-
 
         if(!empty($result)){
             return view("search",[

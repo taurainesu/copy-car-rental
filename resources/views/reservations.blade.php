@@ -4,7 +4,7 @@
 
 <div class="ui container" style="padding:30px 0">
 
-  <h2>My Reservations</h2>
+  <h3>My Reservations</h3>
   <hr/>
   <table class="ui very basic striped single right aligned table">
       <thead>
