@@ -31,7 +31,7 @@ Route::get('/', "HomeController@index")->name("home");
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware("auth");
 
 Route::get("/admin/vehicle/report/{type}",'AdminController@vehicle_report')->name("vehicle_report")->middleware('admin');
 
@@ -388,6 +388,12 @@ Route::get("/supplier/add/car",function(){
 
 //admin routes
 Route::get("/admin",'AdminController@index')->name("admin")->middleware(['admin','supplier']);
+
+
+//info
+Route::get("/info",function(){
+    return phpinfo();
+});
 
 
 

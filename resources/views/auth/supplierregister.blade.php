@@ -347,7 +347,7 @@
                     <button class="ui button orange register" onclick="showLoadingRegister()" style="margin:20px 0">
                         Register
                     </button>
-                    <p style="margin:auto;text-align:center">Already a supplier?<a href="/supplier/login"> Supplier login page</a></p>
+                    <p style="margin:auto;text-align:center">Already a supplier?<a href="/supplier/login"><strong> Go to supplier login page.</strong></a></p>
                 </form>
             </div>
         </div>

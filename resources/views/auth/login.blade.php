@@ -5,7 +5,7 @@
       <div class="content">
           <form method="POST" action="{{ route('login') }}" class="ui form">
               @csrf
-              <p align="right" style="margin:0;padding:0"><a href="{{route('supplier-login')}}">Want to become a supplier?</a></p>
+              <p align="right" style="margin:0;padding:0"><a href="{{route('supplier-login')}}"><strong>Go to supplier login</strong> <i class="icon right"></i></a></p>
               <img src="/logo.png" style="width:100px;height:50px"/>
               <h3 style="margin:20px 0">User Sign In</h3>
               @error('email')
@@ -52,7 +52,7 @@
                Forgot Password
             </button>
           </a>
-          <p align="center">Not already a member?<a href="{{route('register')}}"> Create Account</a></p>
+          <p align="center">Not already a member?<a href="{{route('register')}}"><strong> Create a user account.</strong></a></p>
         </div>
   </div>
 

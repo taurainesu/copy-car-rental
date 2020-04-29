@@ -6,7 +6,7 @@
             <div class="content">
                 <form method="POST" action="{{ route('register') }}" class="ui form">
                     <img src="/logo.png" style="width:100px;height:50px;"/>
-                    @if($facebook)
+                    @if($facebook ?? false)
                     <div class="ui positive message">
                       <div class="header">
                         Facebook authentication successful.
@@ -355,7 +355,7 @@
                     <button class="ui button orange register" onclick="showLoadingRegister()" style="margin:20px 0">
                         Register
                     </button>
-                    <p style="margin:auto;text-align:center">Already a member?<a href="/login">Login</a></p>
+                    <p style="margin:auto;text-align:center">Already a member?<strong><a href="/login"> Go to user login page.</a></strong></p>
                 </form>
             </div>
         </div>
