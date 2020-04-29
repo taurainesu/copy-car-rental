@@ -11,7 +11,7 @@ use Mockery\Expectation;
 class FacebookController extends Controller
 {
     public function redirectToProvider()
-    {   
+    {
         try{
             return Socialite::driver('facebook')->redirect();
         }catch(Exception $e){
@@ -36,10 +36,10 @@ class FacebookController extends Controller
                 auth()->login($db);
                 return redirect('/');
             }
-        
+
             else{
                 //create new user
-                return view('auth.register',)->with(['email'=>$user->getEmail(),'name'=>$user->getName(),'facebookID'=>$user->getID(),'message'=>'User confirmed please complete registration']);
+                return view('auth.register')->with(['email'=>$user->getEmail(),'name'=>$user->getName(),'facebookID'=>$user->getID(),'message'=>'User confirmed please complete registration']);
             }
         }catch(Exception $e){
             return redirect("/login")->withErrors(["email"=>"Failed to authenticate using Facebook. Please try again"]);
