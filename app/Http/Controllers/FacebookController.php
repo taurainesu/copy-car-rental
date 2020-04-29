@@ -28,7 +28,7 @@ class FacebookController extends Controller
         if ($db !== null) {
             // Authentication passed...
             auth()->login($db);
-            return redirect()->intended('/');
+            return redirect('/');
         }
     
         else{

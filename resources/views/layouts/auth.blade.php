@@ -120,8 +120,15 @@ function checkLoginState() {
 <script>
   function showLoading(){
     $(".login").attr("class","ui button orange login loading");
-    $(".register").attr("class","ui button orange register loading");
   }  
+
+  function showLoadingFb(){
+    $(".facebook").attr("class","ui button blue facebook loading");
+  }
+
+  function showLoadingRegister(){
+    $(".register").attr("class","ui button orange register loading");
+  }
 </script>
 
 @yield('js')
