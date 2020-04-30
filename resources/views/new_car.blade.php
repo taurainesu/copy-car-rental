@@ -21,7 +21,7 @@
 
 
     <form class="ui form"    method="POST" action="{{route('new_car_post')}}" enctype="multipart/form-data">
-
+      <h3 style="margin-top:20px">Add a vehicle</h3>
 <div class="ui divider"></div>
     
 @csrf

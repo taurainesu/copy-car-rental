@@ -5,7 +5,7 @@
       <div class="content">
           <form method="POST" action="{{ route('supplier-login') }}" class="ui form">
               @csrf
-              <p align="right" style="margin:0;padding:0"><a href="/login">Go back to user sign in</a></p>
+              <p align="right" style="margin:0;padding:0"><a href="/login"><i class="arrow left icon"></i> <strong>Go back to user login</strong></a></p>
               <img src="/logo.png" style="width:100px;height:50px"/>
               <h3 style="margin:20px 0">Supplier Sign In</h3>
               @error('email')
@@ -29,7 +29,7 @@
               <button class="ui button orange login" style="margin:10px 0 10px 0" onclick="showLoading()">Sign in with Cruiz Account</button>
           </form>
           <a href="{{ url('/login/facebook') }}">
-            <button class="ui button blue facebook" onclick="showLoadingFb()" style="margin:0px 0 10px 0">
+            <button class="ui button blue facebook" onclick="showLoadingFb()" style="margin:0px 0 10px 0;display:none">
               <i class="fa fa-facebook" style="margin-right:10px"></i> Sign in with Facebook
             </button>
           </a>
@@ -38,7 +38,7 @@
                Forgot Password
             </button>
           </a>
-          <p align="center">Not already a supplier?<a href="{{route('supplier-register')}}"> Create Supplier account</a></p>
+          <p align="center">Not already a supplier?<a href="{{route('supplier-register')}}"> <strong> Create a supplier account.</strong></a></p>
         </div>
   </div>
 
