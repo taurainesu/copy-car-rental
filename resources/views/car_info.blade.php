@@ -5,20 +5,20 @@
 
 
   <div class="ui mini modal middle aligned " id="addmodal">
-  
+
     <i class="close icon"></i>
     <div class="header modal_header">Vehicle Added Succesfully</div>
     <div class="content">
       <p class="modal_text">Do you want to add another vehicle</p>
       <a href={{ route('home') }} class="ui red button">No</a>
       <a href={{ route('new_car_post') }} class="ui green button yes">Yes</a>
-      
+
     </div>
-    
-    
-    
+
+
+
     </div>
-  
+
 
 
 
@@ -26,12 +26,12 @@
       <div class="col-md-12">
           <div class="ui container" style="margin-bottom:20px;padding:20px 0">
               <div class="column">
-                
+
                   <div class="ui two column grid" style="margin:auto">
                     <div class="column">
                       <h1>{{$car->year}} {{$car->brand}} {{$car->model}}</h1>
                     </div>
-                   
+
                     <div class="column" style="text-align:end;margin:0">
                       <button @if($car->supplier_id != Auth::id()) class="ui button orange" @else class="ui button orange disabled" @endif  @click="showModal({{$car}})">
                         Reserve Car
@@ -55,7 +55,7 @@
                     <p style="margin:0;padding-top:10px;font-size:16px"><b><i class="money bill alternate icon" style="margin-right:10px"></i>Daily Rate</b></p>
                     <p style="margin:0;padding:0">USD{{$car->daily_rate}}</p>
                   </div>
-                  
+
                 </div>
 
                 <div class="twelve wide column" style="margin:0px 0">
@@ -74,12 +74,12 @@
                   </div>
                 </div>
               </div>
-              
+
               <div class="column" style="margin:auto;text-align: center; padding-bottom:20px;display:none">
-                 
+
               </div>
           </div>
-          
+
           <div class="ui four column grid container" style="margin-bottom:40px;">
               <div class="column">
                 <img class="ui large bordered image" style="height:100%;width:100%" src="{{$car->imageUrl1}}">
@@ -94,7 +94,7 @@
                   <img class="ui large bordered image" style="height:100%;width:100%" src="{{$car->imageUrl4}}">
               </div>
           </div>
-      
+
           <div id="information" class="anchor ui grid container">
               <h3 style="margin:0">Vehicle Info</h3>
               <div class="row">
@@ -136,7 +136,7 @@
                   </div>
               </div>
           </div>
-      
+
           <div class="ui grid container" style="margin-bottom:40px;margin-top:0px">
               <h3 style="margin:0">Reviews (0)</h3>
               <div class="row" style="margin-bottom:10px;">
@@ -177,7 +177,7 @@
                           </div>
                         </div>
                       </div>
-                      
+
                         <div class="card">
                           <div class="content">
                             <p class="right floated" style="margin-left: 5px;"><b>4.8</b></p>
@@ -208,7 +208,7 @@
 $(document).ready(function() {
   $("#addmodal").modal("show");
 });
-   
+
 @endif
 
 
@@ -225,31 +225,31 @@ $(document).ready(function() {
 
     $("#date_picker1").datepicker({
         minDate: '+0d',
-        changeMonth: true, 
+        changeMonth: true,
         changeYear: true,
       });
 
       $("#date_picker1").datepicker('show');
 
-      $(function() { 
+      $(function() {
 
-          $("#date_picker2").datepicker({}); 
+          $("#date_picker2").datepicker({});
 
-      }); 
+      });
 
-      $('#date_picker1').change(function() { 
+      $('#date_picker1').change(function() {
 
-          startDate = $(this).datepicker('getDate'); 
+          startDate = $(this).datepicker('getDate');
 
-          $("#date_picker2").datepicker("option", "minDate", startDate); 
-      }) 
+          $("#date_picker2").datepicker("option", "minDate", startDate);
+      })
 
-      $('#date_picker2').change(function() { 
+      $('#date_picker2').change(function() {
 
-          endDate = $(this).datepicker('getDate'); 
+          endDate = $(this).datepicker('getDate');
 
-          $("#date_picker1").datepicker("option", "maxDate", endDate); 
-          var diffDays = endDate.getDate() - startDate.getDate(); 
+          $("#date_picker1").datepicker("option", "maxDate", endDate);
+          var diffDays = endDate.getDate() - startDate.getDate();
           var total=diffDays* {{$car->daily_rate}};
           $("#attribute").text("Total $");
           $("#total_price").text(total);

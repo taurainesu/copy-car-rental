@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('suppliers.layout')
 @section('content')
 <meta name="csrf-token" content="{{csrf_token()}}">
 <div class="ui container">
@@ -223,27 +223,21 @@
                 <div class="ui left piled segment">
 
 
-
-
-
-                      <div class="ui buttons">
-                        <button class="ui green button"  data-tooltip="Accept Vehicle" data-position="top left" onclick="showModal(&quot;/reservation/accept/{{$reservation->id}}&quot;,
-                          &quot;Accept Vehicle&quot;,
-                         &quot;Are you sure you want to Accept this Vehicle &quot;)"> <i class="thumbs up icon"   style="color:#ffffff"></i> Accept</button>
+                    <div class="ui buttons">
+                        <button class="ui green button"  data-tooltip="Confirm Reservation" data-position="top left" onclick="showModal(&quot;/reservation/approve/first/a/{{$reservation->id}}&quot;,
+                          &quot;Confirm Resrvation&quot;,
+                         &quot;Are you sure you want to Confirm this Reservation &quot;)"> <i class="thumbs up icon"   style="color:#ffffff"></i> Confirm</button>
                         <div class="or"></div>
-                        <button class="ui red button" data-tooltip="Decline Vehicle" data-position="top left" onclick="showModal(&quot;/reservation/decline/{{$reservation->id}}&quot;,
-                          &quot;Decline Vehicle&quot;,
-                         &quot;Are you sure you want to Decline this Vehicle &quot;)"> <i class="thumbs down icon"   style="color:#ffffff"></i>   Decline</button>
+                        <button class="ui red button" data-tooltip="Decline Reservation" data-position="top left" onclick="showModal(&quot;/reservation/reject/first/a/{{$reservation->id}}&quot;,
+                          &quot;Decline Reservation&quot;,
+                         &quot;Are you sure you want to Decline this Reservation &quot;)"> <i class="thumbs down icon"   style="color:#ffffff"></i>   Decline</button>
                       </div>
 
-
-<div class="ui hidden divider"></div>
-
-                      <div class="ui primary button"   onclick="showEditModal()"  data-tooltip="Edit Reservation" data-position="top left">
-                        <i class="pencil alternative icon"></i> Edit Reservation
-                      </div>
 
                       <div class="ui hidden divider"></div>
+
+
+
 
                       <div class="ui orange button"   onclick="showModal(&quot;/reservation/cancel/first/a/{{$reservation->id}}&quot;,
                         &quot;Cancel Reservation&quot;,
@@ -251,11 +245,12 @@
                         <i class="x icon"></i> Cancel Reservation
                       </div>
 
-<div class="ui hidden divider"></div>
+                      <div class="ui hidden divider"></div>
 
-                      <div class="ui orange button"  onclick="showCarReviewModal()"  data-tooltip="Review Vehicle" data-position="top left">
+                      <div class="ui teal button"  onclick="showReservationReviewModal()"  data-tooltip="Review Reservation" data-position="top left">
                         <i class="pencil alternative icon"></i> Write  a Review
                       </div>
+
 
 
 

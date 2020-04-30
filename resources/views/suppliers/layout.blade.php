@@ -4,7 +4,7 @@
   <head>
     <title>Cruiz Auto City</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Semantic-UI-Alert.css')}}">
@@ -14,28 +14,28 @@
       body,a,h1,h2,h3,h4,.header,p,button,input,.search{
         font-family: "Montserrat",sans-serif !important;
       }
-      
+
       .fas{
         font-size: 20px !important;
       }
       .more{
-        margin:auto 0px !important; 
+        margin:auto 0px !important;
       }
-      
+
       .input.selection{
         margin:0 0 35px 0;
         width: 100%;
       }
-      
+
       .menu.transition{
         width: 100% !important;
       }
-      
+
       .button.search{
         background: #fff;
         border:1px solid rgba(34,36,38,.15);
       }
-      
+
       .button.search:hover{
         background: #fff;
         border:1px solid #cccccc;
@@ -67,12 +67,12 @@
       #reservation_form p,#reservation_form h4{
           font-size: 13px !important;
       }
-      
+
     </style>
   </head>
 
 
-  
+
 
   <body>
     <div id="app">
@@ -86,8 +86,8 @@
                     </a>
                   </div>
                   <a class="item @if($home ?? false) active @endif" href="/supplier/home">Home</a>
-                  <a class="item @if($vehicles ?? false) active @endif" href="/supplier/cars">Your Vehicles</a>
-                  <a class="item @if($my_reservation ?? false) active @endif" href="/supplier/reservations">Your Reservations</a>
+                  <a class="item @if($vehicles ?? false) active @endif" href="/supplier/cars">My Vehicles</a>
+                  <a class="item @if($my_reservation ?? false) active @endif" href="/supplier/reservations">My Reservations</a>
                   <div class="right menu">
                       <div class="item">
                           <div class="ui icon input" style="display: none">
@@ -111,7 +111,7 @@
       <main class="site_content">
 
             @yield('content')
-      
+
 
           <div class="ui tiny modal middle aligned " id="reservationmodal" style="display:none">
             <i class="close icon"></i>
@@ -130,7 +130,7 @@
                           <div class="column">
                               <div class="ui input fluid">
                                   <input id="date_picker2" name="return_date"placeholder="End Date"  autocomplete="off" required>
-                              </div> 
+                              </div>
                           </div>
                       </div>
                     </div>
@@ -150,8 +150,8 @@
                         <option value="ZWL">ZWL</option>
                       </select>
                     </div>
-      
-                    
+
+
                     <div class="field">
                       <label style="margin-bottom:10px !important">Payment Method</label>
                       <select class="ui fluid dropdown payment_method" name="payment_method" required>
@@ -197,7 +197,7 @@
                           </div>
                       </div>
                     </div>
-        
+
                     <input type="hidden" id="custId" name="car_id" :value='car.id'>
 
                     <input type="hidden" name="amount" :value='this.$root.total'>
@@ -210,12 +210,12 @@
                         <label>I agree to the terms and conditions</label>
                       </div>
                     </div>
-        
+
                     <div class="ui divider"></div>
-        
-                    <button type="submit" @click="submitTheForm()" class="ui compact button orange large" id="submit_reservation" style="width:100%">Reserve</button>  
-        
-                </form> 
+
+                    <button type="submit" @click="submitTheForm()" class="ui compact button orange large" id="submit_reservation" style="width:100%">Reserve</button>
+
+                </form>
             </div>
         </div>
 
@@ -224,7 +224,7 @@
             <div class="ui indeterminate text loader">Processing your reservation and payment...Please Wait</div>
           </div>
         </div>
-                    
+
       </main>
 
       {{-- footer --}}
@@ -237,7 +237,7 @@
                     <a href="#" class="item">Cruiz Auto City</a>
                     <a href="#" class="item">How it Works</a>
                     <a href="#" class="item">FAQ</a>
-                
+
                     </div>
                 </div>
                 <div class="four wide column">
@@ -269,7 +269,7 @@
                       +263 719 902 809</a>
                     </div>
                 </div>
-                
+
               </div>
 
           </div>
@@ -278,13 +278,13 @@
     </div>
 
   </body>
-  
+
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/semantic.min.js') }}"></script>
   <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
   <script src="{{ asset('js/Semantic-UI-Alert.js') }}"></script>
- 
+
   <script>
     $(document).ready(function() {
         $('.ui.dropdown')
@@ -308,7 +308,7 @@ icon: 'warning sign', // icon in semantic-UI
 time: 3, // time
   })
 });
-       
+
     @endif
 @if (session('reservation_status'))
 $(document).ready(function() {
@@ -322,7 +322,7 @@ icon: 'warning sign', // icon in semantic-UI
 time: 3, // time
 })
 });
-   
+
 @endif
 @if (session('vehicle_status'))
 $(document).ready(function() {
@@ -336,12 +336,12 @@ icon: 'warning sign', // icon in semantic-UI
 time: 3, // time
 })
 });
-   
+
 @endif
-   
+
     </script>
 
   @yield('javascript')
-  
+
 
 </html>

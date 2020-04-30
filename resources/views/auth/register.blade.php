@@ -6,7 +6,7 @@
             <div class="content">
                 <form method="POST" action="{{ route('register') }}" class="ui form">
                     <img src="/logo.png" style="width:100px;height:50px;"/>
-                    @if($facebook)
+                    @if(isset($facebook))
                     <div class="ui positive message">
                       <div class="header">
                         Facebook authentication successful.
@@ -29,7 +29,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                          
+
                         </div>
                         <div class="field">
                             <div class="field">
@@ -53,13 +53,13 @@
                               <input type="number" name="age" placeholder="Age" required>
                             </div>
                           </div>
-                        
+
                           <div class="field">
                             <label>Physical Address</label>
                             <textarea rows="2" name="address"  placeholder="Residental Address" required></textarea>
                           </div>
-                            
-                  
+
+
                           <div class="two fields" style="margin-bottom:40px !important">
                             <div class="field">
                               <label>Country of Residence</label>
@@ -372,6 +372,6 @@
     console.log( $("#sex").val());
     console.log( $("#country").val());
   })
-  
+
 </script>
 @endsection
