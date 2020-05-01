@@ -31,7 +31,7 @@
   {{$reservations->count()}}
       </div>
       <div class="label">
-  Resevations
+  Reservations
       </div>
     </div>
   </div>

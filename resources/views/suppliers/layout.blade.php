@@ -96,7 +96,7 @@
                           </div>
                       </div>
                       <div class="item">
-                        <a href="/home" class="ui button inverted" style="margin-left:10px">Go To User Page</a>
+                        <a href="/home" class="ui button inverted" style="margin-left:10px">Go To User Portal</a>
                       </div>
                       <form class="ui item" action="{{route("logout")}}" method="POST">
                           @csrf
