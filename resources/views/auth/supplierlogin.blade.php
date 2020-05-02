@@ -28,8 +28,8 @@
               </div>
               <button class="ui button orange login" style="margin:10px 0 10px 0" onclick="showLoading()">Sign in with Cruiz Account</button>
           </form>
-          <a href="{{ url('/login/facebook') }}">
-            <button class="ui button blue facebook" onclick="showLoadingFb()" style="margin:0px 0 10px 0;display:none">
+          <a href="{{ route("supplier-facebook")}}">
+            <button class="ui button blue facebook" onclick="showLoadingFb()" style="margin:0px 0 10px 0">
               <i class="fa fa-facebook" style="margin-right:10px"></i> Sign in with Facebook
             </button>
           </a>

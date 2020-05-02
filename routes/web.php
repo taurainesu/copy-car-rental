@@ -111,8 +111,11 @@ Route::get("cars","HomeController@cars");
 Route::get("cars/search","CarController@search");
 
 //facebook
-Route::get('login/facebook', 'FacebookController@redirectToProvider');
+Route::get('login/facebook', 'FacebookController@redirectToProvider')->name("user-facebook");
 Route::get('login/facebook/callback', 'FacebookController@handleProviderCallback');
+
+Route::get('supplier/login/facebook', 'FacebookController@redirectToProviderSupplier')->name("supplier-facebook");
+Route::get('supplier/login/facebook/callback', 'FacebookController@handleProviderCallbackSupplier');
 
 Route::get("/payment",function(){
     $paynow = new Paynow("6668", "b0b170e0-c950-4800-b56c-9ce4e4e02e14",'https://www.google.com','google.com' );
@@ -138,7 +141,7 @@ Route::get("/payment",function(){
         return redirect($pollUrl);
 
     }
-});
+})->middleware("auth");
 
 Route::post("/rates/get",function(){
     return Rates::all();
@@ -368,7 +371,11 @@ Route::get("/supplier/add/car",function(){
 
 
 //admin routes
+<<<<<<< HEAD
 Route::get("/admin",'AdminController@index')->name("admin")->middleware("admin");
+=======
+Route::get("/admin",'AdminController@index')->name("admin")->middleware('admin');
+>>>>>>> 2f32057765fed8eb6ec9f41b567adb4eda8130ca
 
 
 //info

@@ -6,7 +6,16 @@
             <div class="content">
                 <form method="POST" action="{{ route('supplier-register') }}" class="ui form">
                     <img src="/logo.png" style="width:100px;height:50px;"/>
-                <h3 style="margin:20px auto">{{$message ?? 'Supplier Registration'}}</h3>
+                    @if($facebook ?? false)
+                    <div class="ui positive message">
+                      <div class="header">
+                        Supplier Facebook authentication was successful.
+                      </div>
+                      <p>Now provide the following info below to finish setting up your supplier account.</p>
+                    </div>
+                    @else
+                    <h3 style="margin:20px auto">{{$message ?? 'Supplier Registration'}}</h3>
+                    @endif
                     @csrf
                     <input hidden name="facebookID" value="{{$facebookID ?? ''}}"/>
                     <div class="field">

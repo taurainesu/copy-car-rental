@@ -43,6 +43,11 @@
           background: #fff;
           border:1px solid #cccccc;
         }
+
+        i.fa.fa-star.rating{
+            color: gold !important;
+        }
+
     </style>
 
     <!-- Fonts -->
