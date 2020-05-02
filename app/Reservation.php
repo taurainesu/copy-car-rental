@@ -13,7 +13,7 @@ class Reservation extends Model
     use SoftDeletes;
     protected $guarded = [];
 
-    
+
 
     public function user(){
         return $this->belongsToMany("App\User");
@@ -42,6 +42,13 @@ class Reservation extends Model
         {
             $this->attributes['reservation_status'] = strtolower($value);
         }
+
+        public function  supplier_review($data){
+
+            $this->attributes['review'] = strtolower($data['comment']);
+            $this->save();
+        }
+
 
 
         public function updateReservation($data)
@@ -98,7 +105,7 @@ class Reservation extends Model
             $this->setStatusAttribute("rejected_by_agent");
             $this->save();
                                                                 }
-                                
+
         public function rejectedByUser(){
             $this->setStatusAttribute("rejected_by_user");
             $this->save();
@@ -120,7 +127,7 @@ class Reservation extends Model
             return false;
         }
 
-        
 
-        
+
+
 }

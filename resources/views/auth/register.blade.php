@@ -29,7 +29,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                          
+
                         </div>
                         <div class="field">
                             <div class="field">
@@ -53,13 +53,13 @@
                               <input type="number" name="age" placeholder="Age" required>
                             </div>
                           </div>
-                        
+
                           <div class="field">
                             <label>Physical Address</label>
                             <textarea rows="2" name="address"  placeholder="Residental Address" required></textarea>
                           </div>
-                            
-                  
+
+
                           <div class="two fields" style="margin-bottom:40px !important">
                             <div class="field">
                               <label>Country of Residence</label>
@@ -372,6 +372,6 @@
     console.log( $("#sex").val());
     console.log( $("#country").val());
   })
-  
+
 </script>
 @endsection

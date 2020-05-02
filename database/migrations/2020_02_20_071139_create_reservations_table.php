@@ -19,12 +19,13 @@ class CreateReservationsTable extends Migration
             $table->dateTime('return_date');
             $table->integer('user_id');
             $table->integer('car_id');
+            $table->string('review')->default("reservation not yet reviewed");
             $table->decimal('daily_rate');
             $table->decimal('total_cost')->nullable();
             /**
                  *show the status of the reservation.
                  *pending (default state)
-                 *active 
+                 *active
                  *approved_by agent
                  *reject_by_agent
                  *reject_by_owner

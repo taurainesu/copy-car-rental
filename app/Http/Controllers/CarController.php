@@ -85,6 +85,17 @@ class CarController extends Controller
         ->where('cars.status','approved')->get();
     }
 
+    public function my_cars(){
+
+        $user_id = Auth::id();
+        $cars=Car::where('user_id', $user_id)->get();
+        return view('suppliers.my_cars',[
+        "cars" => $cars,
+       ]);
+
+
+    }
+
     public function car($id){
         if(Auth::user()->is_admin || Auth::user()->isSupplier){
             return view("car_info",[

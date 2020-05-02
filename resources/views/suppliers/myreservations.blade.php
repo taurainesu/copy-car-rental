@@ -1,5 +1,4 @@
-
-@extends('layouts.layout')
+@extends('suppliers.layout')
 
 @section('content')
 
@@ -31,7 +30,7 @@
           <td >{{date("D d M Y",strtotime($reservation->pick_up_date))}} </td>
           <td>{{date("D d M Y",strtotime($reservation->return_date))}}</td>
           <td class="positive">{{ ucfirst($reservation->reservation_status)}}</td>
-          <td class="positive"><a href="reservation/view/{{$reservation->id}}" class="yellow ui compact button">VIEW</a></td>
+          <td class="positive"><a href="{{route('view_supplier_reservation', $reservation->id)}}" class="yellow ui compact button">VIEW</a></td>
           </tr>
 
 

@@ -62,6 +62,8 @@ Route::post("user/admin","AdminController@makeAdmin")->name("make_admin");
 
 Route::get("cars/info/{id}","CarController@car")->name("get_car");
 
+Route::post("cars/review/{id}","CarController@review_car")->name("review_car");
+
 Route::get("cars/approve/{tab}/{last}/{id}","CarController@approve")->name("approve_car");
 
 
@@ -77,6 +79,7 @@ Route::post("reservations/new","ReservationController@save_data")->name("new_res
 
 Route::post("reservation/update/{id}","ReservationController@update_reservation")->name("update_reservation");
 
+Route::post("reservation/review/{id}","ReservationController@review_reservation")->name("review_reservation");
 Route::get("reservation/delete/{tab}/{last}/{id}","ReservationController@delete_reservation")->name("delete_reservation");
 
 Route::get("reservation/approve/{tab}/{last}/{id}","ReservationController@approve_reservation")->name("approve_reservation");
@@ -221,14 +224,14 @@ Route::post("/send/link",function(){
     $str = Str::random(90);
 
     if($user !== null){
-       
+
         $message = "You have requested a password reset link and click here to reset :- http://localhost:8000/reset/password?token=".$str;
         //notify
 
         DB::table('password_resets')->insert(
             ['email' => $data, 'token' => $str,"created_at"=>time()]
         );
-        
+
         Mail::send(['text'=>'mail'], ['name'=>$message], function($message) use ($user) {
             $message->to($user->email,$user->name)
             ->subject('Reset password');
@@ -325,7 +328,7 @@ Route::post("/supplier/login",function(){
 
 Route::get("/supplier/home",function(){
     $cars = Car::where("user_id",Auth::user()->id)->get();
-    
+
     if(count($cars) <= 0){
         return redirect("/supplier/add/car")->with(['no_cars'=>true]);
     }
@@ -341,42 +344,20 @@ Route::get("/supplier/home",function(){
 
 
 
-Route::get("/supplier/cars",function(){
-    $cars = Car::where("user_id",Auth::user()->id)->get();
-    
-    if(count($cars) <= 0){
-        return redirect("/supplier/add/car")->with(['no_cars'=>true]);
-    }
 
-    return view("admin",[
-        'cars'=>Car::where("user_id",Auth::user()->id)->get(),
-        'reservations'=>Car::where("user_id",Auth::user()->id)->with('reservations')->get(),
-        'users'=>User::all(),
-        'car'=>""
-    ]);
 
-})->middleware("supplier");
+Route::get("supplier/cars",'CarController@my_cars')->name("my_cars")->middleware('supplier');
 
-Route::get("/supplier/reservations",function(){
-    $cars = Car::where("user_id",Auth::user()->id)->get();
-    
-    if(count($cars) <= 0){
-        return redirect("/supplier/add/car")->with(['no_cars'=>true]);
-    }
 
-    return view("suppliers.home",[
-        'cars'=>Car::where("user_id",Auth::user()->id)->get(),
-        'reservations'=>Car::where("user_id",Auth::user()->id)->with('reservations')->get(),
-        'users'=>User::all(),
-        'car'=>""
-    ]);
+Route::get("supplier/reservations",'ReservationController@my_reservations')->name("my_reservations")->middleware('supplier');
 
-})->middleware("supplier");
+Route::get("supplier/reservation/{id}","ReservationController@view_supplier_reservation")->name("view_supplier_reservation")->middleware('supplier');
+
 
 
 Route::get("/supplier/add/car",function(){
     $cars = Car::where("user_id",Auth::user()->id)->get();
-    
+
     if(count($cars) <= 0){
         return view("suppliers.new_car")->with(['no_cars'=>true]);
     }
