@@ -101,6 +101,7 @@ class CarController extends Controller
             return view("car_info",[
                 "car" => Car::join("suppliers","suppliers.id","cars.user_id")
                 ->select("cars.*","suppliers.id as supplier_id")
+                ->with("reviews")
                 ->where('cars.id',$id)->get()->first(),
                 "vehicles"=>true//->with('reviews')->get()
                 ]
@@ -110,6 +111,7 @@ class CarController extends Controller
         return view("car_info",[
             "car" => Car::join("suppliers","suppliers.id","cars.user_id")
             ->select("cars.*","suppliers.id as supplier_id")
+            ->with("reviews")
             ->where("cars.status","approved")
             ->where('cars.id',$id)->get()->first(),
             "vehicles"=>true//->with('reviews')->get()
@@ -329,5 +331,21 @@ class CarController extends Controller
         $car->restore_car();
         return redirect()->route('admin')->with('last_tab', $last_tab);
 
+     }
+
+
+     public function review_car($id){
+         //find car
+         $car = Car::find($id);
+         //add review
+         $car->reviews()->create([
+             'user_id'=>Auth::user()->id,
+             'reservation_id'=>request()->reservation_id,
+             'reviewer'=> Auth::user()->name,
+             'review'=>ucfirst(request()->review),
+             'rating'=>request()->rating,
+         ]);
+
+         return redirect("/reservation/view/".request()->reservation_id);
      }
 }

@@ -34,9 +34,20 @@
 <form  method="POST" action="{{route('review_car',$reservation->car->id)}}" enctype="multipart/form-data">
     @csrf
     <div class="ui form segment">
+    <input hidden value="{{$reservation->id}}" name="reservation_id"/>
+    <div class="field">
+      <label>Rating</label>
+      <select class="ui dropdown" name="rating">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
 <div class="field">
   <label>Review</label>
-  <textarea placeholder="you can write in any language" name="comments"> </textarea>
+  <textarea placeholder="you can write in any language" name="review"> </textarea>
 </div>
 
 <button class="ui primary button"   type="submit"  data-tooltip="Submit" data-position="top left">

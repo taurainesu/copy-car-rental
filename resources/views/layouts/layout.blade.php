@@ -69,6 +69,14 @@
           font-size: 13px !important;
       }
 
+      i.fa.fa-star.rating{
+            color: gold !important;
+        }
+
+        .big_info{
+          font-size: 16px;
+        }
+
     </style>
   </head>
 
@@ -107,10 +115,18 @@
                         <a href="/cars/new" class="ui button inverted" style="margin-left:10px">Become A Supplier</a>
                       </div>
                       @endif
-                      <form class="ui item" action="{{route("logout")}}" method="POST">
-                          @csrf
-                          <button type="submit" class="ui button inverted" style="width:150px">Logout</button>
-                      </form>
+                      <div class="item">
+                        <div class="ui right dropdown item">
+                          <span style="font-family:'Nunito' !important;font-size:16px">{{Auth::user()->name}}</span>
+                          <i class="dropdown icon"></i>
+                          <div class="menu">
+                            <form class="ui item" style="padding:0 !important" action="{{route("logout")}}" method="POST">
+                              @csrf
+                              <button class="ui button inverted" style="color:#333 !important;width:100%;margin:0;" type="submit">Logout</button>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
                   </div>
               </div>
           </div>

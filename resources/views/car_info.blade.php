@@ -108,7 +108,7 @@
                           </div>
                           <div class="column info">
                               <p style="margin:0;font-size: 14px;">Engine Capacity</p>
-                          <p class="big"><b>{{$car->engine_capacity}} Litres</b></p>
+                          <p class="big_info"><b>{{$car->engine_capacity}} Litres</b></p>
                           </div>
                       </div>
                   </div>
@@ -119,7 +119,7 @@
                           </div>
                           <div class="column info">
                               <p style="margin:0;font-size: 14px;">Transmission</p>
-                          <p class="big"><b>{{ucfirst($car->transmission)}}</b></p>
+                          <p class="big_info"><b>{{ucfirst($car->transmission)}}</b></p>
                           </div>
                       </div>
                   </div>
@@ -129,8 +129,8 @@
                               <i class="fas car icon" style="margin: auto;"></i>
                           </div>
                           <div class="column info">
-                              <p style="margin:0;font-size: 14px;">No. of Seats</p>
-                          <p class="big"><b>{{$car->seats}}</b></p>
+                              <p style="margin:0;font-size: 14px;">Number of Seats</p>
+                          <p class="big_info"><b>{{$car->seats}}</b></p>
                           </div>
                       </div>
                   </div>
@@ -138,59 +138,42 @@
           </div>
 
           <div class="ui grid container" style="margin-bottom:40px;margin-top:0px">
-              <h3 style="margin:0">Reviews (0)</h3>
+              <h3 style="margin:0">Reviews ({{count($car->reviews)}})</h3>
               <div class="row" style="margin-bottom:10px;">
                 <div class="ui column divider"></div>
               </div>
-              <div class="">
-                  <div class="ui cards four" style="display:none">
+              <div style="width:100%">
+                @if(count($car->reviews) > 0)
+                  @if(count($car->reviews) >= 4)
+                  <div class="ui four cards">
+                  @else
+                  <div class="ui cards">
+                  @endif
+                    @foreach ($car->reviews as $review)
                       <div class="card">
                         <div class="content">
-                          <p class="right floated" style="margin-left: 5px;"><b>4.7</b></p>
-                          <i class="right floated star icon"></i>
-                          <div class="header">Elliot Fu</div>
-                          <div class="meta">22 Jan 2020</div>
+                        <div class="header" style="font-size:16px">{{$review->reviewer}}</div>
+                          <div class="meta" style="color:#333!important"><small>{{date("D d M Y",strtotime($review->created_at))}}</small></div>
                           <div class="description">
-                            Elliot Fu is a film-maker from New York.
+                           {{$review->review}}
                           </div>
+                          <div style="margin-top:10px">
+                            <span><strong>Rating</strong><br/>  
+                              @for ($i = 0; $i < $review->rating; $i++)
+                                <i class="fa fa-star rating"></i>
+                              @endfor
+                              @for ($i = 0; $i < 5 - $review->rating; $i++)
+                                <i class="fa fa-star-o"></i>
+                              @endfor
+                            </span>
+                          </div>
+                          
                         </div>
                       </div>
-                      <div class="card">
-                        <div class="content">
-                          <p class="right floated" style="margin-left: 5px;"><b>3.9</b></p>
-                          <i class="right floated star icon"></i>
-                          <div class="header">Veronika Ossi</div>
-                          <div class="meta">22 Jan 2020</div>
-                          <div class="description">
-                            Veronika Ossi is a set designer living in New York who enjoys kittens, music, and partying.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="content">
-                          <p class="right floated" style="margin-left: 5px;"><b>4.0</b></p>
-                          <i class="right floated star icon"></i>
-                          <div class="header">Jenny Hess</div>
-                          <div class="meta">22 Jan 2020</div>
-                          <div class="description">
-                            Jenny is a student studying Media Management at the New School
-                          </div>
-                        </div>
-                      </div>
-
-                        <div class="card">
-                          <div class="content">
-                            <p class="right floated" style="margin-left: 5px;"><b>4.8</b></p>
-                          <i class="right floated star icon"></i>
-                            <div class="header">Jenny Hess</div>
-                            <div class="meta">22 Jan 2020</div>
-                            <div class="description">
-                              Jenny is a student studying Media Management at the New School
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-              </div>
+                    @endforeach
+                  </div>
+                  @endif
+                </div>
           </div>
       </div>
   </div>
