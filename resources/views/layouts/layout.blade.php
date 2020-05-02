@@ -87,11 +87,11 @@
     <div id="app">
       {{--Navigation Bar--}}
       <header>
-          <div class="ui secondary menu inverted" style="background:#3E4B96;padding:15px" >
+          <div class="ui secondary menu inverted" style="background:#3E4B96;padding:5px" >
               <div class="ui container">
-                  <div style="margin-right:20px">
+                  <div style="margin:auto 0px;">
                     <a href="/">
-                      <img src="/logo.png" alt="Logo" height="50px" width="100px">
+                      <img style="margin-right:20px" src="/logo.png" alt="Logo" height="40px" width="80px">
                     </a>
                   </div>
                   <a class="item @if($home ?? false) active @endif" href="/">Home</a>

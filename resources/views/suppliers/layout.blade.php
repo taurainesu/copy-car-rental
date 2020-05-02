@@ -4,7 +4,8 @@
   <head>
     <title>Cruiz Auto City</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+    <link rel="icon" type="image/png" href="/logo.png"/>
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Semantic-UI-Alert.css')}}">
@@ -68,6 +69,14 @@
           font-size: 13px !important;
       }
 
+      i.fa.fa-star.rating{
+            color: gold !important;
+        }
+
+        .big_info{
+          font-size: 16px;
+        }
+
     </style>
   </head>
 
@@ -78,11 +87,11 @@
     <div id="app">
       {{--Navigation Bar--}}
       <header>
-          <div class="ui secondary menu inverted" style="background:#3E4B96;padding:15px" >
+          <div class="ui secondary menu inverted" style="background:#3E4B96;padding:5px" >
               <div class="ui container">
-                  <div style="margin-right:20px">
-                    <a href="/supplier/home">
-                      <img src="/logo.png" alt="Logo" height="50px" width="100px">
+                  <div style="margin:auto 0px;">
+                    <a href="/">
+                      <img style="margin-right:20px" src="/logo.png" alt="Logo" height="40px" width="80px">
                     </a>
                   </div>
                   <a class="item @if($home ?? false) active @endif" href="/supplier/home">Home</a>
@@ -96,16 +105,18 @@
                           </div>
                       </div>
                       <div class="item">
-                        <a href="/home" class="ui button inverted" style="margin-left:10px">Go To User Portal</a>
+                        <a href="/home" class="ui button inverted" style="margin-left:10px">Go to User Portal</a>
                       </div>
-                      <div class="ui right dropdown item">
-                        <span style="font-family:'Nunito' !important;font-size:16px">{{Auth::user()->name}}</span>
-                        <i class="dropdown icon"></i>
-                        <div class="menu">
-                          <form class="ui item" style="padding:0 !important" action="{{route("logout")}}" method="POST">
-                            @csrf
-                            <button class="ui button inverted" style="color:#333 !important;width:100%;margin:0;" type="submit">Logout</button>
-                        </form>
+                      <div class="item">
+                        <div class="ui right dropdown item">
+                          <span style="font-family:'Nunito' !important;font-size:16px">{{Auth::user()->name}}</span>
+                          <i class="dropdown icon"></i>
+                          <div class="menu">
+                            <form class="ui item" style="padding:0 !important" action="{{route("logout")}}" method="POST">
+                              @csrf
+                              <button class="ui button inverted" style="color:#333 !important;width:100%;margin:0;" type="submit">Logout</button>
+                          </form>
+                          </div>
                         </div>
                       </div>
                   </div>
