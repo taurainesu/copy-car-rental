@@ -371,11 +371,7 @@ Route::get("/supplier/add/car",function(){
 
 
 //admin routes
-<<<<<<< HEAD
 Route::get("/admin",'AdminController@index')->name("admin")->middleware("admin");
-=======
-Route::get("/admin",'AdminController@index')->name("admin")->middleware('admin');
->>>>>>> 2f32057765fed8eb6ec9f41b567adb4eda8130ca
 
 
 //info

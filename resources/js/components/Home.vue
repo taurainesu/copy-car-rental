@@ -3,7 +3,7 @@
   <div>
       <div style="background:url('/toyota.jpg') no-repeat;background-size:cover;padding:6% 0">
         <div class="ui container">
-          <div class="ui card row" style="width:40%;padding:20px">
+          <div class="ui card row stackable" style="width:40%;padding:20px">
             <div class="content">
               <h3>Rent a Vehicle</h3>
               <div class="ui divider"></div>
@@ -72,7 +72,7 @@
            <div class="ui divider"></div>
         </div>
         <div class="ui">
-          <div class="ui four special cards" v-if="cars.length > 0">
+          <div class="ui four special cards stackable" v-if="cars.length > 0">
             <div class="card" v-for="car in cars" v-bind:key="car.id" style="border-radius:0">
             <div class="image">
               <img style="width:80%;height:100%;margin:auto;padding:20px" :src="car.imageUrl">

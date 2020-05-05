@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 @section("content")
 <div class="container">
-  <div class="ui card p-5" style="width:35%;margin:auto;top:3rem;padding:30px">
+  <div class="ui card p-5" style="width:45%;margin:auto;top:3rem;padding:1.5rem 1rem">
       <div class="content">
           <form method="POST" action="{{ route('login') }}" class="ui form">
               @csrf
@@ -40,15 +40,15 @@
                     </span>
                 @enderror
               </div>
-              <button class="ui button orange login" style="margin:10px 0 10px 0" onclick="showLoading()">Sign in with Cruiz Account</button>
+              <button class="ui button orange login" style="margin:10px 0 10px 0;width:100%" onclick="showLoading()">Sign in with Cruiz Account</button>
           </form>
           <a href="{{ url('/login/facebook') }}">
-            <button class="ui button blue facebook" onclick="showLoadingFb()" style="margin:0px 0 10px 0">
+            <button class="ui button blue facebook" onclick="showLoadingFb()" style="margin:0px 0 10px 0;width:100%">
               <i class="fa fa-facebook" style="margin-right:10px"></i> Sign in with Facebook
             </button>
           </a>
           <a href="{{ url('/reset/link') }}">
-            <button class="ui button green" style="margin:0px 0 20px 0">
+            <button class="ui button green" style="margin:0px 0 20px 0;width:100%">
                Forgot Password
             </button>
           </a>

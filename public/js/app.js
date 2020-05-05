@@ -37898,7 +37898,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "ui card row",
+                staticClass: "ui card row stackable",
                 staticStyle: { width: "40%", padding: "20px" }
               },
               [
@@ -37985,7 +37985,7 @@ var render = function() {
                 _vm.cars.length > 0
                   ? _c(
                       "div",
-                      { staticClass: "ui four special cards" },
+                      { staticClass: "ui four special cards stackable" },
                       _vm._l(_vm.cars, function(car) {
                         return _c(
                           "div",
