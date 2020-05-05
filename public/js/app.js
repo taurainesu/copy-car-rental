@@ -50977,15 +50977,17 @@ var app = new Vue({
       });
       $("#date_picker1").datepicker('show');
       $(function () {
-        $("#date_picker2").datepicker({});
+        $("#date_picker2").datepicker({
+		changeMonth: true,
+        	changeYear: true
+			});
       });
       $('#date_picker1').change(function () {
-        startDate = $(this).datepicker('getDate');
+        startDate = $('#date_picker1').datepicker('getDate');
         $("#date_picker2").datepicker("option", "minDate", startDate);
       });
       $('#date_picker2').change(function () {
-        endDate = $(this).datepicker('getDate');
-        $("#date_picker1").datepicker("option", "maxDate", endDate);
+        endDate = $('#date_picker2').datepicker('getDate');
         root.num_days = endDate.getDate() - startDate.getDate();
         root.total = root.num_days * root.co_daily_rate;
         root.totalAmount = root.current_currency + root.total;

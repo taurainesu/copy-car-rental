@@ -191,7 +191,7 @@
       <i class="dollar icon icon"></i>
       <div class="content">
         <div class="title">Payment Status</div>
-        <div class="description">{{ucwords($reservation->payment->status)}}</div>
+        <div class="description"><p id="payment_status">{{ucwords($reservation->payment->status)}}</p></div>
       </div>
     </div>
     <div class="disabled step">
@@ -339,7 +339,7 @@ function showModal(var1,var2,var3){
     $("#delete_modal").modal("show");
   }
 
-@if($reservation->payment->status=="pending")
+  @if($reservation->payment->status=="pending")
 
 $(window).on('load',function(){
   $('#payment_modal').modal({
@@ -359,6 +359,8 @@ $(window).on('load',function(){
         dataType:'json',
         success:function(data){
           if(data['status']=='paid'){
+              console.log('hey');
+            $("#payment_status").text("Paid");
 
               alert('Reservation completed succesfully');
               }
@@ -389,7 +391,7 @@ $(window).on('load',function(){
 
 
               else {
-                alert('somethin is wrong with your network');
+                alert(data['status']);
               }
             },
         error:function(){
@@ -414,7 +416,6 @@ $(window).on('load',function(){
     });
 
 @endif
-
 
 function  showEditModal(){
 

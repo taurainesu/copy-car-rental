@@ -28,7 +28,7 @@
     <div class="statistic">
       <div class="value">
   <i class="blue calendar check icon"></i>
-  {{$reservations->count()}}
+  {{count($reservations)}}
       </div>
       <div class="label">
   Reservations

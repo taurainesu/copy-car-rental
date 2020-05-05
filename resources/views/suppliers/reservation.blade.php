@@ -180,7 +180,7 @@
       <i class="dollar icon icon"></i>
       <div class="content">
         <div class="title">Payment Status</div>
-        <div class="description">{{ucwords($reservation->payment->status)}}</div>
+        <div class="description" ><p id="payment_status"  >{{ucwords($reservation->payment->status)}}</p></div>
       </div>
     </div>
     <div class="disabled step">
@@ -343,6 +343,7 @@ $(window).on('load',function(){
         dataType:'json',
         success:function(data){
           if(data['status']=='paid'){
+            $("#payment_status").html("Paid");
 
               alert('Reservation completed succesfully');
               }
@@ -373,7 +374,7 @@ $(window).on('load',function(){
 
 
               else {
-                alert('somethin is wrong with your network');
+                alert(data['status']);
               }
             },
         error:function(){

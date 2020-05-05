@@ -331,14 +331,19 @@ Route::post("/supplier/login",function(){
 
 Route::get("/supplier/home",function(){
     $cars = Car::where("user_id",Auth::user()->id)->get();
+    $reservations=[];
+    foreach ( $cars as  $car){
+        $car_reservations=$car->reservations()->get()->toArray();
+        $reservations = array_merge($reservations,$car_reservations);
+    }
 
     if(count($cars) <= 0){
         return redirect("/supplier/add/car")->with(['no_cars'=>true]);
     }
 
     return view("suppliers.home",[
-        'cars'=>Car::where("user_id",Auth::user()->id)->get(),
-        'reservations'=>Car::where("user_id",Auth::user()->id)->with('reservations')->get(),
+        'cars'=>$cars,
+        'reservations'=>$reservations,
         'users'=>User::all(),
         'car'=>""
     ]);
