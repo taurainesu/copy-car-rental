@@ -14,7 +14,7 @@ class PaymentController extends Controller
      * Create a new controller instance.
      *
      * @return void
-   
+
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -24,8 +24,8 @@ class PaymentController extends Controller
 
 
     }
-    public static function poll(Request $request) { 
-        
+    public static function poll(Request $request) {
+
             $data=$request->all();
             $id=$data['id'];
             $reservation=Reservation::findOrFail($id);
@@ -34,20 +34,42 @@ class PaymentController extends Controller
             $paynow = new Paynow('9071','58939c88-b602-4a04-b1d4-105402e603b9','google.com','google.com' );
             $status = $paynow->pollTransaction($poll_url);
             if($status->status()=="paid"){
-                  
+
                   $payment=$payment->setStatusAttribute("paid");
                   return response()
                   ->json(['status'=> 'paid'])
                   ->withCallback($request->input('callback'));
-                  
+
               }
 
+
+              if($status->status()=="awaiting delivery"){
+
+                $payment=$payment->setStatusAttribute("paid");
+                return response()
+                ->json(['status'=> 'paid'])
+                ->withCallback($request->input('callback'));
+
+            }
+
+
+
+
+            if($status->status()=="delivered"){
+
+                $payment=$payment->setStatusAttribute("paid");
+                return response()
+                ->json(['status'=> 'paid'])
+                ->withCallback($request->input('callback'));
+
+            }
+
             elseif($status->status()=="cancelled"){
-                  $payment=$payment->setStatusAttribute("paid");
+                  $payment=$payment->setStatusAttribute("user cancelled");
                   return response()
                   ->json(['status'=> 'cancelled'])
                   ->withCallback($request->input('paid'));
-                  
+
             }
 
             elseif ($status->status()=="disputed") {
@@ -62,7 +84,7 @@ class PaymentController extends Controller
                   return response()
                         ->json(['status'=> 'refunded'])
                         ->withCallback($request->input('callback'));
-                  
+
             }
 
 
@@ -71,21 +93,23 @@ class PaymentController extends Controller
                   return response()
             ->json(['status'=> 'created'])
             ->withCallback($request->input('callback'));
-                  
+
             }
 
             else{
 
+
+                    $my_status=$status->status();
                   return response()
-                  ->json(['status'=> 'error'])
+                  ->json(['status'=> $my_status])
                   ->withCallback($request->input('callback'));
 
 
             }
-             
-            
-              
-              
+
+
+
+
                   }
 
     }
