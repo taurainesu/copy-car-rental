@@ -111,6 +111,33 @@ class Reservation extends Model
             $this->save();
                                                                         }
 
+
+        public function userTakesCar(){
+            $this->setStatusAttribute("in_progress");
+            $this->save();
+
+        }
+
+
+        public function userReturnsCar(){
+
+            $this->setStatusAttribute("vehicle_returned");
+            $this->save();
+
+        }
+
+
+        public function  userNotImpressed(){
+
+
+            $this->setStatusAttribute("rejected_on_site");
+            $this->save();
+
+        }
+
+
+
+
         public function review($reservation_id,$text,$rating){
             $reviewed = $this->reviews()->create([
                 'user_id'=> Auth::user()->id,

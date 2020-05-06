@@ -296,4 +296,25 @@ class ReservationController extends Controller{
 
 
 
+              public function  user_accept($id){
+
+                $reservation= Reservation::find($id);
+                $reservation->userNotImpressed();
+
+                return redirect()->route('view_reservation',['id' => $id]);
+              }
+
+               public function user_reject($id){
+
+
+
+                $reservation= Reservation::find($id);
+                $reservation->userTakesCar();
+
+
+                return redirect()->route('view_reservation',['id' => $id]);
+               }
+
+
+
 }

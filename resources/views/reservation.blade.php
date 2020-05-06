@@ -187,18 +187,41 @@
         <div class="description">You have made a reservation from <strong>{{date("D d M Y",strtotime($reservation->pick_up_date))}}</strong> to <strong>{{date("D d M Y",strtotime($reservation->return_date))}}</strong></div>
       </div>
     </div>
+    @if   ($reservation->reservation_status==="pending")
     <div class="active step">
+
+    @else
+    <div class=" step">
+
+    @endif
       <i class="dollar icon icon"></i>
       <div class="content">
         <div class="title">Payment Status</div>
         <div class="description"><p id="payment_status">{{ucwords($reservation->payment->status)}}</p></div>
       </div>
     </div>
+
+
+    @if   ($reservation->reservation_status==="pending")
     <div class="disabled step">
+
+    @else
+    <div class="active step">
+
+    @endif
+
         <i class="info circle icon"></i>
         <div class="content">
           <div class="title"><h3>Confirmation status</h3></div>
+          @if($reservation->reservation_status==="pending")
           <div class="description">Awaiting confirmation from owner</div>
+
+          @else
+
+          <div class="description">Confirmed for pick up</div>
+
+          @endif
+
         </div>
     </div>
   </div>
@@ -235,20 +258,21 @@
 
 
 
-
+@if ($reservation->reservation_status==="approved_by_agent" or $reservation->reservation_status==="approved_by_owner")
 
                       <div class="ui buttons">
-                        <button class="ui green button"  data-tooltip="Accept Vehicle" data-position="top left" onclick="showModal(&quot;/reservation/accept/{{$reservation->id}}&quot;,
+                        <button class="ui green button"  data-tooltip="Accept Vehicle" data-position="top left" onclick="showModal(&quot;/reservation/user/accept/{{$reservation->id}}&quot;,
                           &quot;Accept Vehicle&quot;,
                          &quot;Are you sure you want to Accept this Vehicle &quot;)"> <i class="thumbs up icon"   style="color:#ffffff"></i> Accept</button>
                         <div class="or"></div>
-                        <button class="ui red button" data-tooltip="Decline Vehicle" data-position="top left" onclick="showModal(&quot;/reservation/decline/{{$reservation->id}}&quot;,
+                        <button class="ui red button" data-tooltip="Decline Vehicle" data-position="top left" onclick="showModal(&quot;/reservation/user/reject/{{$reservation->id}}&quot;,
                           &quot;Decline Vehicle&quot;,
                          &quot;Are you sure you want to Decline this Vehicle &quot;)"> <i class="thumbs down icon"   style="color:#ffffff"></i>   Decline</button>
                       </div>
 
 
 <div class="ui hidden divider"></div>
+@endif
 
                       <div class="ui primary button"   onclick="showEditModal()"  data-tooltip="Edit Reservation" data-position="top left">
                         <i class="pencil alternative icon"></i> Edit Reservation
@@ -264,9 +288,16 @@
 
 <div class="ui hidden divider"></div>
 
+@if($reservation->reservation_status=="done")
+
                       <div class="ui orange button"  onclick="showCarReviewModal()"  data-tooltip="Review Vehicle" data-position="top left">
                         <i class="pencil alternative icon"></i> Write  a Review
                       </div>
+
+                      @endif
+
+
+
 
 
 

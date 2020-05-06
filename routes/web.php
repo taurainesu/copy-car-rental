@@ -79,6 +79,12 @@ Route::post("reservations/new","ReservationController@save_data")->name("new_res
 
 Route::post("reservation/update/{id}","ReservationController@update_reservation")->name("update_reservation");
 
+
+Route::get("reservation/user/reject/{id}","ReservationController@user_accept")->name("user_accept");
+
+
+Route::get("reservation/user/accept/{id}","ReservationController@user_reject")->name("user_reject");
+
 Route::post("reservation/review/{id}","ReservationController@review_reservation")->name("review_reservation");
 Route::get("reservation/delete/{tab}/{last}/{id}","ReservationController@delete_reservation")->name("delete_reservation");
 
