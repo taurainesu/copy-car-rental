@@ -26,7 +26,7 @@
           margin:auto 0px !important; 
         }
         
-        .input,.button{
+        .input{
           margin:0 0 35px 0;
           width: 100%;
         }
@@ -118,6 +118,36 @@ function checkLoginState() {
 </script>
 
 <script>
+  function showAccount(){
+    //fields have been field go to next
+    var name = $("#name").val();
+    var licence = $("#licence").val();
+    var age = $("#age").val();
+    var address = $("#address").val();
+    var country = $("#country").val();
+    var nationality = $("#nationality").val();
+
+    if(name != "" 
+    && licence != "" 
+    && age != ""
+    && address != ""
+    && country != ""
+    && nationality != ""){
+
+      $("#account").show();
+      $("#personal_details").hide();
+    }
+
+    else{
+      alert("Please fill in all information.")
+    }
+  }
+
+  function showPersonalDetails(){
+    $("#account").hide();
+    $("#personal_details").show();
+  }
+
   function showLoading(){
     $(".login").attr("class","ui button orange login loading");
   }  

@@ -27,12 +27,12 @@
           <div class="ui container" style="margin-bottom:20px;padding:20px 0">
               <div class="column">
 
-                  <div class="ui two column grid" style="margin:auto">
+                  <div class="ui two column grid stackable" style="margin:auto">
                     <div class="column">
                       <h1>{{$car->year}} {{$car->brand}} {{$car->model}}</h1>
                     </div>
 
-                    <div class="column" style="text-align:end;margin:0">
+                    <div class="column stackable" style="text-align:end;margin:0">
                       <button @if($car->supplier_id != Auth::id()) class="ui button orange" @else class="ui button orange disabled" @endif  @click="showModal({{$car}})">
                         Reserve Car
                       </button>
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="twelve wide column" style="margin:0px 0">
-                  <img class="ui image" style="height:100%;width:50%;margin:auto;" src="{{$car->imageUrl}}">
+                  <img class="ui image responsive" style="height:100%;width:60%;margin:auto;" src="{{$car->imageUrl}}">
                 </div>
 
                 <div class=" two wide column" style="text-align:end;">
@@ -97,10 +97,10 @@
 
           <div id="information" class="anchor ui grid container">
               <h3 style="margin:0">Vehicle Info</h3>
-              <div class="row">
+              <div class="row" style="margin-bottom:10px;">
                   <div class="ui column divider"></div>
                 </div>
-              <div class="ui row three column centered">
+              <div class="ui row three column centered stackable" style="margin:0;padding:0">
                   <div class="ui grid two column" style="margin-bottom:40px;">
                       <div class="ui row centered segment">
                           <div class="two wide column more">
@@ -137,7 +137,7 @@
               </div>
           </div>
 
-          <div class="ui grid container" style="margin-bottom:40px;margin-top:0px">
+          <div class="ui grid container" style="margin-bottom:40px;margin-top:20px">
               <h3 style="margin:0">Reviews ({{count($car->reviews)}})</h3>
               <div class="row" style="margin-bottom:10px;">
                 <div class="ui column divider"></div>
@@ -145,9 +145,9 @@
               <div style="width:100%">
                 @if(count($car->reviews) > 0)
                   @if(count($car->reviews) >= 4)
-                  <div class="ui four cards">
+                  <div class="ui four cards stackable">
                   @else
-                  <div class="ui cards">
+                  <div class="ui cards stackable">
                   @endif
                     @foreach ($car->reviews as $review)
                       <div class="card">

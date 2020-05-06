@@ -27,7 +27,7 @@
             @if(count($result) > 0)
             <h3>Search Results ({{count($result)}})</h3>
             <div class="ui divider"></div>
-            <div class="ui four cards">
+            <div class="ui four cards stackable">
                 @foreach ($result ?? '' as $car)
                 <div class="card">
                     <div class="image">

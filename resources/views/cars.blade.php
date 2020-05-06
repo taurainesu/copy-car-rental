@@ -7,7 +7,7 @@
         <div class="column ">
             <h3>Our Vehicle Fleet</h3>
             <div class="ui divider"></div>
-            <div class="ui four cards">
+            <div class="ui four cards stackable">
                 @foreach ($search as $car)
                 <div class="card">
                     <div class="image">

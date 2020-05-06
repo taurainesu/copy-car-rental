@@ -2,9 +2,9 @@
 @section('content')
 <div class="container">
     <div class="column">
-        <div class="ui card" style="padding:30px;width:45%;margin:3rem auto">
+        <div class="ui card" style="padding:1.5rem 1rem;width:60%;margin:3rem auto">
             <div class="content">
-                <form method="POST" action="{{ route('register') }}" class="ui form">
+                <form method="POST" action="{{ route('register') }}" class="ui form" autocomplete="off">
                     <img src="/logo.png" style="width:100px;height:50px;"/>
                     @if($facebook ?? false)
                     <div class="ui positive message">
@@ -18,28 +18,29 @@
                     @endif
                     @csrf
                     <input hidden name="facebookID" value="{{$facebookID ?? ''}}"/>
-                    <div class="field">
+                    <div class="field" id="personal_details">
                         <label class="headers">Personal Details</label>
                         <div class="ui divider"></div>
-                        <div class="field">
+                        <div class="ui two fields">
+                          <div class="field">
                             <label>Full Name</label>
-                            <input type="text" name="name" placeholder="Name" required value="{{$name ?? ''}}">
+                            <input type="text" id="name" name="name" placeholder="Name" required value="{{$name ?? ''}}">
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-
+                            </div>
+                            <div class="field">
+                                <div class="field">
+                                    <input type="text" style="display:none" name="" placeholder="National ID Number">
+                                </div>
+                                <div class="field">
+                                  <label>License Number</label>
+                                    <input type="text" id="licence" name="licenseNo" placeholder="License ID Number" required>
+                                </div>
+                              </div>
                         </div>
-                        <div class="field">
-                            <div class="field">
-                                <input type="text" style="display:none" name="" placeholder="National ID Number">
-                            </div>
-                            <div class="field">
-                              <label>License Number</label>
-                                <input type="text" name="licenseNo" placeholder="License ID Number" required>
-                            </div>
-                            </div>
                           <div class="two fields">
                             <div class="field">
                               <label>Gender</label>
@@ -50,21 +51,21 @@
                             </div>
                             <div class="field">
                               <label>Age</label>
-                              <input type="number" name="age" placeholder="Age" required>
+                              <input type="number" id="age" name="age" placeholder="Age" required>
                             </div>
                           </div>
 
                           <div class="field">
                             <label>Physical Address</label>
-                            <textarea rows="2" name="address"  placeholder="Residental Address" required></textarea>
+                            <textarea rows="2" id="address" name="address"  placeholder="Residental Address" required></textarea>
                           </div>
 
 
-                          <div class="two fields" style="margin-bottom:40px !important">
+                          <div class="two fields" style="margin-bottom:20px !important">
                             <div class="field">
                               <label>Country of Residence</label>
                               <div class="ui fluid search selection dropdown">
-                                <input type="hidden" name="country">
+                                <input type="hidden" name="country" id="country">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">Select Country</div>
                                 <div class="menu">
@@ -316,46 +317,65 @@
 
                             <div class="field">
                               <label>Nationality</label>
-                              <input type="text" name="nationality" placeholder="Nationality" required>
+                              <input type="text" name="nationality" id="nationality" value="" placeholder="Nationality" required autocomplete="false">
                             </div>
                           </div>
-                          <label class="headers">Account Information</label>
-                          <div class="ui divider"></div>
-                          <div class="two fields">
-                            <div class="field">
-                              <label>Email Address</label>
-                            <input type="email" name="email" value="{{$email ?? ''}}" placeholder="Email Address" required>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="field">
-                              <label>Phone Number</label>
-                              <input type="number" name="phone" placeholder="Phone Number " required>
-                            </div>
-                          </div>
-                          <div class="two fields">
-                            <div class="field">
-                              <label>Password</label>
-                                <input type="password" name="password" placeholder="Password" required>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="field">
-                              <label>Confirm Password</label>
-                              <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
-                            </div>
-                          </div>
+
+                          <p align="right" style="margin:0">
+                            <button type="button" class="ui button orange" onclick="showAccount()">Next</button>
+                          </p>
                     </div>
-                    <button class="ui button orange register" onclick="showLoadingRegister()" style="margin:20px 0">
-                        Register
-                    </button>
-                    <p style="margin:auto;text-align:center">Already a member?<strong><a href="/login"> Go to user login page.</a></strong></p>
+
+                    <div class="field" id="account" hidden>
+                      <label class="headers">Account Information</label>
+                      <div class="ui divider"></div>
+                      
+                        <div class="field">
+                          <label>Email Address</label>
+                        <input type="email" name="email" value="{{$email ?? ''}}" placeholder="Email Address" required>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="field">
+                          <label>Phone Number</label>
+                          <input type="number" name="phone" placeholder="Phone Number " required>
+                        </div>
+                      
+                      <div class="two fields">
+                          <div class="field">
+                            <label>Password</label>
+                              <input type="password" name="password" placeholder="Password" required>
+                              @error('password')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                          <div class="field">
+                            <label>Confirm Password</label>
+                            <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
+                          </div>
+                        </div>
+
+                        <div class="ui inline" style="display:inline-flex;width:100%;margin-top:10px">
+                          <div align="left" style="width:50%">
+                            <button type="button" class="ui button basic" style="width:40%" onclick="showPersonalDetails()">Back</button>
+                          </div>
+                          <div align="right" style="width:50%">
+                            <button class="ui button orange register" onclick="showLoadingRegister()" style="width:40%">Register</button>
+                          </div>
+                        </div>
+
+                    </div>
+
+                    <p style="margin:auto;text-align:center;margin-top:20px">
+                      Already a member?<strong>
+                        <a href="/login"> Go to user login page.</a>
+                      </strong>
+                    </p>
                 </form>
             </div>
         </div>
@@ -371,7 +391,7 @@
 
     console.log( $("#sex").val());
     console.log( $("#country").val());
-  })
+  });
 
 </script>
 @endsection
